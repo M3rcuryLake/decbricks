@@ -76,9 +76,12 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
     <meta name="theme-color" content={themeColor} />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="robots" content={robots} />
-    <link rel="icon" href="/brand/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/brand/favicon.ico" sizes="any" />
+    <link rel="icon" href="/brand/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/brand/favicon-16x16.png" type="image/png" sizes="16x16" />
     <link rel="icon" href="/brand/icon-192.png" type="image/png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preload" as="image" href="/brand/logo-cream.webp" />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
