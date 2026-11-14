@@ -1,8 +1,8 @@
 /**
- * Legal pages (/terms, /privacy-policy) motion — "monumental legal" plan Task 3.
+ * Legal pages (/terms, /privacy-policy) motion.
  *
- * Owns everything animated on the legal pages:
- *  - the A2 corner wall's staggered build-in (the page's one dealt moment),
+ * Owns everything animated on the legal pages outside the hero (the hero's
+ * motion belongs to the shared ServicesHero via initServicesPage):
  *  - the island sections' fade-rise reveal,
  *  - the reading-progress hairline (fixed, scaleX = scroll fraction),
  *  - the numbered rail's scroll-spy (aria-current via IntersectionObserver),
@@ -22,11 +22,11 @@ import { gsap, prefersReducedMotion } from './core/gsap';
 const HEADER_OFFSET = 90;
 
 export function initLegalPage(): () => void {
-  const hero = document.querySelector<HTMLElement>('.legal-hero');
-  if (!hero) return () => {};
+  const page = document.querySelector<HTMLElement>('.page-legal');
+  if (!page) return () => {};
 
   const reduce = prefersReducedMotion();
-  const bar = hero.querySelector<HTMLElement>('.legal-progress');
+  const bar = page.querySelector<HTMLElement>('.legal-progress');
   const topBtn = document.querySelector<HTMLButtonElement>('.legal-top');
   const rail = document.querySelector<HTMLElement>('.legal-rail');
   const sections = Array.from(document.querySelectorAll<HTMLElement>('.legal-island section'));
@@ -96,10 +96,6 @@ export function initLegalPage(): () => void {
   /* ---------- entrances (skipped entirely under reduced motion) ---------- */
   if (!reduce) {
     const ctx = gsap.context(() => {
-      const bricks = hero.querySelectorAll('.legal-brick');
-      if (bricks.length) {
-        gsap.from(bricks, { autoAlpha: 0, y: 6, stagger: 0.02, duration: 0.4, ease: 'power2.out', delay: 0.15 });
-      }
       const island = document.querySelector('.legal-island');
       if (island) {
         // One-shot reveal via IO: page-transition.ts bulk-kills ScrollTriggers
@@ -122,7 +118,7 @@ export function initLegalPage(): () => void {
           gsap.set(sections, { clearProps: 'all' });
         });
       }
-    }, hero);
+    }, page);
     teardowns.push(() => ctx.revert());
   }
 

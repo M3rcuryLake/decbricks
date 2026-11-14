@@ -14,7 +14,9 @@ export interface Props {
   headingParts?: readonly [string, string];
   /** Hero body paragraph. */
   body?: string;
-  /** In-page "Jump to" nav items; default = SERVICES. */
+  /** In-page "Jump to" nav items; default = SERVICES. Pass [] to render no
+   *  nav row at all (e.g. pages whose in-page nav lives elsewhere, or with
+   *  more sections than the desktop pill row can hold). */
   navItems?: NavItem[];
   /** Accessible name of the "Jump to" nav. */
   navLabel?: string;
@@ -86,6 +88,7 @@ const {
         set:html={brandify(headingParts[1])}
       ></span>
     </div>
+    {navItems.length > 0 && (
     <div class="parts-servicesHeroNavRow relative z-20 mt-50 pb-50 lg:mt-9 lg:flex lg:justify-center lg:pb-0 xl:mt-10 3xl:mt-15 4xl:mt-15">
       <nav class="px-15 lg:px-0" aria-label={navLabel}>
         <p class="mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-none font-bold uppercase">
@@ -184,5 +187,7 @@ const {
         <rect x="4" y="4" width="4" height="4" transform="rotate(-180 4 4)" fill="currentColor" />
       </svg>
     </div>
+    )}
+    <slot />
   </div>
 </section>

@@ -1,18 +1,20 @@
 ---
 /**
  * Shared shell for the legal pages (/terms, /privacy-policy) — open-items A11.
- * "Monumental legal" treatment (approved 2026-11-14): dark burgundy hero band
- * with the A2 corner pixel-brick wall, giant display title and derived meta
- * chips; then the light reading island with giant section numerals. Structure
- * still mirrors the template (Base → Header → .page → hero → island → Footer).
- * Motion lives in src/scripts/legal-page.ts (registered in main.ts); this
- * component renders the hooks it consumes (.legal-hero*, .legal-progress,
- * .legal-top, .legal-rail*, .legal-section, .legal-num).
+ * Hero = the shared ServicesHero treatment (owner-approved 2026-11-14):
+ * WebGL trail flares, FK Raster Compact display words, smiley-sticker subtext
+ * (doc.intro carries the draft notice as prose). The draft stamp renders
+ * through ServicesHero's default slot. In-page jumps come from the fixed
+ * numbered rail below (14 sections cannot fit the hero's desktop pill row),
+ * so the hero is rendered with navItems={[]}. Motion lives in
+ * src/scripts/legal-page.ts (registered in main.ts); this component renders
+ * the hooks it consumes (.legal-progress, .legal-top, .legal-rail*,
+ * .legal-island, .legal-section, .legal-num).
  *
  * DRAFT STATE: `noindex` stays on until the owner replaces the bracketed
  * placeholders and has the text reviewed (then flip this prop and add the
  * routes to src/pages/sitemap.xml.ts — see docs/open-items.md A11). The draft
- * notice stays visible as a hero chip.
+ * notice stays visible as the hero stamp line.
  */
 import type { LegalDoc } from '../data/legal';
 import { brandify } from '../lib/brand';
@@ -21,32 +23,13 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import CookieBanner from './CookieBanner.astro';
 import TransitionOverlay from './TransitionOverlay.astro';
+import ServicesHero from './ServicesHero.astro';
 
 interface Props {
   doc: LegalDoc;
 }
 
 const { doc } = Astro.props;
-
-// Derived chip values — never invented: section count and reading time
-// (~200 wpm) come straight from the verbatim document data.
-const sectionCount = doc.sections.length;
-const wordCount = doc.sections.reduce(
-  (n, s) => n + s.body.join(' ').split(/\s+/).length + (s.bullets?.join(' ').split(/\s+/).length ?? 0),
-  0,
-);
-const readMinutes = Math.max(1, Math.round(wordCount / 200));
-
-// A2 corner wall: server-rendered fixed pattern (7 cols × 5 rows). '' = coral,
-// 'sage' / 'olive' = the supporting accents. Deterministic — no CLS, no-JS
-// readers still see the full wall (motion only builds it in).
-const BRICK_PATTERN: Array<'' | 'sage' | 'olive'> = [
-  '', 'sage', '', 'olive', '', '', 'sage',
-  '', 'olive', '', 'sage', '', '', 'olive',
-  'sage', '', '', '', 'olive', '', '',
-  '', 'sage', '', 'olive', '', 'sage', '',
-  '', '', 'olive', '', 'sage', '', '',
-];
 ---
 
 <Base title={doc.seoTitle} description={doc.seoDescription} noindex={true}>
@@ -54,28 +37,14 @@ const BRICK_PATTERN: Array<'' | 'sage' | 'olive'> = [
     <div></div>
     <div class="page page-legal bg-darkPurple">
       <Header />
-      {/* A2 hero: dark band so the header's scroll-0 theme resolves dark (cream
-          wordmark) — same reason /about opens on a dark hero. The rotated
-          brick wall overflows the hero's top/right edge by design and is
-          clipped by the hero's overflow-hidden. */}
-      <section class="legal-hero relative overflow-hidden bg-darkPurple" data-theme="dark" aria-label={doc.title}>
-        <div class="legal-progress" aria-hidden="true"></div>
-        <div class="legal-hero__wall" aria-hidden="true">
-          {BRICK_PATTERN.map((brick) => (
-            <span class:list={['legal-brick', { 'legal-brick--sage': brick === 'sage', 'legal-brick--olive': brick === 'olive' }]}></span>
-          ))}
-        </div>
+      <div class="legal-progress" aria-hidden="true"></div>
+      {/* ServicesHero: dark band so the header's scroll-0 theme resolves dark
+          (cream wordmark) — same reason /about and /services open on a dark
+          hero. navItems={[]} skips the Jump-to pill row (14 sections don't fit
+          it; the numbered rail below is the in-page nav). */}
+      <ServicesHero srTitle={doc.title} headingParts={doc.heroHeading} body={doc.intro} navItems={[]}>
         <p class="legal-hero__stamp" data-legal-draft-stamp>Last updated: {doc.updated}</p>
-        <h1 class="legal-hero__title heading-3xl text-white uppercase">
-          {doc.title}<span class="text-purple" aria-hidden="true">.</span>
-        </h1>
-        <p class="legal-hero__intro copy-lg text-neonGreen">{doc.intro}</p>
-        <div class="legal-hero__chips">
-          <span class="legal-hero__chip">{sectionCount} sections</span>
-          <span class="legal-hero__chip">~{readMinutes} min read</span>
-          <span class="legal-hero__chip">Draft — placeholders pending</span>
-        </div>
-      </section>
+      </ServicesHero>
       <section data-theme="light" class="legal-island relative overflow-hidden bg-darkPurple pt-80 lg:pt-100" aria-label={doc.title}>
         <div
           class="rounded-10 bg-white px-9 pt-10 pb-40 lg:rounded-24 lg:px-20 lg:pt-25 lg:pb-50 xl:px-25 xl:pt-30 xl:pb-60 3xl:px-35 3xl:pt-35 3xl:pb-70 4xl:px-35 4xl:pt-40 4xl:pb-80"

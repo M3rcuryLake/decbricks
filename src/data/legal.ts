@@ -30,6 +30,8 @@ export interface LegalDoc {
   /** Shown above the H1; 'TEMPLATE DRAFT' until the owner supplies a date. */
   updated: string;
   intro: string;
+  /** The two giant ServicesHero display words (FK Raster Compact). */
+  heroHeading: readonly [string, string];
   sections: LegalSection[];
 }
 
@@ -236,6 +238,7 @@ export const LEGAL_DOCS: Record<'terms' | 'privacy-policy', LegalDoc> = {
     updated: 'TEMPLATE DRAFT',
     intro:
       'These terms cover the use of this website and the services we provide through it. The text is a template draft: bracketed placeholders mark the details the owner must supply before the page goes live.',
+    heroHeading: ['Terms of', 'Service'] as const,
     sections: TERMS,
   },
   'privacy-policy': {
@@ -247,6 +250,7 @@ export const LEGAL_DOCS: Record<'terms' | 'privacy-policy', LegalDoc> = {
     updated: 'TEMPLATE DRAFT',
     intro:
       'This policy explains what personal data this website collects and why. The text is a template draft: bracketed placeholders mark the details the owner must confirm before the page goes live.',
+    heroHeading: ['Privacy', 'Policy'] as const,
     sections: PRIVACY,
   },
 };

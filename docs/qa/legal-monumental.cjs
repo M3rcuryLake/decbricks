@@ -24,7 +24,7 @@ async function load(page, path, wait = 4600) {
   if (!fs.existsSync(SHOTS)) fs.mkdirSync(SHOTS, { recursive: true });
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--use-gl=swiftshader', '--enable-unsafe-swiftshader'], executablePath: '/usr/bin/google-chrome' });
 
-  // --- Task 1: hero band ---
+  // --- Task 1: ServicesHero treatment (flares, smiley subtext, FK display words) ---
   for (const [path, title] of Object.entries(DOCS)) {
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     const errs = [];
@@ -32,17 +32,23 @@ async function load(page, path, wait = 4600) {
     page.on('pageerror', e => errs.push(String(e).slice(0, 140)));
     await load(page, path);
     const h = await page.evaluate(() => {
-      const hero = document.querySelector('.legal-hero');
-      const r = (el) => el ? el.getBoundingClientRect() : null;
+      const hero = document.querySelector('.sections-servicesHero');
+      const vis = (el) => !!el && el.offsetParent !== null;
       return JSON.stringify({
         heroExists: !!hero,
         theme: hero?.getAttribute('data-theme'),
-        heroBg: hero ? getComputedStyle(hero).backgroundImage + getComputedStyle(hero).backgroundColor : null,
-        title: document.querySelector('h1.legal-hero__title')?.textContent?.trim() || null,
+        h1: document.querySelector('h1')?.textContent?.trim() || null,
         h1Count: document.querySelectorAll('h1').length,
-        stamp: document.querySelector('.legal-hero__stamp')?.textContent?.trim() || null,
-        chips: [...document.querySelectorAll('.legal-hero__chip')].map(c => c.textContent.trim()),
-        wallBricks: document.querySelectorAll('.legal-hero__wall .legal-brick').length,
+        smiley: document.querySelector('.parts-smileyText')?.textContent?.trim() || null,
+        smileyVisible: vis(document.querySelector('.parts-smileyText')),
+        word1: document.querySelector('.sections-servicesHero__word1')?.textContent?.trim() || null,
+        word2: document.querySelector('.sections-servicesHero__word2')?.textContent?.trim() || null,
+        trail: !!document.querySelector('.sections-servicesHero__trail'),
+        navRow: !!document.querySelector('.parts-servicesHeroNavRow'),
+        stamp: document.querySelector('[data-legal-draft-stamp]')?.textContent?.trim() || null,
+        stampVisible: vis(document.querySelector('[data-legal-draft-stamp]')),
+        chips: document.querySelectorAll('.legal-hero__chip').length,
+        bricks: document.querySelectorAll('.legal-brick').length,
         progressH: document.querySelector('.legal-progress') ? getComputedStyle(document.querySelector('.legal-progress')).height : null,
         topHidden: document.querySelector('.legal-top')?.hasAttribute('hidden'),
         placeholders: (document.querySelector('main')?.textContent || '').match(/\[[^\]]{3,60}\]/g)?.length || 0,
@@ -51,16 +57,15 @@ async function load(page, path, wait = 4600) {
     const d = JSON.parse(h);
     T(`${path}: hero exists`, d.heroExists, '');
     T(`${path}: hero is dark themed`, d.theme === 'dark', d.theme);
-    T(`${path}: hero bg burgundy family`, /128, 0, 32|800020/i.test(d.heroBg || ''), (d.heroBg || '').slice(0, 90));
-    T(`${path}: h1 full doc title in hero`, (d.title || '').includes(title), d.title);
+    T(`${path}: h1 full doc title (sr-only)`, (d.h1 || '').includes(title), d.h1);
     T(`${path}: exactly one h1`, d.h1Count === 1, String(d.h1Count));
-    T(`${path}: draft stamp visible`, (d.stamp || '').startsWith('Last updated:'), d.stamp);
-    T(`${path}: 3 chips (sections/min read/Draft)`, d.chips.length === 3 && d.chips.some(c => /sections/.test(c)) && d.chips.some(c => /min read/.test(c)) && d.chips.some(c => /Draft/.test(c)), JSON.stringify(d.chips));
-    T(`${path}: wall has >= 20 bricks`, d.wallBricks >= 20, String(d.wallBricks));
-    // wall is clipped by the hero's overflow-hidden; what matters is that the
-    // clipped decoration never scrolls the PAGE (both viewports assert this)
-    const wallIn = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1);
-    T(`${path}: wall contained (no hero overflow)`, wallIn, '');
+    T(`${path}: smiley subtext present + visible`, !!d.smiley && /template draft/i.test(d.smiley) && d.smileyVisible, (d.smiley || 'null').slice(0, 80));
+    T(`${path}: FK display words render`, d.word1 && d.word2, `${d.word1} / ${d.word2}`);
+    T(`${path}: trail svg present (flares)`, d.trail, '');
+    T(`${path}: no Jump-to pill row on legal`, d.navRow === false, '');
+    T(`${path}: draft stamp visible in hero slot`, (d.stamp || '').startsWith('Last updated:') && d.stampVisible, `${d.stamp} visible=${d.stampVisible}`);
+    T(`${path}: 0 chips, 0 bricks (paragraphical)`, d.chips === 0 && d.bricks === 0, `chips=${d.chips} bricks=${d.bricks}`);
+    T(`${path}: page contained (no h-overflow at 1280)`, await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), '');
     T(`${path}: >= 3 placeholders visible`, d.placeholders >= 3, String(d.placeholders));
     T(`${path}: progress hairline 3px`, d.progressH === '3px', d.progressH);
     T(`${path}: back-to-top hidden at top`, d.topHidden === true, String(d.topHidden));
@@ -129,20 +134,16 @@ async function load(page, path, wait = 4600) {
     page.on('console', m => { if (m.type() === 'error') errs.push(m.text().slice(0, 140)); });
     page.on('pageerror', e => errs.push(String(e).slice(0, 140)));
     await load(page, '/terms');
-    // build-in: catch a brick mid-animation shortly after load
-    const midAnim = await page.evaluate(() => {
-      const bricks = [...document.querySelectorAll('.legal-brick')];
-      const rest = (b) => parseFloat(getComputedStyle(b).opacity);
-      const at = bricks.map(rest);
-      return { distinct: new Set(at.map(o => Math.round(o * 100) / 100)).size > 1, restMax: Math.max(...at) };
+    // hero entrance: smiley subtext + display words fully visible at rest
+    const heroRest = await page.evaluate(() => {
+      const smiley = document.querySelector('.parts-smileyText');
+      const w1 = document.querySelector('.sections-servicesHero__word1');
+      const w2 = document.querySelector('.sections-servicesHero__word2');
+      const op = (el) => el ? parseFloat(getComputedStyle(el).opacity) : 0;
+      return { smiley: op(smiley), w1: op(w1), w2: op(w2) };
     });
-    T('motion: brick build-in caught mid-stagger', midAnim.distinct, JSON.stringify(midAnim));
+    T('motion: smiley + display words visible at rest', heroRest.smiley > 0.9 && heroRest.w1 > 0.9 && heroRest.w2 > 0.9, JSON.stringify(heroRest));
     await page.waitForTimeout(2200);
-    const settled = await page.evaluate(() => {
-      const ops = [...document.querySelectorAll('.legal-brick')].map(b => parseFloat(getComputedStyle(b).opacity));
-      return { allSettled: Math.min(...ops) > 0.2, max: Math.max(...ops) };
-    });
-    T('motion: bricks settle to rest', settled.allSettled, JSON.stringify(settled));
     // sections reveal: no hidden content at rest
     const sectionsVisible = await page.evaluate(() => [...document.querySelectorAll('.legal-island section')].every(s => parseFloat(getComputedStyle(s).opacity) > 0.9 || s.getBoundingClientRect().top > window.innerHeight));
     T('motion: island sections visible (reveal or below fold)', sectionsVisible, '');
@@ -198,12 +199,12 @@ async function load(page, path, wait = 4600) {
     page.on('pageerror', e => errs.push(String(e).slice(0, 140)));
     await load(page, '/terms');
     const rm = await page.evaluate(() => JSON.stringify({
-      brickOps: [...document.querySelectorAll('.legal-brick')].map(b => parseFloat(getComputedStyle(b).opacity)),
+      smileyOp: parseFloat(getComputedStyle(document.querySelector('.parts-smileyText') || document.body).opacity),
       minSectionOp: Math.min(...[...document.querySelectorAll('.legal-island section')].map(s => parseFloat(getComputedStyle(s).opacity))),
       railLinks: document.querySelectorAll('.legal-railLink').length,
     }));
     const r = JSON.parse(rm);
-    T('reduced-motion: all bricks fully visible at load', Math.min(...r.brickOps) >= 0.25, `min=${Math.min(...r.brickOps)}`);
+    T('reduced-motion: smiley fully visible at load', r.smileyOp > 0.9, `op=${r.smileyOp}`);
     T('reduced-motion: sections visible', r.minSectionOp > 0.9, String(r.minSectionOp));
     T('reduced-motion: rail present', r.railLinks === 14, String(r.railLinks));
     T('reduced-motion: console clean', errs.length === 0, errs.join(' | ').slice(0, 200));
