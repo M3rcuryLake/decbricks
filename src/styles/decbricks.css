@@ -616,46 +616,121 @@ li {
 /* Fixed pill nav (WORK / ABOUT / SERVICES / CONTACT): `bg-white/70` let page
    text show through, and the `backdrop-blur-xl` utility does not exist in the
    compiled global.css (computed backdrop-filter was `none`). Off-White at
-   0.92 opacity + real blur; size and layout untouched. */
+   0.92 opacity + real blur; size and layout untouched.
+   Nav-bug fix (2026-11-14): the capsule is now self-sufficient — a full-opacity
+   burgundy hairline + soft shadow keep its edge >= 3:1 against every backdrop
+   it can sit over (a low-alpha hairline measures 2.4:1 on sage / invisible on
+   off-white — deviation from the brief's "low alpha" suggestion, required by
+   the verified contrast matrix). */
 .structure-navPill {
   background-color: rgba(255, 249, 242, 0.92);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
+  border: 1px solid var(--color-darkPurple);
+  box-shadow: 0 2px 10px rgba(42, 2, 8, 0.10);
 }
 
 /* --------------------------------------------------------------------------
-   Phase 2 header (redesign-polish §4.1): mono index + underline active state.
-   The Contact pill keeps its burgundy fill but carries Off-White text (the
-   remapped "neonGreen" token reads beige; the CTA standardises on on-dark
-   text). Hover slide labels are untouched; the index sits outside the slide
-   mask. Departure Mono gets the nav indexes (mono's real job, §3).
+   Phase 2 header (redesign-polish §4.1) → state system (nav-bug fix,
+   2026-11-14). Every state sets background AND label AND numeral AND
+   underline together via --nav-* variables, so they cannot desync (root
+   cause of the invisible CONTACT label: `.hover\:bg-white:hover` flipped the
+   pill to Off-White while the unlayered `.parts-btnBlock.bg-darkPurple`
+   colour pin kept the label cream = 1:1). Scoped to the desktop capsule;
+   hooks unchanged; the template utilities in Header.astro (hover:bg-white,
+   hover:text-darkPurple, focus:bg-white, duration-500) are overridden here
+   (unlayered rules beat layered utilities).
+   State map:
+     default   transparent bg · burgundy label + numeral
+     hover     Warm Beige fill · burgundy label + numeral
+     pressed   darker beige fill
+     focus     2px burgundy ring (Off-White on the dark CTA) — same
+               currentColor language as the global :focus-visible ring
+     current   burgundy fill · Off-White label + numeral · no underline
+               (ONE indicator; CONTACT keeps its dark pill + Off-White
+               underline so "current" ≠ "CTA default")
+     CTA       CONTACT is permanently a dark pill: hover/press darken it
+               (--color-darkerPurple/-darkestPurple), text never flips light
    -------------------------------------------------------------------------- */
-.parts-btnBlock__index {
+.structure-navPill .parts-btnBlock {
+  --nav-bg: transparent;
+  --nav-fg: var(--color-darkPurple);
+  --nav-num: var(--color-darkPurple);
+  --nav-line: transparent;
+  /* Ring sits 3px outside the pill, always on the capsule (guaranteed light
+     surface) — burgundy contrasts with it from every backdrop (>= 8.8:1). */
+  --nav-ring: var(--color-darkPurple);
+  position: relative;
+  background-color: var(--nav-bg);
+  color: var(--nav-fg);
+  transition: background-color var(--dur-micro) var(--ease-brand), color var(--dur-micro) var(--ease-brand);
+}
+.structure-navPill .parts-btnBlock__index {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1;
   letter-spacing: 0.08em;
-  color: var(--color-ink-muted);
+  font-variant-numeric: tabular-nums;
+  color: var(--nav-num);
   margin-right: 7px;
   transform: translateY(-1px);
 }
-/* Active route = 2px bar under the label. It must live on the link (not as
-   text-decoration on the label): the labels sit in a tight overflow-hidden
-   slide mask (line-height 100%), which would clip any offset decoration. */
-.structure-navPill .parts-btnBlock {
-  position: relative;
+.structure-navPill .parts-btnBlock .parts-btnBlock__label {
+  color: var(--nav-fg);
 }
-.structure-navPill .parts-btnBlock.router-link-active::after {
+/* Current-route bar. It must live on the link (not as text-decoration on the
+   label): the labels sit in a tight overflow-hidden slide mask (line-height
+   100%), which would clip any offset decoration. --nav-line is transparent
+   except on the CONTACT-current state below. */
+.structure-navPill .parts-btnBlock::after {
   content: '';
   position: absolute;
   left: 16px;
   right: 16px;
   bottom: 9px;
   height: 2px;
-  background: currentColor;
+  background: var(--nav-line);
 }
-.parts-btnBlock.bg-darkPurple {
-  color: var(--brand-on-dark);
+.structure-navPill .parts-btnBlock:hover {
+  --nav-bg: var(--color-lightPurple);
+}
+.structure-navPill .parts-btnBlock:active {
+  --nav-bg: color-mix(in oklab, var(--color-lightPurple) 86%, var(--color-darkPurple));
+}
+.structure-navPill .parts-btnBlock:focus-visible {
+  outline: 2px solid var(--nav-ring);
+  outline-offset: 3px;
+}
+.structure-navPill .parts-btnBlock.router-link-active {
+  --nav-bg: var(--color-darkPurple);
+  --nav-fg: var(--brand-on-dark);
+  --nav-num: var(--brand-on-dark);
+}
+.structure-navPill .parts-btnBlock.router-link-active:hover {
+  --nav-bg: var(--color-darkerPurple);
+}
+/* CONTACT CTA variant (class from Header.astro; the colour pin that caused
+   the 1:1 hover is replaced by the full variable set). */
+.structure-navPill .parts-btnBlock.bg-darkPurple {
+  --nav-bg: var(--color-darkPurple);
+  --nav-fg: var(--brand-on-dark);
+  --nav-num: var(--brand-on-dark);
+}
+.structure-navPill .parts-btnBlock.bg-darkPurple:hover {
+  --nav-bg: var(--color-darkerPurple);
+}
+.structure-navPill .parts-btnBlock.bg-darkPurple:active {
+  --nav-bg: var(--color-darkestPurple);
+}
+/* CONTACT current (/contact): dark pill stays; the Off-White bar marks
+   "current" (10.36:1) — never a light flash. */
+.structure-navPill .parts-btnBlock.bg-darkPurple.router-link-active {
+  --nav-line: var(--brand-on-dark);
+}
+@media (prefers-reduced-motion: reduce) {
+  .structure-navPill .parts-btnBlock {
+    transition-duration: 0ms;
+  }
 }
 
 /* Phase 2 tap rects: mobile Menu button (36px → 44px) and the mobile menu

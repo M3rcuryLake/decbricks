@@ -44,6 +44,16 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 - main.ts: `.sections-hero` (home), `.sections-servicesHero`; page transitions via `page-transition.ts`
 - Anchors: block `id` = nav `href="#id"`; heading `id="{id}-heading"` with `aria-labelledby` on the `<article>`.
 
+## Header desktop nav state machine (2026-11-14, `decbricks.css` block "Fixed pill nav")
+
+`.structure-navPill` (capsule) + the four `.parts-btnBlock` anchors inside it. CSS-only; `menu.ts` only syncs `router-link-active` + `aria-current="page"` after client-side swaps (unchanged). No scroll-driven header theme toggling exists — the capsule is a fixed light surface over whatever section passes beneath.
+
+- **Capsule (self-sufficient surface):** Off-White `rgba(255,249,242,.92)` + `backdrop-blur(16px)`, full-opacity burgundy 1px hairline (`--color-darkPurple`), soft `0 2px 10px rgba(42,2,8,.10)` shadow. Edge ≥3:1 on every backdrop: fill-vs-backdrop 8.86 on burgundy, hairline-vs-backdrop 10.36 on Off-White (a low-alpha hairline measured 2.4:1 on sage — deviation from the brief's "low alpha" suggestion, required by measurement).
+- **One rule per state via `--nav-*` vars** (`--nav-bg/--nav-fg/--nav-num/--nav-line/--nav-ring`) so background/label/numeral/underline cannot desync. The template utilities in Header.astro (`hover:bg-white`, `hover:text-darkPurple`, `focus:bg-white`, `duration-500`) are overridden by these unlayered rules — do not "fix" by editing the markup.
+- **States:** default transparent + burgundy; hover Warm Beige fill; pressed darker beige (`color-mix 86% lightPurple / darkPurple`); focus-visible 2px burgundy ring offset 3px (ring always sits on the light capsule → 8.86:1, valid for all items incl. CONTACT); current `router-link-active` burgundy pill + Off-White label/numeral, **no underline** (ONE indicator); CONTACT CTA permanently dark — hover `--color-darkerPurple`, pressed `--color-darkestPurple`, never a light fill; CONTACT-current keeps the dark pill and is marked by the Off-White `::after` bar (`--nav-line`) — the only underline in the system.
+- **Numerals:** `.parts-btnBlock__index` scoped inside the pill — 11px, tabular-nums, colour = `--nav-num` (≥6.86:1 in every state). The span exists only in Header.astro.
+- **Motion:** 150ms `--ease-brand` on bg+colour; `prefers-reduced-motion: reduce` → 0ms. Underline space is reserved by the always-rendered `::after` (transparent unless CONTACT-current) — no layout shift.
+
 ## Other template pieces (not part of the brief but they ship 1minus1 identity)
 `Hero`, `CaseStudies`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `Header` logo — see open-items.md "Scope decisions". (Footer left this list in Footer Phase 1–6: template marquee/social links removed, copy/nav/contact data-driven via `src/data/footer.ts`; Testimonials left in 2026-11-13 P1.)
 

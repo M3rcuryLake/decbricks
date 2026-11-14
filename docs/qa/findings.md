@@ -146,3 +146,52 @@ Full report: [`docs/cleanup/report.md`](file:///home/ankit/GitHub/decbricks/docs
 | CL-3 | Multi-width & a11y parity | `overflowX: 0` across `320, 375, 768, 1024, 1280, 1920, 2560 px` and under `prefers-reduced-motion: reduce`; `0` console/page/HTTP errors; keyboard `Tab` focus order passes | ✅ pass |
 | CL-4 | Phase 5 CSS purge (`cleanup/global-css-purge-2026-11-14`) | Pruned `src/styles/global.css` `157,642 B -> 97,735 B` (`-38.00%`, `-1,171` unused rules; `dist` CSS `-59,790 B`); 6-width × 5-route + 4 interactive states verified with `0` console/HTTP errors & zero layout/style regressions | ✅ verified on branch |
 
+## Header desktop-nav state system (nav-bug fix, 2026-11-14)
+
+Symptoms from a screen recording: CONTACT label disappears on hover ("invisible CONTACT"), states inconsistent (double indicators), numerals near-invisible, capsule edge vanishes on light pages.
+
+### Root cause (exact selectors)
+
+| Failure | Selector(s) responsible |
+|---|---|
+| CONTACT label 1.00:1 on hover/press | `Header.astro` `hover:bg-white` → compiled `.hover\:bg-white:hover{background-color:var(--color-white)}` flipped the pill to Off-White while the **unlayered** `.parts-btnBlock.bg-darkPurple{color:var(--brand-on-dark)}` (decbricks.css Phase-2 block) pinned the label cream — unlayered rules beat every layered utility, so `hover:text-darkPurple` never applied |
+| CONTACT numeral "04" 1.69:1 | `.parts-btnBlock__index{color:var(--color-ink-muted)}` at 10px on the burgundy CTA pill |
+| Double indicator (pill + underline) | `.structure-navPill .parts-btnBlock.router-link-active::after{background:currentColor}` fired on **every** current item; CONTACT-current = dark pill + cream underline; hover + underline coexisted on light items |
+| Hover/focus pill invisible | `.hover\:bg-white:hover` / `.focus\:bg-white:focus` painted an Off-White fill on the 0.92-Off-White capsule ≈ 1.05:1 |
+| Capsule edge invisible on light | `.structure-navPill` had no border/shadow — capsule fill vs Off-White backdrop = 1.00:1 |
+
+### Backdrop census
+
+Only **burgundy `rgb(128,0,32)`** and **Off-White `rgb(255,249,242)`** ever sit behind the header (probed `elementFromPoint` at header height across `/`, `/about`, `/services`, `/contact` at every themed section + footer). Beige/sage never reach header height; sage/olive appear only inside components below it. The matrix is therefore 2 backdrops × states × 4 items.
+
+### Before matrix (measured, default states)
+
+| Backdrop | Capsule edge | Light-item label | Light-item numeral | CONTACT label | CONTACT numeral |
+|---|---|---|---|---|---|
+| Burgundy | 8.86 ✅ | 8.86 ✅ | 5.26 ✅ | 10.36 ✅ | **1.69 ❌** |
+| Off-White | **1.00 ❌** | 10.36 ✅ | 6.15 ✅ | 10.36 ✅ | **1.69 ❌** |
+| Any · CONTACT hover/pressed | — | — | — | **1.00 ❌** (pill & label both Off-White) | — |
+| Any · light-item hover pill | — | — | — | — | pill vs capsule **≈1.05 ❌** (invisible fill, label still legible) |
+
+### After matrix (measured — label/numeral vs effective pill background, alpha-composited)
+
+| State | Burgundy backdrop | Off-White backdrop |
+|---|---|---|
+| Default (WORK/ABOUT/SERVICES) | 8.86 | 10.36 |
+| Default (CONTACT) | 10.36 | 12.25 |
+| Hover light item (beige fill) | 12.25 | 8.82 |
+| Hover CONTACT (darkerPurple) | 12.25 | 12.25 |
+| Pressed light item | — | 6.86 |
+| Pressed CONTACT (darkestPurple) | 13.89 | — |
+| Focus (any item; label unaffected) | ring 8.86 vs capsule | ring 8.86 vs capsule |
+| Hover transition (rAF-sampled ~16ms × 40 frames, in + out) | **min 10.36** every frame | — |
+| Scroll-under-hover (157 frames) | min 8.82 | min 8.82 |
+
+Capsule edge: fill-vs-backdrop is 8.86 on burgundy, 1.00 on Off-White — but the new full-opacity burgundy 1px hairline vs Off-White = **10.36**, so a ≥3:1 edge exists on every backdrop (fill provides it on dark, hairline on light).
+
+Current page (one indicator): WORK pill on `/`, ABOUT on `/about`, SERVICES on `/services`, CONTACT dark pill + Off-White underline on `/contact` (only remaining underline, so "current" ≠ "CTA default"). No underline on any other item in any state. `aria-current` + `router-link-active` stayed in sync through a 5-hop client-side gauntlet (`/→/services→/contact→/about→/`).
+
+Regression: below-header pixel diff with the 14 new rules toggled off/on via CSSOM = **0 changed pixels** on `/about` and `/contact` (noise baseline 0); on `/` the diff (6.3%) is below the WebGL hero animation noise baseline (12.3%) and confined to the hero canvas. Widths 1024–2560: capsule 485×54 at identical right-edge offset, item widths constant, no overflow. Mobile (<1024): nav `display:none`, menu button 91×44, menu opens.
+
+Evidence: `docs/qa/shots/nav-before-contact-hover-{burgundy,offwhite}.png`, `nav-after-contact-hover-{burgundy,offwhite}.png`, `nav-after-{default-dark,hover-work,focus-work,current-home,current-contact,hover-about-light}.png`, `nav-w{1024,1280,1440,1920,2560}-{dark,light}.png`, `nav-mobile-{390,menu-open}.png`.
+
