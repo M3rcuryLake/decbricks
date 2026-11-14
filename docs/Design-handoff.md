@@ -511,3 +511,17 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 - **Placeholder honesty**: privacy copy describes only what the site actually does (Formspree, optional Cal.com, cookie banner functional + optional analytics, server logs); every company-specific fact is a bracketed placeholder. `is-valid` wrapper attribute left inert (0 CSS rules — verified).
 
 **Not done on purpose:** pages stay noindexed + out of sitemap until the owner replaces placeholders and gets legal review (open-items A11 to-dos); no invented legal entity details.
+
+## Monumental Legal Pages (2026-11-14, plan 2026-11-14-monumental-legal-pages)
+
+**What / Why:** Owner-approved visual elevation of `/terms` + `/privacy-policy` (mockups picked in a visual-companion session: "A2 corner-wall hero" + "numeral above heading"). Dark burgundy hero band with the giant FK-Raster title + coral period, draft stamp, derived meta chips, and the tilted pixel-brick wall (the page's single dealt moment); light reading island with giant olive numerals; fixed right-edge numbered rail; progress hairline; back-to-top. Brand tokens unchanged — this is a restyle inside the system, not a rebrand (owner request overrides the template's "do not redesign" default for these two pages only).
+
+**Decisions that deviate from the obvious:**
+- **Fixed right rail, not the mockup's left sticky rail:** the `.page` ancestor carries `overflow-hidden` (art containment), which breaks `position: sticky`; `ServicesSidebarNav` already uses `position: fixed` — same grammar, right edge.
+- **Reveal = one-shot IntersectionObserver, not ScrollTrigger:** `page-transition.ts` bulk-kills ALL ScrollTriggers on every client-side swap; ST-owned reveal tweens would be killed mid-flight. IO tweens are module-owned and reverted in teardown.
+- **CSS-default visible:** no `opacity-0` baked into wall/sections markup — no-JS and reduced-motion readers see everything; the module only hides-then-animates when motion is allowed.
+- **Title scale:** `heading-3xl`'s 23vw clamp needed three clipped lines for the full legal titles — capped to `clamp(3.25rem, 9.5vw, 7rem)` (two-line monument) in `.legal-hero__title`.
+- **Wall overflow:** the wall deliberately bleeds past the hero's top/right edge and is clipped; QA asserts page-level containment, not hero-level `scrollWidth`.
+- **Numerals are olive** (owner-approved accent for tags/borders; olive on off-white ≥ 3:1) and `aria-hidden` — the verbatim headings already carry their own numbers.
+
+**Files:** `LegalPage.astro`, `src/scripts/legal-page.ts` (new), `src/scripts/main.ts` (2 registrations), `decbricks.css` (`.legal-*` block), `docs/qa/legal-monumental.cjs`.
