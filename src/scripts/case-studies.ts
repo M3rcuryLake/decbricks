@@ -185,6 +185,10 @@ class StickerMouseTrail {
       dstImg.src = srcImg.src;
       dstImg.srcset = srcImg.srcset || '';
       dstImg.alt = srcImg.alt || '';
+      const w = srcImg.getAttribute('width');
+      const h = srcImg.getAttribute('height');
+      if (w) dstImg.setAttribute('width', w);
+      if (h) dstImg.setAttribute('height', h);
     }
 
     const tl = gsap.timeline({ onComplete: () => this.releaseSticker(item) });
