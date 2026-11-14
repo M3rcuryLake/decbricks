@@ -6,7 +6,7 @@ Agent: never invent these. Implement safe fallbacks, keep this list current, mar
 | # | Item | Needed for | Fallback until provided |
 |---|---|---|---|
 | A1 | Production domain (existing code hints `decbricks.com`) | canonical, sitemap, OG, schema | `astro.config` `site` + `SITE.url` from env; confirm |
-| A2 | Cal.com `username/event-slug` (+ plan: Cal.com cloud vs self-host origin) | booking embed | fallback card (email/phone/direct link). 2026-11-13: fallback copy is visitor-neutral in both envs — "Online booking is coming soon." (dev signal lives in console.warn + sr-only status, `CalEmbed.astro`) |
+| A2 | ~~Cal.com `username/event-slug`~~ **Link live 2026-11-15** (`decbricks-team/meet`, `https://cal.com/decbricks-team/meet` — optional overrides via `PUBLIC_CAL_LINK` / `PUBLIC_CAL_BOOKING_URL`). **Owner to-dos in Cal Settings → Appearance:** rename display name `"DecBricks Team"` → `"Decbricks Team"` to match brand casing; Cal free-plan `Inter` typography and `"Cal.com"` footer watermark remain platform-controlled inside the iframe | booking embed | fallback card (`cal-fallback`: email/phone/direct link). Visitor-neutral copy if unconfigured |
 | A3 | Contact phone numbers (E.164 + display + label, WhatsApp?) | numbers section, schema `contactPoint` | section hidden + dev warning |
 | A4 | Contact email + physical/registered address (if to be public) | schema, footer, form fallback | omitted |
 | A5 | Team: names, roles, bios, photos (≥800px, consent), LinkedIn | Meet the Team | clearly-marked placeholder cards, `noindex` not needed; no fake faces |

@@ -16,16 +16,26 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
 
 <div class="cal-embed-widget relative w-full" data-has-cal={hasCal ? 'true' : 'false'}>
   <div
-    class="cal-embed relative w-full overflow-hidden rounded-8 bg-lightPurple"
-    data-lenis-prevent
-    aria-busy={fallbackVisible ? 'false' : 'true'}
-    aria-hidden={fallbackVisible ? 'true' : 'false'}
+    class:list={['cal-frame relative w-full overflow-hidden', fallbackVisible ? 'is-hidden' : '']}
+    data-cal-ready="false"
   >
+    <div
+      class="cal-embed relative w-full"
+      data-lenis-prevent
+      aria-busy={fallbackVisible ? 'false' : 'true'}
+      aria-hidden={fallbackVisible ? 'true' : 'false'}
+    />
+
     {
       fallbackVisible ? null : (
         <div class="cal-skeleton" aria-hidden="true">
-          <div class="cal-skeleton__bar cal-skeleton__bar--w-sm" />
-          <div class="cal-skeleton__grid">
+          <div class="cal-skeleton__cols">
+            <div class="cal-skeleton__meta">
+              <div class="cal-skeleton__avatar" />
+              <div class="cal-skeleton__bar cal-skeleton__bar--w-sm" />
+              <div class="cal-skeleton__bar" />
+              <div class="cal-skeleton__bar cal-skeleton__bar--w-md" />
+            </div>
             <div class="cal-skeleton__panel" />
             <div class="cal-skeleton__panel" />
           </div>

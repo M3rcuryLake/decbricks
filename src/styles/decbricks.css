@@ -375,65 +375,128 @@ li {
 
 /* --------------------------------------------------------------------------
    Cal.com inline embed (map 5A).
-   The mount min-height reserves space before embed.js arrives (CLS rule in
-   Implementation-plan §5A) — ~700px on mobile, ~650px from lg.
+   `.cal-frame` hugs the Cal widget (1040 px desktop max-width + tight Warm Beige
+   tray) so it never floats inside dead side wings, and sets higher-specificity
+   reserves on `.cal-embed-widget .cal-embed` so embed.js's late `<style>`
+   (`.cal-embed { min-height: 300px; display: block !important }`) cannot cause
+   a layout collapse jump while hydrating.
    -------------------------------------------------------------------------- */
-.cal-embed {
-  min-height: 700px;
+.cal-frame {
+  width: 100%;
+  max-width: 1066px;
+  margin-inline: auto;
+  padding: 6px;
+  min-height: 840px;
+  border-radius: 12px;
+  background-color: var(--brand-surface-alt, #f3e6d5);
+  border: 1px solid color-mix(in srgb, var(--color-darkPurple) 16%, transparent);
+  box-shadow: 0 10px 28px -18px color-mix(in srgb, var(--color-darkPurple) 22%, transparent);
 }
-@media (min-width: 1024px) {
-  .cal-embed {
-    min-height: 650px;
+@media (min-width: 640px) {
+  .cal-frame {
+    padding: 12px 12px 6px;
+    min-height: 1020px;
+    border-radius: 14px;
   }
 }
-/* Once the widget iframe exists, drop the pulsing skeleton behind it. */
-.cal-embed:has(iframe) .cal-skeleton {
-  display: none;
+@media (min-width: 1024px) {
+  .cal-frame {
+    min-height: 588px;
+  }
 }
-/* No Cal link configured (open-items A2): the reserved mount would render as
-   a large empty beige box — collapse it and let the fallback card be the
-   island's content. The CLS min-height above only matters when an embed is
-   actually expected to arrive. */
-.cal-embed-widget[data-has-cal='false'] .cal-embed {
-  display: none;
+
+.cal-embed-widget .cal-embed {
+  width: 100%;
+  min-height: 828px;
+  border-radius: 8px;
+}
+@media (min-width: 640px) {
+  .cal-embed-widget .cal-embed {
+    min-height: 1002px;
+  }
+}
+@media (min-width: 1024px) {
+  .cal-embed-widget .cal-embed {
+    min-height: 570px;
+  }
+}
+
+.cal-frame[data-cal-ready='true'] .cal-skeleton {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* No Cal link configured (open-items A2) or failure/unconsented state:
+   collapse the frame on the wrapper (higher-precedence than embed.js !important). */
+.cal-embed-widget[data-has-cal='false'] .cal-frame,
+.cal-embed-widget .cal-frame.is-hidden {
+  display: none !important;
 }
 
 .cal-skeleton {
   position: absolute;
-  inset: 0;
+  inset: 6px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--brand-surface, #fff9f2);
+  border: 1px solid color-mix(in srgb, var(--color-darkPurple) 14%, transparent);
+  pointer-events: none;
+}
+@media (min-width: 640px) {
+  .cal-skeleton {
+    inset: 12px 12px 6px;
+    padding: 24px;
+  }
+}
+.cal-skeleton__cols {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.6fr) minmax(0, 1.05fr);
+  gap: 20px;
+}
+@media (max-width: 1023px) {
+  .cal-skeleton__cols {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+.cal-skeleton__meta {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 20px;
 }
-.cal-skeleton__bar {
-  height: 16px;
-  width: 40%;
-  border-radius: 8px;
+.cal-skeleton__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
   background-color: color-mix(in srgb, #800020 18%, transparent);
   animation: cal-skeleton-pulse 1.6s ease-in-out infinite;
 }
+.cal-skeleton__bar {
+  height: 14px;
+  width: 68%;
+  border-radius: 6px;
+  background-color: color-mix(in srgb, #800020 15%, transparent);
+  animation: cal-skeleton-pulse 1.6s ease-in-out infinite;
+}
 .cal-skeleton__bar--w-sm {
-  width: 26%;
+  width: 42%;
 }
-.cal-skeleton__grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  gap: 12px;
-}
-@media (max-width: 767px) {
-  .cal-skeleton__grid {
-    grid-template-columns: 1fr;
-  }
+.cal-skeleton__bar--w-md {
+  width: 55%;
 }
 .cal-skeleton__panel {
   border-radius: 8px;
-  background-color: color-mix(in srgb, #800020 12%, transparent);
+  background-color: color-mix(in srgb, #800020 10%, transparent);
   animation: cal-skeleton-pulse 1.6s ease-in-out infinite;
 }
-.cal-skeleton__grid .cal-skeleton__panel + .cal-skeleton__panel {
-  animation-delay: 0.4s;
+.cal-skeleton__cols .cal-skeleton__panel + .cal-skeleton__panel {
+  animation-delay: 0.35s;
 }
 @keyframes cal-skeleton-pulse {
   0%,
@@ -445,24 +508,48 @@ li {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .cal-skeleton__avatar,
   .cal-skeleton__bar,
-  .cal-skeleton__panel {
+  .cal-skeleton__panel,
+  .cal-frame[data-cal-ready='true'] .cal-skeleton {
     animation: none;
+    transition: none;
   }
 }
 
 /* Fallback card (failure / timeout / missing consent / missing Cal link).
-   Server-rendered; starts hidden only when the embed is expected to load. */
+   Server-rendered; styled consistently with Decbricks blocks. */
+.cal-fallback {
+  width: 100%;
+  max-width: 720px;
+  padding: 20px 22px;
+  border-radius: 12px;
+  background-color: var(--brand-surface-alt, #f3e6d5);
+  border: 1px solid color-mix(in srgb, var(--color-darkPurple) 18%, transparent);
+}
+@media (min-width: 1024px) {
+  .cal-fallback {
+    padding: 26px 30px;
+  }
+}
 .cal-fallback.is-hidden {
   display: none;
 }
 .cal-fallback__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
+  transition: opacity 0.2s ease;
+}
+.cal-fallback__link:hover {
+  opacity: 0.78;
 }
 .cal-fallback__link:focus-visible {
   outline: 2px solid var(--brand-bg-dark);
   outline-offset: 2px;
+  border-radius: 4px;
 }
 .cal-status {
   /* Off-screen on purpose; it is announced via role=status and receives

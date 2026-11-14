@@ -13,7 +13,9 @@ import pathlib
 import re
 import sys
 
-BRAND = re.compile(r'\bDecbricks\b', re.IGNORECASE)
+# Match the brand word "Decbricks" in prose, skipping email addresses (`@decbricks.com`)
+# and hostnames (`decbricks.com`, `decbricks-team/...`) where `.font-brand::before` must not inject a mark.
+BRAND = re.compile(r'(?<![@./-])\bDecbricks\b(?!\.[a-z]{2,}\b|-[a-z])', re.IGNORECASE)
 
 DIST = pathlib.Path(__file__).resolve().parent.parent / 'dist'
 

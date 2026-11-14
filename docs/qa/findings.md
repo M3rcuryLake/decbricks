@@ -304,3 +304,37 @@ Both wrappers carry `pointer-events: none`, so browser hit-testing passes throug
 - **Regression:** `legal-pages.cjs` 29/29 · `contact-tick.cjs` 12/12 · `contact-form-matrix.cjs` (see PROGRESS). One transient Chromium-launch collision when three suites ran concurrently — rerun clean.
 - **Gates:** build (7 pages) · check (0 err, 1 pre-existing footer email hint) · check:brand · headings · links · check:placeholders · check:footer — all ✅. Dist: noindex both pages, sitemap excludes them, no brick/chip/wall output, stamp + form action intact.
 - **Evidence:** `docs/qa/shots/legal-hero-{terms,privacy-policy}-{1280,375}.png`, `legal-monumental.txt`.
+
+
+## Cal.com Booking Block Fix & Brand Polish (2026-11-15)
+
+- **Root causes fixed:**
+  1. **Accidental beige wings & bottom dead gap:** `.cal-embed` had `w-full bg-lightPurple` (`1788 px` wide at `1920 px`), while Cal's desktop `[data-testid="booker-container"]` caps at `1040 px`, leaving `~374 px` dead beige panels on both sides plus bottom padding above `Cal.com`. Replaced full-width beige fill with a centered hugging frame (`.cal-frame`, `max-width: 1066 px`, `12 px 12 px 6 px` Warm Beige tray matte on `>= 640 px`, subtle hairline/shadow) so the `1040 px` Off-White booker fills the tray edge-to-edge (`deadLeftPx: 0`, `deadRightPx: 0` across all widths).
+  2. **CLS jump from Cal's late `<style>` & `isFirstTime: true`:** `embed.js` injects `<style>.cal-embed{min-height:300px;display:block!important}</style>` into `<head>` after `decbricks.css` and emits an initial `__dimensionChanged` (`iframeHeight: 300, isFirstTime: true`), collapsing the `650/700 px` skeleton reserve to `300 px` and then expanding back to `570 px` (`1280+`) or `2105–2438 px` (`375–768`). Fixed by putting higher-specificity reserves on `.cal-embed-widget .cal-embed` + `.cal-frame` (`840/828 px` `<640`, `1020/1002 px` `640–1023`, `588/570 px` `>=1024`) and holding until `__dimensionChanged` (`isFirstTime: false`), then setting `min-height: 0; height: auto`.
+  3. **Generic cool-grey Cal theme:** Extended `cal('ui', { theme: 'light', cssVarsPerTheme: { light: CAL_THEME_VARS } })` using 28 confirmed `--cal-*` keys observed in live iframe stylesheets (`#FFF9F2` surface, `#EAD7C0` available date tiles, `#F3E6D5` subtle fills, `#800020`/`#630018` selected date & primary CTAs, `#3D000F`/`#4A0E1E`/`#6B2D3B` burgundy-ink text, `#AE7480` 3.58:1 button outlines, `#5A6432`/`#E6ECE0` olive/sage success tones). Cal's free-plan `Inter` font and `Cal.com` footer watermark are platform-controlled and left as-is; host profile `"DecBricks Team"` casing lives in Cal Settings (open-items A2).
+
+- **Before / After across viewports (Playwright Chromium, settled `#book-a-call`):**
+
+| Width | Frame / Mount W (px) | Frame / Iframe H (px) | `overflowX` (px) | CLS (Before → After) | Inner Scrollables | Errors |
+|---|---|---|---|---|---|---|
+| `320` | `272` / `258` | `2072` / `2058` | `0` | — → `0.0707` | `0` | `0` |
+| `375` | `327` / `313` | `2107` / `2093` | `0` | `0.5153` → `0.2278` | `0` | `0` |
+| `768` | `720` / `694` | `2436` / `2416` | `0` | `0.8445` → `0.0466` | `0` | `0` |
+| `1024` | `922` / `896` | `590` / `570` | `0` | `0.1452` → `0.0001` | `1` (slot list) | `0` |
+| `1280` | `1066` / `1040` | `590` / `570` | `0` | `0.0990` → `0.0001` | `1` (slot list) | `0` |
+| `1920` | `1066` / `1040` | `590` / `570` | `0` | `0.0774` → `0` | `1` (slot list) | `0` |
+| `2560` | `1066` / `1040` | `590` / `570` | `0` | `0.0548` → `0` | `1` (slot list) | `0` |
+
+- **Live iframe contrast matrix (`1280×900`):**
+  - Selected date (`#FFF9F2` on `#800020`): **10.36:1** · Available date tile (`#3D000F` on `#EAD7C0`): **12.43:1** · Disabled date text (`#4A0E1E` on `#FFF9F2`): **14.63:1**
+  - Slot button text (`#4A0E1E` on `#FFF9F2`): **14.63:1** · Slot border (`#AE7480` on `#FFF9F2`): **3.58:1** (`>= 3.0`)
+  - Headers (`#4A0E1E` on `#FFF9F2`): **14.63:1** · Subtle captions (`#6B2D3B` on `#FFF9F2`): **9.73:1** · Active `24h` toggle pill: **6.86:1** · Details `Confirm` CTA (`#FFF9F2` on `#800020`): **10.36:1**
+- **Behavior & lifecycle checks (`1280×900`):**
+  - Booking flow (stop before submit): weekday click → `slotVisible: true` → slot click → details form rendered (`Confirm` CTA `10.36:1`) → `Back` restored month view cleanly without booking.
+  - Anchor & header clearance (`a[href="#book-a-call"]` click): `headerBottom: 83 px`, `#book-a-call-heading` top `232 px` (`+149 px` clearance).
+  - Keyboard focus: `Tab` from sidebar entered iframe and exited cleanly (`exitedIframeTo: A.font-neuePower` in `49` steps, zero focus trap).
+  - Wheel scroll (`[data-lenis-prevent] iframe`): wheeling outside advances page (`y: 400 → 612`); wheeling inside slot column holds page (`612 → 620`) while scrolling slots.
+  - Blocked `app.cal.com` host fallback: at `10151 ms`, `.cal-frame` hidden (`display: none`), `.cal-fallback` visible with `44 px` tap targets (`Book a call on Cal.com ↗`, `Email us`).
+  - 6-swap SPA gauntlet (`/contact → /services → /about → / → /contact → /services → /contact`): `embedScriptCount: 1`, `ready: "true"`, `iframeCount: 1`, `mountH: 570`, `errs: []`.
+- **Evidence shots:** `docs/qa/shots/cal-{before,after}-{375,768,1280,1920,2560}.png`.
+- **Not verified:** Real Safari / iOS WebKit; real end-to-end Cal booking submission (stopped cleanly at the details form before `Confirm`).

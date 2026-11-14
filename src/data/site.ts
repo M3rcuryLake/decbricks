@@ -28,7 +28,7 @@ export const SITE = {
   ogImage: `${SITE_URL}/og-default.png`,
   locale: 'en',
   themeColor: '#800020',
-  email: import.meta.env.PUBLIC_CONTACT_EMAIL || '',
+  email: import.meta.env.PUBLIC_CONTACT_EMAIL || 'hello@decbricks.com',
   /** Social profile URLs (resolved open-items A8). */
   socials: [
     { label: 'X', href: 'https://x.com/decbricks' },
