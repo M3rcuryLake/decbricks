@@ -46,6 +46,10 @@ const initials = (name: string) =>
       data-testid="testimonials"
     >
       <div class="tst-inner">
+        <span class="tst-corner tst-corner--tl" aria-hidden="true"></span>
+        <span class="tst-corner tst-corner--tr" aria-hidden="true"></span>
+        <span class="tst-corner tst-corner--bl" aria-hidden="true"></span>
+        <span class="tst-corner tst-corner--br" aria-hidden="true"></span>
         <div class="tst-head">
           <div>
             <p class="tst-kicker">
@@ -71,9 +75,17 @@ const initials = (name: string) =>
                   data-testid={`testimonial-${t.id}`}
                 >
                   <div class="tst-cardInner">
-                    <blockquote class="tst-quote">
-                      <p>{t.quote}</p>
-                    </blockquote>
+                    <div class="tst-cardTop">
+                      <span class="tst-cardIndex" aria-hidden="true">
+                        {pad2(i + 1)}
+                      </span>
+                      <span class="tst-chip">{t.service}</span>
+                    </div>
+                    <div class="tst-quoteWrap">
+                      <blockquote class="tst-quote">
+                        <p>{t.quote}</p>
+                      </blockquote>
+                    </div>
                     <div class="tst-attr">
                       <span class="tst-attrDisc" aria-hidden="true">
                         {initials(t.name)}
@@ -84,7 +96,6 @@ const initials = (name: string) =>
                           {t.role}, {t.company}
                         </span>
                       </div>
-                      <span class="tst-chip">{t.service}</span>
                     </div>
                   </div>
                 </article>
@@ -130,8 +141,8 @@ const initials = (name: string) =>
                   tabindex={i === 0 ? 0 : -1}
                   data-testid={`testimonial-rail-${t.id}`}
                 >
-                  <span class="tst-railDisc" aria-hidden="true">
-                    {initials(t.name)}
+                  <span class="tst-railNum" aria-hidden="true">
+                    {pad2(i + 1)}
                   </span>
                   <span class="tst-railWho">
                     <b>{t.name}</b>
@@ -139,7 +150,6 @@ const initials = (name: string) =>
                       {t.role}, {t.company}
                     </span>
                   </span>
-                  <span class="tst-railChip">{t.service}</span>
                 </div>
               ))}
             </div>

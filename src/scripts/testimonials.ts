@@ -66,6 +66,8 @@ export function initTestimonials(): (() => void) | void {
   // content instead: clone each inner at height:auto into a hidden probe at
   // the stage's width. Runs on init/resize/fonts.ready only — 8 small
   // clones per call.
+  const mqStrip = window.matchMedia('(max-width: 1023px)');
+
   const equalizeStageHeight = () => {
     if (!stage) return;
     const probe = document.createElement('div');
@@ -84,8 +86,14 @@ export function initTestimonials(): (() => void) | void {
       return h;
     });
     probe.remove();
-    const maxH = Math.max(...contentH);
-    if (maxH > 0) stage.style.height = `${maxH}px`;
+    const rawMax = Math.max(...contentH);
+    const stageH = mqStrip.matches ? rawMax : Math.max(rawMax, 364);
+    if (stageH > 0) {
+      stage.style.height = `${stageH}px`;
+      if (railList) {
+        railList.style.maxHeight = mqStrip.matches ? '' : `${stageH}px`;
+      }
+    }
   };
   equalizeStageHeight();
   const onResize = () => {
@@ -132,8 +140,7 @@ export function initTestimonials(): (() => void) | void {
   // scrollTop/scrollLeft math (never scrollIntoView, which can scroll
   // ancestor/page scrollers). `nearest` semantics: no movement when the row
   // is already visible; wrapping 8→1 lands on scrollTop 0 naturally (row 0
-  // is above the viewport then). Vertical ≥768, horizontal strip below.
-  const mqStrip = window.matchMedia('(max-width: 767px)');
+  // is above the viewport then). Vertical ≥1024, horizontal strip below.
   const EDGE = 12; // breathing room past the list padding
   const scrollOptionIntoView = (idx: number, behavior: ScrollBehavior) => {
     if (!railList) return;

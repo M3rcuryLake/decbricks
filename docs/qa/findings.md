@@ -247,3 +247,21 @@ Both wrappers carry `pointer-events: none`, so browser hit-testing passes throug
 | `CF-S2` | Info | `#book-a-call` fallback & header clearance | `"ONLINE BOOKING IS COMING SOON."` + dev hint is confirmed to be `CalEmbed.astro`'s intentional `CAL.link === ''` fallback (`docs/open-items.md` `A2`), not a rendering error. At `scrollY=0`, `#book-a-call h2` sits at `y=1164` (`headerBottom=83`); clicking `a[href="#book-a-call"]` scrolls to `y=915` leaving `#book-a-call h2` at `top: 249` vs `headerBottom: 83` / `navPillBottom: 82` (`166 px` clear). |
 | `CF-S3` | Info | Vertical sidebar nav (`01–04`) at `1280` & `1440` | At `#start-a-project`, sidebar is visible (`navInert: false`), active item matches `["#start-a-project"]`, and text right edges stay clear (`max textRight: 781 px` vs `navLeft: 1222 px` at `1280` and `1382 px` at `1440` → `coveredByNav: false`). |
 
+---
+
+## Testimonials Spotlight Upgrade — Direction 1 (2026-11-14)
+
+- **Design & layout verdict:** Architectural burgundy frame (`.tst-inner` coral hairline + `9 px` `.tst-corner` ticks, `25 px` grid backdrop, `.tst-cardTop` FK Raster index + service pill, Bricolage Grotesque `500` quote copy, Warm Beige `.tst-attr` plinth) paired with simplified `[01 | Name / Role, Company]` rail rows and `<= 1023 px` scroll-snap strip.
+- **Responsive geometry (`2560, 1920, 1440, 1280, 1024, 768, 375`):**
+  - `overflowX: 0 px` at all 7 widths; `prev`/`next`/`.tst-railMore` targets all `>= 44×44 px` (`moreHeight: 44`).
+  - Desktop (`>= 1024 px`) stage vs rail alignment: `stageTopVsRailTopDelta: 0`, `stageBottomVsRailBottomDelta: 0`, `ctrlTopVsMoreTopDelta: 0`, `ctrlBottomVsMoreBottomDelta: 0`.
+  - Band / stage heights: `886 / 408` (`2560, 1920`), `841 / 400` (`1440`), `782 / 376` (`1280`), `704 / 364` (`1024`), `667 / 314` (`768`, compact horizontal strip vs `917 px` before), `644 / 318` (`375`).
+  - Rail text truncation (`scrollWidth > clientWidth`): `[]` across `2560..768`; `1` item at `375` (`Publishing Director, Quillmark Games` inside card `8` of the `317 px` horizontal strip card).
+- **WCAG Contrast (in-page canvas pixel composition of `oklab`/`color-mix`, identical across all 7 widths):**
+  - `quoteOnCard`: **10.36:1** · `nameOnPlinth`: **8.82:1** · `subOnPlinth`: **5.72:1** · `chipOnCard`: **6.08:1**
+  - `railActiveOnCard`: **10.36:1** · `railActiveSubOnCard`: **6.09:1** · `railInactiveOnBand`: **8.82:1** · `railInactiveSubOnBand`: **6.63:1**
+- **Behavior & lifecycle (`1440` + reduced-motion + 4-swap SPA):** `/#t-4` deep link (`04 / 08`), Next (`05 / 08`, live region `"Quote 5 of 8"`), `ArrowDown` (`06 / 08`), `Home` + `+1 more` button scroll & hide, `MomentumHover` active tilt transform, `prefers-reduced-motion: reduce` (`cardTransition: 0s`, `innerTransform: none`), and 4-swap SPA gauntlet (`/ → /services → /about → /contact → /`) returning cleanly with `errs: []`, `postSwapIdx: "02 / 08"`, and reattached WebGL canvases (`["1440x900:true", "1440x900:true"]`).
+- **Build & static gates (post-final-edit):** `npm run check` (`0` err, `0` warn, `1` pre-existing hint in `footer.ts`), `npm run build` (`5` pages), `npm run check:brand`, `npm run check:placeholders` (`8 testimonials, 0 placeholder, 8 consented`), `npm run headings`, `npm run links`, `npm run check:footer` all pass.
+- **Evidence shots:** `docs/qa/shots/tst-after-{1440,1440-long,1280,768,375}.png`.
+- **Not verified:** Real Safari / iOS WebKit (Chromium-only Playwright run).
+
