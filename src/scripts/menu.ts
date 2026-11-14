@@ -113,6 +113,9 @@ export function initMenu() {
     logo.classList.toggle('text-darkPurple', open);
     logo.classList.toggle('bg-white/70', scrolled);
     logo.classList.toggle('backdrop-blur-xl', scrolled);
+    // Light-surface flag (scrolled pill / open mobile menu / light page top):
+    // decbricks.css swaps the cream mark for the full-colour red blob on it.
+    logo.classList.toggle('parts-animatedLogo--light', open);
   };
 
   const setTheme = (el: Element) => {

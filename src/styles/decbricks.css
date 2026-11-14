@@ -71,6 +71,16 @@
 .structure-footer .font-brand::before {
   background-image: url(/brand/logo-cream.webp);
 }
+/* Header light-surface state (2026-11-14): when the lockup sits on a light
+   surface — the scrolled bg-white/70 pill, the open mobile menu overlay, or a
+   light-theme page top — the cream silhouette is ~1:1 against it (measured
+   cream #FFF9F2 on the pill / on the Off-White menu overlay). menu.ts flags
+   these states on the anchor with .parts-animatedLogo--light; serve the
+   full-colour red mark there (same trimmed box → zero CLS). Text colour is
+   handled separately by the text-white/text-darkPurple toggles. */
+.structure-menu .parts-animatedLogo--light .font-brand::before {
+  background-image: url(/brand/logo.webp);
+}
 
 /* Flex parent baseline alignment: ensure standalone header/footer flex rows
    align text items on baseline */
