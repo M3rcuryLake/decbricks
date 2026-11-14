@@ -69,7 +69,7 @@ export const FOOTER = {
       | 'closed',
   },
   legal: [
-    { label: 'Privacy', href: '/privacy-policy', enabled: true },
+    { label: 'Privacy', href: '/terms#privacy-policy', enabled: true },
     { label: 'Terms', href: '/terms', enabled: true },
   ] as FooterLink[],
   newsletter: {

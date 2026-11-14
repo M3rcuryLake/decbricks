@@ -9,7 +9,11 @@ export const BRAND = 'Decbricks';
 const ESC: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ESC[c]);
 
-/** HTML-escaped text where every `Decbricks` word is a `.font-brand` span. */
+/** HTML-escaped text where every standalone `Decbricks` word is a `.font-brand` span
+ *  (skipping domains like `decbricks.com`, emails `@decbricks.com`, and slugs `decbricks-team`). */
 export function brandify(text: string): string {
-  return escape(text).replace(/\bDecbricks\b/gi, (m) => `<span class="font-brand">${m}</span>`);
+  return escape(text).replace(
+    /(?<![@./-])\bDecbricks\b(?!\.[a-z]{2,}\b|-[a-z])/gi,
+    (m) => `<span class="font-brand">${m}</span>`
+  );
 }

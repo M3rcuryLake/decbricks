@@ -13,18 +13,19 @@ export function initPreviewVideos() {
       const active = isMobileVariant ? !desktop : desktop;
       const has = v.querySelector('source');
       if (active && !has) {
+        // Attach <source> immediately for the active viewport preview variant so
+        // the hero preview decodes frame 0 right away instead of waiting on IO.
+        const s = document.createElement('source');
+        s.src = v.dataset.previewMp4!;
+        s.type = 'video/mp4';
+        v.appendChild(s);
+        v.load();
+        v.play().catch(() => {});
         if (!io) {
           io = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               const video = entry.target as HTMLVideoElement;
               if (entry.isIntersecting) {
-                if (!video.querySelector('source')) {
-                  const s = document.createElement('source');
-                  s.src = video.dataset.previewMp4!;
-                  s.type = 'video/mp4';
-                  video.appendChild(s);
-                  video.load();
-                }
                 video.play().catch(() => {});
               } else {
                 video.pause();

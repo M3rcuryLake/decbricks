@@ -479,7 +479,7 @@ export function initPageTransition(callbacks: PageTransitionCallbacks) {
         requestAnimationFrame(() => {
           lenis?.resize();
           ScrollTrigger.clearScrollMemory();
-          const pending = getPendingAnchor();
+          const pending = getPendingAnchor() || anchor;
           let targetScrollY = 0;
           if (pending) {
             clearPendingAnchor();

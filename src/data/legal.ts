@@ -1,20 +1,20 @@
 /**
- * Legal-page content (/terms, /privacy-policy) — open-items A11.
+ * Legal-page content (/terms, including Privacy Policy section) — open-items A11.
  *
  * TEMPLATE DRAFT: every company-specific fact is a bracketed placeholder.
  * Nothing here is presented as the owner's real legal position; the owner
  * replaces the placeholders and gets the text legally reviewed before the
- * pages become indexable (see docs/open-items.md A11 and Design-handoff).
+ * page becomes indexable (see docs/open-items.md A11 and Design-handoff).
  *
  * Copy rules: plain professional English, typographic apostrophes, no bare
  * brand word in body copy (headings render through brandify() where needed).
- * The privacy policy describes only what this site actually does today:
+ * The privacy section describes only what this site actually does today:
  * Formspree contact form, optional Cal.com booking, the cookie banner
  * (functional/essential + optional analytics), and standard server logs.
  */
 
 export interface LegalSection {
-  /** DOM id for aria-labelledby (slug-safe). */
+  /** DOM id for aria-labelledby and anchor targets (slug-safe). */
   id: string;
   heading: string;
   body: string[];
@@ -22,17 +22,22 @@ export interface LegalSection {
   bullets?: string[];
 }
 
-export interface LegalDoc {
-  slug: 'terms' | 'privacy-policy';
+export interface TermsDocument {
+  slug: 'terms';
   title: string;
   seoTitle: string;
   seoDescription: string;
-  /** Shown above the H1; 'TEMPLATE DRAFT' until the owner supplies a date. */
+  /** Shown in the hero stamp; 'TEMPLATE DRAFT' until the owner supplies a date. */
   updated: string;
   intro: string;
   /** The two giant ServicesHero display words (FK Raster Compact). */
   heroHeading: readonly [string, string];
   sections: LegalSection[];
+  privacy: {
+    id: 'privacy-policy';
+    heading: string;
+    sections: LegalSection[];
+  };
 }
 
 const CONTACT_LINE =
@@ -230,29 +235,20 @@ const PRIVACY: LegalSection[] = [
   },
 ];
 
-export const LEGAL_DOCS: Record<'terms' | 'privacy-policy', LegalDoc> = {
-  terms: {
-    slug: 'terms',
-    title: 'Terms of Service',
-    seoTitle: 'Terms of Service | Decbricks',
-    seoDescription:
-      'The terms that govern the use of decbricks.com and our web, AI, design and growth services — template draft pending owner review.',
-    updated: 'TEMPLATE DRAFT',
-    intro:
-      'These terms cover the use of this website and the services we provide through it. The text is a template draft: bracketed placeholders mark the details the owner must supply before the page goes live.',
-    heroHeading: ['Terms of', 'Service'] as const,
-    sections: TERMS,
-  },
-  'privacy-policy': {
-    slug: 'privacy-policy',
-    title: 'Privacy Policy',
-    seoTitle: 'Privacy Policy | Decbricks',
-    seoDescription:
-      'What personal data decbricks.com collects, why, who processes it and what your rights are — template draft pending owner review.',
-    updated: 'TEMPLATE DRAFT',
-    intro:
-      'This policy explains what personal data this website collects and why. The text is a template draft: bracketed placeholders mark the details the owner must confirm before the page goes live.',
-    heroHeading: ['Privacy', 'Policy'] as const,
+export const TERMS_DOC: TermsDocument = {
+  slug: 'terms',
+  title: 'Terms of Service',
+  seoTitle: 'Terms of Service | Decbricks',
+  seoDescription:
+    'The terms and privacy policy that govern the use of decbricks.com and our web, AI, design and growth services — template draft pending owner review.',
+  updated: 'TEMPLATE DRAFT',
+  intro:
+    'These terms cover the use of this website, the services we provide through it, and how we handle personal data. The text is a template draft: bracketed placeholders mark the details the owner must supply before the page goes live.',
+  heroHeading: ['Terms', 'Of Service'] as const,
+  sections: TERMS,
+  privacy: {
+    id: 'privacy-policy',
+    heading: 'Privacy Policy',
     sections: PRIVACY,
   },
 };

@@ -37,20 +37,22 @@ export class Hero {
   private entranceFinished = false;
   private direction: number | -1 | 1 | null = null;
   private pinBaseY?: number;
+  private mobileMorphY = 0;
+  private mobilePinShift = 0;
   private dom: ReturnType<Hero['getDom']>;
   private ac = new AbortController();
   private onRefreshEvaluate?: () => void;
-  /** Initial tilt (deg) captured from the standalone CSS `rotate` property (Tailwind v4 `rotate-14`). */
-  private tilt = 0;
-  private tiltCaptured = false;
+  /** Per-element initial tilt (deg) captured from CSS `rotate` (14deg desktop, 5deg mobile). */
+  private elementTilts = new WeakMap<HTMLElement, number>();
 
   private onRefreshInit = () => {
     if (this.dom.player) gsap.set(this.dom.player, { clearProps: 'y' });
   };
 
-  private normalizeTilt(el: HTMLElement | undefined) {
-    if (!el) return;
-    if (!this.tiltCaptured) {
+  private normalizeTilt(el: HTMLElement | undefined): number {
+    if (!el) return 0;
+    let tilt = this.elementTilts.get(el);
+    if (tilt === undefined) {
       const cs = getComputedStyle(el);
       const propRot = parseFloat(cs.rotate) || 0;
       const m = /matrix\(([-\d.]+),\s*([-\d.]+),/.exec(cs.transform);
@@ -59,12 +61,20 @@ export class Hero {
         const deg = (Math.atan2(parseFloat(m[2]), parseFloat(m[1])) * 180) / Math.PI;
         if (Math.abs(deg) > 0.5) matrixDeg = Math.round(deg);
       }
-      this.tilt = propRot || matrixDeg || 0;
-      this.tiltCaptured = true;
+      tilt = propRot || matrixDeg || 0;
+      this.elementTilts.set(el, tilt);
     }
-    if (this.tilt) {
+    if (tilt) {
       el.style.setProperty('rotate', '0deg');
-      gsap.set(el, { rotation: this.tilt });
+      gsap.set(el, { rotation: tilt });
+    }
+    return tilt;
+  }
+
+  private applyMobileY(morphY?: number) {
+    if (morphY !== undefined) this.mobileMorphY = morphY;
+    if (this.dom.startMobile) {
+      gsap.set(this.dom.startMobile, { y: this.mobileMorphY + this.mobilePinShift });
     }
   }
 
@@ -202,7 +212,7 @@ export class Hero {
   }
 
   private initEntrance() {
-    const { text, start } = this.dom;
+    const { text, start, startMobile } = this.dom;
     this.mm.add(MQ, (ctx) => {
       const { isDesktop, reduceMotion } = ctx.conditions as unknown as Conds;
       if (reduceMotion || text.length < 2) return;
@@ -241,10 +251,15 @@ export class Hero {
         .from(s1.chars, { y, duration: 0.7, ease: 'slowDown', stagger: { each: 0.03, from: 'random' } }, '<')
         .from(text[1], { scale: 0.1, duration: 1, ease: 'smooth' }, '<')
         .from(s2.chars, { y, duration: 0.7, ease: 'slowDown', stagger: { each: 0.03, from: 'random' } }, '<');
-      if (start) {
+      if (isDesktop && start) {
         tl.from(start, { x: 600, y: 150, duration: 1.5, ease: 'elastic.out(1, 1)' }, '>-0.5')
           .from(start, { opacity: 0, duration: 1 }, '<+0.1')
-          .call(() => bus.emit('playTimeline-hero-smileyText'), undefined, isDesktop ? '<' : '>-0.5');
+          .call(() => bus.emit('playTimeline-hero-smileyText'), undefined, '<');
+      } else if (!isDesktop && startMobile) {
+        // Animate xPercent/yPercent on mobile so entrance never contends with scroll-scrubbed pixel y.
+        tl.from(startMobile, { xPercent: 25, yPercent: 10, duration: 1.1, ease: 'smooth' }, '>-0.5')
+          .from(startMobile, { opacity: 0, duration: 0.6 }, '<')
+          .call(() => bus.emit('playTimeline-hero-smileyText'), undefined, '>-0.4');
       }
       if (this.playQueued) tl.play();
     });
@@ -333,8 +348,7 @@ export class Hero {
       if (!a || !d.end || !d.text.length) return;
       const s = boxOf(a);
       const c = boxOf(d.end);
-      this.normalizeTilt(a);
-      this.normalizeTilt(d.startMobile ?? undefined);
+      const tilt = this.normalizeTilt(a);
       const cs = getComputedStyle(a);
       const sx = c.width / s.width;
       const sy = c.height / s.height;
@@ -361,40 +375,83 @@ export class Hero {
         bl: px(cs.borderBottomLeftRadius),
         br: px(cs.borderBottomRightRadius),
       };
-      tl.fromTo(
-        a,
-        {
-          x: 0,
-          y: 0,
-          scaleX: 1,
-          scaleY: 1,
-          rotate: this.tilt,
-          borderTopLeftRadius: r.tl,
-          borderTopRightRadius: r.tr,
-          borderBottomLeftRadius: r.bl,
-          borderBottomRightRadius: r.br,
-          immediateRender: false,
-        },
-        {
-          x: c.x - s.x + (c.width - s.width) / 2,
-          y: c.y - s.y + (c.height - s.height) / 2,
-          scaleX: sx,
-          scaleY: sy,
-          rotate: 0,
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-          onComplete: () => this.handleImageTimelineUpdate(isDesktop, r, 0, 1),
-          onUpdate: () => {
-            if (this.scrollTl) {
-              this.handleImageTimelineUpdate(isDesktop, r, 0, this.scrollTl.progress());
-            }
+      if (isDesktop) {
+        tl.fromTo(
+          a,
+          {
+            x: 0,
+            y: 0,
+            scaleX: 1,
+            scaleY: 1,
+            rotate: tilt,
+            borderTopLeftRadius: r.tl,
+            borderTopRightRadius: r.tr,
+            borderBottomLeftRadius: r.bl,
+            borderBottomRightRadius: r.br,
+            immediateRender: false,
           },
-        }
-      );
-      this.pinBaseY = c.y - s.y + (c.height - s.height) / 2;
-      if (isMobile && d.startMobileInner) tl.to(d.startMobileInner, { scaleX: sy, scaleY: sx }, 0);
+          {
+            x: c.x - s.x + (c.width - s.width) / 2,
+            y: c.y - s.y + (c.height - s.height) / 2,
+            scaleX: sx,
+            scaleY: sy,
+            rotate: 0,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            onComplete: () => this.handleImageTimelineUpdate(isDesktop, r, 0, 1),
+            onUpdate: () => {
+              if (this.scrollTl) {
+                this.handleImageTimelineUpdate(isDesktop, r, 0, this.scrollTl.progress());
+              }
+            },
+          }
+        );
+        this.pinBaseY = c.y - s.y + (c.height - s.height) / 2;
+      } else {
+        // Mobile DOM morph: tween box dimensions cleanly so <video> stays 1x unstretched and radii never warp.
+        const targetX = c.x - s.x + (c.width - s.width);
+        const targetY = c.y - s.y;
+        const yProxy = { y: 0 };
+        this.mobileMorphY = reduceMotion ? targetY : 0;
+        this.mobilePinShift = 0;
+        this.applyMobileY();
+
+        tl.fromTo(
+          a,
+          {
+            x: 0,
+            width: s.width,
+            height: s.height,
+            rotate: tilt,
+            borderTopLeftRadius: r.tl,
+            borderTopRightRadius: r.tr,
+            borderBottomLeftRadius: r.bl,
+            borderBottomRightRadius: r.br,
+            immediateRender: false,
+          },
+          {
+            x: targetX,
+            width: c.width,
+            height: c.height,
+            rotate: 0,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          }
+        ).to(
+          yProxy,
+          {
+            y: targetY,
+            onUpdate: () => this.applyMobileY(yProxy.y),
+            onComplete: () => this.applyMobileY(targetY),
+          },
+          0
+        );
+        this.pinBaseY = targetY;
+      }
       if (d.text[0] && d.text[1]) {
         const k = reduceMotion ? 0 : isDesktop ? 0.75 : 0.5;
         tl.to(d.text[0], { x: () => (reduceMotion ? 0 : -d.text[0].offsetWidth * k) }, 0);
@@ -411,24 +468,26 @@ export class Hero {
     const trig = isDesktop ? this.el.querySelector<HTMLElement>('.pin-trigger') : this.dom.end;
     if (!trig) return;
     const applyPin = (st: ScrollTrigger) => {
-      const s = (st.end - st.start) * st.progress;
+      const s = st.progress > 0 ? (st.end - st.start) * st.progress : 0;
       gsap.set(p, { y: s });
       const el = isDesktop ? this.dom.start : this.dom.startMobile;
       if (!el) return;
-      const baseY = this.pinBaseY ?? 0;
       if (isDesktop && (window as any).hasWebGL && this.webGLImage && this.dom.start) {
         const g = (this.dom.start as any)._gsap;
         if (g) {
           this.webGLImage.updatePosition({
             x: parseFloat(g.x) || 0,
-            y: parseFloat(g.y) + s,
+            y: (parseFloat(g.y) || 0) + s,
             scaleX: g.scaleX ?? 1,
             scaleY: g.scaleY ?? 1,
             rotation: parseFloat(g.rotation) || 0,
           });
         }
+      } else if (isDesktop) {
+        if (st.progress > 0) gsap.set(el, { y: (this.pinBaseY ?? 0) + s });
       } else {
-        gsap.set(el, { y: baseY + s });
+        this.mobilePinShift = s;
+        this.applyMobileY();
       }
     };
     this.pin = ScrollTrigger.create({
@@ -445,8 +504,14 @@ export class Hero {
     this.scrollTl?.kill();
     this.pin?.kill();
     this.pinBaseY = undefined;
+    this.mobileMorphY = 0;
+    this.mobilePinShift = 0;
     const { start, startMobile, startMobileInner, player, text } = this.dom;
-    gsap.set([start, startMobile].filter(Boolean), { clearProps: 'x,y,scaleX,scaleY,rotate,borderRadius' });
+    [start, startMobile].filter(Boolean).forEach((el) => {
+      this.elementTilts.delete(el!);
+      el!.style.removeProperty('rotate');
+    });
+    gsap.set([start, startMobile].filter(Boolean), { clearProps: 'x,y,width,height,scaleX,scaleY,rotate,borderRadius' });
     if (startMobileInner) gsap.set(startMobileInner, { clearProps: 'scaleX,scaleY' });
     if (player) gsap.set(player, { clearProps: 'y' });
     text.forEach((t) => gsap.set(t, { clearProps: 'x' }));

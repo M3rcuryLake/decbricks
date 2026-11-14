@@ -668,8 +668,8 @@ li {
 .form-fieldError[hidden] {
   display: none;
 }
-/* Legal pages (/terms, /privacy-policy): global reset strips list-style;
-   restore disc markers for the legal-content bullet lists. Markers inherit
+/* Legal page (/terms): global reset strips list-style;
+   restore disc markers for any legal-content bullet lists. Markers inherit
    the list item colour (darkPurple on the white island). */
 .legal-list {
   list-style: disc;
@@ -1214,10 +1214,16 @@ html.has-cookie-banner .page .sections-servicesHero {
   padding-top: 20px;
   border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
 }
+.structure-footer__contact {
+  grid-column: 1 / -1;
+}
 @media (min-width: 900px) {
   .structure-footer__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(max-content, 1.5fr) minmax(0, 0.9fr);
     gap: 32px;
+  }
+  .structure-footer__contact {
+    grid-column: auto;
   }
 }
 
@@ -1276,14 +1282,15 @@ html.has-cookie-banner .page .sections-servicesHero {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow-wrap: normal;
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 0 1.5px;
   background-repeat: no-repeat;
   background-position: 0 calc(100% - 8px);
   transition: background-size var(--ft-hover) var(--ft-ease);
 }
-.structure-footer__link:hover {
+a.structure-footer__link:hover {
   background-size: 100% 1.5px;
 }
 .structure-footer__link--sub {
@@ -1293,7 +1300,7 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 .structure-footer__socialList {
   list-style: none;
-  margin: 12px 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
   gap: 0;
@@ -1616,7 +1623,9 @@ html.has-cookie-banner .page .sections-servicesHero {
   .structure-footer__ctaActions,
   .structure-footer__copyBtn,
   .structure-footer__topBtn,
-  .structure-footer__legalBtn {
+  .structure-footer__legalBtn,
+  .legal-progress,
+  .legal-top {
     display: none !important;
   }
   .structure-footer {
@@ -2663,9 +2672,9 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 /* ==========================================================================
-   Legal pages (/terms, /privacy-policy) — "monumental legal" treatment
-   (approved 2026-11-14). All legal-page CSS lives in this one block; new
-   utilities cannot go into the frozen compiled global.css.
+   Legal page (/terms, unified Terms of Service + Privacy Policy)
+   Content sits inside the /services + /about bordered parts-serviceBlock box
+   with restrained clause headings and a more prominent Privacy Policy heading.
    ========================================================================== */
 .legal-hero__stamp {
   font-family: var(--font-mono);
@@ -2706,11 +2715,18 @@ html.has-cookie-banner .page .sections-servicesHero {
   background: var(--brand-bg-dark);
   color: var(--brand-on-dark);
   cursor: pointer;
+  touch-action: manipulation;
   transition: background-color 0.3s var(--ease-brand, ease), transform 0.3s var(--ease-brand, ease);
 }
 
+@media (min-width: 1024px) {
+  .legal-top {
+    bottom: calc(24px + var(--cookie-safe-area, 0px));
+  }
+}
+
 .legal-top:hover {
-  background: var(--brand-accent);
+  background: var(--brand-bg-deeper);
 }
 
 .legal-top svg {
@@ -2719,7 +2735,8 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .legal-top {
+  .legal-top,
+  .legal-progress {
     transition: none;
   }
 }
@@ -2729,65 +2746,71 @@ html.has-cookie-banner .page .sections-servicesHero {
   outline-offset: 2px;
 }
 
-/* Fixed right-edge section rail (ServicesSidebarNav precedent — position:fixed,
-   because the overflow-hidden .page ancestor would break position:sticky).
-   Number links only; the full heading travels as title + aria-label.
-   Below 1024px the rail is removed entirely. */
-.legal-rail {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  z-index: 40;
-  background: rgba(255, 249, 242, 0.92);
-  border-radius: 10px 0 0 10px;
-  padding: 12px 0 12px 8px;
+/* Comfortable reading column centered inside the full-width parts-serviceBlock box. */
+.legal-docBody {
+  max-width: min(100%, 72ch);
+  gap: clamp(24px, 2.8vw, 38px);
+  padding-block: clamp(8px, 1.5vw, 24px);
 }
 
-.legal-railList {
+.legal-section {
+  scroll-margin-top: 96px;
+}
+
+/* Restrained clause titles (ToS h2 + Privacy h3): smaller, sentence case,
+   calm hierarchy inside the bordered card. */
+.legal-clauseTitle {
+  font-size: clamp(17px, 1.25vw, 20px);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+/* Privacy Policy section divider & noticeably larger heading inside the box. */
+.legal-privacySection {
+  margin-top: clamp(12px, 1.8vw, 24px);
+  padding-top: clamp(32px, 4vw, 56px);
+  border-top: 1px solid var(--hairline);
+}
+
+.legal-privacyTitle {
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: clamp(22px, 2.6vw, 36px);
+}
+
+.legal-privacyClauses {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: clamp(24px, 2.8vw, 38px);
 }
 
-.legal-railLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 30px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--brand-on-light);
-  border-radius: 6px 0 0 6px;
-  transition: background-color var(--dur-std) var(--ease-brand), color var(--dur-std) var(--ease-brand);
-}
-
-.legal-railLink:hover,
-.legal-railLink[aria-current='true'] {
-  background: var(--brand-accent);
-  color: var(--brand-on-dark);
-}
-
-.legal-railLink:focus-visible {
-  outline: 2px solid var(--brand-accent);
-  outline-offset: -2px;
-}
-
+/* ==========================================================================
+   Mobile tilt restraint & Hero preview video compositor stability
+   ========================================================================== */
 @media (max-width: 1023px) {
-  .legal-rail {
-    display: none;
+  .sections-hero .start-mobile {
+    rotate: 5deg;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    contain: paint;
+  }
+  .sections-services .parts-serviceCard__inner--even {
+    rotate: -1.5deg;
+  }
+  .sections-services .parts-serviceCard__inner--odd {
+    rotate: 1.5deg;
   }
 }
-
-/* Giant section numerals: the FK Raster face (offBit101 legacy token), olive
-   per the owner-approved accent rules (olive on off-white ≥ 3:1 at any size). */
-.legal-num {
-  font-family: var(--font-offBit101);
-  font-size: clamp(3rem, 6vw, 4.5rem);
-  line-height: 1;
-  color: var(--brand-olive);
+@media (max-width: 639px) {
+  .sections-hero .start-mobile {
+    width: 224px;
+    top: -76px;
+    right: -56px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sections-hero .start-mobile {
+    rotate: 0deg !important;
+  }
 }

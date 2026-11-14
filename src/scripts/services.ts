@@ -26,8 +26,8 @@ export function initServices() {
       cards.forEach((card, idx) => {
         const inner = card.querySelector<HTMLElement>('.parts-serviceCard__inner');
         const even = idx % 2 === 0;
-        const i = isMobile ? 2 : 3.5;
-        const a = isMobile ? 2 : 4;
+        const i = isMobile ? 1 : 3.5;
+        const a = isMobile ? 1.5 : 4;
 
         const enterTl = gsap.timeline({
           scrollTrigger: {

@@ -250,7 +250,7 @@ function initMobileStickerSlider(section: HTMLElement) {
     const images = gsap.utils.toArray<HTMLElement>(track.querySelectorAll('.slider-sticker img'));
 
     gsap.set(stickers, {
-      rotation: () => gsap.utils.random(-35, 35),
+      rotation: () => gsap.utils.random(-12, 12),
       height: () => Math.floor(Math.random() * 46 + 75),
       minHeight: (_i: number, el: HTMLElement) => gsap.getProperty(el, 'height') as number,
       y: () => gsap.utils.random(0, 30),
@@ -264,7 +264,7 @@ function initMobileStickerSlider(section: HTMLElement) {
           .to(images, {
             yPercent: 'random(-20,70)',
             xPercent: 'random(-50,50)',
-            rotation: 'random(-50,50)',
+            rotation: 'random(-10,10)',
             duration: loop.duration(),
           })
       : null;

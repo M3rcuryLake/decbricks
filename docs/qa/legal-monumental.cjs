@@ -88,6 +88,10 @@ async function load(page, path, wait = 4600) {
       const rr = rail ? rail.getBoundingClientRect() : null;
       const links = [...document.querySelectorAll('.legal-railLink')];
       const nums = [...document.querySelectorAll('.legal-num')];
+      const blocks = [...document.querySelectorAll('.legal-island article.parts-serviceBlock')];
+      const h2 = blocks[0]?.querySelector('h2');
+      const box = document.querySelector('.legal-island > div');
+      const container = box?.firstElementChild;
       return JSON.stringify({
         railExists: !!rail,
         railPos: rail ? getComputedStyle(rail).position : null,
@@ -98,8 +102,13 @@ async function load(page, path, wait = 4600) {
         hrefs: links.map(l => l.getAttribute('href')),
         hrefTargets: links.map(l => !!document.getElementById((l.getAttribute('href') || '').slice(1))),
         numCount: nums.length,
-        numColor: nums[0] ? getComputedStyle(nums[0]).color : null,
-        numSize: nums[0] ? parseFloat(getComputedStyle(nums[0]).fontSize) : 0,
+        blockCount: blocks.length,
+        blockBorder: blocks[0] ? getComputedStyle(blocks[0]).borderTopStyle + '/' + getComputedStyle(blocks[0]).borderTopColor : null,
+        ghost: blocks[0]?.querySelector('span.font-offBit')?.textContent?.trim() || null,
+        corners: blocks[0] ? blocks[0].querySelectorAll('span.bg-purple').length : 0,
+        h2Size: h2 ? parseFloat(getComputedStyle(h2).fontSize) : 0,
+        boxClass: box?.className.includes('rounded-10 bg-white') || false,
+        containerClass: (container?.className || '').slice(0, 120),
       });
     });
     const j = JSON.parse(d);
@@ -109,19 +118,23 @@ async function load(page, path, wait = 4600) {
     T(`${path}: ${expectCount} rail links`, j.linkCount === expectCount, String(j.linkCount));
     T(`${path}: first link reads 01`, j.firstLink === '01', j.firstLink);
     T(`${path}: every rail href resolves`, j.hrefTargets.every(Boolean), String(j.hrefTargets.filter(x => !x).length) + ' broken');
-    T(`${path}: ${expectCount} numerals`, j.numCount === expectCount, String(j.numCount));
-    T(`${path}: numeral olive >= 48px`, /rgb\(90, 100, 50\)/.test(j.numColor || '') && j.numSize >= 48, `color=${j.numColor} size=${j.numSize}`);
-    T(`${path}: numerals aria-hidden`, await page.evaluate(() => [...document.querySelectorAll('.legal-num')].every(n => n.getAttribute('aria-hidden') === 'true')), '');
+    T(`${path}: ${expectCount} service blocks`, j.blockCount === expectCount, String(j.blockCount));
+    T(`${path}: 0 old numerals`, j.numCount === 0, String(j.numCount));
+    T(`${path}: block chrome (border + 4 corner squares + ghost numeral)`, (j.blockBorder || '').startsWith('dashed') && j.corners === 4 && j.ghost === '01', `${j.blockBorder} corners=${j.corners} ghost=${j.ghost}`);
+    T(`${path}: heading de-emphasized (<= 30px @1280)`, j.h2Size > 0 && j.h2Size <= 30, String(j.h2Size));
+    T(`${path}: white box + max-w-1850 gap-40 container`, j.boxClass && /max-w-1850/.test(j.containerClass) && /gap-40/.test(j.containerClass), j.containerClass);
     // 375: rail hidden
     await page.setViewportSize({ width: 375, height: 812 });
     await page.waitForTimeout(500);
     const mobile = await page.evaluate(() => JSON.stringify({
       railDisplay: getComputedStyle(document.querySelector('.legal-rail') || document.body).display,
       hscroll: document.documentElement.scrollWidth,
+      blockPad: (() => { const b = document.querySelector('.legal-island article.parts-serviceBlock'); return b ? getComputedStyle(b).paddingLeft : null; })(),
     }));
     const m = JSON.parse(mobile);
     T(`${path}: 375px rail hidden`, m.railDisplay === 'none', m.railDisplay);
     T(`${path}: 375px no horizontal scroll`, m.hscroll <= 376, String(m.hscroll));
+    T(`${path}: 375px block has px-14 padding`, m.blockPad === '56px', m.blockPad);
     await page.screenshot({ path: SHOTS + `legal-island-${path.slice(1)}-375.png` });
     await page.close();
   }
@@ -145,14 +158,14 @@ async function load(page, path, wait = 4600) {
     T('motion: smiley + display words visible at rest', heroRest.smiley > 0.9 && heroRest.w1 > 0.9 && heroRest.w2 > 0.9, JSON.stringify(heroRest));
     await page.waitForTimeout(2200);
     // sections reveal: no hidden content at rest
-    const sectionsVisible = await page.evaluate(() => [...document.querySelectorAll('.legal-island section')].every(s => parseFloat(getComputedStyle(s).opacity) > 0.9 || s.getBoundingClientRect().top > window.innerHeight));
+    const sectionsVisible = await page.evaluate(() => [...document.querySelectorAll('.legal-island .legal-section')].every(s => parseFloat(getComputedStyle(s).opacity) > 0.9 || s.getBoundingClientRect().top > window.innerHeight));
     T('motion: island sections visible (reveal or below fold)', sectionsVisible, '');
     // scroll to section 3 → spy
-    await page.evaluate(() => { const els = document.querySelectorAll('.legal-island section'); window.$lenis ? window.$lenis.scrollTo(els[2], { immediate: true }) : els[2].scrollIntoView(); });
+    await page.evaluate(() => { const els = document.querySelectorAll('.legal-island .legal-section'); window.$lenis ? window.$lenis.scrollTo(els[2], { immediate: true }) : els[2].scrollIntoView(); });
     await page.waitForTimeout(700);
     const spy = await page.evaluate(() => {
       const current = document.querySelector('.legal-railLink[aria-current="true"]');
-      const els = [...document.querySelectorAll('.legal-island section')];
+      const els = [...document.querySelectorAll('.legal-island .legal-section')];
       const top = els.findIndex(e => { const r = e.getBoundingClientRect(); return r.top > -50 && r.top < window.innerHeight; });
       return { current: current?.textContent?.trim(), currentHref: current?.getAttribute('href'), section3: els[2]?.id };
     });
@@ -200,7 +213,7 @@ async function load(page, path, wait = 4600) {
     await load(page, '/terms');
     const rm = await page.evaluate(() => JSON.stringify({
       smileyOp: parseFloat(getComputedStyle(document.querySelector('.parts-smileyText') || document.body).opacity),
-      minSectionOp: Math.min(...[...document.querySelectorAll('.legal-island section')].map(s => parseFloat(getComputedStyle(s).opacity))),
+      minSectionOp: Math.min(...[...document.querySelectorAll('.legal-island .legal-section')].map(s => parseFloat(getComputedStyle(s).opacity))),
       railLinks: document.querySelectorAll('.legal-railLink').length,
     }));
     const r = JSON.parse(rm);

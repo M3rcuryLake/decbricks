@@ -1,22 +1,19 @@
 ---
 /**
- * Shared shell for the legal pages (/terms, /privacy-policy) — open-items A11.
- * Hero = the shared ServicesHero treatment (owner-approved 2026-11-14):
- * WebGL trail flares, FK Raster Compact display words, smiley-sticker subtext
- * (doc.intro carries the draft notice as prose). The draft stamp renders
- * through ServicesHero's default slot. In-page jumps come from the fixed
- * numbered rail below (14 sections cannot fit the hero's desktop pill row),
- * so the hero is rendered with navItems={[]}. Motion lives in
- * src/scripts/legal-page.ts (registered in main.ts); this component renders
- * the hooks it consumes (.legal-progress, .legal-top, .legal-rail*,
- * .legal-island, .legal-section, .legal-num).
+ * Legal page shell (/terms, unified Terms of Service + Privacy Policy) — open-items A11.
+ * Hero = shared ServicesHero treatment (WebGL trail flares, FK Raster Compact
+ * display words, smiley-sticker subtext, draft stamp via default slot,
+ * navItems={[]} so the hero pill row stays omitted).
+ * Content island adopts the /services and /about container + bordered
+ * `article.parts-serviceBlock` box (4 purple corner squares, hairline border),
+ * with restrained clause headings and a more prominent Privacy Policy section
+ * heading inside the box.
  *
  * DRAFT STATE: `noindex` stays on until the owner replaces the bracketed
- * placeholders and has the text reviewed (then flip this prop and add the
- * routes to src/pages/sitemap.xml.ts — see docs/open-items.md A11). The draft
- * notice stays visible as the hero stamp line.
+ * placeholders and gets legal review (then flip `noindex={false}` and add
+ * `/terms` to src/pages/sitemap.xml.ts — see docs/open-items.md A11).
  */
-import type { LegalDoc } from '../data/legal';
+import type { TermsDocument } from '../data/legal';
 import { brandify } from '../lib/brand';
 import Base from '../layouts/Base.astro';
 import Header from './Header.astro';
@@ -26,73 +23,89 @@ import TransitionOverlay from './TransitionOverlay.astro';
 import ServicesHero from './ServicesHero.astro';
 
 interface Props {
-  doc: LegalDoc;
+  doc: TermsDocument;
 }
 
 const { doc } = Astro.props;
+
+const groups = [
+  { kind: 'terms' as const, id: undefined, heading: undefined, sections: doc.sections },
+  { kind: 'privacy' as const, id: doc.privacy.id, heading: doc.privacy.heading, sections: doc.privacy.sections },
+];
 ---
 
-<Base title={doc.seoTitle} description={doc.seoDescription} noindex={true}>
+<Base
+  title={doc.seoTitle}
+  description={doc.seoDescription}
+  canonical="/terms"
+  ogTitle={doc.seoTitle}
+  ogDescription={doc.seoDescription}
+  bodyClass="bg-darkPurple"
+  noindex={true}
+>
   <main id="main-content" class="layout overflow-hidden bg-darkPurple">
     <div></div>
     <div class="page page-legal bg-darkPurple">
       <Header />
       <div class="legal-progress" aria-hidden="true"></div>
-      {/* ServicesHero: dark band so the header's scroll-0 theme resolves dark
-          (cream wordmark) — same reason /about and /services open on a dark
-          hero. navItems={[]} skips the Jump-to pill row (14 sections don't fit
-          it; the numbered rail below is the in-page nav). */}
       <ServicesHero srTitle={doc.title} headingParts={doc.heroHeading} body={doc.intro} navItems={[]}>
         <p class="legal-hero__stamp" data-legal-draft-stamp>Last updated: {doc.updated}</p>
       </ServicesHero>
-      <section data-theme="light" class="legal-island relative overflow-hidden bg-darkPurple pt-80 lg:pt-100" aria-label={doc.title}>
+      <section data-theme="light" class="legal-island relative overflow-hidden bg-darkPurple pt-20 lg:pt-0" aria-label={doc.title}>
         <div
           class="rounded-10 bg-white px-9 pt-10 pb-40 lg:rounded-24 lg:px-20 lg:pt-25 lg:pb-50 xl:px-25 xl:pt-30 xl:pb-60 3xl:px-35 3xl:pt-35 3xl:pb-70 4xl:px-35 4xl:pt-40 4xl:pb-80"
         >
-          <div class="mx-auto flex w-full max-w-1850 flex-col lg:max-w-1000 lg:gap-45">
-            {
-              doc.sections.map((section, index) => (
-                <section id={section.id} aria-labelledby={section.id} class="legal-section">
-                  <p class="legal-num" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  <h2 class="u-h2 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px]">
-                    {section.heading}
-                  </h2>
-                  <div class="mt-10 flex flex-col gap-12 lg:mt-15">
-                    {section.body.map((paragraph) => <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />)}
-                    {section.bullets && (
-                      <ul class="legal-list flex flex-col gap-8">
-                        {section.bullets.map((item) => (
-                          <li class="u-ink copy-lg text-darkPurple" set:html={brandify(item)} />
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </section>
-              ))
-            }
+          <div class="mx-auto flex w-full max-w-1850 flex-col gap-40 lg:gap-55 xl:gap-65 3xl:gap-80 4xl:gap-95">
+            <article
+              class="parts-serviceBlock relative flex flex-col border border-darkestPurple/15 px-14 pt-25 pb-30 lg:flex-row lg:items-stretch lg:justify-between lg:gap-40 lg:pt-25 lg:pb-35 xl:gap-60 xl:pt-30 xl:pb-45 3xl:pt-35 3xl:pb-50 4xl:pt-40 4xl:pb-60 lg:flex-row-reverse lg:pr-35 lg:pl-20 xl:pr-45 xl:pl-25 3xl:pr-55 3xl:pl-30 4xl:pr-65 4xl:pl-35"
+              aria-label="Terms of Service and Privacy Policy"
+            >
+              <span class="absolute -top-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+              <span class="absolute -top-px -right-px size-9 bg-purple" aria-hidden="true"></span>
+              <span class="absolute -bottom-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+              <span class="absolute -right-px -bottom-px size-9 bg-purple" aria-hidden="true"></span>
+
+              <div class="legal-docBody relative z-1 mx-auto flex w-full flex-col">
+                {
+                  groups.map((group) => {
+                    const ClauseHeading = group.kind === 'privacy' ? 'h3' : 'h2';
+                    const clauses = group.sections.map((section) => (
+                      <section id={section.id} aria-labelledby={`${section.id}-heading`} class="legal-section legal-clause">
+                        <ClauseHeading id={`${section.id}-heading`} class="legal-clauseTitle font-neuePower font-bold text-darkPurple">
+                          {section.heading}
+                        </ClauseHeading>
+                        <div class="mt-10 flex flex-col gap-12 lg:mt-15">
+                          {section.body.map((paragraph) => (
+                            <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
+                          ))}
+                          {section.bullets && (
+                            <ul class="legal-list flex flex-col gap-8">
+                              {section.bullets.map((item) => (
+                                <li class="u-ink copy-lg text-darkPurple" set:html={brandify(item)} />
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </section>
+                    ));
+
+                    return group.kind === 'privacy' ? (
+                      <section id={group.id} aria-labelledby={`${group.id}-heading`} class="legal-section legal-privacySection">
+                        <h2 id={`${group.id}-heading`} class="legal-privacyTitle font-neuePower font-bold text-darkPurple uppercase">
+                          {group.heading}
+                        </h2>
+                        <div class="legal-privacyClauses">{clauses}</div>
+                      </section>
+                    ) : (
+                      clauses
+                    );
+                  })
+                }
+              </div>
+            </article>
           </div>
         </div>
       </section>
-      <nav class="legal-rail" aria-label="On this page">
-        <ul class="legal-railList">
-          {
-            doc.sections.map((section, index) => (
-              <li>
-                <a
-                  class="legal-railLink"
-                  href={`#${section.id}`}
-                  aria-label={section.heading}
-                  title={section.heading}
-                >
-                  {String(index + 1).padStart(2, '0')}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
       <button class="legal-top" aria-label="Back to top" hidden>
         <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M8 13V3M8 3 3.5 7.5M8 3l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
