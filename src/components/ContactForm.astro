@@ -1,5 +1,6 @@
 ---
 import { brandify } from '../lib/brand';
+import { CONTACT_ENDPOINT } from '../data/contact';
 
 interface Props {
   /** Smiley sentence; the original CMS serves the singular form on /services. */
@@ -40,6 +41,8 @@ const smileyHtml = brandify(smileyCopy);
       ><span class="sections-contactForm__headingRight font-offBit text-white">{headingParts[1]}</span></div
     ><form
       novalidate
+      method="POST"
+      action={CONTACT_ENDPOINT || undefined}
       aria-labelledby="form-title"
       class="parts-form -mb-20 rounded-t-10 bg-white px-27 pt-25 pb-20 lg:rounded-t-16 lg:px-54 lg:pt-34 lg:pb-100 sections-contactForm__form z-10 mx-auto w-11/12 origin-bottom lg:origin-bottom-left 2xl:absolute 2xl:right-120 2xl:bottom-0 2xl:ml-0 2xl:w-[38%] 2xl:-translate-x-60"
       aria-describedby="status-message"
@@ -50,6 +53,14 @@ const smileyHtml = brandify(smileyCopy);
         tabindex="-1"
         autocomplete="off"
         aria-hidden="true"
+      /><input
+        type="hidden"
+        name="_subject"
+        value="New enquiry from decbricks.com"
+      /><input
+        type="hidden"
+        name="source_page"
+        value=""
       /><div class="mb-15 flex items-center gap-15 lg:mb-50"
         ><svg
           class="svgs-doubleSlash block w-22 min-w-22 text-darkPurple"
@@ -114,7 +125,8 @@ const smileyHtml = brandify(smileyCopy);
               placeholder="Email"
               class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block w-full rounded-6 border-2 bg-purple/10 px-22 py-16 subheading text-inherit uppercase placeholder-inherit transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
               aria-invalid="false"
-              autocomplete="email" /></div></div
+              autocomplete="email" /></div
+          ><p class="form-fieldError" id="email-error" hidden></p></div
         ><div class="parts-formInput w-full"
           ><label for="name" class="sr-only">Name</label
           ><div class="relative"
@@ -127,7 +139,8 @@ const smileyHtml = brandify(smileyCopy);
               placeholder="Name"
               class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block w-full rounded-6 border-2 bg-purple/10 px-22 py-16 subheading text-inherit uppercase placeholder-inherit transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
               aria-invalid="false"
-              autocomplete="name" /></div></div
+              autocomplete="name" /></div
+          ><p class="form-fieldError" id="name-error" hidden></p></div
         ><div class="parts-formInput w-full"
           ><label for="company" class="sr-only">Company</label
           ><div class="relative"
@@ -140,7 +153,8 @@ const smileyHtml = brandify(smileyCopy);
               placeholder="Company"
               class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block w-full rounded-6 border-2 bg-purple/10 px-22 py-16 subheading text-inherit uppercase placeholder-inherit transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
               aria-invalid="false"
-              autocomplete="organization" /></div></div
+              autocomplete="organization" /></div
+          ><p class="form-fieldError" id="company-error" hidden></p></div
         ><div class="parts-formTextarea w-full"
           ><label for="message" class="sr-only">Message</label
           ><div class="relative">
@@ -150,8 +164,10 @@ const smileyHtml = brandify(smileyCopy);
               type="text"
               placeholder="Message"
               class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block min-h-164 w-full rounded-6 bg-purple/10 px-22 py-16 subheading text-darkPurple uppercase placeholder-darkPurple transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
+              maxlength="5000"
               aria-invalid="false"
-            ></textarea></div></div></fieldset
+            ></textarea></div
+          ><p class="form-fieldError" id="message-error" hidden></p></div></fieldset
       ><div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between"
         ><div class="parts-formCheckbox w-full lg:w-6/12" name="Terms and Conditions" is-valid="false"
           ><div class="flex items-center gap-10"
@@ -168,6 +184,7 @@ const smileyHtml = brandify(smileyCopy);
                 Policy.</label
               ></div
             ></div
+          ><p class="form-fieldError" id="terms-error" hidden></p
           ></div
         ><button
           aria-label="Submit"
@@ -187,7 +204,7 @@ const smileyHtml = brandify(smileyCopy);
               fill="currentColor"
               d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
             /></svg></button></div
-      ><div id="status-message" aria-live="polite" aria-atomic="true" class="mt-20"></div></form></div
+      ><div id="status-message" aria-live="polite" aria-atomic="true" tabindex="-1" class="mt-20"></div></form></div
   ><div
     class="pointer-events-none absolute top-[10vw] left-[5vw] w-[120vw] max-w-1820 sm:right-[-10.4vw] sm:left-auto sm:w-[120vw] lg:top-[-10vw] lg:w-[95vw]"
     ><picture class="parts-webPicture"

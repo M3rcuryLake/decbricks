@@ -1,10 +1,12 @@
 import { gsap, bp, ScrollTrigger, SplitText, prefersReducedMotion, bus } from './core/gsap';
 import { getLenis } from './smooth-scroll';
 
+/** Per-button teardowns for `.part-btnPrimary` char-slide splits (see setBtnPrimaryLabel). */
+const btnTeardowns = new WeakMap<HTMLElement, () => void>();
+
 function initCharSlideButton(btn: HTMLElement, textSelector: string) {
   if (btn.dataset.btnInit === '1') return;
-  btn.dataset.btnInit = '1';
-  const texts = btn.querySelectorAll<HTMLElement>(textSelector);
+  btn.dataset.btnInit = '1';  const texts = btn.querySelectorAll<HTMLElement>(textSelector);
   if (texts.length < 2) return;
 
   const mm = gsap.matchMedia();
@@ -58,8 +60,25 @@ function initCharSlideButton(btn: HTMLElement, textSelector: string) {
   );
 
   return () => {
+    btnTeardowns.delete(btn);
     mm.revert();
   };
+}
+
+/**
+ * Swap a `.part-btnPrimary` label at runtime (contact form: "Sending…",
+ * "Message Sent!", "Try again"). SplitText (`autoSplit: true`) owns the span
+ * text and reverts any direct textContent change on its next re-split, so the
+ * split is torn down first and re-created after the new label is in place —
+ * the char-slide hover animation keeps working on the new text.
+ */
+export function setBtnPrimaryLabel(btn: HTMLElement | null, label: string) {
+  if (!btn) return;
+  btnTeardowns.get(btn)?.();
+  const texts = btn.querySelectorAll<HTMLElement>('.part-btnPrimary__text');
+  texts.forEach((t) => (t.textContent = label));
+  const t = initCharSlideButton(btn, '.part-btnPrimary__text');
+  if (t) btnTeardowns.set(btn, t);
 }
 
 function initScrollButton(btn: HTMLElement) {
@@ -204,7 +223,9 @@ function initScrollButton(btn: HTMLElement) {
 export function initButtons() {
   const teardowns: Array<(() => void) | undefined> = [];
   document.querySelectorAll<HTMLElement>('.part-btnPrimary').forEach((btn) => {
-    teardowns.push(initCharSlideButton(btn, '.part-btnPrimary__text'));
+    const t = initCharSlideButton(btn, '.part-btnPrimary__text');
+    if (t) btnTeardowns.set(btn, t);
+    teardowns.push(t);
   });
   document.querySelectorAll<HTMLElement>('.parts-btnBlock').forEach((btn) => {
     teardowns.push(initCharSlideButton(btn, '.parts-btnBlock__text, .parts-btnBlock__label'));

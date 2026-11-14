@@ -522,6 +522,17 @@ li {
 .form-status--error {
   color: var(--brand-error);
 }
+/* Formspree field errors (form-tsx): inline message under the invalid field.
+   Same error colour as .form-status--error; copy-xs keeps it out of the way. */
+.form-fieldError {
+  color: var(--brand-error);
+  font-size: 12px;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+.form-fieldError[hidden] {
+  display: none;
+}
 
 /* --------------------------------------------------------------------------
    Meet the Team (map 5C) grid — custom because the compiled global.css has no

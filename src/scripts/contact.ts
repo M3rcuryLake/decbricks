@@ -1,4 +1,5 @@
 import { gsap, bp, initSvgRectReveal } from './core/gsap';
+import { setBtnPrimaryLabel } from './buttons';
 import { CONTACT_ENDPOINT, EMAIL } from '../data/contact';
 
 export function initContact() {
@@ -144,42 +145,102 @@ export function initContact() {
     if (!statusEl) return;
     statusEl.textContent = msg;
     statusEl.className = `mt-20 form-status${tone === 'error' ? ' form-status--error' : ''}`;
+    // alert for errors (assertive announcement), status for success.
+    statusEl.setAttribute('role', tone === 'error' ? 'alert' : 'status');
   };
-  // While a POST is in flight, disable the submit row so double-clicks queue.
+  // While a POST is in flight: disable the submit row so double-clicks queue and
+  // make inputs readonly (values stay visible/editable after; never disabled,
+  // which would drop them from the payload and grey them out).
   const setSending = (busy: boolean) => {
     submitBtn?.toggleAttribute('disabled', busy);
     (submitBtn as HTMLButtonElement | null)?.setAttribute('aria-busy', String(busy));
+    formEl.setAttribute('aria-busy', String(busy));
+    textFields.forEach((f) => (f.readOnly = busy));
   };
 
   // The original form ships the submit <button> without a type attribute (defaults to submit).
   const submitBtn =
     formEl.querySelector<HTMLButtonElement>('button[type="submit"]') ??
     formEl.querySelector<HTMLButtonElement>('button[aria-label="Submit"]');
-  const btnTexts = submitBtn?.querySelectorAll<HTMLElement>('.part-btnPrimary__text');
-  const setBtn = (label: string) => btnTexts?.forEach((t) => (t.textContent = label));
+  // Label changes must go through setBtnPrimaryLabel: buttons.ts SplitTexts the
+  // label spans and would revert a direct textContent write on re-split.
+  const setBtn = (label: string) => setBtnPrimaryLabel(submitBtn, label);
+  const textFields = Array.from(formEl.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input:not([type="hidden"]):not([type="checkbox"]), textarea'));
+
+  // --- Per-field inline errors (Formspree `errors[]` mapping + client validation) ---
+  const fieldError = (name: string) => formEl.querySelector<HTMLElement>(`#${name}-error`);
+  const setFieldError = (input: HTMLElement, msg: string) => {
+    const name = (input as HTMLInputElement).name;
+    const el = fieldError(name);
+    if (el) {
+      el.textContent = msg;
+      el.hidden = false;
+    }
+    input.setAttribute('aria-invalid', 'true');
+    if (el) input.setAttribute('aria-describedby', `${name}-error`);
+  };
+  const clearFieldError = (input: HTMLInputElement | HTMLTextAreaElement) => {
+    const el = fieldError(input.name);
+    if (el) {
+      el.textContent = '';
+      el.hidden = true;
+    }
+    input.setAttribute('aria-invalid', 'false');
+    input.removeAttribute('aria-describedby');
+  };
+  const clearAllFieldErrors = () => {
+    formEl.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[name], textarea[name]').forEach((i) => {
+      if (i.type !== 'hidden') clearFieldError(i);
+    });
+  };
+  // Typing in a field clears its error immediately (standard inline-error UX).
+  formEl.addEventListener(
+    'input',
+    (e) => {
+      const t = e.target as HTMLInputElement | HTMLTextAreaElement;
+      if (t && t.name && t.type !== 'hidden' && t.getAttribute('aria-invalid') === 'true') {
+        clearFieldError(t);
+        if (statusEl?.getAttribute('role') === 'alert') {
+          statusEl.textContent = '';
+          statusEl.removeAttribute('role');
+        }
+      }
+    },
+    { signal: ac.signal }
+  );
 
   formEl.addEventListener(
     'submit',
     (e) => {
       e.preventDefault();
+    if (submitting) return;
     const inputs = Array.from(formEl.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required], input[name], textarea[name]'));
     let valid = true;
     let firstInvalid: HTMLElement | null = null;
+    clearAllFieldErrors();
     inputs.forEach((inp) => {
-      if (inp.name === '_gotcha') return; // honeypot, never user-visible
+      if (inp.name === '_gotcha' || inp.type === 'hidden') return; // honeypot + metadata, never user-visible
       let fieldValid = true;
+      let fieldMsg = 'This field is required.';
       if (inp.type === 'checkbox') {
         fieldValid = (inp as HTMLInputElement).checked;
+        fieldMsg = 'Please confirm you have read and agree to the Terms of Service and Privacy Policy.';
       } else if (!inp.value.trim()) {
         fieldValid = false;
       } else if (inp.type === 'email' && !/^\S+@\S+\.\S+$/.test(inp.value.trim())) {
         fieldValid = false;
+        fieldMsg = 'Please enter a valid email address.';
       }
-      inp.setAttribute('aria-invalid', String(!fieldValid));
-      inp.setAttribute('aria-describedby', 'status-message');
-      if (!fieldValid && !firstInvalid) {
-        firstInvalid = inp as HTMLElement;
-        valid = false;
+      if (!fieldValid) {
+        setFieldError(inp as HTMLElement, fieldMsg);
+        if (!firstInvalid) {
+          firstInvalid = inp as HTMLElement;
+          valid = false;
+        } else {
+          valid = false;
+        }
+      } else {
+        inp.setAttribute('aria-invalid', 'false');
       }
     });
 
@@ -192,6 +253,14 @@ export function initContact() {
       return;
     }
 
+    // Cool-down between successful submissions (in-memory; resets on navigation).
+    if (lastSentAt && Date.now() - lastSentAt < COOLDOWN_MS) {
+      const wait = Math.ceil((COOLDOWN_MS - (Date.now() - lastSentAt)) / 1000);
+      setStatus(`Your message was just sent — please wait ${wait}s before sending another.`, 'ok');
+      setBtn('Submit');
+      return;
+    }
+
     // Honeypot: filled ⇒ a bot reached the field; accept silently, never send.
     const honeypot = formEl.querySelector<HTMLInputElement>('input[name="_gotcha"]');
     if (honeypot?.value) {
@@ -201,14 +270,6 @@ export function initContact() {
       return;
     }
 
-    const value = (name: string) => (formEl.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${name}"]`) as HTMLInputElement | HTMLTextAreaElement | null)?.value.trim() ?? '';
-    const payload = {
-      name: value('name'),
-      email: value('email'),
-      company: value('company'),
-      message: value('message'),
-    };
-
     if (!CONTACT_ENDPOINT) {
       // No endpoint configured (open-items A7): degrade to the owner's inbox.
       if (!EMAIL) {
@@ -216,7 +277,8 @@ export function initContact() {
         setBtn('Try again');
         return;
       }
-      const body = encodeURIComponent(`Name: ${payload.name}\nCompany: ${payload.company}\n\n${payload.message}`);
+      const value = (name: string) => (formEl.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${name}"]`) as HTMLInputElement | HTMLTextAreaElement | null)?.value.trim() ?? '';
+      const body = encodeURIComponent(`Name: ${value('name')}\nCompany: ${value('company')}\n\n${value('message')}`);
       window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Project enquiry from decbricks.com')}&body=${body}`;
       setStatus('Opening your email client — press send there and we will reply.', 'ok');
       setBtn('Message Sent!');
@@ -225,33 +287,94 @@ export function initContact() {
       return;
     }
 
+    // Hidden metadata fields live in the markup (so no-JS POSTs carry _subject);
+    // JS personalises them per submission.
+    const subjectInput = formEl.querySelector<HTMLInputElement>('input[name="_subject"]');
+    const senderName = (formEl.querySelector<HTMLInputElement>('input[name="name"]') as HTMLInputElement | null)?.value.trim();
+    if (subjectInput) subjectInput.value = senderName ? `New enquiry from ${senderName} - Decbricks` : 'New enquiry from decbricks.com';
+    const sourceInput = formEl.querySelector<HTMLInputElement>('input[name="source_page"]');
+    if (sourceInput) sourceInput.value = location.pathname;
+
     setBtn('Sending…');
     setSending(true);
+    submitting = true;
+    currentAbort = new AbortController();
+    let timedOut = false;
+    const timeoutId = window.setTimeout(() => {
+      timedOut = true;
+      currentAbort?.abort();
+    }, SUBMIT_TIMEOUT_MS);
     fetch(CONTACT_ENDPOINT, {
       method: 'POST',
-      body: buildFormData(payload, formEl),
+      body: new FormData(formEl),
       headers: { Accept: 'application/json' },
+      signal: currentAbort.signal,
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.ok) {
           setStatus('Message sent. We will get back to you shortly.', 'ok');
           setBtn('Message Sent!');
           formEl.reset();
+          clearAllFieldErrors();
           if (checkboxSvg) checkboxSvg.classList.add('opacity-0');
+          lastSentAt = Date.now();
           setSending(false);
-        } else {
-          throw new Error(String(res.status));
+          statusEl?.focus(); // success confirmation is announced + focusable
+          return;
         }
-      })
-      .catch(() => {
-        if (!EMAIL) {
-          setStatus('Something went wrong sending your message. Please book a call instead.', 'error');
+        // Non-OK: Formspree replies { errors: [{ field, message }] } on 4xx.
+        let data: { errors?: Array<{ field?: string; message?: string }> } | null = null;
+        try {
+          data = await res.json();
+        } catch {
+          /* non-JSON error body — fall through to generic handling */
+        }
+        if (res.status === 429) {
+          setStatus('You are sending messages too quickly. Please wait a moment and try again.', 'error');
+          submitBtn?.focus();
+          return;
+        }
+        const serverErrors = data?.errors ?? [];
+        let firstServerInvalid: HTMLElement | null = null;
+        const unmapped: string[] = [];
+        serverErrors.forEach((err) => {
+          const msg = err.message || 'Please check this field.';
+          const input = err.field
+            ? (formEl.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${err.field}"]`) as HTMLInputElement | HTMLTextAreaElement | null)
+            : null;
+          if (input && input.type !== 'hidden') {
+            setFieldError(input as HTMLElement, msg);
+            if (!firstServerInvalid) firstServerInvalid = input as HTMLElement;
+          } else if (err.field) {
+            unmapped.push(`${err.field}: ${msg}`);
+          } else {
+            unmapped.push(msg);
+          }
+        });
+        if (firstServerInvalid || unmapped.length) {
+          setStatus(unmapped.length ? unmapped.join(' ') : 'Please correct the highlighted fields and try again.', 'error');
+          firstServerInvalid?.focus();
         } else {
-          const body = encodeURIComponent(`Name: ${payload.name}\nCompany: ${payload.company}\n\n${payload.message}`);
-          window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Project enquiry from decbricks.com')}&body=${body}`;
-          setStatus('Sending failed — opening your email client as a fallback.', 'error');
+          setStatus('Something went wrong sending your message. Please try again.', 'error');
+          submitBtn?.focus();
         }
         setBtn('Try again');
+      })
+      .catch((err: unknown) => {
+        if (currentAbort?.signal.aborted && !timedOut) return; // teardown aborted the request — stay silent
+        if (timedOut) {
+          setStatus('Sending took too long and was stopped. Your message is still here — please try again.', 'error');
+        } else if (err instanceof TypeError) {
+          setStatus('We could not reach the server. Check your connection and try again.', 'error');
+        } else {
+          setStatus('Something went wrong sending your message. Please try again.', 'error');
+        }
+        setBtn('Try again');
+      })
+      .finally(() => {
+        window.clearTimeout(timeoutId);
+        currentAbort = null;
+        submitting = false;
         setSending(false);
       });
     },
@@ -260,19 +383,14 @@ export function initContact() {
 
   return () => {
     ac.abort();
+    currentAbort?.abort(); // abort any in-flight submission
     mm.revert();
   };
 }
 
-/** Provider-agnostic POST body (works for Formspree, Web3Forms, custom workers). */
-function buildFormData(
-  payload: { name: string; email: string; company: string; message: string },
-  formEl: HTMLFormElement
-): FormData {
-  const fd = new FormData();
-  Object.entries(payload).forEach(([k, v]) => fd.append(k, v));
-  fd.append('_subject', 'Project enquiry from decbricks.com');
-  const honeypot = formEl.querySelector<HTMLInputElement>('input[name="_gotcha"]');
-  if (honeypot?.value) fd.append('_gotcha', honeypot.value);
-  return fd;
-}
+/** Wire constants for the Formspree POST. */
+const SUBMIT_TIMEOUT_MS = 15000;
+const COOLDOWN_MS = 20000;
+let submitting = false;
+let lastSentAt = 0;
+let currentAbort: AbortController | null = null;
