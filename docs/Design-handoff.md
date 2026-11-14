@@ -525,3 +525,16 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 - **Numerals are olive** (owner-approved accent for tags/borders; olive on off-white ≥ 3:1) and `aria-hidden` — the verbatim headings already carry their own numbers.
 
 **Files:** `LegalPage.astro`, `src/scripts/legal-page.ts` (new), `src/scripts/main.ts` (2 registrations), `decbricks.css` (`.legal-*` block), `docs/qa/legal-monumental.cjs`.
+
+## Legal heroes adopt the ServicesHero treatment (2026-11-15, plan docs/superpowers/plans/2026-11-14-legal-hero-services-treatment.md)
+
+**What / Why:** Owner follow-up to the monumental legal pages — heroes restyled to the exact About/Services hero treatment (WebGL trail flares, smiley-sticker subtext, bold FK Raster Compact display words), and "points" replaced with paragraphs. Implemented by *reusing* the shared `ServicesHero` component, not new markup: two minimal, default-safe capability additions (`<slot />` for the draft stamp; skip the nav row when `navItems` is empty), matching the `about.astro` usage pattern.
+
+**Decisions:**
+- **No Jump-to pill row on legal heroes:** 14 sections cannot fit the template's desktop pill row (built for ~5 wide pills — guaranteed overflow/clipping); the fixed numbered rail is the in-page nav. Rendered with `navItems={[]}`; owner can request pills later.
+- **Chips deleted, draft notice is prose:** `doc.intro` already carries the draft notice, so it becomes the hero subtext; the "Last updated: TEMPLATE DRAFT" stamp stays visible through the hero slot (QA hook `data-legal-draft-stamp` intact).
+- **Privacy §2 bullets → verbatim paragraphs:** one paragraph per former bullet, words unchanged; `bullets?` stays in the `LegalSection` type, no doc uses it now.
+- **`heroHeading` added to `LegalDoc`** (`['Terms of','Service']` / `['Privacy','Policy']`) instead of a title-split heuristic in the component.
+- **`legal-page.ts` init guard moved** from the removed `.legal-hero` to `.page-legal`; the brick build-in is gone — hero motion is `initServicesPage()`'s, which already null-guards and runs on every page.
+
+**Files:** `ServicesHero.astro`, `LegalPage.astro`, `legal.ts`, `legal-page.ts`, `decbricks.css` (legal block only), `docs/qa/legal-monumental.cjs`.
