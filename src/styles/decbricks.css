@@ -375,40 +375,80 @@ li {
 
 /* --------------------------------------------------------------------------
    Cal.com inline embed (map 5A).
-   `.cal-frame` hugs the Cal widget (1040 px desktop max-width + tight Warm Beige
-   tray) so it never floats inside dead side wings, and sets higher-specificity
-   reserves on `.cal-embed-widget .cal-embed` so embed.js's late `<style>`
-   (`.cal-embed { min-height: 300px; display: block !important }`) cannot cause
-   a layout collapse jump while hydrating.
+   - Mobile/tablet (< 1024 px, stacked Cal layout): flatten `.cal-frame`
+     completely so `#book-a-call` (with corner ticks) is the ONLY visual frame,
+     use `-10 px` bleed inside `px-14` (`28 px` total margin vs `62–74 px`),
+     and show the compact `.cal-escape` link to `#contact` above the widget.
+   - Desktop (>= 1024 px, 3-column Cal layout): `.cal-frame` hugs Cal's
+     `1040 px` card with a Warm Beige tray; higher-specificity
+     `.cal-embed-widget .cal-embed` beats embed.js's injected `min-height: 300px`.
    -------------------------------------------------------------------------- */
+.cal-escape {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  margin-bottom: 6px;
+}
+.cal-escape.is-hidden {
+  display: none;
+}
+.cal-escape__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  touch-action: manipulation;
+  transition: opacity 0.2s ease;
+}
+.cal-escape__link:hover {
+  opacity: 0.78;
+}
+.cal-escape__link:focus-visible {
+  outline: 2px solid var(--brand-bg-dark);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .cal-frame {
-  width: 100%;
-  max-width: 1066px;
-  margin-inline: auto;
-  padding: 6px;
+  width: calc(100% + 20px);
+  max-width: none;
+  margin-inline: -10px;
+  padding: 0;
   min-height: 840px;
-  border-radius: 12px;
-  background-color: var(--brand-surface-alt, #f3e6d5);
-  border: 1px solid color-mix(in srgb, var(--color-darkPurple) 16%, transparent);
-  box-shadow: 0 10px 28px -18px color-mix(in srgb, var(--color-darkPurple) 22%, transparent);
+  border-radius: 0;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
 }
 @media (min-width: 640px) {
   .cal-frame {
-    padding: 12px 12px 6px;
     min-height: 1020px;
-    border-radius: 14px;
   }
 }
 @media (min-width: 1024px) {
+  .cal-escape {
+    display: none;
+  }
   .cal-frame {
+    width: 100%;
+    max-width: 1066px;
+    margin-inline: auto;
+    padding: 12px 12px 6px;
     min-height: 588px;
+    border-radius: 14px;
+    background-color: var(--brand-surface-alt, #f3e6d5);
+    border: 1px solid color-mix(in srgb, var(--color-darkPurple) 16%, transparent);
+    box-shadow: 0 10px 28px -18px color-mix(in srgb, var(--color-darkPurple) 22%, transparent);
   }
 }
 
 .cal-embed-widget .cal-embed {
   width: 100%;
   min-height: 828px;
-  border-radius: 8px;
+  border-radius: 0;
+  overflow: clip;
 }
 @media (min-width: 640px) {
   .cal-embed-widget .cal-embed {
@@ -418,7 +458,13 @@ li {
 @media (min-width: 1024px) {
   .cal-embed-widget .cal-embed {
     min-height: 570px;
+    border-radius: 8px;
   }
+}
+
+#contact,
+#contact .sections-contactForm__form {
+  scroll-margin-top: 84px;
 }
 
 .cal-frame[data-cal-ready='true'] .cal-skeleton {
@@ -437,20 +483,22 @@ li {
 
 .cal-skeleton {
   position: absolute;
-  inset: 6px;
+  inset: 0;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  border-radius: 8px;
+  padding: 14px 12px;
+  border-radius: 4px;
   background-color: var(--brand-surface, #fff9f2);
-  border: 1px solid color-mix(in srgb, var(--color-darkPurple) 14%, transparent);
+  border: 0;
   pointer-events: none;
 }
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .cal-skeleton {
     inset: 12px 12px 6px;
     padding: 24px;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-darkPurple) 14%, transparent);
   }
 }
 .cal-skeleton__cols {

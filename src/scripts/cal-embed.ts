@@ -17,7 +17,8 @@
  *
  * initCalEmbed() returns a teardown; registered in main.ts boot + onAfterSwap.
  */
-import { bus } from './core/gsap';
+import { bus, prefersReducedMotion } from './core/gsap';
+import { getLenis } from './smooth-scroll';
 import { CAL } from '../data/contact';
 
 const CONSENT_COOKIE = 'essential-consent';
@@ -122,6 +123,8 @@ export function initCalEmbed() {
   if (!root) return;
 
   const frame = root.querySelector<HTMLElement>('.cal-frame');
+  const escapeBar = root.querySelector<HTMLElement>('.cal-escape');
+  const escapeLink = root.querySelector<HTMLAnchorElement>('.cal-escape__link');
   const mount = root.querySelector<HTMLElement>('.cal-embed');
   const fallback = root.querySelector<HTMLElement>('.cal-fallback');
   const status = root.querySelector<HTMLElement>('.cal-status');
@@ -131,6 +134,17 @@ export function initCalEmbed() {
   if (!mount || !CAL.link) return;
 
   let disposed = false;
+  let calReady = false;
+  let settledAt = 0;
+  let routeScrollTimer: ReturnType<typeof setTimeout> | undefined;
+  let focusFormTimer: ReturnType<typeof setTimeout> | undefined;
+
+  const ensureIframeTitle = () => {
+    const ifr = mount.querySelector<HTMLIFrameElement>('iframe');
+    if (ifr && !ifr.title) {
+      ifr.title = 'Schedule a meeting with Decbricks';
+    }
+  };
 
   const say = (message: string) => {
     if (status) {
@@ -142,6 +156,9 @@ export function initCalEmbed() {
   const showFallback = (announce?: string) => {
     if (frame) {
       frame.classList.add('is-hidden');
+    }
+    if (escapeBar) {
+      escapeBar.classList.add('is-hidden');
     }
     if (mount) {
       mount.classList.add('is-hidden');
@@ -161,15 +178,64 @@ export function initCalEmbed() {
       frame.classList.remove('is-hidden');
       if (ready) frame.setAttribute('data-cal-ready', 'true');
     }
+    if (escapeBar) {
+      escapeBar.classList.remove('is-hidden');
+    }
     mount.classList.remove('is-hidden');
     mount.style.display = '';
     mount.setAttribute('aria-busy', ready ? 'false' : 'true');
     mount.setAttribute('aria-hidden', 'false');
     fallback?.classList.add('is-hidden');
+    ensureIframeTitle();
   };
+
+  const smoothScrollY = (targetY: number, onDone?: () => void) => {
+    const y = Math.max(0, Math.round(targetY));
+    const lenis = getLenis();
+    if (prefersReducedMotion) {
+      if (lenis) lenis.scrollTo(y, { immediate: true });
+      else window.scrollTo({ top: y, behavior: 'auto' });
+      onDone?.();
+      return;
+    }
+    if (lenis) {
+      lenis.scrollTo(y, { duration: 0.45 });
+    } else {
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    if (onDone) {
+      focusFormTimer = setTimeout(() => {
+        if (!disposed) onDone();
+      }, 480);
+    }
+  };
+
+  const onEscapeClick = (e: MouseEvent) => {
+    const formTarget =
+      document.querySelector<HTMLElement>('#contact .sections-contactForm__form') ??
+      document.querySelector<HTMLElement>('#contact');
+    if (!formTarget) return;
+    e.preventDefault();
+    const targetY = window.scrollY + formTarget.getBoundingClientRect().top - 84;
+    smoothScrollY(targetY, () => {
+      const firstInput =
+        formTarget.querySelector<HTMLElement>('#email') ??
+        formTarget.querySelector<HTMLElement>('input:not([type="hidden"]), textarea');
+      firstInput?.focus({ preventScroll: true });
+    });
+  };
+  escapeLink?.addEventListener('click', onEscapeClick);
 
   let sanity: ReturnType<typeof setTimeout> | undefined;
   let calObj: CalQueueObject | undefined;
+
+  const markReady = () => {
+    if (!calReady) {
+      calReady = true;
+      settledAt = performance.now();
+    }
+    ensureIframeTitle();
+  };
 
   const onBookingSuccess = () => {
     if (disposed) return;
@@ -183,8 +249,43 @@ export function initCalEmbed() {
     );
   };
 
+  const onLinkReady = () => {
+    if (disposed) return;
+    markReady();
+  };
+
+  const onRouteChanged = () => {
+    if (disposed || !calReady) return;
+    // Ignore Cal's initial route sync right after mounting.
+    if (performance.now() - settledAt < 1200) return;
+    if (!window.matchMedia('(max-width: 1023px)').matches) return;
+
+    if (routeScrollTimer) clearTimeout(routeScrollTimer);
+    // Wait ~620ms so Cal's own ~550ms mobile auto-scroll settles first, then
+    // ensure the date heading ("Day Nth | 12h 24h") sits cleanly below our 62px bar.
+    routeScrollTimer = setTimeout(() => {
+      if (disposed || !window.matchMedia('(max-width: 1023px)').matches) return;
+      const mountRect = mount.getBoundingClientRect();
+      // Skip on Step 2 (compact details form ~600–850px) where slots are gone.
+      if (mountRect.height < 1050) return;
+
+      // Empirically measured toggleTop ("12h | 24h" row) across 292–740px Cal widths.
+      const slotsHeadingOffset = Math.round(mountRect.width * 0.858 + 356);
+      if (slotsHeadingOffset >= mountRect.height - 120) return;
+
+      const slotsHeadingViewportY = mountRect.top + slotsHeadingOffset;
+      if (slotsHeadingViewportY >= 78 && slotsHeadingViewportY <= window.innerHeight * 0.65) {
+        return;
+      }
+
+      const targetDocY = window.scrollY + slotsHeadingViewportY - 84;
+      smoothScrollY(targetDocY);
+    }, 620);
+  };
+
   const onDimensionChanged = (e: unknown) => {
     if (disposed) return;
+    ensureIframeTitle();
     const detail = (e as { detail?: CalEventDetail } | undefined)?.detail;
     const data = detail?.data;
     if (!data || typeof data.iframeHeight !== 'number' || data.iframeHeight <= 0) return;
@@ -203,6 +304,7 @@ export function initCalEmbed() {
       frame.setAttribute('data-cal-ready', 'true');
     }
     mount.setAttribute('aria-busy', 'false');
+    markReady();
     if (sanity) {
       clearTimeout(sanity);
       sanity = undefined;
@@ -227,6 +329,8 @@ export function initCalEmbed() {
       });
       cal('on', { action: 'bookingSuccessful', callback: onBookingSuccess });
       cal('on', { action: 'linkFailed', callback: onLinkFailed });
+      cal('on', { action: 'linkReady', callback: onLinkReady });
+      cal('on', { action: '__routeChanged', callback: onRouteChanged });
       cal('on', { action: '__dimensionChanged', callback: onDimensionChanged });
     } catch {
       showFallback('The booking calendar could not load. Use the contact options above, or send the form below.');
@@ -236,9 +340,10 @@ export function initCalEmbed() {
     // network), swap to the fallback instead of showing a perpetual skeleton.
     sanity = setTimeout(() => {
       if (disposed) return;
-      const calReady = window.Cal?.loaded && !window.Cal?.scriptFailed;
-      if (calReady && mount.querySelector('iframe')) {
+      const calReadyFlag = window.Cal?.loaded && !window.Cal?.scriptFailed;
+      if (calReadyFlag && mount.querySelector('iframe')) {
         revealEmbed(true);
+        markReady();
       } else {
         showFallback('The booking calendar is taking longer than usual. Use the contact options above, or send the form below.');
       }
@@ -287,11 +392,16 @@ export function initCalEmbed() {
     disposed = true;
     observer.disconnect();
     if (sanity) clearTimeout(sanity);
+    if (routeScrollTimer) clearTimeout(routeScrollTimer);
+    if (focusFormTimer) clearTimeout(focusFormTimer);
+    escapeLink?.removeEventListener('click', onEscapeClick);
     bus.off('cookies-decided', onCookiesDecided);
     if (calObj) {
       try {
         calObj('off', { action: 'bookingSuccessful', callback: onBookingSuccess });
         calObj('off', { action: 'linkFailed', callback: onLinkFailed });
+        calObj('off', { action: 'linkReady', callback: onLinkReady });
+        calObj('off', { action: '__routeChanged', callback: onRouteChanged });
         calObj('off', { action: '__dimensionChanged', callback: onDimensionChanged });
       } catch {
         // embed.js may still be loading; `disposed` flag guards any late call.

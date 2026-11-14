@@ -15,6 +15,20 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
 ---
 
 <div class="cal-embed-widget relative w-full" data-has-cal={hasCal ? 'true' : 'false'}>
+  {
+    hasCal && (
+      <div class="cal-escape">
+        <a
+          href="#contact"
+          class="cal-escape__link font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase"
+        >
+          <span>Send the form below</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    )
+  }
+
   <div
     class:list={['cal-frame relative w-full overflow-hidden', fallbackVisible ? 'is-hidden' : '']}
     data-cal-ready="false"

@@ -338,3 +338,30 @@ Both wrappers carry `pointer-events: none`, so browser hit-testing passes throug
   - 6-swap SPA gauntlet (`/contact → /services → /about → / → /contact → /services → /contact`): `embedScriptCount: 1`, `ready: "true"`, `iframeCount: 1`, `mountH: 570`, `errs: []`.
 - **Evidence shots:** `docs/qa/shots/cal-{before,after}-{375,768,1280,1920,2560}.png`.
 - **Not verified:** Real Safari / iOS WebKit; real end-to-end Cal booking submission (stopped cleanly at the details form before `Confirm`).
+
+### Cal.com Booking Block — Mobile Fixes (`/contact`, 2026-11-15)
+
+- **Scope:** Flattened triple nested mobile frames into one card frame below `1024 px` (`wastedHorizontalPx` reduced `62–74 px → 28 px`), added `>= 44 px` `"Send the form below ↓"` escape hatch (`.cal-escape__link` → `#contact` + `#email` focus, hidden on `>= 1024 px` and in `.is-hidden`/blocked fallback), added header-aware guided scroll on `__routeChanged` (`~620 ms` settle after Cal's internal mobile scroll so `"Day Nth | 12h 24h"` clears the `62 px` fixed top bar at `y = 84 px`), and ensured accessible `iframe.title` (`"Book a call"`).
+- **Before vs After matrix (Playwright Chromium, `0` console/page errors across all runs):**
+  | Width | Before frame / wasted / H | After frame / wasted / H | `overflowX` | `slotCount` (`15m`) | `.cal-escape__link` |
+  |---|---|---|---|---|---|
+  | `320×568` | `258 px` (`62 px` waste) / `2058 px` | `292 px` (`28 px` waste) / `2087 px` | `0` | `32` (`09:00`–`16:45`) | `44 × 153 px` |
+  | `360×740` | `298 px` (`62 px` waste) / `2081 px` | `332 px` (`28 px` waste) / `2110 px` | `0` | `32` | `44 × 153 px` |
+  | `375×812` | `313 px` (`62 px` waste) / `2093 px` | `347 px` (`28 px` waste) / `2123 px` | `0` | `32` | `44 × 153 px` |
+  | `390×844` | `328 px` (`62 px` waste) / `2106 px` | `362 px` (`28 px` waste) / `2135 px` | `0` | `32` | `44 × 153 px` |
+  | `414×896` | `352 px` (`62 px` waste) / — | `386 px` (`28 px` waste) / `2156 px` | `0` | `32` | `44 × 153 px` |
+  | `600×900` | `538 px` (`62 px` waste) / `2286 px` | `572 px` (`28 px` waste) / `2315 px` | `0` | `32` | `44 × 153 px` |
+  | `767×1024` | `693 px` (`74 px` waste) / `2415 px` | `739 px` (`28 px` waste) / `2455 px` | `0` | `32` | `44 × 153 px` |
+  | `768×1024` | `694 px` (`74 px` waste) / `2416 px` | `740 px` (`28 px` waste) / `2455 px` | `0` | `32` | `44 × 153 px` |
+  | `1023×900` | — | `995 px` (`28 px` waste) / `1002 px` | `0` | `32` | `44 × 153 px` |
+- **Single-frame & CLS verification (`< 1024 px`):** `.cal-frame` computed `border: 0px`, `padding: 0px`, `background: rgba(0, 0, 0, 0)`, `box-shadow: none`; Cal inner `[data-testid="booker-container"]` `0px` border (`320–768 px`). Natural page-load CLS observer at `scrollY = 0` recorded `0` across `320`, `360`, `414`, `600`, `768` (transient `0.02–0.14` appears only when tests force `scrollIntoView` onto the calendar mid-hydration).
+- **Guided scroll, interactive controls & escape hatch (`360×740` & `375×812`):**
+  - Picking weekday `17`: `slotsHeaderViewportY: 84` (`22 px` below `headerBottom: 62 px`); focus stayed in `IFRAME` (`activeElTag: "IFRAME"`).
+  - Switching `25m` duration (`19` slots) → `24h` toggle → clicking time slot opened Step 2 details form (`heightOnDetails: 828`, `scrollDeltaOnDetails: 0`) → `Back` restored slots (`backedOut: true`).
+  - Tapping `"Send the form below ↓"`: scrolled cleanly (`headerBottom: 62 px`, `formTop: 84 px`, `formTitleTop: 109 px`), focused `#email` (`focusVisibleOutline: "solid"`).
+  - `prefers-reduced-motion: reduce` (`360×740`): immediate guided scroll + immediate jump to `#email` (`scrollY: 3580`).
+  - Blocked `app.cal.com` host (`360×740`): `.cal-fallback` visible, `.cal-frame` and `.cal-escape` both hidden (`display: none`), `overflowX: 0`.
+  - 5+ mobile SPA swaps (`375×812`, `/contact → /services → /about → / → /contact → /about → /contact`): `embedScriptCount: 1`, `iframeCount: 1`, `.cal-escape` functional (`activeIdAfterEscape: "email"`), `errs: []`.
+- **Desktop non-regression (`1280×900` & `1920×1050`):** `.cal-escape` `display: none`; `.cal-frame` `1066 px` Warm Beige tray (`padding: 12px 12px 6px`, `1 px` border); `iframeW/H: 1040/570`; `clsTotal: 0.0001` (`1280`) / `0` (`1920`); `errs: []`.
+- **Evidence shots:** `docs/qa/shots/cal-mobile-{before,after}-*.png`, `docs/qa/shots/cal-desktop-after-{1280,1920}.png`.
+- **Not verified:** Real iOS Safari / Android Chrome touch overscroll chaining and rubber-band behaviour; real end-to-end Cal booking confirmation (stopped before `Confirm`).
