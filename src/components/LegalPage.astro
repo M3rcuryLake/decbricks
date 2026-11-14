@@ -82,8 +82,11 @@ const BRICK_PATTERN: Array<'' | 'sage' | 'olive'> = [
         >
           <div class="mx-auto flex w-full max-w-1850 flex-col lg:max-w-1000 lg:gap-45">
             {
-              doc.sections.map((section) => (
-                <section id={section.id} aria-labelledby={section.id}>
+              doc.sections.map((section, index) => (
+                <section id={section.id} aria-labelledby={section.id} class="legal-section">
+                  <p class="legal-num" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
                   <h2 class="u-h2 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px]">
                     {section.heading}
                   </h2>
@@ -103,6 +106,24 @@ const BRICK_PATTERN: Array<'' | 'sage' | 'olive'> = [
           </div>
         </div>
       </section>
+      <nav class="legal-rail" aria-label="On this page">
+        <ul class="legal-railList">
+          {
+            doc.sections.map((section, index) => (
+              <li>
+                <a
+                  class="legal-railLink"
+                  href={`#${section.id}`}
+                  aria-label={section.heading}
+                  title={section.heading}
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
       <button class="legal-top" aria-label="Back to top" hidden>
         <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M8 13V3M8 3 3.5 7.5M8 3l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

@@ -74,6 +74,53 @@ async function load(page, path, wait = 4600) {
     await page.close();
   }
 
+  // --- Task 2: numerals + fixed rail ---
+  for (const [path, title] of Object.entries(DOCS)) {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    await load(page, path);
+    const d = await page.evaluate(() => {
+      const rail = document.querySelector('.legal-rail');
+      const rr = rail ? rail.getBoundingClientRect() : null;
+      const links = [...document.querySelectorAll('.legal-railLink')];
+      const nums = [...document.querySelectorAll('.legal-num')];
+      return JSON.stringify({
+        railExists: !!rail,
+        railPos: rail ? getComputedStyle(rail).position : null,
+        railRight: rr ? Math.round(window.innerWidth - rr.right) : null,
+        railVisible: rail ? getComputedStyle(rail).display !== 'none' : false,
+        linkCount: links.length,
+        firstLink: links[0]?.textContent?.trim(),
+        hrefs: links.map(l => l.getAttribute('href')),
+        hrefTargets: links.map(l => !!document.getElementById((l.getAttribute('href') || '').slice(1))),
+        numCount: nums.length,
+        numColor: nums[0] ? getComputedStyle(nums[0]).color : null,
+        numSize: nums[0] ? parseFloat(getComputedStyle(nums[0]).fontSize) : 0,
+      });
+    });
+    const j = JSON.parse(d);
+    const expectCount = path === '/terms' ? 14 : 11;
+    T(`${path}: rail fixed right`, j.railExists && j.railPos === 'fixed' && j.railRight !== null && j.railRight <= 2, `pos=${j.railPos} rightGap=${j.railRight}`);
+    T(`${path}: rail visible at 1280`, j.railVisible, '');
+    T(`${path}: ${expectCount} rail links`, j.linkCount === expectCount, String(j.linkCount));
+    T(`${path}: first link reads 01`, j.firstLink === '01', j.firstLink);
+    T(`${path}: every rail href resolves`, j.hrefTargets.every(Boolean), String(j.hrefTargets.filter(x => !x).length) + ' broken');
+    T(`${path}: ${expectCount} numerals`, j.numCount === expectCount, String(j.numCount));
+    T(`${path}: numeral olive >= 48px`, /rgb\(90, 100, 50\)/.test(j.numColor || '') && j.numSize >= 48, `color=${j.numColor} size=${j.numSize}`);
+    T(`${path}: numerals aria-hidden`, await page.evaluate(() => [...document.querySelectorAll('.legal-num')].every(n => n.getAttribute('aria-hidden') === 'true')), '');
+    // 375: rail hidden
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.waitForTimeout(500);
+    const mobile = await page.evaluate(() => JSON.stringify({
+      railDisplay: getComputedStyle(document.querySelector('.legal-rail') || document.body).display,
+      hscroll: document.documentElement.scrollWidth,
+    }));
+    const m = JSON.parse(mobile);
+    T(`${path}: 375px rail hidden`, m.railDisplay === 'none', m.railDisplay);
+    T(`${path}: 375px no horizontal scroll`, m.hscroll <= 376, String(m.hscroll));
+    await page.screenshot({ path: SHOTS + `legal-island-${path.slice(1)}-375.png` });
+    await page.close();
+  }
+
   await browser.close();
   console.log(results.join('\n'));
   fs.writeFileSync(SHOTS + 'legal-monumental.txt', results.join('\n'));

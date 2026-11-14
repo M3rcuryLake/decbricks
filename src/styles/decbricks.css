@@ -2669,3 +2669,65 @@ html.has-cookie-banner .page .sections-servicesHero {
   outline-offset: 2px;
 }
 
+/* Fixed right-edge section rail (ServicesSidebarNav precedent — position:fixed,
+   because the overflow-hidden .page ancestor would break position:sticky).
+   Number links only; the full heading travels as title + aria-label.
+   Below 1024px the rail is removed entirely. */
+.legal-rail {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 40;
+  background: rgba(255, 249, 242, 0.92);
+  border-radius: 10px 0 0 10px;
+  padding: 12px 0 12px 8px;
+}
+
+.legal-railList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.legal-railLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 30px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--brand-on-light);
+  border-radius: 6px 0 0 6px;
+  transition: background-color var(--dur-std) var(--ease-brand), color var(--dur-std) var(--ease-brand);
+}
+
+.legal-railLink:hover,
+.legal-railLink[aria-current='true'] {
+  background: var(--brand-accent);
+  color: var(--brand-on-dark);
+}
+
+.legal-railLink:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: -2px;
+}
+
+@media (max-width: 1023px) {
+  .legal-rail {
+    display: none;
+  }
+}
+
+/* Giant section numerals: the FK Raster face (offBit101 legacy token), olive
+   per the owner-approved accent rules (olive on off-white ≥ 3:1 at any size). */
+.legal-num {
+  font-family: var(--font-offBit101);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: var(--brand-olive);
+}
