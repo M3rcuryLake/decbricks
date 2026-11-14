@@ -1,16 +1,18 @@
 ---
 /**
  * Shared shell for the legal pages (/terms, /privacy-policy) — open-items A11.
- * Mirrors the 404 page's structure (Base → Header → .page → section → Footer)
- * with a single light content island styled with the compiled template's
- * existing classes — composed exclusively from classes that already ship in
- * the about/contact/404 islands (global.css is static precompiled output; a
- * new utility does nothing). No sidebar nav, no page logic — every init*()
- * in main.ts null-guards, so nothing needs registering there.
+ * "Monumental legal" treatment (approved 2026-11-14): dark burgundy hero band
+ * with the A2 corner pixel-brick wall, giant display title and derived meta
+ * chips; then the light reading island with giant section numerals. Structure
+ * still mirrors the template (Base → Header → .page → hero → island → Footer).
+ * Motion lives in src/scripts/legal-page.ts (registered in main.ts); this
+ * component renders the hooks it consumes (.legal-hero*, .legal-progress,
+ * .legal-top, .legal-rail*, .legal-section, .legal-num).
  *
  * DRAFT STATE: `noindex` stays on until the owner replaces the bracketed
  * placeholders and has the text reviewed (then flip this prop and add the
- * routes to src/pages/sitemap.xml.ts — see docs/open-items.md A11).
+ * routes to src/pages/sitemap.xml.ts — see docs/open-items.md A11). The draft
+ * notice stays visible as a hero chip.
  */
 import type { LegalDoc } from '../data/legal';
 import { brandify } from '../lib/brand';
@@ -25,6 +27,26 @@ interface Props {
 }
 
 const { doc } = Astro.props;
+
+// Derived chip values — never invented: section count and reading time
+// (~200 wpm) come straight from the verbatim document data.
+const sectionCount = doc.sections.length;
+const wordCount = doc.sections.reduce(
+  (n, s) => n + s.body.join(' ').split(/\s+/).length + (s.bullets?.join(' ').split(/\s+/).length ?? 0),
+  0,
+);
+const readMinutes = Math.max(1, Math.round(wordCount / 200));
+
+// A2 corner wall: server-rendered fixed pattern (7 cols × 5 rows). '' = coral,
+// 'sage' / 'olive' = the supporting accents. Deterministic — no CLS, no-JS
+// readers still see the full wall (motion only builds it in).
+const BRICK_PATTERN: Array<'' | 'sage' | 'olive'> = [
+  '', 'sage', '', 'olive', '', '', 'sage',
+  '', 'olive', '', 'sage', '', '', 'olive',
+  'sage', '', '', '', 'olive', '', '',
+  '', 'sage', '', 'olive', '', 'sage', '',
+  '', '', 'olive', '', 'sage', '', '',
+];
 ---
 
 <Base title={doc.seoTitle} description={doc.seoDescription} noindex={true}>
@@ -32,48 +54,60 @@ const { doc } = Astro.props;
     <div></div>
     <div class="page page-legal bg-darkPurple">
       <Header />
-      {/* Dark themed strip: at scroll-0 the header sits on the page's darkPurple
-          background, so the first themed element must be dark for the header's
-          cream wordmark to be visible (same reason /about's hero is dark). */}
-      <div data-theme="dark" class="h-10 bg-darkPurple" aria-hidden="true"></div>
-      <section data-theme="light" class="relative overflow-hidden bg-darkPurple pt-80 lg:pt-100" aria-label={doc.title}>
+      {/* A2 hero: dark band so the header's scroll-0 theme resolves dark (cream
+          wordmark) — same reason /about opens on a dark hero. The rotated
+          brick wall overflows the hero's top/right edge by design and is
+          clipped by the hero's overflow-hidden. */}
+      <section class="legal-hero relative overflow-hidden bg-darkPurple" data-theme="dark" aria-label={doc.title}>
+        <div class="legal-progress" aria-hidden="true"></div>
+        <div class="legal-hero__wall" aria-hidden="true">
+          {BRICK_PATTERN.map((brick) => (
+            <span class:list={['legal-brick', { 'legal-brick--sage': brick === 'sage', 'legal-brick--olive': brick === 'olive' }]}></span>
+          ))}
+        </div>
+        <p class="legal-hero__stamp" data-legal-draft-stamp>Last updated: {doc.updated}</p>
+        <h1 class="legal-hero__title heading-3xl text-white uppercase">
+          {doc.title}<span class="text-purple" aria-hidden="true">.</span>
+        </h1>
+        <p class="legal-hero__intro copy-lg text-neonGreen">{doc.intro}</p>
+        <div class="legal-hero__chips">
+          <span class="legal-hero__chip">{sectionCount} sections</span>
+          <span class="legal-hero__chip">~{readMinutes} min read</span>
+          <span class="legal-hero__chip">Draft — placeholders pending</span>
+        </div>
+      </section>
+      <section data-theme="light" class="legal-island relative overflow-hidden bg-darkPurple pt-80 lg:pt-100" aria-label={doc.title}>
         <div
           class="rounded-10 bg-white px-9 pt-10 pb-40 lg:rounded-24 lg:px-20 lg:pt-25 lg:pb-50 xl:px-25 xl:pt-30 xl:pb-60 3xl:px-35 3xl:pt-35 3xl:pb-70 4xl:px-35 4xl:pt-40 4xl:pb-80"
         >
-          <div
-            class="mx-auto flex w-full max-w-1850 flex-col gap-40 lg:gap-55 xl:gap-65"
-          >
-            <header class="flex flex-col gap-15 lg:max-w-1000">
-              <p class="u-ink font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase" data-legal-draft-stamp>
-                Last updated: {doc.updated}
-              </p>
-              <h1 class="heading-2xl font-normal text-darkPurple uppercase">{doc.title}</h1>
-              <p class="u-ink copy-lg text-darkPurple">{doc.intro}</p>
-            </header>
-            <div class="flex flex-col gap-30 lg:max-w-1000 lg:gap-45">
-              {
-                doc.sections.map((section) => (
-                  <section id={section.id} aria-labelledby={section.id}>
-                    <h2 class="u-h2 mt-5 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px]">
-                      {section.heading}
-                    </h2>
-                    <div class="mt-10 flex flex-col gap-12 lg:mt-15">
-                      {section.body.map((paragraph) => <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />)}
-                      {section.bullets && (
-                        <ul class="legal-list flex flex-col gap-8">
-                          {section.bullets.map((item) => (
-                            <li class="u-ink copy-lg text-darkPurple" set:html={brandify(item)} />
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </section>
-                ))
-              }
-            </div>
+          <div class="mx-auto flex w-full max-w-1850 flex-col lg:max-w-1000 lg:gap-45">
+            {
+              doc.sections.map((section) => (
+                <section id={section.id} aria-labelledby={section.id}>
+                  <h2 class="u-h2 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:text-[36px] xl:text-[44px] 3xl:text-[52px] 4xl:text-[60px]">
+                    {section.heading}
+                  </h2>
+                  <div class="mt-10 flex flex-col gap-12 lg:mt-15">
+                    {section.body.map((paragraph) => <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />)}
+                    {section.bullets && (
+                      <ul class="legal-list flex flex-col gap-8">
+                        {section.bullets.map((item) => (
+                          <li class="u-ink copy-lg text-darkPurple" set:html={brandify(item)} />
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </section>
+              ))
+            }
           </div>
         </div>
       </section>
+      <button class="legal-top" aria-label="Back to top" hidden>
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 13V3M8 3 3.5 7.5M8 3l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
       <Footer />
     </div>
     <CookieBanner />
