@@ -69,8 +69,8 @@ export const FOOTER = {
       | 'closed',
   },
   legal: [
-    { label: 'Privacy', href: '/privacy-policy', enabled: false },
-    { label: 'Terms', href: '/terms', enabled: false },
+    { label: 'Privacy', href: '/privacy-policy', enabled: true },
+    { label: 'Terms', href: '/terms', enabled: true },
   ] as FooterLink[],
   newsletter: {
     endpoint: import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT || '',

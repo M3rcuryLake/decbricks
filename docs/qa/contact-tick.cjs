@@ -106,6 +106,25 @@ const settle = (page) => page.waitForTimeout(450);
     await page.close();
   }
 
+  // --- keyboard focus ring on the checkbox box (a11y) ---
+  {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    await gotoContact(page);
+    // keyboard-only focus: no mouse click, so :focus-visible applies
+    await page.evaluate(() => document.querySelector('#terms')?.focus());
+    await page.keyboard.press('Space'); // ensure keyboard interaction path
+    await page.focus('#terms');
+    await page.waitForTimeout(100);
+    const ring = await page.evaluate(() => {
+      const box = document.querySelector('form.sections-contactForm__form .parts-formCheckbox input + div');
+      if (!box) return null;
+      const cs = getComputedStyle(box);
+      return { outlineWidth: cs.outlineWidth, outlineStyle: cs.outlineStyle, boxShadow: cs.boxShadow !== 'none', border: cs.borderColor };
+    });
+    T('tick: keyboard focus shows visible ring on box', !!ring && (ring.outlineStyle !== 'none' || ring.boxShadow), JSON.stringify(ring));
+    await page.close();
+  }
+
   await browser.close();
   console.log(results.join('\n'));
   fs.writeFileSync(SHOTS + 'contact-tick.txt', results.join('\n'));

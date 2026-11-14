@@ -175,25 +175,23 @@ const smileyHtml = brandify(smileyCopy);
               ><input id="terms" name="terms" type="checkbox" required class="sr-only" aria-invalid="false" /><div
                 class="border-darkPurple flex h-16 min-h-16 w-16 min-w-16 cursor-pointer items-center justify-center rounded-4 border transition-colors lg:h-21 lg:min-h-21 lg:w-21 lg:min-w-21"
               ><svg
-                class="svgs-check block h-full w-full text-darkPurple opacity-0 transition-opacity duration-300"
-                viewBox="0 0 24 24"
+                class="svgs-check block h-12 w-12 text-darkPurple opacity-0 transition-opacity duration-300"
+                viewBox="0 0 13 10"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
-              ><path
-                d="M4 12.5 9.5 18 20 6.5"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg></div></div
+              >
+                <path fill="currentColor" d="M12.8 0v3.2H9.6V0zM9.6 3.2v3.2H6.4V3.2zM6.4 6.4v3.2H3.2V6.4z"></path>
+                <path
+                  fill="currentColor"
+                  d="M6.4 9.6H3.2V6.4h3.2zM3.2 6.4H0V3.2h3.2z"
+                ></path></svg></div></div
               ><div class="flex-1"
-              ><!-- A11: /terms & /privacy-policy pages do not exist yet — links removed (see docs/open-items.md A11). -->
-              <label
+              ><label
                 for="terms"
                 class="u-ink text-darkPurple parts-formCheckbox__label block cursor-pointer copy-xs text-darkPurple"
-                >I have read and agree to the Terms of Service and Privacy
-                Policy.</label
+                >I have read and agree to the <a href="/terms" target="_blank" rel="noopener">Terms of Service</a> and
+                <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.</label
               ></div
             ></div
           ><p class="form-fieldError" id="terms-error" hidden></p
