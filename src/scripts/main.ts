@@ -25,6 +25,7 @@ import { initTestimonials } from './testimonials';
 import { initContact } from './contact';
 import { initCalEmbed } from './cal-embed';
 import { initFooter } from './footer';
+import { initLegalPage } from './legal-page';
 import { getWebGLExperience, initWebGL } from './webgl/experience';
 
 let hero: Hero | undefined;
@@ -85,6 +86,7 @@ teardown(initTestimonials());
 teardown(initContact());
 teardown(initCalEmbed());
 teardown(initFooter());
+teardown(initLegalPage());
 initCookies();
 
 initPageTransition({
@@ -119,6 +121,7 @@ initPageTransition({
     teardown(initContact());
     teardown(initCalEmbed());
     teardown(initFooter());
+    teardown(initLegalPage());
     refreshHeaderForRoute(newPath);
     mountHeroForCurrentPage();
     playInlineVideos();
