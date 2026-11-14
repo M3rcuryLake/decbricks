@@ -156,8 +156,10 @@ const PRIVACY: LegalSection[] = [
   {
     id: 'data-we-collect',
     heading: '2. Data we collect',
-    body: ['We collect only what the features below need:'],
-    bullets: [
+    // Paragraphical (owner request): the former bullet list lives on as one
+    // paragraph per point, words verbatim.
+    body: [
+      'We collect only what the features below need:',
       'Contact form (name, email, company, message, and your consent to submit): sent through the form service Formspree (formspree.io), which delivers it as an email to our team inbox. The form service stores submissions and may apply spam checks to the data you send.',
       'Booking a call (when the booking widget is enabled): the scheduling service Cal.com processes the name, email and any details you enter to create the meeting.',
       'Cookies and similar storage: the cookie banner on this site lets you accept all, reject non-essential, or manage categories — functional/essential cookies (always on, required for the site to work) and optional analytics cookies (off unless you enable them).',

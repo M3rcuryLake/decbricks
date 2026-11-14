@@ -2532,87 +2532,12 @@ html.has-cookie-banner .page .sections-servicesHero {
    (approved 2026-11-14). All legal-page CSS lives in this one block; new
    utilities cannot go into the frozen compiled global.css.
    ========================================================================== */
-.legal-hero {
-  position: relative;
-  overflow: hidden;
-  padding: 120px 40px 44px;
-}
-
-@media (min-width: 1024px) {
-  .legal-hero {
-    padding: 150px 60px 56px;
-  }
-}
-
 .legal-hero__stamp {
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255, 249, 242, 0.78);
-}
-
-.legal-hero__title {
-  margin-top: 14px;
-  letter-spacing: -0.02em;
-  line-height: 0.88;
-  /* The heading-3xl utility's 23vw scale needs three clipped lines for the
-     full legal titles — cap it to a two-line monument (~110px at 1280). */
-  font-size: clamp(3.25rem, 9.5vw, 7rem);
-  max-width: 12ch;
-}
-
-.legal-hero__intro {
-  margin-top: 22px;
-  max-width: 52ch;
-}
-
-.legal-hero__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 26px;
-}
-
-.legal-hero__chip {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #fff9f2;
-  border: 1px solid rgba(255, 249, 242, 0.4);
-  border-radius: 3px;
-  padding: 5px 10px;
-}
-
-/* A2 corner wall: decorative pixel-brick block, rotated, clipped by the
-   hero's overflow. Visible by default (no-JS / reduced motion readers see it
-   fully; the motion module only builds it in). */
-.legal-hero__wall {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  display: grid;
-  grid-template-columns: repeat(7, 16px);
-  gap: 4px;
-  transform: rotate(12deg);
-}
-
-.legal-brick {
-  width: 16px;
-  height: 9px;
-  background: var(--brand-accent);
-  opacity: 0.45;
-}
-
-.legal-brick--sage {
-  background: var(--brand-sage);
-  opacity: 0.4;
-}
-
-.legal-brick--olive {
-  background: var(--brand-olive);
-  opacity: 0.4;
 }
 
 /* Reading-progress hairline: fixed to the viewport top; scaleX driven by

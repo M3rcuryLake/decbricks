@@ -245,6 +245,21 @@ async function load(page, path, wait = 4600) {
     await page.close();
   }
 
+  // --- Task 2: privacy §2 prose (no bullets, every word kept) ---
+  {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    await load(page, '/privacy-policy');
+    const p = await page.evaluate(() => JSON.stringify({
+      uls: document.querySelectorAll('.legal-island ul.legal-list').length,
+      paras: document.querySelectorAll('#data-we-collect p').length,
+      text: (document.getElementById('data-we-collect')?.textContent || ''),
+    }));
+    const j = JSON.parse(p);
+    T('privacy: §2 renders no bullet list', j.uls === 0, String(j.uls));
+    T('privacy: §2 words preserved (Formspree, Cal.com, consent, Server logs)', /Formspree/.test(j.text) && /Cal\.com/.test(j.text) && /consent to submit/.test(j.text) && /Server logs/.test(j.text), '');
+    await page.close();
+  }
+
   await browser.close();
   console.log(results.join('\n'));
   fs.writeFileSync(SHOTS + 'legal-monumental.txt', results.join('\n'));
