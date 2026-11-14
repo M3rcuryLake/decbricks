@@ -91,3 +91,9 @@ Severity: Critical / High / Medium / Low. Effort: S (<30 min) / M (<2 h) / L (la
   - BUG-012 (chunk limit + empty content folder).
 
 Each batch: `npm run build` → re-test affected pages at all 7 widths → save `docs/screenshots/audit/<page>-<width>-after.png` → mark status here.
+
+---
+
+## Post-audit resolution (2026-11-14): Shared `ContactForm` halftone illustration containment
+- **Issue:** On `/contact` and `/`, `ContactForm.astro`'s `lg:top-[-10vw]` halftone monitor illustration wrappers (`z-2`) overflowed upward (`102.39–256 px` across `1024–2560 px`) over `.sections-servicesList` and `#testimonials`, because earlier fixes (`357319e`, `34c55c9`) gated clipping behind an opt-in `clipIllustration` prop used only on `/about` and `/services`.
+- **Resolution:** Removed per-page `clipIllustration` props and contained `.sections-contactForm` globally (`overflow: clip; isolation: isolate;`, `overflow: hidden` fallback, and `@media (min-width: 1024px) { .sections-contactForm > .pointer-events-none.absolute { top: 0; } }`) in `src/styles/decbricks.css`. Verified `0 px` upward overlap across all 4 pages (`/contact`, `/`, `/about`, `/services`) × 7 widths (`375–2560`) and a 6-swap navigation gauntlet (`docs/qa/findings.md`).

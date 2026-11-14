@@ -195,3 +195,55 @@ Regression: below-header pixel diff with the 14 new rules toggled off/on via CSS
 
 Evidence: `docs/qa/shots/nav-before-contact-hover-{burgundy,offwhite}.png`, `nav-after-contact-hover-{burgundy,offwhite}.png`, `nav-after-{default-dark,hover-work,focus-work,current-home,current-contact,hover-about-light}.png`, `nav-w{1024,1280,1440,1920,2560}-{dark,light}.png`, `nav-mobile-{390,menu-open}.png`.
 
+---
+
+## ContactForm Halftone Illustration Containment Fix (2026-11-14)
+
+### Root cause & precedent
+
+In `src/components/ContactForm.astro`, the inner `max-w-1920 overflow-hidden` wrapper closes after `</form>`, leaving the two halftone illustration wrappers (`computer-back` `z-index: auto` and `computer-front` `z-index: 2`, both `position: absolute`) as direct children of `<section id="contact" class="sections-contactForm">`. At `lg+` (`>=1024px`), both carry `lg:top-[-10vw]`, pulling them `102.39px–256px` above `.sections-contactForm`'s top edge. Prior fixes (`357319e` on `/about` and `34c55c9` on `/services`) added an opt-in `clipIllustration` prop (`.sections-contactForm--clipIllustration`), while `/contact` (`contact.astro`) and `/` (`index.astro`) omitted it and left `.sections-contactForm` with `overflow: visible`. Because `.sections-contactForm` follows the preceding section in DOM order and `computer-front` has `z-2`, the monitor art painted upward over `.sections-servicesList` on `/contact` and over `#testimonials` (`.tst-band`) on `/`. `ScrollTrigger.refresh()` had zero effect on the overlap (pure CSS offset, not parallax/ScrollTrigger; identical across `atTop`, `atBoundary`, and `atDeep` scroll positions).
+
+### Why `elementsFromPoint` initially skipped the art
+
+Both wrappers carry `pointer-events: none`, so browser hit-testing passes through them even though they paint on top. Probing `(1240, 520)` and art top-edge points `(1210, 453)`, `(1210, 503)`, `(1028, 463)` on `/contact` (`1920×1053`) with temporary `pointer-events: auto` on those wrappers confirmed `img[alt="computer-front"]` (`top: -192px; z-index: 2`) painted topmost over `#start-a-project`'s `div.relative.z-1`, followed by `img[alt="computer-back"]`. After the fix, repeating that same probe returns `article.parts-serviceBlock` / `div.relative.z-1` (`#start-a-project` island) topmost with zero `ContactForm` images above the boundary.
+
+### Before vs. After overlap table (`contactTopDoc - artTopDoc`; negative = art sits below section top = 0 px upward overlap)
+
+| Page | Width | Before (raw / painted) | After (raw / painted) | Upward overlap after |
+|---|---|---|---|---|
+| `/contact` | `2560×1440` | `256 px` | `0 px` | **0 px** |
+| `/contact` | `1920×1053` | `192 px` | `0 px` | **0 px** |
+| `/contact` | `1440` | `144 px` | `0 px` | **0 px** |
+| `/contact` | `1280` | `128 px` | `0 px` | **0 px** |
+| `/contact` | `1024` | `102.39 px` | `0 px` | **0 px** |
+| `/contact` | `768` | `-76.8 px` | `-76.8 px` | **0 px** |
+| `/contact` | `375` | `-37.5 px` | `-37.5 px` | **0 px** |
+| `/` | `2560×1440` | `256 px` | `0 px` | **0 px** |
+| `/` | `1920×1053` | `192 px` | `0 px` | **0 px** |
+| `/` | `1440` | `144 px` | `0 px` | **0 px** |
+| `/` | `1280` | `128 px` | `0 px` | **0 px** |
+| `/` | `1024` | `102.39 px` | `0 px` | **0 px** |
+| `/` | `768` | `-76.8 px` | `-76.8 px` | **0 px** |
+| `/` | `375` | `-37.5 px` | `-37.5 px` | **0 px** |
+| `/about` | `2560..1024` | `0 px` *(opt-in)* | `0 px` | **0 px** |
+| `/about` | `768` / `375` | `0 px` *(unscoped `top:0`)* | `-76.79 px` / `-37.5 px` | **0 px** |
+| `/services` | `2560..1024` | `0 px` *(opt-in)* | `0 px` | **0 px** |
+| `/services` | `768` / `375` | `0 px` *(unscoped `top:0`)* | `-76.8 px` / `-37.5 px` | **0 px** |
+
+### Client-side swaps, resize, pixel-diff & gates
+
+- **6-swap client navigation gauntlet** (`/contact → /services → /about → / → /contact → /services → /contact` at `1920×1053`): `overlapRaw: 0`, `overlapPainted: 0` on every hop; `ScrollTrigger.getAll().length` stable (`13` on `/contact`, `23` on `/services`, `23` on `/about`, `43` on `/`); WebGL canvases reattached (`1920×1053`, `connected: true`); `consoleErrs: []`, `pageErrs: []`.
+- **Resize / orientation check** on `/contact` post-swaps (`1280×800 → 375×812 → 812×375 → 1920×1053`): `0 px` upward overflow (`0`, `-37.5`, `-81.19`, `0`).
+- **Before/after pixel diff (`1920×1053`):** `y=0..440` above the leak on `/contact` and `/` changed `0/844800` pixels (`0.0000%`); `contact-top`, `about-boundary`, and `services-boundary` differed `0.0105%–0.0198%` strictly in the animated smiley pill / WebGL grain.
+- **Evidence screenshots:** `docs/qa/shots/{contact,home,about,services}-{before,after}-boundary-1920.png`, `contact-{before,after}-boundary-{1280,375}.png`, `contact-{before,after}-{top,section}-1920.png`.
+- **Static & build checks:** `npm run check` (`0` err, `0` warn, `1` pre-existing hint in `footer.ts`), `npm run build` (`5` pages), `npm run check:brand`, `npm run headings`, `npm run links`, `npm run check:placeholders`, `npm run check:footer` all pass.
+- **Not verified:** Real Safari / iOS WebKit (Chromium-only test environment).
+
+### Secondary findings (Step 4 — logged, no header redesign)
+
+| ID | Sev | Area | Observation |
+|---|---|---|---|
+| `CF-S1` | S3 | Header logo chip (`a.parts-animatedLogo`) & nav capsule during scroll | On scroll (`menu.ts`), the logo chip gets `bg-white/70 backdrop-blur-xl` without border/shadow (`contact-after-boundary-1920.png` clips `"ONLINE BOOKING IS COMING SOON."` text passing behind it, while nav capsule `.structure-navPill` has `0.92` cream + `1px` burgundy border + shadow). Over `#FFF9F2` island body text, fixed transparent/light overlays are intended to float, though `a.parts-animatedLogo` lacks `.structure-navPill`'s stronger `0.92` opacity + subtle border treatment. |
+| `CF-S2` | Info | `#book-a-call` fallback & header clearance | `"ONLINE BOOKING IS COMING SOON."` + dev hint is confirmed to be `CalEmbed.astro`'s intentional `CAL.link === ''` fallback (`docs/open-items.md` `A2`), not a rendering error. At `scrollY=0`, `#book-a-call h2` sits at `y=1164` (`headerBottom=83`); clicking `a[href="#book-a-call"]` scrolls to `y=915` leaving `#book-a-call h2` at `top: 249` vs `headerBottom: 83` / `navPillBottom: 82` (`166 px` clear). |
+| `CF-S3` | Info | Vertical sidebar nav (`01–04`) at `1280` & `1440` | At `#start-a-project`, sidebar is visible (`navInert: false`), active item matches `["#start-a-project"]`, and text right edges stay clear (`max textRight: 781 px` vs `navLeft: 1222 px` at `1280` and `1382 px` at `1440` → `coveredByNav: false`). |
+
