@@ -9,7 +9,6 @@ const SHOTS = '/home/ankit/GitHub/decbricks/docs/qa/shots/';
 const BASE = 'http://localhost:4321';
 const results = [];
 const T = (name, ok, detail) => results.push(`${ok ? 'PASS' : 'FAIL'}  ${name}${detail ? ' — ' + detail : ''}`);
-const PLACEHOLDER_RE = /\[[^\]]{3,60}\]/;
 
 async function load(page, path, wait = 4600) {
   await page.goto(BASE + path, { waitUntil: 'domcontentloaded' });

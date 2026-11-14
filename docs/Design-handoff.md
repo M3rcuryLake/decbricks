@@ -495,3 +495,19 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 **reCAPTCHA:** the note AGENTS.md mentioned does not exist in markup/scripts — stale reference, no copy change made.
 
 **Owner to-dos:** Formspree dashboard (confirm account email/first-submission mail, recipients, spam filtering, optional reCAPTCHA + then restore widget copy, allowed domains, subject template), set env var in hosting, add Formspree to A11 processor list. Full list in open-items A7.
+
+## Legal Draft Pages + Contact Tick Checkbox (2026-11-14, open-items A11)
+
+**What:** Shipped `/terms` + `/privacy-policy` as template-draft legal pages (bracketed placeholders throughout, `noindex, nofollow`, excluded from sitemap, visible "Last updated: TEMPLATE DRAFT" stamp), enabled the footer legal links, restored the Terms/Privacy links inside the contact-form label, and added the template's own tick glyph to the terms checkbox.
+
+**Files:** `src/data/legal.ts` (typed LEGAL_DOCS: 14 terms + 11 privacy sections), `src/components/LegalPage.astro` (shared shell mirroring the 404 Base→Header→.page→section→Footer structure), `src/pages/terms.astro` + `src/pages/privacy-policy.astro`, `src/data/footer.ts` (legal `enabled: true`), `ContactForm.astro` (tick SVG + template-verbatim label links, `target="_blank" rel="noopener"`), `decbricks.css` (`.legal-list` disc markers + checkbox `:focus-visible` sibling ring).
+
+**Why — decisions that deviate from the obvious:**
+- **Tick glyph** = the template's own pixelated stair-step check (13×10 two-path glyph lifted verbatim from CookieBanner's checked box) in `text-darkPurple` inside the existing bordered box, `opacity-0` default — NOT a hand-drawn smooth stroke check. contact.ts `syncCheckbox()` already toggled a class on the wrapper; the glyph reacts to `checked` styling already in place → zero JS changes.
+- **H1 scale** = `heading-2xl` (same offBit face, ~92px max at 1280), not the giant `heading-3.5xl` the 404 uses — that scale ate the viewport on a text page.
+- **Dark strip before the island**: a 10px `data-theme="dark"` spacer sits above the white island so the header's scroll-0 theme resolves dark (cream wordmark visible), matching how `/about` puts a dark hero before its light island. Logo probe verified cream on both legal pages.
+- **Legal bullets**: global reset strips `list-style`; `.legal-list` restores disc markers (hand-written block in decbricks.css — global.css is static, no Tailwind recompile).
+- **Focus ring**: the real checkbox is `sr-only`, so keyboard focus was invisible; `:focus-visible + div` sibling rule rings the visible box only for keyboard users (2px accent + offset, project convention). Mouse clicks stay ring-free.
+- **Placeholder honesty**: privacy copy describes only what the site actually does (Formspree, optional Cal.com, cookie banner functional + optional analytics, server logs); every company-specific fact is a bracketed placeholder. `is-valid` wrapper attribute left inert (0 CSS rules — verified).
+
+**Not done on purpose:** pages stay noindexed + out of sitemap until the owner replaces placeholders and gets legal review (open-items A11 to-dos); no invented legal entity details.

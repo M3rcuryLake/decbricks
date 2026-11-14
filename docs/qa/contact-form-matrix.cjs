@@ -286,7 +286,7 @@ const statusText = (page) => page.textContent(STATUS).then(t => (t || '').trim()
     await scrollToForm(page);
     await page.evaluate(() => document.querySelector('#email')?.focus());
     const tabOrder = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       await page.keyboard.press('Tab');
       tabOrder.push(await page.evaluate(() => {
         const el = document.activeElement;
@@ -294,10 +294,12 @@ const statusText = (page) => page.textContent(STATUS).then(t => (t || '').trim()
         return el.id || el.getAttribute('aria-label') || el.tagName;
       }));
     }
-    // Starting FROM #email: name, company, message, terms, then the submit button.
-    const want = ['name', 'company', 'message', 'terms', 'Submit'];
-    const ordered = want.every((id, i) => tabOrder.indexOf(id) === i);
-    T('keyboard: tab order covers all fields', ordered, tabOrder.join(','));
+    // Starting FROM #email: name, company, message, terms, then the two legal
+    // label links (anchors), then the submit button — DOM order.
+    const head = ['name', 'company', 'message', 'terms'];
+    const orderedHead = head.every((id, i) => tabOrder.indexOf(id) === i);
+    const anchorsThenSubmit = tabOrder[4] === 'A' && tabOrder[5] === 'A' && tabOrder[6] === 'Submit';
+    T('keyboard: tab order covers all fields', orderedHead && anchorsThenSubmit, tabOrder.join(','));
     // fill via keyboard
     await page.fill('#email', FILL.email);
     await page.fill('#name', FILL.name);
