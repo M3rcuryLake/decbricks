@@ -84,11 +84,11 @@ Fonts: Bricolage Grotesque (headings/UI) / Hanken Grotesk (body) / FK Raster Rom
 - Context hygiene: read files in slices; prefer `grep -n` + `sed -n 'a,bp'`; large files: Hero.astro, CaseStudies.astro, Testimonials.astro, global.css, experience.ts — do not open unless the task needs them.
 
 ## Asset conventions
-- **Roots & groups:** Astro-bundled images stay in `src/assets/` (`about/`, `service/`, `projects/`, `companyLogos/`); plain URL strings stay in `public/assets/` (`shared/`, `home/`, `contact/`, etc.; client brand logos/favicons/OG remain in `public/brand/` and `public/og-default.png`). See `docs/ASSET_MAP.md`.
+- **Roots & groups:** Astro/Vite-hashed assets (`/_astro/*`, cached 1 year `immutable`) live in `src/assets/` (`about/`, `service/`, `projects/`, `companyLogos/`, `shared/`); un-hashed `public/` URLs (`/brand/*`, `/fonts/*`, `/videos/*`, `/og-default.png`) use `max-age=86400, stale-while-revalidate=604800` and are never `immutable` (see `docs/ASSET_MAP.md` & `docs/CACHING.md`).
 - **Naming:** lowercase `kebab-case`, `.webp` extension (no spaces/special chars; company logos `<company>.webp`). Keep original format only when WebP is larger (e.g., indexed halftone PNGs or tiny solid textures).
 - **Optimisation:** WebP `quality: 80`, `effort: 6`, sRGB profile, non-colour metadata stripped, dimensions preserved via `node scripts/optimise-images.mjs --input <dir|file> [--output <dir>]`. Add explicit `width`/`height` + `loading="lazy"` + `decoding="async"` on below-the-fold images only.
 
 ## Docs index
-PROGRESS.md · Design-handoff.md · tokens.md · mapping.md · open-items.md · Implementation-plan.md · about-section-data.md · ASSET_MAP.md
+PROGRESS.md · Design-handoff.md · tokens.md · mapping.md · open-items.md · Implementation-plan.md · about-section-data.md · ASSET_MAP.md · CACHING.md
 
-See "Skills" above for `.agents/skills/*` routing; audit-script results belong in `docs/qa/`.
+See "Skills" above for `.agents/skills/*` routing; `scripts/check-*.{py,mjs}` hold the automated QA gates.

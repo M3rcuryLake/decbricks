@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { gsap, ScrollTrigger, bp, bus, prefersReducedMotion, resizeManager } from '../core/gsap';
 import { getLenis } from '../smooth-scroll';
+import squareSolidUrl from '../../assets/shared/square-solid.png?url';
 
 const TOUCH_VERTEX_SHADER = `uniform float uTime;
 uniform float uBirthTime;
@@ -1145,7 +1146,7 @@ export function createExperience(): WebGLExperienceAPI | null {
   const mouse = new THREE.Vector2(0, 0);
   const startTime = Date.now();
 
-  loadCachedTexture('/assets/shared/square-solid.png').then((squareTex) => {
+  loadCachedTexture(squareSolidUrl).then((squareTex) => {
     if (!squareTex) return;
     const waveGeom = new THREE.PlaneGeometry(1, 1, 1, 1);
     for (let i = 0; i < maxWaves; i++) {
