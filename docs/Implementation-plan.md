@@ -21,7 +21,7 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 ## Phase 2 — Typography (§3.2) — **SUPERSEDED by FONT-SWAP-PROMPT (Option A: "Bricks & Pixels")**
 > The KH Type work this phase described was implemented, then removed on 2026-11-10. The live type system is Bricolage Grotesque / Hanken Grotesk / Departure Mono, with "Decbricks" only in FK Raster via `.font-brand` — as-built values in `docs/tokens.md` §3. Steps below kept for history only.
 1. Inspect font files (`fc-scan`/fontTools): family names, weights, glyph coverage (₹, &, ’ “ ” – —, digits, @, +). Record in tokens.md. If a role font lacks required glyphs, change mapping and log it.
-2. Convert to WOFF2 + Latin subset; place in `public/fonts/`; remove unused 1minus1 font files from preload (keep files until Phase 8 cleanup).
+2. Convert to WOFF2 + Latin subset; place in `public/fonts/`; remove unused 1minus1 font files from preload (unused source fonts removed in repo cleanup).
 3. Replace the 4 `@font-face` rules in global.css with KH Teka (400/500/700), KH Interference (400/700), KH Teka Mono (400), FK Raster Roman Compact fallback; `font-display:swap`.
 4. Repoint `--font-*` tokens (tokens.md §3). Add `--font-mono`.
 5. Update `Base.astro` preloads: Teka Bold + Teka Regular only (`crossorigin`).
@@ -62,7 +62,7 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 - Contact form: wire a real submission. Default (keeps site static): POST to `PUBLIC_CONTACT_ENDPOINT` (Web3Forms/Formspree/own worker) using fetch in `contact.ts`, with loading/success/error states, honeypot field, server-error fallback to `mailto:`. If an Astro adapter already exists, a `/api/contact` route is acceptable. Document in Design-handoff + open-items.
 
 ## Phase 6 — SEO & technical (§5)
-- Per-page unique title/description for **every** page incl. index, services, 404 (noindex), the404game (noindex).
+- Per-page unique title/description for **every** page incl. index, services, terms (noindex while draft), 404 (noindex).
 - OG/Twitter: `og:image` 1200×630 (open-item asset; interim: generate a plain brand-colour PNG with wordmark and flag it), `og:site_name Decbricks`, `og:locale`.
 - Headings audit script: build → parse `dist/**/*.html` → assert exactly one `<h1>`, no level jumps; print table. Fix offenders (e.g. ContactForm `h2` sr-only is fine; ServicesHero `h1` sr-only must be the only H1).
 - URLs: `/about`, `/contact`, `/services`; trailing-slash policy set in astro.config (`trailingSlash`/`build.format`) and canonicals consistent with it.
@@ -81,6 +81,6 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 - a11y: skip link (`#main-content`), landmarks (`main`, `nav` labels), focus order through sidebar nav (it has `inert` + `lg:block` — confirm intended), form labels/errors (`aria-describedby`, live region), Cal fallback announcements, link purposes, 44px targets, colour contrast re-test.
 
 ## Phase 8 — Cleanup & handoff
-- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; delete unused fonts/images only after confirming no references (`grep -r`).
-- `npm run build`, `npm run check`, headings script, link checker (all internal hrefs resolve), no `1minus1` string in shipped HTML (`grep -ri 1minus1 dist`, excluding docs).
+- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; unused source fonts, duplicate `docs/` source drops, retired docs/screenshots, dead copy-email/`ServiceArtwork` branches, and dead `decbricks.css` rules pruned during repo cleanup.
+- `npm run build`, `npm run check`, `check:brand`, `headings`, `links`, `check:placeholders`, `check:footer`, no `1minus1` string in shipped HTML (`grep -ri 1minus1 dist`).
 - Finalise all docs; PROGRESS.md fully current.
