@@ -7,7 +7,7 @@
  */
 import { CAL } from '../data/contact';
 
-export const CONSENT_COOKIE = 'essential-consent';
+const CONSENT_COOKIE = 'essential-consent';
 
 export const hasConsent = () =>
   document.cookie.split('; ').some((c) => c.startsWith(`${CONSENT_COOKIE}=`));
@@ -16,7 +16,7 @@ export const hasConsent = () =>
  * Decbricks palette tokens supported by Cal.com embed's `cssVarsPerTheme`.
  * Keys intentionally omit leading `--` (Cal injects `--<key>` inside its iframe).
  */
-export const CAL_THEME_VARS: Record<string, string> = {
+const CAL_THEME_VARS: Record<string, string> = {
   // Brand & interactive emphasis
   'cal-brand': '#800020',
   'cal-brand-emphasis': '#630018',
@@ -55,7 +55,7 @@ export const CAL_THEME_VARS: Record<string, string> = {
   'cal-text-semantic-success': '#5A6432',
 };
 
-export const CAL_UI_CONFIG = {
+const CAL_UI_CONFIG = {
   theme: 'light' as const,
   cssVarsPerTheme: { light: CAL_THEME_VARS },
   hideEventTypeDetails: false,
@@ -99,7 +99,7 @@ const createQueueFn = (): CalQueueObject => {
  * Official vanilla Cal.com loader: creates the queue shim (`Cal` + `Cal.ns`),
  * injects `${origin}/embed/embed.js` async once per document, and exposes load state.
  */
-export function ensureCal(origin = CAL.origin): CalQueueObject {
+function ensureCal(origin = CAL.origin): CalQueueObject {
   if (window.Cal) return window.Cal;
 
   const cal = function (...args: unknown[]) {

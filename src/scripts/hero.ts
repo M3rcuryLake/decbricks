@@ -49,6 +49,10 @@ export class Hero {
     if (this.dom.player) gsap.set(this.dom.player, { clearProps: 'y' });
   };
 
+  private onSafeAreaChange = () => {
+    this.resize();
+  };
+
   private normalizeTilt(el: HTMLElement | undefined): number {
     if (!el) return 0;
     let tilt = this.elementTilts.get(el);
@@ -121,6 +125,7 @@ export class Hero {
     this.initImageAndText();
     this.initPlayerTimeline();
     ScrollTrigger.addEventListener('refreshInit', this.onRefreshInit);
+    bus.on('cookie-safe-area-changed', this.onSafeAreaChange);
     const refresh = () => this.refreshTakeover();
     document.fonts?.ready?.then(refresh);
     document
@@ -350,7 +355,6 @@ export class Hero {
       const c = boxOf(d.end);
       const tilt = this.normalizeTilt(a);
       const cs = getComputedStyle(a);
-      const scale = Math.min(c.width / s.width, c.height / s.height);
       const tl = (this.scrollTl = gsap.timeline({
         paused: reduceMotion,
         defaults: { ease: 'linear', duration: 0.5 },
@@ -375,6 +379,8 @@ export class Hero {
         br: px(cs.borderBottomRightRadius),
       };
       if (isDesktop) {
+        // Desktop & large screens: scale uniformly to preserve native 16:9 aspect ratio without side stretching.
+        const scale = Math.min(c.width / s.width, c.height / s.height);
         tl.fromTo(
           a,
           {
@@ -409,11 +415,9 @@ export class Hero {
         );
         this.pinBaseY = c.y - s.y + (c.height - s.height) / 2;
       } else {
-        // Mobile DOM morph: scale dimensions uniformly so <video> preserves native 16:9 aspect ratio inside #showreel.
-        const targetWidth = s.width * scale;
-        const targetHeight = s.height * scale;
-        const targetX = c.x - s.x + (c.width + targetWidth) / 2 - s.width;
-        const targetY = c.y - s.y + (c.height - targetHeight) / 2;
+        // Mobile & tablet (< lg): fill #showreel container bounds; CSS object-cover keeps frames unstretched.
+        const targetX = c.x - s.x + (c.width - s.width);
+        const targetY = c.y - s.y;
         const yProxy = { y: 0 };
         this.mobileMorphY = reduceMotion ? targetY : 0;
         this.mobilePinShift = 0;
@@ -434,8 +438,8 @@ export class Hero {
           },
           {
             x: targetX,
-            width: targetWidth,
-            height: targetHeight,
+            width: c.width,
+            height: c.height,
             rotate: 0,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
@@ -519,6 +523,7 @@ export class Hero {
     this.initImageAndText();
     this.webGLImage?.resize();
     ScrollTrigger.refresh();
+    this.syncWebGLImageToStart();
   }
 
   private refreshTimeout?: number;
@@ -530,6 +535,7 @@ export class Hero {
   destroy() {
     window.clearTimeout(this.refreshTimeout);
     ScrollTrigger.removeEventListener('refreshInit', this.onRefreshInit);
+    bus.off('cookie-safe-area-changed', this.onSafeAreaChange);
     if (this.onRefreshEvaluate) {
       ScrollTrigger.removeEventListener('refresh', this.onRefreshEvaluate);
       this.onRefreshEvaluate = undefined;

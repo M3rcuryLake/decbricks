@@ -21,7 +21,7 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 ## Phase 2 — Typography (§3.2) — **SUPERSEDED by FONT-SWAP-PROMPT (Option A: "Bricks & Pixels")**
 > The KH Type work this phase described was implemented, then removed on 2026-11-10. The live type system is Bricolage Grotesque / Hanken Grotesk / Departure Mono, with "Decbricks" only in FK Raster via `.font-brand` — as-built values in `docs/tokens.md` §3. Steps below kept for history only.
 1. Inspect font files (`fc-scan`/fontTools): family names, weights, glyph coverage (₹, &, ’ “ ” – —, digits, @, +). Record in tokens.md. If a role font lacks required glyphs, change mapping and log it.
-2. Convert to WOFF2 + Latin subset; place in `public/fonts/`; remove unused 1minus1 font files from preload (keep files until Phase 8 cleanup).
+2. Convert to WOFF2 + Latin subset; place in `public/fonts/`; remove unused 1minus1 font files from preload (unused source fonts removed in repo cleanup).
 3. Replace the 4 `@font-face` rules in global.css with KH Teka (400/500/700), KH Interference (400/700), KH Teka Mono (400), FK Raster Roman Compact fallback; `font-display:swap`.
 4. Repoint `--font-*` tokens (tokens.md §3). Add `--font-mono`.
 5. Update `Base.astro` preloads: Teka Bold + Teka Regular only (`crossorigin`).
@@ -45,7 +45,7 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 
 ## Phase 5 — Contact page (§4.2)
 - **Delete/replace** `pages/contact.astro` (broken). New page per mapping.md.
-- SEO: title `Contact Decbricks | Start Your Digital Project`; description `Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.`; canonical `/contact`; JSON-LD `ContactPage` + `Organization` (with `contactPoint` from contact.ts) + `BreadcrumbList`.
+- SEO: title `Contact Decbricks | Start Your Digital Project`; description `Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.`; canonical `/contact`; JSON-LD `ContactPage` + `Organization` + `BreadcrumbList` (`contactPoint`/`PHONES` removed in `chore/repo-cleanup`).
 - **5A Cal.com** (`CalEmbed.astro`, `scripts/cal-embed.ts`, `src/data/contact.ts` → `CAL = { link: 'username/event', origin: 'https://app.cal.com' }`):
   - Use Cal.com's official inline embed (vanilla loader, `embed.js` from `https://app.cal.com/embed/embed.js`), namespaced; NOT a custom UI.
   - Lazy-init when the section nears the viewport (IntersectionObserver, rootMargin ~400px) → no LCP/INP cost. Show skeleton in brand colours while loading.
@@ -57,30 +57,30 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
   - If `CAL.link` is empty: dev console warning + production fallback card (email/phone) — never a blank box. Add to open-items.
   - Privacy: Cal embed sets third-party cookies → mention in CookieBanner category if the banner has categories; load only after consent if the existing banner gates third parties (read `cookies.ts`).
 - **5B** Let's Start Something Great block (verbatim copy, H2/H3 as given).
-- **5C** Meet the Team: `TeamCard` (photo via `<img loading="lazy" decoding="async" width height>` with `alt`, name, role, short bio, optional LinkedIn). Grid 1/2/3 cols (existing grid classes). Data array empty-safe; ship with entries clearly flagged placeholder until the owner supplies real ones; **no invented names/faces**. Image pipeline: accept jpg/png in `src/assets/team/`, use `astro:assets` `<Image>` (WebP/AVIF, responsive `widths`).
-- **5D** Contact numbers: list of `{label, display, e164}`; `<a href="tel:+…">`, min 44×44 tap target, visible focus, copy-safe text; optional WhatsApp link if owner provides. Hide section if no numbers + dev warning.
+- **5C** Meet the Team: *Removed in `chore/repo-cleanup` (`2026-11-16`, `D-02` — `TeamSection.astro` and `src/data/team.ts` removed while `TEAM = []`).*
+- **5D** Contact numbers: *Removed in `chore/repo-cleanup` (`2026-11-16`, `D-01` — `ContactNumbers.astro` and `PHONES` removed while `PHONES = []`).*
 - Contact form: wire a real submission. Default (keeps site static): POST to `PUBLIC_CONTACT_ENDPOINT` (Web3Forms/Formspree/own worker) using fetch in `contact.ts`, with loading/success/error states, honeypot field, server-error fallback to `mailto:`. If an Astro adapter already exists, a `/api/contact` route is acceptable. Document in Design-handoff + open-items.
 
 ## Phase 6 — SEO & technical (§5)
-- Per-page unique title/description for **every** page incl. index, services, 404 (noindex), the404game (noindex).
+- Per-page unique title/description for **every** page incl. index, services, terms (noindex while draft), 404 (noindex).
 - OG/Twitter: `og:image` 1200×630 (open-item asset; interim: generate a plain brand-colour PNG with wordmark and flag it), `og:site_name Decbricks`, `og:locale`.
 - Headings audit script: build → parse `dist/**/*.html` → assert exactly one `<h1>`, no level jumps; print table. Fix offenders (e.g. ContactForm `h2` sr-only is fine; ServicesHero `h1` sr-only must be the only H1).
 - URLs: `/about`, `/contact`, `/services`; trailing-slash policy set in astro.config (`trailingSlash`/`build.format`) and canonicals consistent with it.
 - `src/pages/sitemap.xml.ts` (static endpoint, lists indexable pages with lastmod = build date) and `src/pages/robots.txt.ts` (Allow all + `Sitemap:`; `Disallow: /` unless production env). No new dependency.
-- JSON-LD builder `src/lib/schema.ts`: `Organization` (name, url, logo, sameAs, contactPoint[telephone, email, areaServed IN + international]), `WebSite`, `Service` entries for the capability list (custom software, web & mobile apps, AI, business automation, UI/UX design, digital marketing, business development) on the Services page **only if** that page's content is Decbricks content, `BreadcrumbList`, `AboutPage`, `ContactPage`. Must match visible content; no invented ratings/addresses.
+- JSON-LD builder `src/lib/schema.ts`: `Organization` (name, url, logo, sameAs; `contactPoint` omitted after `PHONES` removal in `chore/repo-cleanup`), `WebSite`, `Service` entries for the capability list (custom software, web & mobile apps, AI, business automation, UI/UX design, digital marketing, business development) on the Services page **only if** that page's content is Decbricks content, `BreadcrumbList`, `AboutPage`, `ContactPage`. Must match visible content; no invented ratings/addresses.
 - Internal linking: About ↔ Contact ↔ Services via descriptive anchors (e.g. "start a project", "our services"); header/footer consistent. Natural keywords from the supplied copy only; no stuffing.
 - Images: `astro:assets` for new images; descriptive alt; `loading="lazy"` except LCP candidate (`fetchpriority="high"`); explicit width/height.
 - GSC: `PUBLIC_GSC_VERIFICATION` meta (and note DNS option), sitemap URL ready, canonical + robots correct. Document in open-items.
 
 ## Phase 7 — Performance & a11y
 - Measure first: `npm run build && npm run preview`; Lighthouse (mobile) on `/about`, `/contact` if available; else inspect bundle sizes in `dist/_astro`.
-- Known suspects: `webgl/experience.ts` + three (≈48 KB source, large bundle) boots on every page via `main.ts` → lazy `import()` after first paint/idle and only where `.webgl-*` targets exist; Loader overlay delaying LCP; CookieBanner; font weights (max 4 files above fold); render-blocking CSS (157 KB) — consider `inlineStylesheets` / critical split only if safe.
+- Known suspects: `webgl/experience.ts` + three (≈48 KB source, large bundle) boots on every page via `main.ts` → lazy `import()` after first paint/idle and only where `.webgl-*` targets exist; Loader overlay delaying LCP; CookieBanner; font weights (max 4 files above fold); render-blocking CSS (originally 157 KB; purged via AST in `chore/repo-cleanup` (`D-05`) to ~56 KB source / ~109 KB total CSS) — consider `inlineStylesheets` / critical split only if safe.
 - INP: avoid long tasks in init functions; ScrollTrigger refresh debounced; passive listeners.
 - CLS: reserve Cal embed height; font fallback metrics; image dimensions.
 - Preserve animations. Reduced-motion: disable trail/marquee/transition extras where template lacks it, for new code at minimum.
 - a11y: skip link (`#main-content`), landmarks (`main`, `nav` labels), focus order through sidebar nav (it has `inert` + `lg:block` — confirm intended), form labels/errors (`aria-describedby`, live region), Cal fallback announcements, link purposes, 44px targets, colour contrast re-test.
 
 ## Phase 8 — Cleanup & handoff
-- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; delete unused fonts/images only after confirming no references (`grep -r`).
-- `npm run build`, `npm run check`, headings script, link checker (all internal hrefs resolve), no `1minus1` string in shipped HTML (`grep -ri 1minus1 dist`, excluding docs).
+- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; unused source fonts, duplicate `docs/` source drops, retired docs/screenshots, dead copy-email/`ServiceArtwork` branches, empty-safe `D-01`–`D-04` scaffolds (`ContactNumbers`, `TeamSection`, `ServicesClients`, `FooterStatus`), `D-08` (`visual-diff.py`), dead `decbricks.css` rules, and duplicate/unused Tailwind rules in `src/styles/global.css` (`D-05`, `157,592 B` → `56,369 B`) pruned during repo cleanup.
+- `npm run build`, `npm run check`, `check:brand`, `headings`, `links`, `check:placeholders`, `check:footer`, no `1minus1` string in shipped HTML (`grep -ri 1minus1 dist`).
 - Finalise all docs; PROGRESS.md fully current.

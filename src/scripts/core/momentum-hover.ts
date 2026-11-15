@@ -1,13 +1,13 @@
 import { gsap, ScrollTrigger } from './gsap';
 
-export interface MomentumItem {
+interface MomentumItem {
   /** Element that receives mouseenter / mouseleave. */
   element: HTMLElement;
   /** Element that is actually moved (defaults to nothing: item is skipped). */
   target: HTMLElement | null;
 }
 
-export interface MomentumConfig {
+interface MomentumConfig {
   xyMultiplier: number;
   rotationMultiplier: number;
   inertiaResistance: number;

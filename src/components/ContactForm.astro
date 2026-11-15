@@ -1,6 +1,21 @@
 ---
 import { brandify } from '../lib/brand';
 import { CONTACT_ENDPOINT } from '../data/contact';
+import compBack300 from '../assets/shared/computer-back-300.webp?url';
+import compBack500 from '../assets/shared/computer-back-500.webp?url';
+import compBack750 from '../assets/shared/computer-back-750.webp?url';
+import compBack1000 from '../assets/shared/computer-back-1000.webp?url';
+import compBack1600 from '../assets/shared/computer-back-1600.webp?url';
+import compBack2000 from '../assets/shared/computer-back-2000.webp?url';
+import compFront300 from '../assets/shared/computer-front-300.webp?url';
+import compFront500 from '../assets/shared/computer-front-500.webp?url';
+import compFront750 from '../assets/shared/computer-front-750.webp?url';
+import compFront1000 from '../assets/shared/computer-front-1000.webp?url';
+import compFront1600 from '../assets/shared/computer-front-1600.webp?url';
+import compFront2000 from '../assets/shared/computer-front-2000.webp?url';
+
+const compBackSrcset = `${compBack300} 300w, ${compBack500} 500w, ${compBack750} 750w, ${compBack1000} 1000w, ${compBack1600} 1600w, ${compBack2000} 2000w`;
+const compFrontSrcset = `${compFront300} 300w, ${compFront500} 500w, ${compFront750} 750w, ${compFront1000} 1000w, ${compFront1600} 1600w, ${compFront2000} 2000w`;
 
 interface Props {
   /** Smiley sentence; the original CMS serves the singular form on /services. */
@@ -220,15 +235,8 @@ const smileyHtml = brandify(smileyCopy);
     ><picture class="parts-webPicture"
       ><img
         alt="computer-back"
-        src="/assets/shared/computer-back-300.webp"
-        srcset="
-          /assets/shared/computer-back-300.webp   300w,
-          /assets/shared/computer-back-500.webp   500w,
-          /assets/shared/computer-back-750.webp   750w,
-          /assets/shared/computer-back-1000.webp 1000w,
-          /assets/shared/computer-back-1600.webp 1600w,
-          /assets/shared/computer-back-2000.webp 2000w
-        "
+        src={compBack300}
+        srcset={compBackSrcset}
         width="2000"
         height="1647"
         class="h-full w-full"
@@ -242,15 +250,8 @@ const smileyHtml = brandify(smileyCopy);
     ><picture class="parts-webPicture"
       ><img
         alt="computer-front"
-        src="/assets/shared/computer-front-300.webp"
-        srcset="
-          /assets/shared/computer-front-300.webp   300w,
-          /assets/shared/computer-front-500.webp   500w,
-          /assets/shared/computer-front-750.webp   750w,
-          /assets/shared/computer-front-1000.webp 1000w,
-          /assets/shared/computer-front-1600.webp 1600w,
-          /assets/shared/computer-front-2000.webp 2000w
-        "
+        src={compFront300}
+        srcset={compFrontSrcset}
         width="2000"
         height="1647"
         class="h-full w-full"

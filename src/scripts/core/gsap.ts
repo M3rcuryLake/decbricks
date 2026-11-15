@@ -20,7 +20,7 @@ CustomEase.create('natural', '0.8, 0, 0.2, 1');
 ScrollTrigger.config({ ignoreMobileResize: true });
 if (typeof window !== 'undefined') (window as any).ScrollTrigger = ScrollTrigger;
 
-export { gsap, ScrollTrigger, SplitText, Flip, Draggable, InertiaPlugin };
+export { gsap, ScrollTrigger, SplitText, Flip, Draggable };
 
 /** Breakpoints from the original app. */
 export const bp = { xs: 456, sm: 640, md: 768, lg: 1024, xl: 1280, '2xl': 1440, '3xl': 1660, '4xl': 1920 } as const;

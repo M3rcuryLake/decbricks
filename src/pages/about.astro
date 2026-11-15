@@ -20,7 +20,7 @@ const description =
 const heroBodyRaw = ABOUT[0].paragraphs[0].split('. ').slice(0, 2).join('. ');
 // Don't double the period when the sentence already ends with one (QA 2026-11-11).
 const heroBody = /[.!?…]$/.test(heroBodyRaw.trim()) ? heroBodyRaw : heroBodyRaw + '.';
-// Smiley sentence: Intro block first paragraph, verbatim (no 1minus1 copy).
+// Smiley sentence: Intro block first paragraph, verbatim (no template copy).
 const smileyCopy = ABOUT[0].paragraphs[0];
 const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navLabel }));
 const imagePreloads = await getBlockImagePreloads(
@@ -28,7 +28,7 @@ const imagePreloads = await getBlockImagePreloads(
     section.image
       ? [{ src: section.image.src, quality: 50, position: section.image.position }]
       : []
-  )
+  ).slice(0, 1)
 );
 ---
 

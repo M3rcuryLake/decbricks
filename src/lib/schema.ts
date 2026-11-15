@@ -1,5 +1,5 @@
 import { SITE, SITE_URL } from '../data/site';
-import { EMAIL, PHONES } from '../data/contact';
+import { EMAIL } from '../data/contact';
 import { SERVICES, type ServiceItem } from '../data/services';
 
 const abs = (path: string) => new URL(path, SITE_URL + '/').href.replace(/\/$/, '');
@@ -8,13 +8,6 @@ type Json = Record<string, unknown>;
 
 /** Organization (single source of truth for About/Contact/sitemap pages). */
 export function organizationSchema(): Json {
-  const contactPoints = PHONES.map((p) => ({
-    '@type': 'ContactPoint',
-    telephone: p.e164,
-    contactType: 'customer service',
-    areaServed: 'IN',
-    availableLanguage: 'English',
-  }));
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -23,7 +16,6 @@ export function organizationSchema(): Json {
     logo: `${SITE_URL}/brand/logo.png`,
     description: SITE.description,
     ...(EMAIL ? { email: EMAIL } : {}),
-    ...(contactPoints.length ? { contactPoint: contactPoints } : {}),
     ...(SITE.socials.length ? { sameAs: SITE.socials.map((s) => s.href) } : {}),
   };
 }
@@ -38,7 +30,7 @@ export function webSiteSchema(): Json {
 }
 
 /** Breadcrumb trail; items are [name, path] pairs, path '' = home. */
-export function breadcrumbSchema(items: Array<{ name: string; path?: string }>): Json {
+function breadcrumbSchema(items: Array<{ name: string; path?: string }>): Json {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

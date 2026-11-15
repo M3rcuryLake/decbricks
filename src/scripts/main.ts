@@ -67,7 +67,6 @@ function mountHeroForCurrentPage() {
 
 function playInlineVideos() {
   document.querySelectorAll<HTMLVideoElement>('video').forEach((v) => {
-    if (v.closest('.parts-autoplayVideo')) return;
     if (v.src || v.querySelector('source')) v.play().catch(() => {});
   });
 }

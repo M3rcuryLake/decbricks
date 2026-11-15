@@ -474,7 +474,7 @@ export function initCaseStudies() {
 
   // Keyboard support matching the original: ArrowRight/Left step one slide from the
   // pagination control or a slide link; Home/End jump to first/last from the
-  // pagination control (verified against 1minus1.com on 2026-11-07).
+  // pagination control (original baseline verified 2026-11-07).
   const syncSliderAria = (idx: number) => {
     const visibleCount = getVisibleSlides().length;
     const steps = Math.max(0, snapPositions.length - 1);

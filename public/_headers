@@ -1,0 +1,64 @@
+# Netlify / Cloudflare Pages HTTP caching headers.
+# - Hashed Vite/Astro build assets under /_astro/* are content-addressed and safe to cache for 1 year.
+# - Un-hashed files under /brand/, /fonts/, /videos/, and /og-default.png MUST NOT be immutable;
+#   they use a 1-day cache with a 7-day stale-while-revalidate window alongside platform ETag revalidation.
+# - HTML routes always revalidate so deploys take effect immediately.
+# - Neither CDN adds Content-Encoding to already-compressed formats (.webp, .avif, .mp4, .woff2),
+#   and both preserve Accept-Ranges: bytes on video assets.
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/brand/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/fonts/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/videos/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/og-default.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/site.webmanifest
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/about
+  Cache-Control: public, max-age=0, must-revalidate
+
+/about/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/services
+  Cache-Control: public, max-age=0, must-revalidate
+
+/services/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/contact
+  Cache-Control: public, max-age=0, must-revalidate
+
+/contact/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/terms
+  Cache-Control: public, max-age=0, must-revalidate
+
+/terms/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/404.html
+  Cache-Control: public, max-age=0, must-revalidate

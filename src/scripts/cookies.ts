@@ -40,13 +40,19 @@ export function initCookies() {
     const de = document.documentElement;
     de.classList.add('has-cookie-banner');
     de.style.setProperty('--cookie-safe-area', `${h + mb}px`);
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    requestAnimationFrame(() => {
+      bus.emit('cookie-safe-area-changed');
+      ScrollTrigger.refresh();
+    });
   };
   const clearSafeArea = () => {
     const de = document.documentElement;
     de.classList.remove('has-cookie-banner');
     de.style.removeProperty('--cookie-safe-area');
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    requestAnimationFrame(() => {
+      bus.emit('cookie-safe-area-changed');
+      ScrollTrigger.refresh();
+    });
   };
 
   const hide = () => {

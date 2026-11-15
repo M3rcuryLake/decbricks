@@ -8,7 +8,7 @@ export const BLOCK_IMAGE_WIDTHS = [328, 660, 736, 820] as const;
 export const BLOCK_IMAGE_SIZES =
   '(min-width: 1920px) 410px, (min-width: 1660px) 360px, (min-width: 1280px) 300px, (min-width: 1024px) 260px, calc(100vw - 47px)';
 
-export interface BlockImagePreload {
+interface BlockImagePreload {
   href: string;
   imagesrcset: string;
   imagesizes: string;

@@ -1,5 +1,7 @@
 {
   "name": "decbricks",
+  "description": "Decbricks is a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.",
+  "homepage": "https://decbricks.com",
   "type": "module",
   "version": "0.0.1",
   "scripts": {

@@ -13,6 +13,7 @@ export default defineConfig({
   vite: {
     build: {
       chunkSizeWarningLimit: 600,
+      assetsInlineLimit: 512,
     },
   },
   // c7: always 'directory' URLs (`/about`), canonicals must match this policy.

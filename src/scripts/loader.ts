@@ -13,7 +13,7 @@ const ASSET_WAIT_CAP_MS = 3400;
 const HARD_CAP_MS = 3800;
 const LOADER_SEEN_KEY = 'decbricks:loader-seen';
 
-export interface LoaderOptions {
+interface LoaderOptions {
   waitForAssets?: Promise<void>;
   assetTimeoutMs?: number;
 }

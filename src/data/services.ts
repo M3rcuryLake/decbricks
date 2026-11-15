@@ -16,10 +16,12 @@ export type ServiceId =
   | 'digital-marketing-growth'
   | 'business-development-outreach';
 
-export type ServiceMedia =
-  | { kind: 'artwork'; motif: ServiceId; alt: string; code: string }
-  | { kind: 'image'; src: ImageMetadata; alt: string; position?: string }
-  | { kind: 'video'; src: string; poster: string; alt: string };
+export type ServiceMedia = {
+  kind: 'image';
+  src: ImageMetadata;
+  alt: string;
+  position?: string;
+};
 
 export interface ServiceItem {
   id: ServiceId;
@@ -35,17 +37,6 @@ export interface ServiceItem {
   homeSummary: string;
   homeTags: string[];
   homeExtraCount?: number;
-  /** Empty/omitted until real Decbricks project case studies exist (open-items A14) */
-  projects?: string[];
-}
-
-export interface ClientLogo {
-  id: number;
-  name: string;
-  alt: string;
-  src: string;
-  width: number;
-  height: number;
 }
 
 export const SERVICES_SECTION_HEADER = {
@@ -282,6 +273,3 @@ export const SERVICES: ServiceItem[] = [
     homeTags: ['B2B Lead Generation', 'LinkedIn Outreach', 'Cold Email Campaigns'],
   },
 ];
-
-// Cleared of 1minus1 studio logos until real Decbricks client logos & permissions exist (open-items A14 / B2).
-export const CLIENT_LOGOS: ClientLogo[] = [];
