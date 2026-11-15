@@ -1,5 +1,12 @@
 import { gsap, ScrollTrigger, bp, bus, prefersReducedMotion, resizeManager } from './core/gsap';
 import { getLenis } from './smooth-scroll';
+import {
+  isSaveDataEnabled,
+  markCurrentDocumentWarmed,
+  preloadCssBrandMarks,
+  preloadCurrentPageImages,
+  warmImagesFromDocument,
+} from './image-preload-runtime';
 
 const TRANSITION_CONFIG = {
   DESKTOP_COLS: 12,
@@ -49,27 +56,11 @@ let transitionStarted = false;
 // temporarily hold another route's markup while a transition is in flight).
 let trackedCurrentPath = normalizePath(window.location.pathname);
 
-const ROUTE_WARM_TARGETS = ['/about', '/services'] as const;
+const ROUTE_WARM_TARGETS = ['/', '/about', '/services', '/contact'] as const;
 const routeHtmlCache = new Map<string, Promise<string | null>>();
 const warmedRoutes = new Set<string>();
 const retainedWarmImages: HTMLImageElement[] = [];
-
-const isSaveDataEnabled = (): boolean =>
-  Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
-
-let avifSupportPromise: Promise<boolean> | null = null;
-const supportsAvif = (): Promise<boolean> => {
-  if (!avifSupportPromise) {
-    avifSupportPromise = new Promise((resolve) => {
-      const probe = new Image();
-      probe.onload = () => resolve(probe.width > 0);
-      probe.onerror = () => resolve(false);
-      probe.src =
-        'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAEAAAABAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
-    });
-  }
-  return avifSupportPromise;
-};
+let warmAllRoutesPromise: Promise<void> | null = null;
 
 function fetchRouteHtml(targetPath: string): Promise<string | null> {
   const key = normalizePath(targetPath);
@@ -93,48 +84,35 @@ async function warmRouteAssets(targetPath: string): Promise<void> {
   const html = await fetchRouteHtml(key);
   if (!html) return;
   const doc = new DOMParser().parseFromString(html, 'text/html');
-  const canAvif = await supportsAvif();
-  const preloadLinks = Array.from(
-    doc.head.querySelectorAll<HTMLLinkElement>('link[rel="preload"][as="image"]')
-  );
+  await warmImagesFromDocument(doc, retainedWarmImages);
+}
 
-  for (const link of preloadLinks) {
-    if (link.type === 'image/avif' && !canAvif) continue;
-    const srcset = link.getAttribute('imagesrcset');
-    const sizes = link.getAttribute('imagesizes');
-    const href = link.getAttribute('href');
-    if (!srcset && !href) continue;
+/**
+ * Warms CSS brand marks and all primary routes' HTML + responsive images.
+ * Safe to invoke multiple times; concurrent callers share one pass.
+ */
+export function warmAllRoutes(): Promise<void> {
+  if (isSaveDataEnabled()) return Promise.resolve();
+  if (warmAllRoutesPromise) return warmAllRoutesPromise;
 
-    const img = new Image();
-    if (sizes) img.sizes = sizes;
-    if (srcset) img.srcset = srcset;
-    else if (href) img.src = href;
-    retainedWarmImages.push(img);
-  }
+  const currentPath = normalizePath(window.location.pathname);
+  warmedRoutes.add(currentPath);
+
+  warmAllRoutesPromise = (async () => {
+    await markCurrentDocumentWarmed(document);
+    await Promise.allSettled([
+      preloadCssBrandMarks(retainedWarmImages),
+      ...ROUTE_WARM_TARGETS.filter((route) => normalizePath(route) !== currentPath).map((route) =>
+        warmRouteAssets(route)
+      ),
+    ]);
+  })();
+
+  return warmAllRoutesPromise;
 }
 
 async function waitForEagerImages(container: Element, timeoutMs = 1200): Promise<void> {
-  const eager = Array.from(container.querySelectorAll<HTMLImageElement>('img')).filter(
-    (img) => img.loading !== 'lazy'
-  );
-  if (eager.length === 0) return;
-
-  const ready = Promise.allSettled(
-    eager.map((img) => {
-      if (img.complete) return img.decode?.().catch(() => {}) ?? Promise.resolve();
-      return new Promise<void>((resolve) => {
-        const done = () => {
-          img.removeEventListener('load', done);
-          img.removeEventListener('error', done);
-          resolve();
-        };
-        img.addEventListener('load', done, { once: true });
-        img.addEventListener('error', done, { once: true });
-      });
-    })
-  );
-
-  await Promise.race([ready, new Promise<void>((r) => window.setTimeout(r, timeoutMs))]);
+  await preloadCurrentPageImages(container, { timeoutMs });
 }
 
 export function initPageTransition(callbacks: PageTransitionCallbacks) {
@@ -658,27 +636,26 @@ export function initPageTransition(callbacks: PageTransitionCallbacks) {
     runRouteTransition(targetPath, anchor, true);
   });
 
-  // Warm secondary routes' HTML + responsive image preloads once initial load/loader finishes.
-  const scheduleIdleWarm = () => {
-    const run = () => {
-      for (const route of ROUTE_WARM_TARGETS) {
-        if (normalizePath(route) !== normalizePath(window.location.pathname)) {
-          void warmRouteAssets(route);
-        }
-      }
+  // Ensure secondary routes' HTML + responsive image preloads warm even if
+  // initLoader / main.ts did not run `warmAllRoutes()` beforehand.
+  if (!warmAllRoutesPromise) {
+    const scheduleIdleWarm = () => {
+      const run = () => {
+        void warmAllRoutes();
+      };
+      const ric = (window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void }).requestIdleCallback;
+      if (ric) ric(run, { timeout: 600 });
+      else window.setTimeout(run, 300);
     };
-    const ric = (window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void }).requestIdleCallback;
-    if (ric) ric(run, { timeout: 600 });
-    else window.setTimeout(run, 300);
-  };
-  if ((window as Window & { animationsEnabled?: boolean }).animationsEnabled) {
-    scheduleIdleWarm();
-  } else {
-    const onInitialReady = () => {
-      bus.off('animationsEnabled', onInitialReady);
+    if ((window as Window & { animationsEnabled?: boolean }).animationsEnabled) {
       scheduleIdleWarm();
-    };
-    bus.on('animationsEnabled', onInitialReady);
+    } else {
+      const onInitialReady = () => {
+        bus.off('animationsEnabled', onInitialReady);
+        scheduleIdleWarm();
+      };
+      bus.on('animationsEnabled', onInitialReady);
+    }
   }
 
   // Also warm internal route assets on hover/focus intent before click.

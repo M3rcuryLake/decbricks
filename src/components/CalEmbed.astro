@@ -3,15 +3,15 @@ import { brandify } from '../lib/brand';
 /**
  * CalEmbed — Cal.com inline booking block (map 5A). Renders the embed mount
  * (initialised lazily by `scripts/cal-embed.ts`) plus a brand-coloured
- * skeleton, and a fallback card (direct Cal deep link / email / phones) that
+ * skeleton, and a fallback card (direct Cal deep link / email) that
  * replaces the embed on load failure / timeout / missing consent / missing
  * Cal link. No network happens until `cal-embed.ts` decides to load `embed.js`.
  */
-import { CAL, EMAIL, PHONES } from '../data/contact';
+import { CAL, EMAIL } from '../data/contact';
 
 const hasCal = !!CAL.link;
 const fallbackVisible = !hasCal; // missing Cal link ⇒ never shows a blank box
-const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
+const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL;
 ---
 
 <div class="cal-embed-widget relative w-full" data-has-cal={hasCal ? 'true' : 'false'}>
@@ -47,7 +47,7 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
 
   <div class:list={['cal-fallback', fallbackVisible ? '' : 'is-hidden']} role="status">
     <p
-      class="cal-fallback__title font-neuePower text-[14px] leading-snug font-bold text-darkPurple uppercase"
+      class="cal-fallback__title font-neuePower text-[14px] leading-snug font-medium text-darkPurple uppercase"
       set:html={brandify(hasCal ? 'The booking calendar could not load here.' : 'Online booking is coming soon.')}
     />
     {
@@ -59,7 +59,7 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
                 href={CAL.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple"
+                class="cal-fallback__link font-neuePower text-[14px] font-medium text-darkPurple"
               >
                 Book a call on Cal.com
                 <span aria-hidden="true"> ↗</span>
@@ -71,20 +71,12 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
             <li>
               <a
                 href={`mailto:${EMAIL}`}
-                class="cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple"
+                class="cal-fallback__link font-neuePower text-[14px] font-medium text-darkPurple"
               >
                 Email us
               </a>
             </li>
           )}
-
-          {PHONES.map((p) => (
-            <li>
-              <a href={`tel:${p.e164}`} class="cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple">
-                Call {p.label}
-              </a>
-            </li>
-          ))}
         </ul>
       )
     }

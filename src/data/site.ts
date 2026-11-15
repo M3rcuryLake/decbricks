@@ -24,8 +24,12 @@ export const SITE = {
   tagline: 'Building Technology. Empowering Businesses. Driving Growth.',
   description:
     'Decbricks is a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.',
-  /** og/twitter card (1200×630 TEMP asset flagged in open-items A6). */
+  /** Default Open Graph / Twitter share card (1200×630 derived from assets/brand/og-source.jpg). */
   ogImage: `${SITE_URL}/og-default.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageType: 'image/png',
+  ogImageAlt: 'Decbricks emblem and wordmark on a deep burgundy background',
   locale: 'en',
   themeColor: '#800020',
   email: import.meta.env.PUBLIC_CONTACT_EMAIL || 'hello@decbricks.com',

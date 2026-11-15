@@ -1084,6 +1084,8 @@ export interface WebGLExperienceAPI {
   rebuildPageTargets: () => void;
   /** Re-bind the renderers to the canvases created by a page swap. */
   reattachCanvases: () => void;
+  notifyHeroTransitionStart: () => void;
+  notifyHeroEntranceComplete: () => void;
 }
 
 let experienceInstance: WebGLExperienceAPI | null = null;
@@ -1221,10 +1223,36 @@ export function createExperience(): WebGLExperienceAPI | null {
   const allTrails: WebGLTrail[] = [];
   const heroTrails: WebGLTrail[] = [];
   let heroTrailLoopTl: gsap.core.Timeline | null = null;
+  let heroEntranceTrailTl: gsap.core.Timeline | null = null;
+  let heroEntranceFlareFired = false;
   let contactTrailTween: gsap.core.Tween | null = null;
   let footerEl = document.querySelector<HTMLElement>('.structure-footer');
 
-  const startHeroTrailLoop = () => {
+  const appendTrailPulse = (tl: gsap.core.Timeline, tr: WebGLTrail, startPos: gsap.Position) =>
+    tl
+      .set(tr.timeline, { progress: 0 }, startPos)
+      .to(tr.timeline, { progress: 1, duration: 1, ease: 'linear' })
+      // Keep the full flare visible for ~2s before extinguishing backwards.
+      .set(tr.exitTimeline, { progress: 0 }, '>+2')
+      .to(tr.exitTimeline, { progress: 1, duration: 1, ease: 'linear' });
+
+  const fireHomeEntranceFlare = () => {
+    if (heroEntranceFlareFired || !heroTrails.length || prefersReducedMotion()) return;
+    const tr = heroTrails[0];
+    if (!tr) return;
+    heroEntranceFlareFired = true;
+    heroEntranceTrailTl?.kill();
+    const tl = gsap.timeline({
+      onComplete: () => {
+        heroEntranceTrailTl = null;
+      },
+    });
+    appendTrailPulse(tl, tr, 0);
+    heroEntranceTrailTl = tl;
+  };
+  bus.on('hero-transition-start', fireHomeEntranceFlare);
+
+  const startHeroTrailLoop = (immediateFirst = false) => {
     heroTrailLoopTl?.kill();
     heroTrailLoopTl = null;
     if (!heroTrails.length || prefersReducedMotion()) return;
@@ -1232,7 +1260,9 @@ export function createExperience(): WebGLExperienceAPI | null {
     const loopTl = gsap.timeline({
       repeat: -1,
       onRepeat: () => {
-        if (heroTrails[0]) gsap.set(heroTrails[0].timeline, { progress: -0.1 });
+        if (heroTrails[0] && !heroEntranceTrailTl?.isActive()) {
+          gsap.set(heroTrails[0].timeline, { progress: -0.1 });
+        }
       },
       scrollTrigger: heroTop
         ? {
@@ -1244,18 +1274,17 @@ export function createExperience(): WebGLExperienceAPI | null {
         : undefined,
     });
     const ordered = [...heroTrails.slice(1), heroTrails[0]];
-    if (heroTrails[0]) gsap.set(heroTrails[0].timeline, { progress: -0.1 });
-    ordered.forEach((tr) => {
+    if (heroTrails[0] && !heroEntranceTrailTl?.isActive()) {
+      gsap.set(heroTrails[0].timeline, { progress: -0.1 });
+    }
+    ordered.forEach((tr, idx) => {
       if (!tr) return;
-      loopTl
-        .set(tr.timeline, { progress: 0 }, '>+3')
-        .to(tr.timeline, { progress: 1, duration: 1, ease: 'linear' })
-        .set(tr.exitTimeline, { progress: 0 })
-        .to(tr.exitTimeline, { progress: 1, duration: 1, ease: 'linear' });
+      const delayPos = idx === 0 && immediateFirst && !heroEntranceFlareFired ? 0 : '>+3';
+      appendTrailPulse(loopTl, tr, delayPos);
     });
     heroTrailLoopTl = loopTl;
   };
-  bus.on('hero-entrance-complete', startHeroTrailLoop);
+  bus.on('hero-entrance-complete', () => startHeroTrailLoop());
 
   const scanPageTargets = () => {
     document.querySelectorAll<HTMLElement>('.webgl-background').forEach((el) => {
@@ -1327,6 +1356,9 @@ export function createExperience(): WebGLExperienceAPI | null {
   };
 
   const rebuildPageTargets = () => {
+    heroEntranceTrailTl?.kill();
+    heroEntranceTrailTl = null;
+    heroEntranceFlareFired = false;
     heroTrailLoopTl?.scrollTrigger?.kill();
     heroTrailLoopTl?.kill();
     heroTrailLoopTl = null;
@@ -1526,8 +1558,9 @@ export function createExperience(): WebGLExperienceAPI | null {
     relayout,
     rebuildPageTargets,
     reattachCanvases,
+    notifyHeroTransitionStart: fireHomeEntranceFlare,
+    notifyHeroEntranceComplete: () => startHeroTrailLoop(true),
   };
   (window as any).__webglExp = experienceInstance;
-  window.dispatchEvent(new CustomEvent('threeJS-ready'));
   return experienceInstance;
 }

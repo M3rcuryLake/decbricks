@@ -1,14 +1,17 @@
 ---
 import { FOOTER, FOOTER_CONTACT } from '../../data/footer';
+import ActionButton from '../ActionButton.astro';
 
 interface Props {
   show: boolean;
 }
 
 const { show } = Astro.props;
-const hasBooking = Boolean(FOOTER_CONTACT.cal.link || FOOTER_CONTACT.cal.bookingUrl);
+const hasCalLink = Boolean(FOOTER_CONTACT.cal.link);
+const hasBooking = Boolean(hasCalLink || FOOTER_CONTACT.cal.bookingUrl);
 const bookingHref = FOOTER_CONTACT.cal.bookingUrl || '/contact#book-a-call';
 const bookingExternal = Boolean(FOOTER_CONTACT.cal.bookingUrl);
+const calConfigJson = JSON.stringify({ layout: 'month_view' });
 ---
 
 {
@@ -18,22 +21,25 @@ const bookingExternal = Boolean(FOOTER_CONTACT.cal.bookingUrl);
         {FOOTER.cta.heading}
       </h2>
       <div class="structure-footer__ctaActions">
-        <a
+        <ActionButton
+          label={FOOTER.cta.primary.label}
           href={FOOTER.cta.primary.href}
-          class="structure-footer__ctaBtn"
-        >
-          <span>{FOOTER.cta.primary.label}</span>
-          <span aria-hidden="true">→</span>
-        </a>
+          variant="hero-light"
+          class="structure-footer__ctaAction"
+        />
         {hasBooking && (
-          <a
-            href={bookingHref}
-            class="structure-footer__ctaGhost text-darkPurple"
-            target={bookingExternal ? '_blank' : undefined}
-            rel={bookingExternal ? 'noopener noreferrer' : undefined}
-          >
-            <span>{FOOTER.cta.bookingLabel}</span>
-          </a>
+          <ActionButton
+            label={FOOTER.cta.bookingLabel}
+            href={hasCalLink ? undefined : bookingHref}
+            target={!hasCalLink && bookingExternal ? '_blank' : undefined}
+            rel={!hasCalLink && bookingExternal ? 'noopener noreferrer' : undefined}
+            variant="hero-light"
+            class="structure-footer__ctaAction"
+            data-cal-modal={hasCalLink ? 'true' : undefined}
+            data-cal-link={hasCalLink ? FOOTER_CONTACT.cal.link : undefined}
+            data-cal-namespace={hasCalLink ? FOOTER_CONTACT.cal.namespace : undefined}
+            data-cal-config={hasCalLink ? calConfigJson : undefined}
+          />
         )}
       </div>
     </section>

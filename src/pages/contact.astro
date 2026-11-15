@@ -5,15 +5,12 @@ import Header from '../components/Header.astro';
 import ServicesHero from '../components/ServicesHero.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import CalEmbed from '../components/CalEmbed.astro';
-import TeamSection from '../components/TeamSection.astro';
-import ContactNumbers from '../components/ContactNumbers.astro';
 import ServicesSidebarNav from '../components/ServicesSidebarNav.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
-import { EMAIL, PHONES } from '../data/contact';
-import { TEAM } from '../data/team';
+import { EMAIL } from '../data/contact';
 import { contactPageSchema } from '../lib/schema';
 import { brandify } from '../lib/brand';
 
@@ -29,12 +26,37 @@ const smileyCopy = 'Start your digital project with Decbricks.';
 // from the repo — open-items.md A15). Blocks render with the supplied H2/H3
 // and a neutral navigation sentence; verbatim paragraphs slot in when given.
 const startProjectBody =
-  'Book a call above, or send the form below — we reply to every message.';
+    'Every Decbricks project starts with a conversation. We listen to your goals, your audience, your timeline and your constraints, and we ask the questions that help us understand what success looks like for you. Within a few days you receive a written proposal covering scope, deliverables, timeline and pricing, so you know exactly what you’re getting before any work begins. Once you approve it, we agree on an advance and a milestone schedule, and we kick off.\n From there, we build in clear stages and share progress as we go, so you can see the work take shape instead of waiting for a big reveal. Depending on the project, we may bring in trusted developers, designers or other specialists to strengthen the team. We stay responsible for coordinating the work, and everyone involved follows the same confidentiality and security standards. We allow a generous 5-8 days for you to review each stage, and your feedback shapes the work through 2-3 revision rounds, depending on the scope of the project. If you need more rounds, we’re happy to negotiate them on mutually agreed terms.\n When everything is approved and the final payment is received, we hand over the finished deliverables along with the files, access and documentation you need to run them on your own. Ownership of the final work passes to you at that point. After launch, we stay available to answer questions, fix anything that doesn’t behave as agreed, and help with what comes next.';
+const startProjectParagraphs = startProjectBody
+  .split('\n')
+  .map((p) => p.trim())
+  .filter(Boolean);
+const bookingChips = ['Free, no commitment', '30 min or 1 hour', 'Google Meet'] as const;
+const bookingSteps = [
+  {
+    number: '01',
+    title: 'Pick a time',
+    description: 'Choose a slot that suits you. It adds straight to your calendar.',
+  },
+  {
+    number: '02',
+    title: 'Share the project',
+    description: 'A few lines on goals, timeline and budget are plenty.',
+  },
+  {
+    number: '03',
+    title: 'We come prepared',
+    description: 'You’ll talk with the people who’ll actually build it.',
+  },
+] as const;
+
+if (import.meta.env.DEV && !EMAIL) {
+  console.warn('[decbricks] EMAIL is empty — "Prefer email?" row in #book-a-call will omit mailto link.');
+}
+
 const sidebarItems = [
   { id: 'book-a-call', number: '01', navLabel: 'Book a Call' },
   { id: 'start-a-project', number: '02', navLabel: 'Start a Project' },
-  { id: 'meet-the-team', number: '03', navLabel: 'Team' },
-  { id: 'contact-numbers', number: '04', navLabel: 'Call Us' },
 ];
 ---
 
@@ -59,8 +81,6 @@ const sidebarItems = [
           navItems={[
             { id: 'book-a-call', navLabel: 'Book a Call' },
             { id: 'start-a-project', navLabel: 'Start a Project' },
-            { id: 'meet-the-team', navLabel: 'Team' },
-            { id: 'contact-numbers', navLabel: 'Call Us' },
           ]}
           navLabel="Contact"
         />
@@ -80,8 +100,50 @@ const sidebarItems = [
                 number="01"
                 eyebrow="Book a Call"
                 title="Book a Meeting"
+                class="booking-card"
+                headingClass="booking-heading"
+                hideGhostNumber={true}
               >
-                <CalEmbed />
+                <ul class="booking-chips" aria-label="Call details">
+                  {bookingChips.map((chip) => (
+                    <li class="booking-chip">{chip}</li>
+                  ))}
+                </ul>
+
+                <div class="booking-split">
+                  <div class="booking-info">
+                    <p class="booking-intro">
+                      Tell us what you’re building. We’ll tell you how we’d build it.
+                    </p>
+
+                    <ol class="booking-steps">
+                      {bookingSteps.map((step) => (
+                        <li class="booking-step">
+                          <span class="booking-step__num" aria-hidden="true">
+                            {step.number}
+                          </span>
+                          <div class="booking-step__copy">
+                            <h3 class="booking-step__title">{step.title}</h3>
+                            <p class="booking-step__desc">{step.description}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+
+                    {EMAIL && (
+                      <div class="booking-emailRow">
+                        <span class="booking-emailLabel">Prefer email?</span>
+                        <a href={`mailto:${EMAIL}`} class="booking-emailLink">
+                          {EMAIL}
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
+                  <div class="booking-embed">
+                    <CalEmbed />
+                  </div>
+                </div>
               </ContactBlock>
 
               <ContactBlock
@@ -90,65 +152,19 @@ const sidebarItems = [
                 eyebrow="Start a Project"
                 title="Let’s Start Something Great."
                 h3="Tell us what you want to build."
+                hideGhostNumber={true}
               >
-                {EMAIL || PHONES.length > 0 ? (
-                  <>
-                    <p
-                      class="u-ink font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]"
-                      set:html={brandify(startProjectBody)}
-                    />
-                    <ul class="mt-10 flex list-none flex-col gap-8 p-0">
-                      {EMAIL && (
-                        <li>
-                          <a
-                            href={`mailto:${EMAIL}`}
-                            class="font-neuePower text-[14px] font-bold text-darkPurple underline"
-                          >
-                            Email us
-                          </a>
-                        </li>
-                      )}
-                      {PHONES.map((p) => (
-                        <li>
-                          <a
-                            href={`tel:${p.e164}`}
-                            class="font-neuePower text-[14px] font-bold text-darkPurple underline"
-                          >
-                            Call {p.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <p
-                    class="u-ink font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]"
-                    set:html={brandify(startProjectBody)}
-                  />
-                )}
+                <div class="project-process">
+                  {startProjectParagraphs.map((paragraph) => (
+                    <div class="project-step">
+                      <p
+                        class="project-step__text"
+                        set:html={brandify(paragraph)}
+                      />
+                    </div>
+                  ))}
+                </div>
               </ContactBlock>
-
-              {
-                TEAM.length > 0 && (
-                  <ContactBlock id="meet-the-team" number="03" eyebrow="Team" title="Meet the Team">
-                    <TeamSection />
-                  </ContactBlock>
-                )
-              }
-
-              {
-                PHONES.length > 0 && (
-                  <ContactBlock id="contact-numbers" number="04" eyebrow="Call Us" title="Contact Numbers">
-                    <ContactNumbers />
-                  </ContactBlock>
-                )
-              }
-
-              {
-                TEAM.length === 0 && import.meta.env.DEV && (
-                  <p class="sr-only">Meet the Team is hidden: no team data supplied yet (open-items A5).</p>
-                )
-              }
             </div>
           </div>
         </section>

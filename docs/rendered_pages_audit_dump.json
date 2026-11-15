@@ -1,0 +1,4996 @@
+{
+  "/": {
+    "title": "Decbricks | Building Technology. Empowering Businesses. Driving Growth.",
+    "metaDesc": "Decbricks is a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.",
+    "ogTitle": "Decbricks | Building Technology. Empowering Businesses. Driving Growth.",
+    "ogDesc": "Decbricks is a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.",
+    "images": [
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Faura.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fey.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fbarclays.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fturing.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffindtern.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fchargebee.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fsparq.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ftcs.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fvedricx.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffourkites.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Flogout-spells.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fupcoming-engineer.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fzoho.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Faura.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fey.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fbarclays.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fturing.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffindtern.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fchargebee.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fsparq.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ftcs.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fvedricx.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffourkites.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Flogout-spells.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fupcoming-engineer.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fzoho.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Faura.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fey.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fbarclays.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fturing.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffindtern.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fchargebee.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fbarclays.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": "Barclays"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fey.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": "EY"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ftcs.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": "TCS"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fzoho.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": "Zoho"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fchargebee.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Chargebee"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffourkites.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "FourKites"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fturing.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Turing"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fsparq.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": "Sparq"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Faura.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": "Aura Lifecare"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffindtern.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Findtern"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fupcoming-engineer.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Upcoming Engineer"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fvedricx.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Vedricx Global LLP"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Flogout-spells.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": "Logout Spells"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fbarclays.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": "Barclays"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fey.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": "EY"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ftcs.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": "TCS"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fzoho.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": "Zoho"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fchargebee.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Chargebee"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffourkites.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "FourKites"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fturing.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Turing"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fsparq.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": "Sparq"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Faura.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": "Aura Lifecare"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffindtern.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Findtern"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fupcoming-engineer.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Upcoming Engineer"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fvedricx.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": "Vedricx Global LLP"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Flogout-spells.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": "Logout Spells"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fprojects%2Ffindtern.png%3ForigWidth%3D1122%26origHeight%3D1402%26origFormat%3Dpng&w=1000&h=1250&q=55&f=webp",
+        "alt": "Findtern brand poster featuring monochrome and forest green editorial typography reading Internship Simplified"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fprojects%2Fue.png%3ForigWidth%3D1024%26origHeight%3D1536%26origFormat%3Dpng&w=1000&h=1500&q=55&f=webp",
+        "alt": "Upcoming Engineer brand poster with split cream and dark navy layout, architectural lettermark, and green glitch accents"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fprojects%2Fhackcelerate27.png%3ForigWidth%3D771%26origHeight%3D1084%26origFormat%3Dpng&w=1000&h=1406&q=55&f=webp",
+        "alt": "Hackcelerate ’27 event poster with pixel-art city skyline, floating retro monitor mascot, and sunset sky"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fprojects%2Fdsc-poster.png%3ForigWidth%3D1800%26origHeight%3D2546%26origFormat%3Dpng&w=1000&h=1414&q=55&f=webp",
+        "alt": "Developer Students Club SRM IST Ramapuram poster combining vermilion halftone typography with a classical painting detail"
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fbarclays.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fey.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ftcs.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fzoho.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fchargebee.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffourkites.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fturing.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fsparq.png%3ForigWidth%3D300%26origHeight%3D176%26origFormat%3Dpng&w=300&h=176&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Faura.png%3ForigWidth%3D300%26origHeight%3D203%26origFormat%3Dpng&w=300&h=203&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Ffindtern.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fupcoming-engineer.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Fvedricx.png%3ForigWidth%3D300%26origHeight%3D120%26origFormat%3Dpng&w=300&h=120&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fcompany-logos%2Flogout-spells.png%3ForigWidth%3D300%26origHeight%3D300%26origFormat%3Dpng&w=300&h=300&f=webp",
+        "alt": ""
+      },
+      {
+        "src": "/images/contact/computer-back-300.png",
+        "alt": "computer-back"
+      },
+      {
+        "src": "/images/contact/computer-front-300.png",
+        "alt": "computer-front"
+      },
+      {
+        "src": "/brand/logo-cream.webp",
+        "alt": ""
+      }
+    ],
+    "elements": [
+      {
+        "tag": "a",
+        "text": "SKIP TO MAIN CONTENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "part-skipLink"
+      },
+      {
+        "tag": "a",
+        "text": "Decbricks",
+        "role": "",
+        "ariaLabel": "Decbricks — Go to homepage",
+        "className": "router-link-active router-link-exact-active parts-animatedLogo relative z-10 mr-"
+      },
+      {
+        "tag": "a",
+        "text": "01\nWORK\nWORK",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "router-link-active router-link-exact-active parts-btnBlock flex items-center tex"
+      },
+      {
+        "tag": "a",
+        "text": "02\nABOUT\nABOUT",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "03\nSERVICES\nSERVICES",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "04\nCONTACT\nCONTACT",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "parts-btnBlock flex items-center bg-darkPurple duration-500 focus:outline-none r"
+      },
+      {
+        "tag": "button",
+        "text": "Menu",
+        "role": "",
+        "ariaLabel": "",
+        "className": "pointer-events-auto flex items-center justify-center gap-9 rounded-8 border-2 bo"
+      },
+      {
+        "tag": "a",
+        "text": "01Work",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "router-link-active router-link-exact-active link block btn-menu text-darkPurple "
+      },
+      {
+        "tag": "a",
+        "text": "02About",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "03Services",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "04Contact",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "Close",
+        "role": "",
+        "ariaLabel": "Close navigation menu",
+        "className": "close absolute top-16 right-16 z-10 flex items-center gap-8 rounded-8 bg-darkPur"
+      },
+      {
+        "tag": "h2",
+        "text": "Distinct Always",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "h1",
+        "text": "Award-winning creative agency for video games. Brand shapers, game marketeers & web engineers.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "button",
+        "text": "BOOK A CALL\nBOOK A CALL",
+        "role": "",
+        "ariaLabel": "Book a call",
+        "className": "part-btnPrimary group inline-flex items-center justify-center gap-12 rounded-8 t"
+      },
+      {
+        "tag": "button",
+        "text": "Book a callBook a call",
+        "role": "",
+        "ariaLabel": "Book a call",
+        "className": "part-btnPrimary group inline-flex items-center justify-center gap-12 rounded-8 t"
+      },
+      {
+        "tag": "button",
+        "text": "SCROLL TO EXPLORE\nSCROLL TO EXPLORE",
+        "role": "",
+        "ariaLabel": "Scroll To Explore",
+        "className": "parts-scrollButton group relative flex w-full cursor-pointer items-center justif"
+      },
+      {
+        "tag": "button",
+        "text": "PLAY\nSHOWREEL",
+        "role": "",
+        "ariaLabel": "",
+        "className": "part-btnVideoPlayer group overflow-hidden rounded-8 bg-white px-24 py-20 transit"
+      },
+      {
+        "tag": "h2",
+        "text": "STRATEGY & CONSULTING",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:t"
+      },
+      {
+        "tag": "p",
+        "text": "We help businesses identify opportunities, define product requirements and choose the right technology and strategies to achieve their objectives.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb"
+      },
+      {
+        "tag": "a",
+        "text": "FIND OUT MORE\nFIND OUT MORE",
+        "role": "",
+        "ariaLabel": "Find Out More about Strategy & Consulting",
+        "className": "parts-serviceCard__btn part-btnPrimary group flex items-center justify-center ga"
+      },
+      {
+        "tag": "h2",
+        "text": "DESIGN & BRANDING",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:t"
+      },
+      {
+        "tag": "p",
+        "text": "We create thoughtful digital experiences and distinctive brand identities that communicate your value, strengthen your presence and connect with your audience.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb"
+      },
+      {
+        "tag": "h2",
+        "text": "WEB & SOFTWARE DEVELOPMENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:t"
+      },
+      {
+        "tag": "p",
+        "text": "We develop modern websites, web applications and customised software that help businesses improve operations, serve customers and scale confidently.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb"
+      },
+      {
+        "tag": "h2",
+        "text": "MOBILE APP DEVELOPMENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:t"
+      },
+      {
+        "tag": "p",
+        "text": "We build intuitive and scalable mobile applications designed to deliver seamless user experiences and support your business objectives.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb"
+      },
+      {
+        "tag": "h2",
+        "text": "AI & AUTOMATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:t"
+      },
+      {
+        "tag": "p",
+        "text": "We help businesses use artificial intelligence and automation to streamline workflows, improve efficiency and unlock new possibilities.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb"
+      },
+      {
+        "tag": "h2",
+        "text": "DIGITAL MARKETING & GROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:t"
+      },
+      {
+        "tag": "p",
+        "text": "We help businesses strengthen their online presence, connect with potential customers and build digital marketing strategies focused on meaningful growth.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb"
+      },
+      {
+        "tag": "h2",
+        "text": "BUSINESS DEVELOPMENT & OUTREACH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:t"
+      },
+      {
+        "tag": "p",
+        "text": "Business growth takes more than having a great product or service. It requires reaching the right audience, starting meaningful conversations and building relationships.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Work",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "h2",
+        "text": "OUR\nWORK",
+        "role": "",
+        "ariaLabel": "",
+        "className": "relative z-20 mb-120 flex justify-center gap-20 heading-3xl text-darkPurple uppe"
+      },
+      {
+        "tag": "p",
+        "text": "WE WORK WITH THE BEST IN THE GAMES INDUSTRY.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-smileyText xm:px-0 mx-auto mb-20 w-full px-15 text-center heading-lg text-"
+      },
+      {
+        "tag": "p",
+        "text": "From indie studios looking for their breakout project, to AAA's launching new gaming platforms, our inventory is stacked.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "transition-hide max-w-327 text-center font-nohemi text-[16px] leading-[105%] tex"
+      },
+      {
+        "tag": "h3",
+        "text": "FINDTERN",
+        "role": "",
+        "ariaLabel": "Findtern",
+        "className": "parts-caseStudyCard__textInner heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "h3",
+        "text": "UPCOMING ENGINEER",
+        "role": "",
+        "ariaLabel": "Upcoming Engineer",
+        "className": "parts-caseStudyCard__textInner heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "h3",
+        "text": "HACKCELERATE ’27",
+        "role": "",
+        "ariaLabel": "Hackcelerate ’27",
+        "className": "parts-caseStudyCard__textInner heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "h3",
+        "text": "DEVELOPER STUDENTS CLUB",
+        "role": "",
+        "ariaLabel": "Developer Students Club",
+        "className": "parts-caseStudyCard__textInner heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "/// CLIENT WORDS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "tst-kicker"
+      },
+      {
+        "tag": "h2",
+        "text": "What our clients say",
+        "role": "",
+        "ariaLabel": "",
+        "className": "tst-title"
+      },
+      {
+        "tag": "p",
+        "text": "It felt like having another strategist on our side, not just another agency.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "We worked as one team from first sketch to final cut, and the recognition followed.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "We found the perfect partner. Highly recommended.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "A huge thank-you to the whole team. Your dedication and collaboration were invaluable from day one, and the new site launched ahead of schedule.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "Their expertise lifted our engagement to new heights. They keep pushing the boundaries, with the flexibility and creativity you hope for in a partner.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "From the collaborative design process to the careful execution of our vision, they were a joy to work with.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "Professional, insightful, and impeccable in execution. We would hire them again without hesitation.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "Exceptional work across the board. The campaigns drove a real revenue uplift and supported rapid audience growth ahead of our launch.",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "p",
+        "text": "01 / 08",
+        "role": "",
+        "ariaLabel": "",
+        "className": "tst-index"
+      },
+      {
+        "tag": "button",
+        "text": "+1 MORE",
+        "role": "",
+        "ariaLabel": "Show 1 more quotes",
+        "className": "tst-railMore"
+      },
+      {
+        "tag": "h2",
+        "text": "Begin your story",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "h3",
+        "text": "GET IN TOUCH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "Terms of Service",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Privacy Policy",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "button",
+        "text": "SUBMIT\nSUBMIT",
+        "role": "",
+        "ariaLabel": "Submit",
+        "className": "u-btn-primary part-btnPrimary group flex items-center justify-center gap-12 roun"
+      },
+      {
+        "tag": "h2",
+        "text": "Let’s Start Something Great.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaTitle text-darkPurple"
+      },
+      {
+        "tag": "a",
+        "text": "Start a project\n→",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaBtn"
+      },
+      {
+        "tag": "a",
+        "text": "Book a call",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaGhost text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "PAGES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "COMPANY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "REACH US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__emailRow"
+      },
+      {
+        "tag": "p",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "X (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "Instagram (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "LinkedIn (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "© 2026 Decbricks. ALL RIGHTS RESERVED.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__copyright subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "PRIVACY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "TERMS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "MANAGE COOKIES\nMANAGE COOKIES",
+        "role": "",
+        "ariaLabel": "Manage Cookies",
+        "className": "parts-btnText structure-footer__legalBtn rounded-sm subheading u-kicker text-dar"
+      },
+      {
+        "tag": "button",
+        "text": "RISE TO THE TOP\nRISE TO THE TOP",
+        "role": "",
+        "ariaLabel": "Rise to the top",
+        "className": "parts-btnScrollTop structure-footer__topBtn"
+      },
+      {
+        "tag": "p",
+        "text": "We use cookies to improve your experience. By using this website you agree to our Cookie Policy.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-16 max-w-300 copy-xs text-white lg:mb-25"
+      },
+      {
+        "tag": "h3",
+        "text": "Functional",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Essential cookies are required for the site to function.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Optional analytics cookies anonymously track how the site is used and how it performs.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "button",
+        "text": "Accept AllAccept All",
+        "role": "",
+        "ariaLabel": "Accept All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "ManageManage",
+        "role": "",
+        "ariaLabel": "Manage",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "Delete AllDelete All",
+        "role": "",
+        "ariaLabel": "Delete All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "SaveSave",
+        "role": "",
+        "ariaLabel": "Save",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      }
+    ]
+  },
+  "/about": {
+    "title": "Our Purpose | Digital & Technology Solutions Agency",
+    "metaDesc": "Discover Decbricks, a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.",
+    "ogTitle": "Our Purpose | Digital & Technology Solutions Agency",
+    "ogDesc": "Discover Decbricks, a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.",
+    "images": [
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fabout%2Frocketposter.webp%3ForigWidth%3D1080%26origHeight%3D1350%26origFormat%3Dwebp&w=1080&h=1350&q=50&f=webp",
+        "alt": "Retro rocket poster with pixel-dot typography and a coral 100% statistic on a charcoal ground."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fabout%2Fhorse.webp%3ForigWidth%3D907%26origHeight%3D1200%26origFormat%3Dwebp&w=907&h=1200&q=50&f=webp",
+        "alt": "Red print-style artwork of wild horses surging above a small city skyline."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fabout%2Frocket.webp%3ForigWidth%3D698%26origHeight%3D872%26origFormat%3Dwebp&w=698&h=872&q=50&f=webp",
+        "alt": "Rocket lifting off over coastal wetlands, seen from above in a halftone print style."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fabout%2Fposter.webp%3ForigWidth%3D1414%26origHeight%3D2000%26origFormat%3Dwebp&w=1414&h=2000&q=50&f=webp&position=50%25+50%25",
+        "alt": "Retro typography poster collage mixing halftone portraits, liquid lettering and experimental colour."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fabout%2Fknight.webp%3ForigWidth%3D1080%26origHeight%3D1350%26origFormat%3Dwebp&w=1080&h=1350&q=50&f=webp",
+        "alt": "Halftone artwork of a chess knight helmet with coral brush strokes on a charcoal ground."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fabout%2Fairstrip.webp%3ForigWidth%3D1143%26origHeight%3D1428%26origFormat%3Dwebp&w=1143&h=1428&q=50&f=webp",
+        "alt": "Aerial survey view of an airbase with jet shadows and coordinate markings along the edges."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fabout%2Fbust.webp%3ForigWidth%3D1125%26origHeight%3D2000%26origFormat%3Dwebp&w=1125&h=2000&q=50&f=webp&position=50%25+40%25",
+        "alt": "Classical marble bust rendered in beige halftone dots against a charcoal ground."
+      },
+      {
+        "src": "/images/contact/computer-back-300.png",
+        "alt": "computer-back"
+      },
+      {
+        "src": "/images/contact/computer-front-300.png",
+        "alt": "computer-front"
+      },
+      {
+        "src": "/brand/logo-cream.webp",
+        "alt": ""
+      }
+    ],
+    "elements": [
+      {
+        "tag": "a",
+        "text": "SKIP TO MAIN CONTENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "part-skipLink"
+      },
+      {
+        "tag": "a",
+        "text": "Decbricks",
+        "role": "",
+        "ariaLabel": "Decbricks — Go to homepage",
+        "className": "parts-animatedLogo relative z-10 mr-auto rounded-8 px-12 py-10 transition-all du"
+      },
+      {
+        "tag": "a",
+        "text": "01\nWORK\nWORK",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "02\nABOUT\nABOUT",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "router-link-active router-link-exact-active parts-btnBlock flex items-center tex"
+      },
+      {
+        "tag": "a",
+        "text": "03\nSERVICES\nSERVICES",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "04\nCONTACT\nCONTACT",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "parts-btnBlock flex items-center bg-darkPurple duration-500 focus:outline-none r"
+      },
+      {
+        "tag": "button",
+        "text": "Menu",
+        "role": "",
+        "ariaLabel": "",
+        "className": "pointer-events-auto flex items-center justify-center gap-9 rounded-8 border-2 bo"
+      },
+      {
+        "tag": "a",
+        "text": "01Work",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "02About",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "router-link-active router-link-exact-active link block btn-menu text-darkPurple "
+      },
+      {
+        "tag": "a",
+        "text": "03Services",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "04Contact",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "Close",
+        "role": "",
+        "ariaLabel": "Close navigation menu",
+        "className": "close absolute top-16 right-16 z-10 flex items-center gap-8 rounded-8 bg-darkPur"
+      },
+      {
+        "tag": "h1",
+        "text": "Our Purpose",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "p",
+        "text": "We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.\n We partner with startups, emerging\nbusinesses, agencies, and established\norganisations across India and international\nmarkets to solve real-world business\nchallenges through technology, innovation,\nand strategic execution.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 mt-35 m"
+      },
+      {
+        "tag": "p",
+        "text": "JUMP TO",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-"
+      },
+      {
+        "tag": "li",
+        "text": "WHO WE ARE\nWHO WE ARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "WHO WE ARE\nWHO WE ARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "WHAT DRIVES US\nWHAT DRIVES US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "WHAT DRIVES US\nWHAT DRIVES US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "MISSION\nMISSION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "MISSION\nMISSION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "VISION\nVISION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "VISION\nVISION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "VALUES\nVALUES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "VALUES\nVALUES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "EXPERIENCE\nEXPERIENCE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "EXPERIENCE\nEXPERIENCE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "PHILOSOPHY\nPHILOSOPHY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem sections-servicesHero__navItem--fullMobile"
+      },
+      {
+        "tag": "a",
+        "text": "PHILOSOPHY\nPHILOSOPHY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "p",
+        "text": "WHO WE ARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "BUILDING TECHNOLOGY. EMPOWERING BUSINESSES. DRIVING GROWTH.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "Our capabilities span custom software development, web and mobile application development, artificial intelligence (AI), business automation, UI/UX and digital design, digital marketing, and business development. Whether it's building a new digital product, streamlining business operations, strengthening an online presence, or reaching the right audience, we bring together the technical expertise and creative execution required to take businesses forward.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-ink mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:m"
+      },
+      {
+        "tag": "p",
+        "text": "At Decbricks, we believe technology should serve a purpose. Every solution we build is driven by the goal of creating measurable value, improving user experiences, optimising processes, and unlocking new opportunities for business growth.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-ink mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:m"
+      },
+      {
+        "tag": "p",
+        "text": "DRIVEN",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "WHAT DRIVES US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "We are driven by the challenge of solving meaningful problems through technology and creative thinking. Every business operates differently, with its own objectives, challenges, and opportunities. That's why we approach every project with a focus on understanding the bigger picture before defining the right solution.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "By combining practical problem-solving, modern technologies, creative innovation, and consistent execution, we aim to deliver digital solutions that address real needs and create lasting impact. Our approach is built around turning complex challenges into practical opportunities for businesses to innovate, adapt, and grow.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-ink mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:m"
+      },
+      {
+        "tag": "p",
+        "text": "MISSION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "OUR MISSION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Our mission is to empower businesses with accessible, innovative, and effective technology solutions that simplify operations, enhance digital experiences, and accelerate sustainable growth. We strive to bridge the gap between ideas and execution by making modern digital capabilities more accessible to businesses of every scale.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "VISION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "OUR VISION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Our vision is to become a trusted global technology and digital solutions partner, working alongside businesses to navigate digital transformation, embrace emerging technologies, and unlock new possibilities. We aspire to build an ecosystem where innovation, technology, and strategic thinking enable organisations to adapt, compete, and thrive in an increasingly connected world.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "VALUES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "OUR VALUES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "The way we approach technology, collaboration, and business growth is shaped by five core principles.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "li",
+        "text": "INNOVATION\n\nWe continuously explore emerging technologies, fresh perspectives, and better approaches to solving problems. We believe innovation comes from challenging conventional thinking and finding more effective ways to create value.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "rounded-l-20 rounded-br-12 bg-sage px-15 py-10 lg:px-25 xl:rounded-l-[23px] xl:r"
+      },
+      {
+        "tag": "h3",
+        "text": "INNOVATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "flex items-center gap-7 font-neuePower text-[14px] leading-none font-bold text-d"
+      },
+      {
+        "tag": "p",
+        "text": "We continuously explore emerging technologies, fresh perspectives, and better approaches to solving problems. We believe innovation comes from challenging conventional thinking and finding more effective ways to create value.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-5 font-nohemi text-[14px] leading-[20px] text-[#2F3A1E] lg:mt-8 3xl:text-[16p"
+      },
+      {
+        "tag": "li",
+        "text": "COMMITMENT\n\nWe take ownership of our work, value the trust our clients place in us, and remain accountable throughout the execution process. Every project deserves attention, consistency, and a commitment to delivering meaningful outcomes.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "rounded-l-20 rounded-br-12 bg-sage px-15 py-10 lg:px-25 xl:rounded-l-[23px] xl:r"
+      },
+      {
+        "tag": "h3",
+        "text": "COMMITMENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "flex items-center gap-7 font-neuePower text-[14px] leading-none font-bold text-d"
+      },
+      {
+        "tag": "p",
+        "text": "We take ownership of our work, value the trust our clients place in us, and remain accountable throughout the execution process. Every project deserves attention, consistency, and a commitment to delivering meaningful outcomes.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-5 font-nohemi text-[14px] leading-[20px] text-[#2F3A1E] lg:mt-8 3xl:text-[16p"
+      },
+      {
+        "tag": "li",
+        "text": "COLLABORATION\n\nWe believe strong partnerships produce stronger solutions. Through open communication, shared understanding, and active collaboration, we work closely with clients to align our efforts with their goals.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "rounded-l-20 rounded-br-12 bg-sage px-15 py-10 lg:px-25 xl:rounded-l-[23px] xl:r"
+      },
+      {
+        "tag": "h3",
+        "text": "COLLABORATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "flex items-center gap-7 font-neuePower text-[14px] leading-none font-bold text-d"
+      },
+      {
+        "tag": "p",
+        "text": "We believe strong partnerships produce stronger solutions. Through open communication, shared understanding, and active collaboration, we work closely with clients to align our efforts with their goals.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-5 font-nohemi text-[14px] leading-[20px] text-[#2F3A1E] lg:mt-8 3xl:text-[16p"
+      },
+      {
+        "tag": "li",
+        "text": "QUALITY\n\nWe prioritise reliability, functionality, performance, and thoughtful design. From the initial concept to the final implementation, we focus on delivering solutions that meet high standards and create dependable digital experiences.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "rounded-l-20 rounded-br-12 bg-sage px-15 py-10 lg:px-25 xl:rounded-l-[23px] xl:r"
+      },
+      {
+        "tag": "h3",
+        "text": "QUALITY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "flex items-center gap-7 font-neuePower text-[14px] leading-none font-bold text-d"
+      },
+      {
+        "tag": "p",
+        "text": "We prioritise reliability, functionality, performance, and thoughtful design. From the initial concept to the final implementation, we focus on delivering solutions that meet high standards and create dependable digital experiences.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-5 font-nohemi text-[14px] leading-[20px] text-[#2F3A1E] lg:mt-8 3xl:text-[16p"
+      },
+      {
+        "tag": "li",
+        "text": "GROWTH\n\nWe embrace continuous learning and improvement. Whether it's adopting new technologies, refining our processes, or expanding our capabilities, we believe growth is essential to creating long-term value for our clients and our organisation.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "rounded-l-20 rounded-br-12 bg-sage px-15 py-10 lg:px-25 xl:rounded-l-[23px] xl:r"
+      },
+      {
+        "tag": "h3",
+        "text": "GROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "flex items-center gap-7 font-neuePower text-[14px] leading-none font-bold text-d"
+      },
+      {
+        "tag": "p",
+        "text": "We embrace continuous learning and improvement. Whether it's adopting new technologies, refining our processes, or expanding our capabilities, we believe growth is essential to creating long-term value for our clients and our organisation.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-5 font-nohemi text-[14px] leading-[20px] text-[#2F3A1E] lg:mt-8 3xl:text-[16p"
+      },
+      {
+        "tag": "p",
+        "text": "EXPERIENCE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "OUR EXPERIENCE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Our experience extends beyond technology development into the practical execution of business growth initiatives. We understand that building a successful digital product or business requires more than strong technology. It also requires effective communication, market understanding, and the ability to connect with the right audience.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "Alongside developing digital solutions, we have executed email outreach and cold-calling campaigns for startups, including Findtern and Upcoming Engineers. These engagements have provided practical experience in prospect research, targeted lead generation, business communication, customer outreach, and consistent campaign execution. This combination of technical development and business-facing execution gives us a broader perspective on the challenges businesses encounter as they build, launch, and scale.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-ink mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:m"
+      },
+      {
+        "tag": "p",
+        "text": "PHILOSOPHY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "OUR PHILOSOPHY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "We don't build technology simply because it's possible. We build it because it serves a purpose. Every project begins with understanding the problem, identifying the intended outcome, and choosing an approach that aligns with the business objectives behind it.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "We value thoughtful engineering, purposeful design, and execution that prioritises real-world impact. Whether developing software, implementing AI-powered solutions, automating workflows, or supporting digital growth, our focus remains on creating solutions that are practical, scalable, and built to deliver lasting value.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-ink mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:m"
+      },
+      {
+        "tag": "p",
+        "text": "Decbricks. BUILDING IDEAS INTO REALITY.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-30 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple upperca"
+      },
+      {
+        "tag": "li",
+        "text": "01\nWHO WE ARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "01\nWHO WE ARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "02\nWHAT DRIVES US",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "02\nWHAT DRIVES US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "03\nMISSION",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "03\nMISSION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "04\nVISION",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "04\nVISION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "05\nVALUES",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "05\nVALUES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "06\nEXPERIENCE",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "06\nEXPERIENCE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "07\nPHILOSOPHY",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "07\nPHILOSOPHY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "h2",
+        "text": "Begin your story",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "h3",
+        "text": "GET IN TOUCH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "Terms of Service",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Privacy Policy",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "button",
+        "text": "SUBMIT\nSUBMIT",
+        "role": "",
+        "ariaLabel": "Submit",
+        "className": "u-btn-primary part-btnPrimary group flex items-center justify-center gap-12 roun"
+      },
+      {
+        "tag": "h2",
+        "text": "Let’s Start Something Great.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaTitle text-darkPurple"
+      },
+      {
+        "tag": "a",
+        "text": "Start a project\n→",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaBtn"
+      },
+      {
+        "tag": "a",
+        "text": "Book a call",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaGhost text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "PAGES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "COMPANY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "REACH US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__emailRow"
+      },
+      {
+        "tag": "p",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "X (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "Instagram (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "LinkedIn (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "© 2026 Decbricks. ALL RIGHTS RESERVED.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__copyright subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "PRIVACY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "TERMS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "MANAGE COOKIES\nMANAGE COOKIES",
+        "role": "",
+        "ariaLabel": "Manage Cookies",
+        "className": "parts-btnText structure-footer__legalBtn rounded-sm subheading u-kicker text-dar"
+      },
+      {
+        "tag": "button",
+        "text": "RISE TO THE TOP\nRISE TO THE TOP",
+        "role": "",
+        "ariaLabel": "Rise to the top",
+        "className": "parts-btnScrollTop structure-footer__topBtn"
+      },
+      {
+        "tag": "p",
+        "text": "We use cookies to improve your experience. By using this website you agree to our Cookie Policy.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-16 max-w-300 copy-xs text-white lg:mb-25"
+      },
+      {
+        "tag": "h3",
+        "text": "Functional",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Essential cookies are required for the site to function.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Optional analytics cookies anonymously track how the site is used and how it performs.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "button",
+        "text": "Accept AllAccept All",
+        "role": "",
+        "ariaLabel": "Accept All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "ManageManage",
+        "role": "",
+        "ariaLabel": "Manage",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "Delete AllDelete All",
+        "role": "",
+        "ariaLabel": "Delete All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "SaveSave",
+        "role": "",
+        "ariaLabel": "Save",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      }
+    ]
+  },
+  "/services": {
+    "title": "Our Expertise & Services | Decbricks",
+    "metaDesc": "Explore Decbricks services: strategy & consulting, design & branding, web & software development, mobile apps, AI automation, digital marketing and outreach.",
+    "ogTitle": "Our Expertise & Services | Decbricks",
+    "ogDesc": "Explore Decbricks services: strategy & consulting, design & branding, web & software development, mobile apps, AI automation, digital marketing and outreach.",
+    "images": [
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fservices%2FStrategy_Consulting.png%3ForigWidth%3D839%26origHeight%3D1200%26origFormat%3Dpng&w=839&h=1200&q=55&f=webp&position=50%25+50%25",
+        "alt": "Halftone illustration of two hands moving chess pieces across a board on an amber ground."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fservices%2FDesign_Branding.png%3ForigWidth%3D1080%26origHeight%3D1080%26origFormat%3Dpng&w=1080&h=1080&q=55&f=webp&position=50%25+50%25",
+        "alt": "Halftone grid of brand guideline, colour palette, and typography specimen spreads."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fservices%2FWeb_n_Software_Development.png%3ForigWidth%3D1080%26origHeight%3D1429%26origFormat%3Dpng&w=1080&h=1429&q=55&f=webp&position=50%25+42%25",
+        "alt": "Halftone side-profile portrait with a pixel-stepped interface gradient bar."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fservices%2FMobile_App_Development.png%3ForigWidth%3D1080%26origHeight%3D1080%26origFormat%3Dpng&w=1080&h=1080&q=55&f=webp&position=50%25+50%25",
+        "alt": "Halftone artwork displaying two mobile application interface screens side by side."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fservices%2FAI_Automation.png%3ForigWidth%3D1174%26origHeight%3D1549%26origFormat%3Dpng&w=1174&h=1549&q=55&f=webp&position=50%25+50%25",
+        "alt": "Halftone circuit and cable assembly overlaid with dashed coordinate telemetry lines."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fservices%2FDigital_Marketing_n_Growth.png%3ForigWidth%3D1080%26origHeight%3D1350%26origFormat%3Dpng&w=1080&h=1350&q=55&f=webp&position=50%25+50%25",
+        "alt": "Halftone print showing hands holding a folded coral and charcoal graphic sheet."
+      },
+      {
+        "src": "/_image?href=%2F%40fs%2Fhome%2Fankit%2FGitHub%2Fdecbricks%2Fsrc%2Fassets%2Fservices%2FBusiness_Development_n_Outreach.png%3ForigWidth%3D1080%26origHeight%3D1920%26origFormat%3Dpng&w=1080&h=1920&q=55&f=webp&position=50%25+50%25",
+        "alt": "Halftone low-angle photograph of a group reaching hands together in a circle."
+      },
+      {
+        "src": "/images/contact/computer-back-300.png",
+        "alt": "computer-back"
+      },
+      {
+        "src": "/images/contact/computer-front-300.png",
+        "alt": "computer-front"
+      },
+      {
+        "src": "/brand/logo-cream.webp",
+        "alt": ""
+      }
+    ],
+    "elements": [
+      {
+        "tag": "a",
+        "text": "SKIP TO MAIN CONTENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "part-skipLink"
+      },
+      {
+        "tag": "a",
+        "text": "Decbricks",
+        "role": "",
+        "ariaLabel": "Decbricks — Go to homepage",
+        "className": "parts-animatedLogo relative z-10 mr-auto rounded-8 px-12 py-10 transition-all du"
+      },
+      {
+        "tag": "a",
+        "text": "01\nWORK\nWORK",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "02\nABOUT\nABOUT",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "03\nSERVICES\nSERVICES",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "router-link-active router-link-exact-active parts-btnBlock flex items-center tex"
+      },
+      {
+        "tag": "a",
+        "text": "04\nCONTACT\nCONTACT",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "parts-btnBlock flex items-center bg-darkPurple duration-500 focus:outline-none r"
+      },
+      {
+        "tag": "button",
+        "text": "Menu",
+        "role": "",
+        "ariaLabel": "",
+        "className": "pointer-events-auto flex items-center justify-center gap-9 rounded-8 border-2 bo"
+      },
+      {
+        "tag": "a",
+        "text": "01Work",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "02About",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "03Services",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "router-link-active router-link-exact-active link block btn-menu text-darkPurple "
+      },
+      {
+        "tag": "a",
+        "text": "04Contact",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "Close",
+        "role": "",
+        "ariaLabel": "Close navigation menu",
+        "className": "close absolute top-16 right-16 z-10 flex items-center gap-8 rounded-8 bg-darkPur"
+      },
+      {
+        "tag": "h1",
+        "text": "Our Expertise",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "p",
+        "text": "We bring together technology, design and business growth expertise to help companies build stronger digital foundations and create new opportunities.\n We bring together technology,\ndesign and business growth expertise to\nhelp companies build stronger digital\nfoundations and create new opportunities.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 mt-35 m"
+      },
+      {
+        "tag": "p",
+        "text": "JUMP TO",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-"
+      },
+      {
+        "tag": "li",
+        "text": "STRATEGY\nSTRATEGY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "STRATEGY\nSTRATEGY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "DESIGN\nDESIGN",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "DESIGN\nDESIGN",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "WEB & SOFTWARE\nWEB & SOFTWARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "WEB & SOFTWARE\nWEB & SOFTWARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "MOBILE APPS\nMOBILE APPS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "MOBILE APPS\nMOBILE APPS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "AI & AUTOMATION\nAI & AUTOMATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "AI & AUTOMATION\nAI & AUTOMATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "GROWTH\nGROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "GROWTH\nGROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "OUTREACH\nOUTREACH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem sections-servicesHero__navItem--fullMobile"
+      },
+      {
+        "tag": "a",
+        "text": "OUTREACH\nOUTREACH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "p",
+        "text": "STRATEGY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "STRATEGY & CONSULTING",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "A clear direction for every big idea.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "We help businesses identify opportunities, define product requirements and choose the right technology and strategies to achieve their objectives.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-45 lg:mt-25 xl:mt-30 3xl:mt-40 font-nohemi text-[16px] leading-[22px] text-da"
+      },
+      {
+        "tag": "p",
+        "text": "At Decbricks, we partner with founders and growing teams to audit existing workflows, validate market direction and shape practical technical architectures before development begins—helping turn early concepts into focused, scalable digital products.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "li",
+        "text": "Technology Consulting",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Digital Strategy",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Product Planning",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Business Process Analysis",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Technical Architecture",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Market Research",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Product Roadmapping",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "a",
+        "text": "DISCUSS STRATEGY\n->",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-no"
+      },
+      {
+        "tag": "p",
+        "text": "DESIGN",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "DESIGN & BRANDING",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Make your brand impossible to overlook.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "We create thoughtful digital experiences and distinctive brand identities that communicate your value, strengthen your presence and connect with your audience.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-45 lg:mt-25 xl:mt-30 3xl:mt-40 font-nohemi text-[16px] leading-[22px] text-da"
+      },
+      {
+        "tag": "p",
+        "text": "From cohesive visual identities and design systems to intuitive website and application interfaces, Decbricks crafts creative assets built for clarity and consistency—backed by campaign graphics, social media creatives and marketing materials that stand out across every touchpoint.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "li",
+        "text": "Brand Identity & Logo Design",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "UI/UX Design",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Website Design",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Application Interface Design",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Graphic & Creative Design",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Social Media Creatives",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Marketing Materials",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "a",
+        "text": "DISCUSS DESIGN\n->",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-no"
+      },
+      {
+        "tag": "p",
+        "text": "ENGINEERING",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "WEB & SOFTWARE DEVELOPMENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Powerful digital products, built for real-world needs.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "We develop modern websites, web applications and customised software that help businesses improve operations, serve customers and scale confidently.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-45 lg:mt-25 xl:mt-30 3xl:mt-40 font-nohemi text-[16px] leading-[22px] text-da"
+      },
+      {
+        "tag": "p",
+        "text": "At Decbricks, we pair clean technical architecture with search-ready performance. We helped Findtern build a stronger digital presence through SEO-optimised website development, targeting 10K+ potential student and recruiter visits, and developed a digital platform for Upcoming Engineers designed to make 500+ engineering resources and career opportunities easier to discover.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "p",
+        "text": "We also support community and event-driven launches—delivering website development for DevSummit and DSC SRM alongside digital campaigns designed to reach 5K+ students and tech enthusiasts.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "li",
+        "text": "Website Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Web Application Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "E-commerce Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Custom Software Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Frontend & Backend Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "SaaS Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "API Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Website Maintenance",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "a",
+        "text": "DISCUSS WEB & SOFTWARE\n->",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-no"
+      },
+      {
+        "tag": "p",
+        "text": "MOBILE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "MOBILE APP DEVELOPMENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Your business, within reach.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "We build intuitive and scalable mobile applications designed to deliver seamless user experiences and support your business objectives.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-45 lg:mt-25 xl:mt-30 3xl:mt-40 font-nohemi text-[16px] leading-[22px] text-da"
+      },
+      {
+        "tag": "p",
+        "text": "Whether launching on Android, iOS or cross-platform frameworks, Decbricks handles the full lifecycle from mobile UI/UX and backend API integration to deployment and ongoing maintenance—ensuring fast, reliable apps ready to grow with your users.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "li",
+        "text": "Android App Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "iOS App Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Cross-Platform App Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Mobile UI/UX Design",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Backend Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "API Integration",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "App Maintenance & Support",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "a",
+        "text": "DISCUSS MOBILE APPS\n->",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-no"
+      },
+      {
+        "tag": "p",
+        "text": "INTELLIGENCE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "AI & AUTOMATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Make technology work smarter.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "We help businesses use artificial intelligence and automation to streamline workflows, improve efficiency and unlock new possibilities.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-45 lg:mt-25 xl:mt-30 3xl:mt-40 font-nohemi text-[16px] leading-[22px] text-da"
+      },
+      {
+        "tag": "p",
+        "text": "Decbricks designs and integrates practical AI agents, custom chatbots and LLM-powered workflows tailored to your daily operations—connecting your existing tools to automate repetitive tasks, speed up customer responses and turn manual processes into reliable, intelligent systems.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "li",
+        "text": "AI Agent Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "AI Chatbot Development",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Generative AI Integration",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Business Process Automation",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Workflow Automation",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "AI-Powered Applications",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "LLM Integration",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Intelligent Business Systems",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "a",
+        "text": "DISCUSS AI & AUTOMATION\n->",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-no"
+      },
+      {
+        "tag": "p",
+        "text": "GROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "DIGITAL MARKETING & GROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Get noticed. Reach further. Grow faster.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "We help businesses strengthen their online presence, connect with potential customers and build digital marketing strategies focused on meaningful growth.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-45 lg:mt-25 xl:mt-30 3xl:mt-40 font-nohemi text-[16px] leading-[22px] text-da"
+      },
+      {
+        "tag": "p",
+        "text": "From organic search foundations to event-led acquisition, we helped Findtern build a stronger digital presence through SEO-optimised website development targeting 10K+ potential student and recruiter visits, and supported DevSummit and DSC SRM through event marketing and digital outreach with campaigns designed to reach 5K+ students and tech enthusiasts.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "li",
+        "text": "Search Engine Optimisation (SEO)",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Social Media Marketing",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Social Media Management",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Performance Marketing",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Content Marketing",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Paid Advertising",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Email Marketing",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Lead Generation",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "a",
+        "text": "DISCUSS GROWTH\n->",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-no"
+      },
+      {
+        "tag": "p",
+        "text": "OUTREACH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "BUSINESS DEVELOPMENT & OUTREACH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "Create connections that move business forward.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0"
+      },
+      {
+        "tag": "p",
+        "text": "Business growth takes more than having a great product or service. It requires reaching the right audience, starting meaningful conversations and building relationships.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-45 lg:mt-25 xl:mt-30 3xl:mt-40 font-nohemi text-[16px] leading-[22px] text-da"
+      },
+      {
+        "tag": "p",
+        "text": "At Decbricks, we help businesses identify potential customers and develop structured outreach campaigns. Our experience includes executing email and cold-calling campaigns for startups such as Findtern and Upcoming Engineers, as well as supporting DevSummit and DSC SRM through website development, event marketing and digital outreach with campaigns designed to reach 5K+ students and tech enthusiasts.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "p",
+        "text": "From prospect research to campaign execution and follow-ups, we help businesses create new opportunities and strengthen their outreach efforts.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-15 lg:mt-16 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-4"
+      },
+      {
+        "tag": "li",
+        "text": "B2B Lead Generation",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "LinkedIn Outreach",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Cold Email Campaigns",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Cold Calling Campaigns",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Prospect Research",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Email Campaign Management",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Sales Development Support",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "li",
+        "text": "Client Acquisition Support",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__capChip flex items-center gap-7 rounded-l-[18px] rounded-br-"
+      },
+      {
+        "tag": "a",
+        "text": "DISCUSS OUTREACH\n->",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-no"
+      },
+      {
+        "tag": "li",
+        "text": "01\nSTRATEGY",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "01\nSTRATEGY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "02\nDESIGN",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "02\nDESIGN",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "03\nWEB & SOFTWARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "03\nWEB & SOFTWARE",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "04\nMOBILE APPS",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "04\nMOBILE APPS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "05\nAI & AUTOMATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "05\nAI & AUTOMATION",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "06\nGROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "06\nGROWTH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "07\nOUTREACH",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "07\nOUTREACH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "h2",
+        "text": "Begin your story",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "h3",
+        "text": "GET IN TOUCH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "Terms of Service",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Privacy Policy",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "button",
+        "text": "SUBMIT\nSUBMIT",
+        "role": "",
+        "ariaLabel": "Submit",
+        "className": "u-btn-primary part-btnPrimary group flex items-center justify-center gap-12 roun"
+      },
+      {
+        "tag": "h2",
+        "text": "Let’s Start Something Great.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaTitle text-darkPurple"
+      },
+      {
+        "tag": "a",
+        "text": "Start a project\n→",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaBtn"
+      },
+      {
+        "tag": "a",
+        "text": "Book a call",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaGhost text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "PAGES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "COMPANY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "REACH US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__emailRow"
+      },
+      {
+        "tag": "p",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "X (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "Instagram (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "LinkedIn (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "© 2026 Decbricks. ALL RIGHTS RESERVED.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__copyright subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "PRIVACY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "TERMS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "MANAGE COOKIES\nMANAGE COOKIES",
+        "role": "",
+        "ariaLabel": "Manage Cookies",
+        "className": "parts-btnText structure-footer__legalBtn rounded-sm subheading u-kicker text-dar"
+      },
+      {
+        "tag": "button",
+        "text": "RISE TO THE TOP\nRISE TO THE TOP",
+        "role": "",
+        "ariaLabel": "Rise to the top",
+        "className": "parts-btnScrollTop structure-footer__topBtn"
+      },
+      {
+        "tag": "p",
+        "text": "We use cookies to improve your experience. By using this website you agree to our Cookie Policy.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-16 max-w-300 copy-xs text-white lg:mb-25"
+      },
+      {
+        "tag": "h3",
+        "text": "Functional",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Essential cookies are required for the site to function.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Optional analytics cookies anonymously track how the site is used and how it performs.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "button",
+        "text": "Accept AllAccept All",
+        "role": "",
+        "ariaLabel": "Accept All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "ManageManage",
+        "role": "",
+        "ariaLabel": "Manage",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "Delete AllDelete All",
+        "role": "",
+        "ariaLabel": "Delete All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "SaveSave",
+        "role": "",
+        "ariaLabel": "Save",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      }
+    ]
+  },
+  "/contact": {
+    "title": "Contact Decbricks | Start Your Digital Project",
+    "metaDesc": "Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.",
+    "ogTitle": "Contact Decbricks | Start Your Digital Project",
+    "ogDesc": "Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.",
+    "images": [
+      {
+        "src": "/images/contact/computer-back-300.png",
+        "alt": "computer-back"
+      },
+      {
+        "src": "/images/contact/computer-front-300.png",
+        "alt": "computer-front"
+      },
+      {
+        "src": "/brand/logo-cream.webp",
+        "alt": ""
+      }
+    ],
+    "elements": [
+      {
+        "tag": "a",
+        "text": "SKIP TO MAIN CONTENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "part-skipLink"
+      },
+      {
+        "tag": "a",
+        "text": "Decbricks",
+        "role": "",
+        "ariaLabel": "Decbricks — Go to homepage",
+        "className": "parts-animatedLogo relative z-10 mr-auto rounded-8 px-12 py-10 transition-all du"
+      },
+      {
+        "tag": "a",
+        "text": "01\nWORK\nWORK",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "02\nABOUT\nABOUT",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "03\nSERVICES\nSERVICES",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "04\nCONTACT\nCONTACT",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "router-link-active router-link-exact-active parts-btnBlock flex items-center bg-"
+      },
+      {
+        "tag": "button",
+        "text": "Menu",
+        "role": "",
+        "ariaLabel": "",
+        "className": "pointer-events-auto flex items-center justify-center gap-9 rounded-8 border-2 bo"
+      },
+      {
+        "tag": "a",
+        "text": "01Work",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "02About",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "03Services",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "04Contact",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "router-link-active router-link-exact-active link block btn-menu text-darkPurple "
+      },
+      {
+        "tag": "button",
+        "text": "Close",
+        "role": "",
+        "ariaLabel": "Close navigation menu",
+        "className": "close absolute top-16 right-16 z-10 flex items-center gap-8 rounded-8 bg-darkPur"
+      },
+      {
+        "tag": "h1",
+        "text": "Contact Decbricks",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "p",
+        "text": "Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.\n Contact Decbricks for website\ndevelopment, app development, AI\nautomation, custom software, digital\nmarketing and business outreach services.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 mt-35 m"
+      },
+      {
+        "tag": "p",
+        "text": "JUMP TO",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-"
+      },
+      {
+        "tag": "li",
+        "text": "BOOK A CALL\nBOOK A CALL",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "BOOK A CALL\nBOOK A CALL",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "START A PROJECT\nSTART A PROJECT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "START A PROJECT\nSTART A PROJECT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "TEAM\nTEAM",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "TEAM\nTEAM",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "li",
+        "text": "CALL US\nCALL US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__navItem"
+      },
+      {
+        "tag": "a",
+        "text": "CALL US\nCALL US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPur"
+      },
+      {
+        "tag": "p",
+        "text": "BOOK A CALL",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "BOOK A MEETING",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "li",
+        "text": "FREE, NO COMMITMENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-chip"
+      },
+      {
+        "tag": "li",
+        "text": "30 MIN OR 1 HOUR",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-chip"
+      },
+      {
+        "tag": "li",
+        "text": "GOOGLE MEET",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-chip"
+      },
+      {
+        "tag": "p",
+        "text": "Tell us what you’re building. We’ll tell you how we’d build it.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-intro"
+      },
+      {
+        "tag": "li",
+        "text": "01\nPick a time\n\nChoose a slot that suits you. It adds straight to your calendar.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step"
+      },
+      {
+        "tag": "h3",
+        "text": "Pick a time",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step__title"
+      },
+      {
+        "tag": "p",
+        "text": "Choose a slot that suits you. It adds straight to your calendar.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step__desc"
+      },
+      {
+        "tag": "li",
+        "text": "02\nShare the project\n\nA few lines on goals, timeline and budget are plenty.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step"
+      },
+      {
+        "tag": "h3",
+        "text": "Share the project",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step__title"
+      },
+      {
+        "tag": "p",
+        "text": "A few lines on goals, timeline and budget are plenty.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step__desc"
+      },
+      {
+        "tag": "li",
+        "text": "03\nWe come prepared\n\nYou’ll talk with the people who’ll actually build it.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step"
+      },
+      {
+        "tag": "h3",
+        "text": "We come prepared",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step__title"
+      },
+      {
+        "tag": "p",
+        "text": "You’ll talk with the people who’ll actually build it.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-step__desc"
+      },
+      {
+        "tag": "a",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "booking-emailLink"
+      },
+      {
+        "tag": "p",
+        "text": "The booking calendar could not load here.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "cal-fallback__title font-neuePower text-[14px] leading-snug font-bold text-darkP"
+      },
+      {
+        "tag": "li",
+        "text": "Book a call on Cal.com\n ↗",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Book a call on Cal.com\n ↗",
+        "role": "",
+        "ariaLabel": "",
+        "className": "cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Email us",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Email us",
+        "role": "",
+        "ariaLabel": "",
+        "className": "cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "Or send the form below — we read every message.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "cal-fallback__help mt-10 font-nohemi text-[13px] leading-[20px] text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "START A PROJECT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-b"
+      },
+      {
+        "tag": "h2",
+        "text": "LET’S START SOMETHING GREAT.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPur"
+      },
+      {
+        "tag": "h3",
+        "text": "Tell us what you want to build.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-lede mt-20 lg:mt-25 font-nohemi text-[15px] leading-[1.2] font-medium text-dar"
+      },
+      {
+        "tag": "p",
+        "text": "Every Decbricks project starts with a conversation. We listen to your goals, your audience, your timeline and your constraints, and we ask the questions that help us understand what success looks like for you. Within a few days you receive a written proposal covering scope, deliverables, timeline and pricing, so you know exactly what you’re getting before any work begins. Once you approve it, we agree on an advance and a milestone schedule, and we kick off.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "project-step__text"
+      },
+      {
+        "tag": "p",
+        "text": "From there, we build in clear stages and share progress as we go, so you can see the work take shape instead of waiting for a big reveal. Depending on the project, we may bring in trusted developers, designers or other specialists to strengthen the team. We stay responsible for coordinating the work, and everyone involved follows the same confidentiality and security standards. We allow a generous 5-8 days for you to review each stage, and your feedback shapes the work through 2-3 revision rounds, depending on the scope of the project. If you need more rounds, we’re happy to negotiate them on mutually agreed terms.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "project-step__text"
+      },
+      {
+        "tag": "p",
+        "text": "When everything is approved and the final payment is received, we hand over the finished deliverables along with the files, access and documentation you need to run them on your own. Ownership of the final work passes to you at that point. After launch, we stay available to answer questions, fix anything that doesn’t behave as agreed, and help with what comes next.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "project-step__text"
+      },
+      {
+        "tag": "p",
+        "text": "Meet the Team is hidden: no team data supplied yet (open-items A5).",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "li",
+        "text": "01\nBOOK A CALL",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "01\nBOOK A CALL",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "02\nSTART A PROJECT",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "02\nSTART A PROJECT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "03\nTEAM",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "03\nTEAM",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "li",
+        "text": "04\nCALL US",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "04\nCALL US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesSidebarNavItem group flex w-40 flex-col items-center rounded-6 "
+      },
+      {
+        "tag": "h2",
+        "text": "Begin your story",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "h3",
+        "text": "GET IN TOUCH",
+        "role": "",
+        "ariaLabel": "",
+        "className": "heading-sm text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "Terms of Service",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Privacy Policy",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "button",
+        "text": "SUBMIT\nSUBMIT",
+        "role": "",
+        "ariaLabel": "Submit",
+        "className": "u-btn-primary part-btnPrimary group flex items-center justify-center gap-12 roun"
+      },
+      {
+        "tag": "h2",
+        "text": "Site footer",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "h3",
+        "text": "PAGES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "COMPANY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "REACH US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__emailRow"
+      },
+      {
+        "tag": "p",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "X (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "Instagram (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "LinkedIn (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "© 2026 Decbricks. ALL RIGHTS RESERVED.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__copyright subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "PRIVACY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "TERMS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "MANAGE COOKIES\nMANAGE COOKIES",
+        "role": "",
+        "ariaLabel": "Manage Cookies",
+        "className": "parts-btnText structure-footer__legalBtn rounded-sm subheading u-kicker text-dar"
+      },
+      {
+        "tag": "button",
+        "text": "RISE TO THE TOP\nRISE TO THE TOP",
+        "role": "",
+        "ariaLabel": "Rise to the top",
+        "className": "parts-btnScrollTop structure-footer__topBtn"
+      },
+      {
+        "tag": "p",
+        "text": "We use cookies to improve your experience. By using this website you agree to our Cookie Policy.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-16 max-w-300 copy-xs text-white lg:mb-25"
+      },
+      {
+        "tag": "h3",
+        "text": "Functional",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Essential cookies are required for the site to function.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Optional analytics cookies anonymously track how the site is used and how it performs.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "button",
+        "text": "Accept AllAccept All",
+        "role": "",
+        "ariaLabel": "Accept All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "ManageManage",
+        "role": "",
+        "ariaLabel": "Manage",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "Delete AllDelete All",
+        "role": "",
+        "ariaLabel": "Delete All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "SaveSave",
+        "role": "",
+        "ariaLabel": "Save",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      }
+    ]
+  },
+  "/terms": {
+    "title": "Terms of Service | Decbricks",
+    "metaDesc": "The terms and privacy policy that govern the use of decbricks.com and our web, AI, design and growth services — template draft pending owner review.",
+    "ogTitle": "Terms of Service | Decbricks",
+    "ogDesc": "The terms and privacy policy that govern the use of decbricks.com and our web, AI, design and growth services — template draft pending owner review.",
+    "images": [
+      {
+        "src": "/brand/logo-cream.webp",
+        "alt": ""
+      }
+    ],
+    "elements": [
+      {
+        "tag": "a",
+        "text": "SKIP TO MAIN CONTENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "part-skipLink"
+      },
+      {
+        "tag": "a",
+        "text": "Decbricks",
+        "role": "",
+        "ariaLabel": "Decbricks — Go to homepage",
+        "className": "parts-animatedLogo relative z-10 mr-auto rounded-8 px-12 py-10 transition-all du"
+      },
+      {
+        "tag": "a",
+        "text": "01\nWORK\nWORK",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "02\nABOUT\nABOUT",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "03\nSERVICES\nSERVICES",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "04\nCONTACT\nCONTACT",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "parts-btnBlock flex items-center bg-darkPurple duration-500 focus:outline-none r"
+      },
+      {
+        "tag": "button",
+        "text": "Menu",
+        "role": "",
+        "ariaLabel": "",
+        "className": "pointer-events-auto flex items-center justify-center gap-9 rounded-8 border-2 bo"
+      },
+      {
+        "tag": "a",
+        "text": "01Work",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "02About",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "03Services",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "04Contact",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "Close",
+        "role": "",
+        "ariaLabel": "Close navigation menu",
+        "className": "close absolute top-16 right-16 z-10 flex items-center gap-8 rounded-8 bg-darkPur"
+      },
+      {
+        "tag": "h1",
+        "text": "Terms of Service",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sr-only"
+      },
+      {
+        "tag": "p",
+        "text": "These terms cover the use of this website, the services we provide through it, and how we handle personal data. The text is a template draft: bracketed placeholders mark the details the owner must supply before the page goes live.\n These terms cover the use of this\nwebsite, the services we provide through it,\nand how we handle personal data. The text\nis a template draft: bracketed placeholders\nmark the details the owner must supply\nbefore the page goes live.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 mt-35 m"
+      },
+      {
+        "tag": "p",
+        "text": "LAST UPDATED: TEMPLATE DRAFT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "legal-hero__stamp"
+      },
+      {
+        "tag": "h2",
+        "text": "1. Acceptance of these terms",
+        "role": "",
+        "ariaLabel": "",
+        "className": "legal-clauseTitle font-neuePower font-bold text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "By accessing this website or engaging us for services, you agree to these Terms of Service. If you do not agree, please do not use the website or submit enquiries through it.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-ink copy-lg text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "These terms apply to the website and to any statement of work we both sign. Where a signed statement of work conflicts with these terms, the statement of work prevails for that engagement.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "u-ink copy-lg text-darkPurple"
+      },
+      {
+        "tag": "h2",
+        "text": "Let’s Start Something Great.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaTitle text-darkPurple"
+      },
+      {
+        "tag": "a",
+        "text": "Start a project\n→",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaBtn"
+      },
+      {
+        "tag": "a",
+        "text": "Book a call",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaGhost text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "PAGES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "COMPANY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "REACH US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__emailRow"
+      },
+      {
+        "tag": "p",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "X (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "Instagram (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "LinkedIn (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "© 2026 Decbricks. ALL RIGHTS RESERVED.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__copyright subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "PRIVACY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "TERMS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "MANAGE COOKIES\nMANAGE COOKIES",
+        "role": "",
+        "ariaLabel": "Manage Cookies",
+        "className": "parts-btnText structure-footer__legalBtn rounded-sm subheading u-kicker text-dar"
+      },
+      {
+        "tag": "button",
+        "text": "RISE TO THE TOP\nRISE TO THE TOP",
+        "role": "",
+        "ariaLabel": "Rise to the top",
+        "className": "parts-btnScrollTop structure-footer__topBtn"
+      },
+      {
+        "tag": "p",
+        "text": "We use cookies to improve your experience. By using this website you agree to our Cookie Policy.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-16 max-w-300 copy-xs text-white lg:mb-25"
+      },
+      {
+        "tag": "h3",
+        "text": "Functional",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Essential cookies are required for the site to function.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics",
+        "role": "",
+        "ariaLabel": "",
+        "className": "font-neuePower text-[12px] font-bold text-white uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Optional analytics cookies anonymously track how the site is used and how it performs.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "copy-xs text-white"
+      },
+      {
+        "tag": "button",
+        "text": "Accept AllAccept All",
+        "role": "",
+        "ariaLabel": "Accept All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "ManageManage",
+        "role": "",
+        "ariaLabel": "Manage",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "Delete AllDelete All",
+        "role": "",
+        "ariaLabel": "Delete All",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      },
+      {
+        "tag": "button",
+        "text": "SaveSave",
+        "role": "",
+        "ariaLabel": "Save",
+        "className": "part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transiti"
+      }
+    ]
+  },
+  "/404": {
+    "title": "404 - Page Not Found | Decbricks",
+    "metaDesc": "The page you are looking for could not be found.",
+    "ogTitle": "404 - Page Not Found | Decbricks",
+    "ogDesc": "The page you are looking for could not be found.",
+    "images": [
+      {
+        "src": "/brand/logo-cream.webp",
+        "alt": ""
+      }
+    ],
+    "elements": [
+      {
+        "tag": "a",
+        "text": "SKIP TO MAIN CONTENT",
+        "role": "",
+        "ariaLabel": "",
+        "className": "part-skipLink"
+      },
+      {
+        "tag": "a",
+        "text": "Decbricks",
+        "role": "",
+        "ariaLabel": "Decbricks — Go to homepage",
+        "className": "parts-animatedLogo relative z-10 mr-auto rounded-8 px-12 py-10 transition-all du"
+      },
+      {
+        "tag": "a",
+        "text": "01\nWORK\nWORK",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "02\nABOUT\nABOUT",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "03\nSERVICES\nSERVICES",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none"
+      },
+      {
+        "tag": "a",
+        "text": "04\nCONTACT\nCONTACT",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "parts-btnBlock flex items-center bg-darkPurple duration-500 focus:outline-none r"
+      },
+      {
+        "tag": "button",
+        "text": "Menu",
+        "role": "",
+        "ariaLabel": "",
+        "className": "pointer-events-auto flex items-center justify-center gap-9 rounded-8 border-2 bo"
+      },
+      {
+        "tag": "a",
+        "text": "01Work",
+        "role": "",
+        "ariaLabel": "Work",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "02About",
+        "role": "",
+        "ariaLabel": "About",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "03Services",
+        "role": "",
+        "ariaLabel": "Services",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "04Contact",
+        "role": "",
+        "ariaLabel": "Contact",
+        "className": "link block btn-menu text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "Close",
+        "role": "",
+        "ariaLabel": "Close navigation menu",
+        "className": "close absolute top-16 right-16 z-10 flex items-center gap-8 rounded-8 bg-darkPur"
+      },
+      {
+        "tag": "p",
+        "text": "ERROR 404",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-"
+      },
+      {
+        "tag": "h1",
+        "text": "404",
+        "role": "",
+        "ariaLabel": "",
+        "className": "heading-3.5xl font-offBit101 font-normal text-neonGreen uppercase"
+      },
+      {
+        "tag": "p",
+        "text": "Page not found. Head back to explore our work and services.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "mt-20 max-w-480 font-neuePower text-[20px] leading-[1.1] font-bold text-white"
+      },
+      {
+        "tag": "a",
+        "text": "BACK TO HOME\nBACK TO HOME",
+        "role": "",
+        "ariaLabel": "Back to Homepage",
+        "className": "part-btnPrimary group flex cursor-pointer flex-row items-center justify-center g"
+      },
+      {
+        "tag": "a",
+        "text": "OUR SERVICES\nOUR SERVICES",
+        "role": "",
+        "ariaLabel": "Our Services",
+        "className": "part-btnPrimary group flex cursor-pointer flex-row items-center justify-center g"
+      },
+      {
+        "tag": "h2",
+        "text": "Let’s Start Something Great.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaTitle text-darkPurple"
+      },
+      {
+        "tag": "a",
+        "text": "Start a project\n→",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaBtn"
+      },
+      {
+        "tag": "a",
+        "text": "Book a call",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__ctaGhost text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "PAGES",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Home",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "About",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Services",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Contact",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "COMPANY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Who We Are",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Mission",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Vision",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Values",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "h3",
+        "text": "REACH US",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__colHeading subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "li",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__emailRow"
+      },
+      {
+        "tag": "p",
+        "text": "hello@decbricks.com",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "X",
+        "role": "",
+        "ariaLabel": "X (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "Instagram",
+        "role": "",
+        "ariaLabel": "Instagram (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "li",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "",
+        "className": ""
+      },
+      {
+        "tag": "a",
+        "text": "LinkedIn",
+        "role": "",
+        "ariaLabel": "LinkedIn (opens in a new tab)",
+        "className": "structure-footer__social structure-footer__link text-darkPurple"
+      },
+      {
+        "tag": "p",
+        "text": "© 2026 Decbricks. ALL RIGHTS RESERVED.",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__copyright subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "PRIVACY",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "a",
+        "text": "TERMS",
+        "role": "",
+        "ariaLabel": "",
+        "className": "structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      },
+      {
+        "tag": "button",
+        "text": "MANAGE COOKIES\nMANAGE COOKIES",
+        "role": "",
+        "ariaLabel": "Manage Cookies",
+        "className": "parts-btnText structure-footer__legalBtn rounded-sm subheading u-kicker text-dar"
+      },
+      {
+        "tag": "button",
+        "text": "RISE TO THE TOP\nRISE TO THE TOP",
+        "role": "",
+        "ariaLabel": "Rise to the top",
+        "className": "parts-btnScrollTop structure-footer__topBtn"
+      }
+    ]
+  }
+}

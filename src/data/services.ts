@@ -74,6 +74,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'A clear direction for every big idea.',
     paragraphs: [
       'We help businesses identify opportunities, define product requirements and choose the right technology and strategies to achieve their objectives.',
+      'At Decbricks, we partner with founders and growing teams to audit existing workflows, validate market direction and shape practical technical architectures before development begins—helping turn early concepts into focused, scalable digital products.',
     ],
     capabilities: [
       'Technology Consulting',
@@ -103,6 +104,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Make your brand impossible to overlook.',
     paragraphs: [
       'We create thoughtful digital experiences and distinctive brand identities that communicate your value, strengthen your presence and connect with your audience.',
+      'From cohesive visual identities and design systems to intuitive website and application interfaces, Decbricks crafts creative assets built for clarity and consistency—backed by campaign graphics, social media creatives and marketing materials that stand out across every touchpoint.',
     ],
     capabilities: [
       'Brand Identity & Logo Design',
@@ -132,6 +134,8 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Powerful digital products, built for real-world needs.',
     paragraphs: [
       'We develop modern websites, web applications and customised software that help businesses improve operations, serve customers and scale confidently.',
+      'At Decbricks, we pair clean technical architecture with search-ready performance. We helped Findtern build a stronger digital presence through SEO-optimised website development, targeting 10K+ potential student and recruiter visits, and developed a digital platform for Upcoming Engineers designed to make 500+ engineering resources and career opportunities easier to discover.',
+      'We also support community and event-driven launches—delivering website development for DevSummit and DSC SRM alongside digital campaigns designed to reach 5K+ students and tech enthusiasts.',
     ],
     capabilities: [
       'Website Development',
@@ -162,6 +166,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Your business, within reach.',
     paragraphs: [
       'We build intuitive and scalable mobile applications designed to deliver seamless user experiences and support your business objectives.',
+      'Whether launching on Android, iOS or cross-platform frameworks, Decbricks handles the full lifecycle from mobile UI/UX and backend API integration to deployment and ongoing maintenance—ensuring fast, reliable apps ready to grow with your users.',
     ],
     capabilities: [
       'Android App Development',
@@ -191,6 +196,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Make technology work smarter.',
     paragraphs: [
       'We help businesses use artificial intelligence and automation to streamline workflows, improve efficiency and unlock new possibilities.',
+      'Decbricks designs and integrates practical AI agents, custom chatbots and LLM-powered workflows tailored to your daily operations—connecting your existing tools to automate repetitive tasks, speed up customer responses and turn manual processes into reliable, intelligent systems.',
     ],
     capabilities: [
       'AI Agent Development',
@@ -221,6 +227,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Get noticed. Reach further. Grow faster.',
     paragraphs: [
       'We help businesses strengthen their online presence, connect with potential customers and build digital marketing strategies focused on meaningful growth.',
+      'From organic search foundations to event-led acquisition, we helped Findtern build a stronger digital presence through SEO-optimised website development targeting 10K+ potential student and recruiter visits, and supported DevSummit and DSC SRM through event marketing and digital outreach with campaigns designed to reach 5K+ students and tech enthusiasts.',
     ],
     capabilities: [
       'Search Engine Optimisation (SEO)',
@@ -251,7 +258,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Create connections that move business forward.',
     paragraphs: [
       'Business growth takes more than having a great product or service. It requires reaching the right audience, starting meaningful conversations and building relationships.',
-      'At Decbricks, we help businesses identify potential customers and develop structured outreach campaigns. Our experience includes executing email and cold-calling campaigns for startups such as Findtern and Upcoming Engineers.',
+      'At Decbricks, we help businesses identify potential customers and develop structured outreach campaigns. Our experience includes executing email and cold-calling campaigns for startups such as Findtern and Upcoming Engineers, as well as supporting DevSummit and DSC SRM through website development, event marketing and digital outreach with campaigns designed to reach 5K+ students and tech enthusiasts.',
       'From prospect research to campaign execution and follow-ups, we help businesses create new opportunities and strengthen their outreach efforts.',
     ],
     capabilities: [

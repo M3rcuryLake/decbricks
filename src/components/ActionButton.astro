@@ -1,0 +1,111 @@
+---
+/**
+ * Reusable primary CTA component matching `.part-btnPrimary` char-slide hover
+ * (`src/scripts/buttons.ts`) and pixel chevron icon.
+ * Renders `<a>` when `href` is given, `<button type={type}>` otherwise.
+ */
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'button'> {
+  label: string;
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'hero-light' | 'primary';
+  size?: 'md' | 'lg';
+  showChevron?: boolean;
+  ariaLabel?: string;
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  label,
+  href,
+  type = 'button',
+  variant = 'hero-light',
+  size = 'md',
+  showChevron = true,
+  ariaLabel = label,
+  class: extraClass = '',
+  target,
+  rel,
+  ...rest
+} = Astro.props;
+
+const textClass = size === 'lg' ? 'btn-text-lg' : 'btn-text';
+const variantClass =
+  variant === 'hero-light'
+    ? 'part-btnPrimary--hero px-14 py-11 lg:px-18 lg:py-16'
+    : 'u-btn-primary bg-purple text-darkPurple active:bg-white px-14 py-11 lg:px-18 lg:py-16';
+const classes = [
+  'part-btnPrimary group inline-flex items-center justify-center gap-12 rounded-8 transition-colors duration-300 cursor-pointer flex-row',
+  variantClass,
+  extraClass,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      aria-label={ariaLabel}
+      class={classes}
+      {...(rest as any)}
+    >
+      <div class="relative flex overflow-hidden" aria-hidden="true">
+        <span class={`part-btnPrimary__text uppercase ${textClass}`}>{label}</span>
+        <span
+          class={`part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase ${textClass}`}
+          aria-hidden="true"
+        >
+          {label}
+        </span>
+      </div>
+      {showChevron && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 7 10"
+          class="part-btnPrimary__icon block w-6 min-w-6 lg:w-8 lg:min-w-8 lg:-mt-1"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
+          />
+        </svg>
+      )}
+    </a>
+  ) : (
+    <button type={type} aria-label={ariaLabel} class={classes} {...rest}>
+      <div class="relative flex overflow-hidden" aria-hidden="true">
+        <span class={`part-btnPrimary__text uppercase ${textClass}`}>{label}</span>
+        <span
+          class={`part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase ${textClass}`}
+          aria-hidden="true"
+        >
+          {label}
+        </span>
+      </div>
+      {showChevron && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 7 10"
+          class="part-btnPrimary__icon block w-6 min-w-6 lg:w-8 lg:min-w-8 lg:-mt-1"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
+          />
+        </svg>
+      )}
+    </button>
+  )
+}

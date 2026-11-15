@@ -1,6 +1,16 @@
 ---
 import { SERVICES } from '../data/services';
+import { CAL } from '../data/contact';
 import { brandify } from '../lib/brand';
+import ActionButton from './ActionButton.astro';
+
+const calConfigJson = JSON.stringify({ layout: 'month_view' });
+const hasCalLink = Boolean(CAL.link);
+if (import.meta.env.DEV && !hasCalLink) {
+  console.warn(
+    '[decbricks] CAL.link is empty — home hero "Book a call" CTA will link to fallback booking URL instead of opening the Cal modal.'
+  );
+}
 
 const HOME_CARD_STYLES = [
   { theme: 't1', isEven: true },
@@ -18,30 +28,45 @@ const HOME_CARD_STYLES = [
     ><div class="hidden flex-grow lg:block"></div
     ><div
       class="hero-top relative mx-auto flex w-full max-w-1920 flex-grow flex-col justify-center sm:justify-center lg:justify-start lg:pb-0"
-      ><h2 id="hero-heading" class="sr-only">Distinct Always</h2
+      ><h2 id="hero-heading" class="sr-only">Build. Beyond.</h2
       ><div class="relative"
         ><span
           aria-hidden="true"
-          class="sections-hero__heading relative z-22 block w-fit heading-3xl text-neonGreen uppercase lg:z-11 lg:-mb-50 lg:-ml-20"
-          data-text="Distinct"
-          ><span class="sections-hero__headingInner pointer-default block"> Distinct </span></span
+          class="sections-hero__heading sections-hero__heading--build font-bold relative z-22 block w-fit heading-3xl text-neonGreen uppercase lg:z-11 lg:-mb-50 lg:-ml-20"
+          data-text="Build."
+          ><span class="sections-hero__headingInner pointer-default block font-bold"> Build. </span></span
         ><div class="mb-52 flex w-fit min-w-full items-center justify-between lg:mb-0"
           ><h1 class="sr-only">
-            Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</h1
-          ><span
-            class="parts-smileyText sections-hero__body relative z-20 hidden w-4/12 min-w-4/12 pl-64 heading text-white 2xl:mb-40 2xl:block 3xl:pr-42"
-            style="font-kerning: none; text-rendering: optimizeSpeed"
-            ><span class="sr-only"
-              >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
-            ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
-              >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
-            ></span
+            Technology, creative & growth agency. Software builders, brand shapers & business growth partners.</h1
+          ><div class="hero-introCol relative z-20 hidden w-4/12 min-w-4/12 pl-64 2xl:mb-40 2xl:block 3xl:pr-42"
+            ><span
+              class="parts-smileyText sections-hero__body block heading text-white"
+              style="font-kerning: none; text-rendering: optimizeSpeed"
+              ><span class="sr-only"
+                >Technology, creative & growth agency. Software builders, brand shapers & business growth partners.</span
+              ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
+                >Technology, creative & growth agency. Software builders, brand shapers & business growth partners.</span
+              ></span
+            ><div class="hero-introCta hero-introCta--desktop">
+              <ActionButton
+                label="Book a call"
+                href={hasCalLink ? undefined : CAL.bookingUrl || '/contact#book-a-call'}
+                target={!hasCalLink && CAL.bookingUrl ? '_blank' : undefined}
+                rel={!hasCalLink && CAL.bookingUrl ? 'noopener noreferrer' : undefined}
+                variant="hero-light"
+                class="hero-bookCallBtn"
+                data-cal-modal={hasCalLink ? 'true' : undefined}
+                data-cal-link={hasCalLink ? CAL.link : undefined}
+                data-cal-namespace={hasCalLink ? CAL.namespace : undefined}
+                data-cal-config={hasCalLink ? calConfigJson : undefined}
+              />
+            </div></div
           ><span
             class="sections-hero__heading relative z-10 ml-auto block heading-3xl font-offBit101 font-normal text-neonGreen uppercase lg:w-min 2xl:-mr-40"
             data-font="OffBitTrial-101"
-            data-text="Always"
+            data-text="Beyond"
             aria-hidden="true"
-            ><span class="sections-hero__headingInner pointer-default block"> Always </span></span
+            ><span class="sections-hero__headingInner pointer-default block"> Beyond </span></span
           ></div
         ><div
           class="pin-trigger__mobile start-mobile absolute -top-120 -right-100 z-20 aspect-8/5 w-320 rotate-14 overflow-hidden rounded-20 rounded-tr-none sm:w-480 lg:hidden"
@@ -56,13 +81,27 @@ const HOME_CARD_STYLES = [
             crossorigin="anonymous"
           ></video></div></div
       ><span
-        class="parts-smileyText relative z-6 mb-20 w-11/12 pl-16 heading text-white sm:w-6/12 lg:z-20 2xl:hidden"
+        class="parts-smileyText relative z-6 w-11/12 pl-16 heading text-white sm:w-6/12 lg:z-20 2xl:hidden"
         style="font-kerning: none; text-rendering: optimizeSpeed"
         ><span class="sr-only"
-          >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
+          >Technology, creative & growth agency. Software builders, brand shapers & business growth partners.</span
         ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
-          >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
+          >Technology, creative & growth agency. Software builders, brand shapers & business growth partners.</span
         ></span
+      ><div class="hero-introCta hero-introCta--compact relative z-20">
+        <ActionButton
+          label="Book a call"
+          href={hasCalLink ? undefined : CAL.bookingUrl || '/contact#book-a-call'}
+          target={!hasCalLink && CAL.bookingUrl ? '_blank' : undefined}
+          rel={!hasCalLink && CAL.bookingUrl ? 'noopener noreferrer' : undefined}
+          variant="hero-light"
+          class="hero-bookCallBtn"
+          data-cal-modal={hasCalLink ? 'true' : undefined}
+          data-cal-link={hasCalLink ? CAL.link : undefined}
+          data-cal-namespace={hasCalLink ? CAL.namespace : undefined}
+          data-cal-config={hasCalLink ? calConfigJson : undefined}
+        />
+      </div
       ><video
         data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
         class="sections-hero__videoPreview start absolute top-40 right-1/12 z-10 hidden aspect-3/2 w-320 rotate-14 overflow-hidden rounded-40 rounded-tr-none lg:invisible lg:block 2xl:w-480 webgl-video parts-webglPreview overflow-hidden object-cover"
@@ -426,7 +465,7 @@ const HOME_CARD_STYLES = [
                     class="pointer-events-none absolute inset-x-0 top-0 -bottom-800 overflow-hidden rounded-[inherit]"
                   >
                     <span
-                      class="parts-serviceCard__numeral absolute -top-12 left-30 font-offBit text-[240px] leading-[98%] font-bold md:text-[420px] lg:-top-30 lg:-left-25 lg:text-[776px]"
+                      class="parts-serviceCard__numeral absolute -top-12 left-30 font-offBit text-[240px] leading-[98%] font-normal md:text-[420px] lg:-top-30 lg:-left-25 lg:text-[776px]"
                     >
                       {service.number}
                     </span>
@@ -518,7 +557,7 @@ const HOME_CARD_STYLES = [
                         </span>
                       </div>
                       <p
-                        class="mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb-25 lg:text-[18px] lg:leading-[105%] 2xl:text-[20px] 3xl:text-[22px]"
+                        class="mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-normal lg:mb-25 lg:text-[18px] lg:leading-[105%] 2xl:text-[20px] 3xl:text-[22px]"
                         set:html={brandify(service.homeSummary)}
                       />
                       <a

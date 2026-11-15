@@ -20,100 +20,14 @@
 import { bus, prefersReducedMotion } from './core/gsap';
 import { getLenis } from './smooth-scroll';
 import { CAL } from '../data/contact';
+import {
+  getCalNamespace,
+  hasConsent,
+  type CalEventDetail,
+  type CalQueueObject,
+} from './cal-loader';
 
-const CONSENT_COOKIE = 'essential-consent';
 const SCRIPT_TIMEOUT_MS = 10_000;
-
-/**
- * Decbricks palette tokens supported by Cal.com embed's `cssVarsPerTheme`.
- * Keys intentionally omit leading `--` (Cal injects `--<key>` inside its iframe).
- * Verified against Cal v2 embed stylesheet variables on the live widget.
- */
-const CAL_THEME_VARS: Record<string, string> = {
-  // Brand & interactive emphasis
-  'cal-brand': '#800020',
-  'cal-brand-emphasis': '#630018',
-  'cal-brand-text': '#FFF9F2',
-  'cal-bg-brand': '#800020',
-  'cal-bg-brand-emphasis': '#630018',
-  'cal-bg-brand-muted': '#F3E6D5',
-  'cal-bg-primary': '#800020',
-  'cal-bg-primary-emphasis': '#630018',
-  'cal-bg-primary-muted': '#F3E6D5',
-
-  // Card surfaces (Warm Off-White card + Warm Beige tiles/hover)
-  'cal-bg': '#FFF9F2',
-  'cal-bg-muted': '#FAF0E4',
-  'cal-bg-subtle': '#F3E6D5',
-  'cal-bg-emphasis': '#EAD7C0',
-  'cal-bg-inverted': '#800020',
-
-  // Typography (Burgundy-ink hierarchy, all >= 4.5:1 on #FFF9F2 / #EAD7C0)
-  'cal-text-emphasis': '#3D000F',
-  'cal-text': '#4A0E1E',
-  'cal-text-subtle': '#6B2D3B',
-  'cal-text-muted': '#743643',
-  'cal-text-inverted': '#FFF9F2',
-
-  // Hairlines & interactive button outlines (>= 3:1 UI boundary contrast)
-  'cal-border-booker': '#DFCBB7',
-  'cal-border': '#AE7480',
-  'cal-border-subtle': '#E4D1BF',
-  'cal-border-muted': '#EDE0D2',
-  'cal-border-emphasis': '#800020',
-
-  // Sage/Olive supporting semantic tones (tokens §2c)
-  'cal-bg-semantic-success-subtle': '#E6ECE0',
-  'cal-bg-semantic-success-emphasis': '#5A6432',
-  'cal-text-semantic-success': '#5A6432',
-};
-
-interface CalEventDetail {
-  data?: {
-    iframeHeight?: number;
-    iframeWidth?: number;
-    isFirstTime?: boolean;
-  };
-}
-
-interface CalQueueObject {
-  (...args: unknown[]): void;
-  loaded?: boolean;
-  ns?: Record<string, unknown>;
-  q?: unknown[];
-  scriptFailed?: boolean;
-}
-
-declare global {
-  interface Window {
-    Cal?: CalQueueObject;
-  }
-}
-
-const hasConsent = () => document.cookie.split('; ').some((c) => c.startsWith(CONSENT_COOKIE + '='));
-
-/** Official inline-embed loader shape: a queue consumed by embed.js. Loads once. */
-function ensureCal(origin: string): CalQueueObject {
-  if (window.Cal) return window.Cal;
-  const cal = ((...args: unknown[]) => {
-    (cal.q = cal.q ?? []).push(args);
-  }) as CalQueueObject;
-  cal.loaded = false;
-  cal.ns = {};
-  cal.scriptFailed = false;
-  window.Cal = cal;
-  const script = document.createElement('script');
-  script.src = `${origin}/embed/embed.js`;
-  script.async = true;
-  script.onload = () => {
-    cal.loaded = true;
-  };
-  script.onerror = () => {
-    cal.scriptFailed = true;
-  };
-  document.head.appendChild(script);
-  return cal;
-}
 
 /** Mounts initialised this page-load; new nodes (post-swap) are re-initialised. */
 const initedMounts = new WeakSet<HTMLElement>();
@@ -314,18 +228,13 @@ export function initCalEmbed() {
   const initInline = (): boolean => {
     if (initedMounts.has(mount)) return false;
     initedMounts.add(mount);
-    const cal = ensureCal(CAL.origin);
+    const cal = getCalNamespace(CAL.namespace, CAL.origin);
     calObj = cal;
     try {
       cal('inline', {
         elementOrSelector: mount,
         calLink: CAL.link,
         layout: 'month_view',
-      });
-      cal('ui', {
-        theme: 'light',
-        cssVarsPerTheme: { light: CAL_THEME_VARS },
-        hideEventTypeDetails: false,
       });
       cal('on', { action: 'bookingSuccessful', callback: onBookingSuccess });
       cal('on', { action: 'linkFailed', callback: onLinkFailed });

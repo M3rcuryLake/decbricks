@@ -35,7 +35,7 @@ if (dev && TEAM.length === 0) {
             <div class="team-card__photo team-card__photo--empty block w-full rounded-8 bg-lightPurple" aria-hidden="true" />
           )}
 
-          <h3 class="mt-15 font-neuePower text-[16px] leading-none font-bold text-darkPurple uppercase">
+          <h3 class="mt-15 font-neuePower text-[16px] leading-none font-medium text-darkPurple uppercase">
             <span class="mr-7"><Fragment set:html={brandify(member.name)} /></span>
             {member.placeholder && (
               <span
@@ -56,7 +56,7 @@ if (dev && TEAM.length === 0) {
               href={member.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              class="team-card__link mt-10 inline-block font-neuePower text-[13px] font-bold text-darkPurple"
+              class="team-card__link mt-10 inline-block font-neuePower text-[13px] font-medium text-darkPurple"
             >
               LinkedIn <span aria-hidden="true">↗</span>
             </a>

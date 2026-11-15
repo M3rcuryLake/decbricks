@@ -11,6 +11,8 @@ export interface CalConfig {
   origin: string;
   /** Fallback deep link opened in a new tab when the embed is unavailable. */
   bookingUrl: string;
+  /** Shared Cal embed namespace across pages (inline + modal triggers). */
+  namespace: string;
 }
 
 export interface PhoneNumber {
@@ -38,6 +40,7 @@ export const CAL: CalConfig = {
   link: import.meta.env.PUBLIC_CAL_LINK || 'decbricks-team/meet',
   origin: 'https://app.cal.com',
   bookingUrl: import.meta.env.PUBLIC_CAL_BOOKING_URL || 'https://cal.com/decbricks-team/meet',
+  namespace: import.meta.env.PUBLIC_CAL_NAMESPACE || 'meet',
 };
 
 export const EMAIL = import.meta.env.PUBLIC_CONTACT_EMAIL || 'hello@decbricks.com';

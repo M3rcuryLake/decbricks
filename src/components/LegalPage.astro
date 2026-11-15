@@ -71,7 +71,10 @@ const groups = [
                     const ClauseHeading = group.kind === 'privacy' ? 'h3' : 'h2';
                     const clauses = group.sections.map((section) => (
                       <section id={section.id} aria-labelledby={`${section.id}-heading`} class="legal-section legal-clause">
-                        <ClauseHeading id={`${section.id}-heading`} class="legal-clauseTitle font-neuePower font-bold text-darkPurple">
+                        <ClauseHeading
+                          id={`${section.id}-heading`}
+                          class={`legal-clauseTitle font-neuePower ${group.kind === 'privacy' ? 'font-medium' : 'font-bold'} text-darkPurple`}
+                        >
                           {section.heading}
                         </ClauseHeading>
                         <div class="mt-10 flex flex-col gap-12 lg:mt-15">

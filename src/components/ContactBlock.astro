@@ -14,33 +14,55 @@ export interface Props {
   title?: string;
   /** Secondary heading (e.g. "Tell us what you want to build."). */
   h3?: string;
+  /** Optional wrapper class on the outer <article>. */
+  class?: string;
+  /** Optional extra class on the <h2> heading. */
+  headingClass?: string;
+  /** Hide the decorative background numeral when it would crop awkwardly. */
+  hideGhostNumber?: boolean;
 }
-const { id, number, eyebrow, title, h3 } = Astro.props;
+const {
+  id,
+  number,
+  eyebrow,
+  title,
+  h3,
+  class: extraClass = '',
+  headingClass = '',
+  hideGhostNumber = false,
+} = Astro.props;
 ---
 
 <article
   id={id}
-  class="parts-serviceBlock relative flex flex-col border border-darkestPurple/15 px-14 pt-25 pb-30 lg:gap-30 lg:px-30 lg:pt-25 lg:pb-35 xl:gap-35 xl:px-35 xl:pt-30 xl:pb-45 3xl:pt-35 3xl:pb-50 4xl:pt-40 4xl:pb-60"
+  class:list={[
+    'parts-serviceBlock relative flex flex-col border border-darkestPurple/15 px-14 pt-25 pb-30 lg:gap-30 lg:px-30 lg:pt-25 lg:pb-35 xl:gap-35 xl:px-35 xl:pt-30 xl:pb-45 3xl:pt-35 3xl:pb-50 4xl:pt-40 4xl:pb-60',
+    extraClass,
+  ]}
   aria-labelledby={`${id}-heading`}
 >
   <span class="absolute -top-px -left-px size-9 bg-purple" aria-hidden="true"></span>
   <span class="absolute -top-px -right-px size-9 bg-purple" aria-hidden="true"></span>
   <span class="absolute -bottom-px -left-px size-9 bg-purple" aria-hidden="true"></span>
   <span class="absolute -right-px -bottom-px size-9 bg-purple" aria-hidden="true"></span>
-  <div
-    class="pointer-events-none absolute bottom-0 left-0 h-265 w-full overflow-hidden lg:h-300 lg:w-380 xl:h-375 xl:w-480 3xl:h-480 3xl:w-615 4xl:h-560 4xl:w-715"
-    aria-hidden="true"
-  >
-    <span
-      class="absolute top-70 -left-7 font-offBit text-[275px] leading-[0.98] font-bold whitespace-nowrap text-purple/5 uppercase lg:top-75 lg:text-[310px] xl:top-95 xl:-left-10 xl:text-[390px] 3xl:top-125 3xl:text-[500px] 4xl:top-145 4xl:-left-15 4xl:text-[580px]"
-    >
-      {number}
-    </span>
-  </div>
+  {
+    !hideGhostNumber && (
+      <div
+        class="pointer-events-none absolute bottom-0 left-0 h-265 w-full overflow-hidden lg:h-300 lg:w-380 xl:h-375 xl:w-480 3xl:h-480 3xl:w-615 4xl:h-560 4xl:w-715"
+        aria-hidden="true"
+      >
+        <span
+          class="absolute top-70 -left-7 font-offBit text-[275px] leading-[0.98] font-normal whitespace-nowrap text-purple/5 uppercase lg:top-75 lg:text-[310px] xl:top-95 xl:-left-10 xl:text-[390px] 3xl:top-125 3xl:text-[500px] 4xl:top-145 4xl:-left-15 4xl:text-[580px]"
+        >
+          {number}
+        </span>
+      </div>
+    )
+  }
   <div class="relative z-1 flex w-full flex-col">
     <div>
       <p
-        class="u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
+        class="u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
       >
         <svg
           class="svgs-doubleSlash w-15 shrink-0 text-purple xl:w-20 4xl:w-25"
@@ -61,7 +83,10 @@ const { id, number, eyebrow, title, h3 } = Astro.props;
       {title && (
         <h2
           id={`${id}-heading`}
-          class="u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]"
+          class:list={[
+            'u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]',
+            headingClass,
+          ]}
           set:html={brandify(title)}
         />
       )}

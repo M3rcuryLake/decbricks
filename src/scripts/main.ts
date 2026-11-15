@@ -15,7 +15,8 @@ import {
   scrollToAnchor,
   setActiveAnchor,
 } from './menu';
-import { initPageTransition } from './page-transition';
+import { initPageTransition, warmAllRoutes } from './page-transition';
+import { preloadCurrentPageImages } from './image-preload-runtime';
 import { initVideoPlayer } from './video-player';
 import { initServices } from './services';
 import { initServicesPage } from './services-page';
@@ -24,9 +25,10 @@ import { initCaseStudies } from './case-studies';
 import { initTestimonials } from './testimonials';
 import { initContact } from './contact';
 import { initCalEmbed } from './cal-embed';
+import { initCalModals } from './cal-modal';
 import { initFooter } from './footer';
 import { initLegalPage } from './legal-page';
-import { getWebGLExperience, initWebGL } from './webgl/experience';
+import { getWebGLExperience, initWebGL, resetHeroLifecycleState } from './webgl/experience';
 
 let hero: Hero | undefined;
 let heroPlayHandler: (() => void) | null = null;
@@ -85,12 +87,14 @@ teardown(initCaseStudies());
 teardown(initTestimonials());
 teardown(initContact());
 teardown(initCalEmbed());
+teardown(initCalModals());
 teardown(initFooter());
 teardown(initLegalPage());
 initCookies();
 
 initPageTransition({
   onBeforeSwap: () => {
+    resetHeroLifecycleState();
     if (heroPlayHandler) {
       bus.off('hero-transition-start', heroPlayHandler);
       heroPlayHandler = null;
@@ -120,6 +124,7 @@ initPageTransition({
     teardown(initTestimonials());
     teardown(initContact());
     teardown(initCalEmbed());
+    teardown(initCalModals());
     teardown(initFooter());
     teardown(initLegalPage());
     refreshHeaderForRoute(newPath);
@@ -138,9 +143,36 @@ const onInitialTransitionEntranceDone = () => {
 };
 bus.on('transition-entrance-done', onInitialTransitionEntranceDone);
 
-const boot = () => {
-  initLoader();
-  playInlineVideos();
+const startLoaderBoot = () => {
+  const waitForAssets = Promise.allSettled([
+    preloadCurrentPageImages(document, { timeoutMs: 3400 }),
+    warmAllRoutes(),
+  ]).then(() => undefined);
+
+  const launch = () => {
+    initLoader({ waitForAssets, assetTimeoutMs: 3400 });
+    playInlineVideos();
+  };
+
+  const fontsReady = document.fonts?.ready;
+  if (!fontsReady) {
+    launch();
+    return;
+  }
+
+  let launched = false;
+  const onceLaunch = () => {
+    if (launched) return;
+    launched = true;
+    window.clearTimeout(fontTimer);
+    launch();
+  };
+  const fontTimer = window.setTimeout(onceLaunch, 300);
+  void fontsReady.then(onceLaunch, onceLaunch);
 };
-if (document.readyState === 'complete') boot();
-else window.addEventListener('load', boot, { once: true });
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startLoaderBoot, { once: true });
+} else {
+  startLoaderBoot();
+}

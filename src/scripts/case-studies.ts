@@ -423,23 +423,6 @@ export function initCaseStudies() {
     });
   };
 
-  const showOnlyIds = (visibleIds: Set<string>) => {
-    if (!webglImages.size) return;
-    webglImages.forEach((wImg) => {
-      if (wImg.mesh) wImg.mesh.visible = false;
-    });
-    if (sliderGroup) sliderGroup.position.x = 0;
-    visibleIds.forEach((id) => {
-      const wImg = webglImages.get(id);
-      if (wImg?.mesh && wImg.group) {
-        wImg.mesh.visible = true;
-        wImg.imageSpace = wImg.getImageSpace(true);
-        wImg.group.position.set(wImg.imageSpace.x, wImg.imageSpace.y, wImg.imageSpace.zIndex);
-        wImg.mesh.position.set(0, 0, 0);
-      }
-    });
-  };
-
   let sliderDraggable: Draggable | null = null;
   let pageDraggable: Draggable | null = null;
   let pageTimeline: gsap.core.Timeline | null = null;
@@ -448,7 +431,7 @@ export function initCaseStudies() {
   let slideStep = 0;
 
   const getVisibleSlides = () =>
-    Array.from(sliderEl.querySelectorAll<HTMLElement>('.parts-caseStudySlider__slide:not(.hidden)'));
+    Array.from(sliderEl.querySelectorAll<HTMLElement>('.parts-caseStudySlider__slide'));
 
   const getMinX = () => {
     const curX = (gsap.getProperty(wrapper, 'x') as number) || 0;
@@ -493,13 +476,13 @@ export function initCaseStudies() {
   // pagination control or a slide link; Home/End jump to first/last from the
   // pagination control (verified against 1minus1.com on 2026-11-07).
   const syncSliderAria = (idx: number) => {
-    const steps = snapPositions.length - 1;
-    if (steps < 1) return;
+    const visibleCount = getVisibleSlides().length;
+    const steps = Math.max(0, snapPositions.length - 1);
     paginationControl.setAttribute('aria-valuemax', String(steps));
     paginationControl.setAttribute('aria-valuenow', String(idx));
-    paginationControl.setAttribute('aria-valuetext', `Slide ${idx + 1} of ${steps + 1}`);
+    paginationControl.setAttribute('aria-valuetext', `Slide ${idx + 1} of ${visibleCount || 1}`);
     const announcement = document.getElementById('slider-announcement');
-    if (announcement) announcement.textContent = `Viewing case study ${idx + 1} of ${steps + 1}`;
+    if (announcement) announcement.textContent = `Viewing project ${idx + 1} of ${visibleCount || 1}`;
   };
 
   const moveToIndex = (idx: number) => {
@@ -570,6 +553,10 @@ export function initCaseStudies() {
 
     const steps = snapPositions.length - 1;
     if (steps < 1) {
+      gsap.set(wrapper, { x: 0 });
+      gsap.set(paginationControl, { x: 0 });
+      if (sliderGroup) sliderGroup.position.x = 0;
+      syncSliderAria(0);
       gsap.to(pagination, { autoAlpha: 0, pointerEvents: 'none', duration: 0.3 });
       return;
     }
@@ -728,84 +715,6 @@ export function initCaseStudies() {
       'mouseleave',
       () => {
         if (!prefersReducedMotion() && window.innerWidth >= bp.lg) tl.reverse();
-      },
-      { signal: ac.signal }
-    );
-  });
-
-  // Category filter buttons
-  const filterGroup = section.querySelector<HTMLElement>('[aria-labelledby="filter-label"]');
-  const filterBtns = filterGroup ? Array.from(filterGroup.querySelectorAll<HTMLButtonElement>('.parts-btnBlock')) : [];
-  let activeCategory = 'all';
-  let isAnimatingFilter = false;
-
-  const updateFilterButtonsUI = (cat: string) => {
-    filterBtns.forEach((btn) => {
-      const label = (btn.querySelector('.parts-btnBlock__label')?.textContent || '').trim().toLowerCase();
-      const active = label === cat;
-      btn.setAttribute('aria-pressed', String(active));
-      btn.classList.toggle('bg-olive', active);
-      btn.classList.toggle('text-white', active);
-      btn.classList.toggle('hover:bg-white', !active);
-      btn.classList.toggle('focus:bg-white', !active);
-    });
-  };
-  updateFilterButtonsUI('all');
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener(
-      'click',
-      () => {
-        if (isAnimatingFilter) return;
-      const cat = (btn.querySelector('.parts-btnBlock__label')?.textContent || '').trim().toLowerCase();
-      if (!cat || cat === activeCategory) return;
-      activeCategory = cat;
-      isAnimatingFilter = true;
-      updateFilterButtonsUI(cat);
-
-      const allSlides = Array.from(sliderEl.querySelectorAll<HTMLElement>('.parts-caseStudySlider__slide'));
-      const reduced = prefersReducedMotion();
-
-      gsap
-        .timeline({
-          onUpdate: syncAllCardsToWebGL,
-          onComplete: () => {
-            isAnimatingFilter = false;
-            syncAllCardsToWebGL();
-          },
-        })
-        .to(gsap.utils.shuffle([...allSlides]), {
-          scale: reduced ? 1 : 0.8,
-          opacity: 0,
-          duration: 0.7,
-          stagger: 0.02,
-          ease: reduced ? 'linear' : 'elastic.in(1.05,0.65)',
-        })
-        .call(
-          () => {
-            const visibleIds = new Set<string>();
-            allSlides.forEach((slide) => {
-              const dataCat = (slide.getAttribute('data-category') || '').toLowerCase();
-              const match = cat === 'all' || dataCat.split('-').includes(cat);
-              slide.classList.toggle('hidden', !match);
-              const id = slide.getAttribute('data-case-study-id');
-              if (match && id) visibleIds.add(id);
-            });
-            gsap.set(wrapper, { x: 0 });
-            gsap.set(paginationControl, { x: 0 });
-            rebuildSlider();
-            showOnlyIds(visibleIds);
-          },
-          undefined,
-          '>+0.2'
-        )
-        .to(gsap.utils.shuffle(allSlides), {
-          scale: 1,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.02,
-          ease: 'elastic.out(1.1,0.65)',
-        });
       },
       { signal: ac.signal }
     );

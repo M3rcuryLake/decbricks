@@ -9,8 +9,14 @@ const RESIZE_THRESHOLD = 140;
 // 2026-11-14, reverted from the Phase 2.4 1.1s compression), is skipped on
 // repeat visits, and is capped at 3.8s if hero media lags.
 const INTRO_TARGET_S = 3.0; // intro duration target (~3.0s)
+const ASSET_WAIT_CAP_MS = 3400;
 const HARD_CAP_MS = 3800;
 const LOADER_SEEN_KEY = 'decbricks:loader-seen';
+
+export interface LoaderOptions {
+  waitForAssets?: Promise<void>;
+  assetTimeoutMs?: number;
+}
 
 const loaderSeenThisSession = (): boolean => {
   try {
@@ -143,7 +149,7 @@ function headingTimeline(el: HTMLElement, reduced: boolean) {
   return tl;
 }
 
-export function initLoader() {
+export function initLoader(options: LoaderOptions = {}) {
   const root = document.querySelector<HTMLElement>('.structure-loader');
   // Run once per initial page load only, never on route changes or duplicate calls.
   // Repeat visits in the same session skip entirely (owner-approved plan default).
@@ -192,7 +198,9 @@ export function initLoader() {
   let lastW = window.innerWidth;
   let lastH = window.innerHeight;
   let heroReady = false;
+  let assetsReady = !options.waitForAssets || reduced;
   let capTimer: number | undefined;
+  let assetCapTimer: number | undefined;
   let tl!: gsap.core.Timeline;
 
   const maxStage = () =>
@@ -304,6 +312,7 @@ export function initLoader() {
       onStart: () => bus.emit('transition-entrance-done'),
       onComplete: () => {
         window.clearTimeout(capTimer);
+        window.clearTimeout(assetCapTimer);
         setTimeout(() => {
           bus.emit('page-transition-complete');
         }, 0);
@@ -316,10 +325,10 @@ export function initLoader() {
     // entry (CLS 0.19 on /@768). Sequenced (and each alone) it measures
     // ≤0.008. Visually identical — stage 0's size equals the start size.
     cfg.stages.forEach((_, i) => addStage(i, i === 0 ? '>' : `>${STAGE_OVERLAP}`, reduced));
-    // Hold at the end until the hero is ready (reduced motion: no animation to
-    // sync — release immediately, the intro is already instant).
+    // Hold at the end until both the hero and preloaded images are ready (or
+    // reduced motion / hard cap releases immediately).
     tl.addPause('<', () => {
-      if (heroReady || reduced) tl.play();
+      if ((heroReady && assetsReady) || reduced) tl.play();
     });
     tl.call(() => bus.emit('hero-transition-start'), undefined, '<+0.3');
     tl.to(root, { autoAlpha: 0, duration: reduced ? 0 : 0.5 }, '<');
@@ -336,9 +345,11 @@ export function initLoader() {
     // (heading char slides) inherit the parent timeScale.
     const natural = tl.duration();
     if (!reduced && natural > INTRO_TARGET_S) tl.timeScale(natural / INTRO_TARGET_S);
-    // Hard cap: even if hero media lags, release the hold and finish cleanly.
+    // Hard cap: even if hero media or image preloading lags, release cleanly.
     capTimer = window.setTimeout(() => {
       heroReady = true;
+      assetsReady = true;
+      window.clearTimeout(assetCapTimer);
       if (tl.paused()) tl.play();
       // Rush any remaining tail (hold release + fade) to honour the cap.
       tl.timeScale(Math.max(tl.timeScale(), 4));
@@ -348,10 +359,27 @@ export function initLoader() {
   activeLoaderCtx = ctx;
   (window as any).animationsEnabled = false;
 
+  const tryResume = () => {
+    if (((heroReady && assetsReady) || reduced) && tl?.paused()) {
+      tl.play();
+    }
+  };
+
+  if (options.waitForAssets && !reduced) {
+    const markAssetsReady = () => {
+      window.clearTimeout(assetCapTimer);
+      if (assetsReady) return;
+      assetsReady = true;
+      tryResume();
+    };
+    assetCapTimer = window.setTimeout(markAssetsReady, options.assetTimeoutMs ?? ASSET_WAIT_CAP_MS);
+    void options.waitForAssets.then(markAssetsReady, markAssetsReady);
+  }
+
   const onHeroReady = () => {
     heroReady = true;
     bus.off('hero-ready', onHeroReady);
-    if (tl.paused()) tl.play();
+    tryResume();
   };
   bus.on('hero-ready', onHeroReady);
 

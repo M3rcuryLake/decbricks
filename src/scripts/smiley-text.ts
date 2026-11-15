@@ -210,11 +210,11 @@ export function initSmileyTexts() {
 
     const existingSr = el.querySelector('.sr-only')?.textContent?.trim() ?? el.textContent?.trim() ?? '';
     const rawContent = inHero
-      ? '**purple-4** Award-winning creative agency for video games. Brand shapers, game marketeers & web engineers.'
+      ? `**purple-4** ${existingSr || 'Technology, creative & growth agency. Software builders, brand shapers & business growth partners.'}`
       : inServicesHero && !existingSr.includes('**')
         ? `**purple-4** ${existingSr}`
         : inContact
-        ? `**purple-3** ${existingSr || 'We’re a games industry creative leader that will put your players first. Drop us a message!'}`
+        ? `**purple-3** ${existingSr || 'We’re a technology and creative partner that puts your customers first. Drop us a message!'}`
         : inCaseStudies && !existingSr.includes('**')
           ? `**purple-3** ${existingSr}`
           : existingSr;

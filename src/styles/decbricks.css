@@ -2,7 +2,7 @@
    Brand font aliases (post-KH swap, FONT-SWAP-PROMPT Option A; display
    roles moved to FK Raster by owner decision, 2026-11-11).
    Legacy token names (in global.css) now point to:
-     --font-neuePower → "Bricolage Grotesque" (headings/UI/buttons)
+     --font-neuePower → "Power Grotesk" (headings/UI/buttons)
      --font-nohemi    → "Hanken Grotesk" (body)
      --font-offBit    → "FK Raster Roman Compact" (giant display/numerals)
      --font-offBit101 → "FK Raster Roman Compact" (display, "Begin your",
@@ -206,18 +206,36 @@
   --fs-lede: clamp(17px, 1.4vw, 21px);
 }
 
+/* Font weight discipline: bold (700) is reserved strictly for h1/h2 display
+   and section headings (.u-display, .u-h2, .heading-3xl, etc.). UI controls,
+   buttons, subheads, leads, kickers, and links step down to 500 or 400. */
+.font-medium {
+  --tw-font-weight: 500;
+  font-weight: 500;
+}
+.btn-text,
+.btn-text-lg,
+.subheading,
+.heading-sm,
+.heading,
+.heading-lg,
+.rich-text h3,
+.rich-text h6 {
+  font-weight: 500;
+}
+
 /* Fluid type utilities (§3). Applied per-component; hero display moments are
    NOT restyled here (GSAP-measured, owned by Phase 3) — u-display is defined
    for them. */
 .u-display {
   font-size: var(--fs-display);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.015em;
 }
 .u-h2 {
   font-size: var(--fs-h2);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.04;
   letter-spacing: -0.01em;
 }
@@ -781,21 +799,15 @@ li {
   }
 }
 
-/* Fixed pill nav (WORK / ABOUT / SERVICES / CONTACT): `bg-white/70` let page
-   text show through, and the `backdrop-blur-xl` utility does not exist in the
-   compiled global.css (computed backdrop-filter was `none`). Off-White at
-   0.92 opacity + real blur; size and layout untouched.
-   Nav-bug fix (2026-11-14): the capsule is now self-sufficient — a full-opacity
-   burgundy hairline + soft shadow keep its edge >= 3:1 against every backdrop
-   it can sit over (a low-alpha hairline measures 2.4:1 on sage / invisible on
-   off-white — deviation from the brief's "low alpha" suggestion, required by
-   the verified contrast matrix). */
+/* Fixed pill nav (WORK / ABOUT / SERVICES / CONTACT): matches the scrolled
+   `.parts-animatedLogo` frosted glass pill (`bg-white/70` = 70% Off-White +
+   `backdrop-blur-xl` = 24px blur) so both header pills share identical
+   translucency without a hard outer border. */
 .structure-navPill {
-  background-color: rgba(255, 249, 242, 0.92);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--color-darkPurple);
-  box-shadow: 0 2px 10px rgba(42, 2, 8, 0.10);
+  background-color: #fff9f2b3;
+  background-color: color-mix(in oklab, var(--color-white) 70%, transparent);
+  -webkit-backdrop-filter: blur(var(--blur-xl, 24px));
+  backdrop-filter: blur(var(--blur-xl, 24px));
 }
 
 /* --------------------------------------------------------------------------
@@ -986,20 +998,6 @@ li {
   background-color: var(--brand-olive);
 }
 
-/* Case-study filter pills (BUG-005): active pill coral 3.92:1 → olive
-   6.1:1; inactive hover/focus white → sage tint (burgundy text on sage
-   7.0:1). Scoped to the filter group — the shared .parts-btnBlock hook
-   is untouched elsewhere. Unlayered rules beat the compiled utilities. */
-.structure-csFilterGroup .parts-btnBlock:hover,
-.structure-csFilterGroup .parts-btnBlock:focus {
-  background-color: var(--brand-sage);
-}
-.structure-csFilterGroup .parts-btnBlock.bg-olive,
-.structure-csFilterGroup .parts-btnBlock.bg-olive:hover,
-.structure-csFilterGroup .parts-btnBlock.bg-olive:focus {
-  background-color: var(--brand-olive);
-}
-
 /* Contact form borders (states): olive on hover/focus. Note: the markup's
    hover/focus:border-purple utilities do not exist in the compiled CSS —
    the live affordance is the border + :focus-visible ring, so target those. */
@@ -1157,52 +1155,14 @@ html.has-cookie-banner .page .sections-servicesHero {
 .structure-footer__ctaActions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-}
-.structure-footer__ctaBtn,
-.structure-footer__ctaGhost {
-  font-family: var(--font-neuePower), system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1;
-  min-height: 52px;
-  padding: 18px 26px;
-  border-radius: 8px;
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-decoration: none;
-  transform-origin: center center;
-  transition: background-color var(--ft-hover) var(--ft-ease), transform var(--ft-hover) var(--ft-ease);
-}
-.structure-footer__ctaBtn {
-  background-color: var(--brand-on-dark);
-  color: var(--brand-bg-dark);
-}
-.structure-footer__ctaBtn:hover {
-  background-color: var(--brand-surface-alt);
-  transform: translateY(-2px);
-}
-.structure-footer__ctaBtn:active {
-  transform: translateY(1px);
-}
-.structure-footer__ctaGhost {
-  border: 1.5px solid color-mix(in oklab, var(--brand-on-dark) 55%, transparent);
-  background-color: transparent;
-}
-.structure-footer__ctaGhost:hover {
-  background-color: color-mix(in oklab, var(--brand-on-dark) 10%, transparent);
-}
-.structure-footer__ctaGhost:active {
-  transform: translateY(1px);
+  gap: 12px;
 }
 @media (max-width: 455px) {
   .structure-footer__ctaActions {
     width: 100%;
   }
-  .structure-footer__ctaBtn,
-  .structure-footer__ctaGhost {
+  .structure-footer__ctaAction {
     flex: 1 1 100%;
   }
 }
@@ -1563,14 +1523,9 @@ a.structure-footer__link:hover {
     transform: none;
   }
   .structure-footer__link,
-  .structure-footer__ctaBtn,
-  .structure-footer__ctaGhost,
   .structure-footer__copyBtn {
     transition: color 150ms ease, background-color 150ms ease;
   }
-  .structure-footer__ctaBtn:hover,
-  .structure-footer__ctaBtn:active,
-  .structure-footer__ctaGhost:active,
   .structure-footer__topBtn:hover .structure-footer__brick--topA,
   .structure-footer__topBtn:hover .structure-footer__brick--topB,
   .structure-footer__topBtn:active .structure-footer__brick--topA,
@@ -1658,7 +1613,7 @@ a.structure-footer__link:hover {
 /* ==========================================================================
    Testimonials — architectural spotlight (tst-*)
    Direction 1 (2026-11-14 upgrade): framed burgundy band with subtle 25px
-   grid, Bricolage quote typography + FK Raster display numeral/glyph, Warm
+   grid, Power Grotesk quote typography + FK Raster display numeral/glyph, Warm
    Beige attribution plinth, full-width rail without company clipping, and
    <=1023px unified horizontal scroll-snap strip.
    ========================================================================== */
@@ -1837,7 +1792,7 @@ a.structure-footer__link:hover {
   background: var(--brand-on-light);
   color: var(--brand-surface-alt);
   font-family: var(--font-neuePower);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 15px;
   display: grid;
   place-items: center;
@@ -1851,7 +1806,7 @@ a.structure-footer__link:hover {
   color: var(--brand-on-light);
   font-family: var(--font-neuePower);
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.25;
 }
 .tst-who span {
@@ -1992,7 +1947,7 @@ a.structure-footer__link:hover {
 }
 .tst-railOpt.is-active .tst-railNum {
   color: var(--brand-on-light);
-  font-weight: 700;
+  font-weight: 500;
 }
 .tst-railWho {
   min-width: 0;
@@ -2000,7 +1955,7 @@ a.structure-footer__link:hover {
 .tst-railWho b {
   display: block;
   font-family: var(--font-neuePower);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 1.25;
   white-space: nowrap;
@@ -2677,11 +2632,27 @@ a.structure-footer__link:hover {
    with restrained clause headings and a more prominent Privacy Policy heading.
    ========================================================================== */
 .legal-hero__stamp {
+  margin-top: clamp(16px, 2vw, 28px);
+  padding-inline: clamp(16px, 2.5vw, 48px);
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255, 249, 242, 0.78);
+}
+
+/* Keep the legal hero's intro paragraph clear of the wider 5-letter "TERMS"
+   display word without changing the shared ServicesHero on other pages. */
+@media (min-width: 1024px) {
+  .page-legal .sections-servicesHero__display > div {
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+  }
+  .page-legal .sections-servicesHero__word1 {
+    flex-shrink: 0;
+  }
+  .page-legal .sections-servicesHero .sections-servicesHero__body {
+    margin-right: clamp(20px, calc(18vw - 120px), 230px);
+  }
 }
 
 /* Reading-progress hairline: fixed to the viewport top; scaleX driven by
@@ -2814,3 +2785,365 @@ a.structure-footer__link:hover {
     rotate: 0deg !important;
   }
 }
+
+/* ==========================================================================
+   Home hero "Build" optical weight (FK Raster 400 + font-synthesis: none)
+   ========================================================================== */
+.sections-hero__heading--build,
+.sections-hero__heading--build .sections-hero__headingInner {
+  -webkit-text-stroke: 0.032em currentColor;
+  paint-order: stroke fill;
+  letter-spacing: 0.02em;
+}
+
+.sections-hero__heading--build .line {
+  padding-block: 0.04em;
+  margin-block: -0.04em;
+  padding-inline: 0.025em;
+}
+
+/* ==========================================================================
+   Home hero "Book a call" CTA & Cal.com modal integration
+   ========================================================================== */
+.hero-introCol {
+  display: none;
+}
+@media (min-width: 1440px) {
+  .hero-introCol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.hero-introCta--desktop {
+  margin-top: clamp(20px, 1.5vw, 24px);
+}
+.hero-introCta--compact {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 16px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+@media (min-width: 1440px) {
+  .hero-introCta--compact {
+    display: none;
+  }
+}
+
+.part-btnPrimary--hero {
+  min-height: 44px;
+  background-color: var(--brand-surface);
+  color: var(--brand-on-light);
+  touch-action: manipulation;
+  transition: background-color var(--dur-std) var(--ease-brand),
+    color var(--dur-std) var(--ease-brand),
+    transform var(--dur-micro) var(--ease-brand);
+}
+.part-btnPrimary--hero:hover {
+  background-color: var(--brand-surface-alt);
+}
+.part-btnPrimary--hero:active {
+  background-color: color-mix(in oklab, var(--brand-surface-alt) 86%, var(--brand-bg-dark));
+  transform: scale(0.98);
+}
+.part-btnPrimary--hero:focus-visible {
+  outline: 2px solid var(--brand-on-dark);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .part-btnPrimary--hero {
+    transition-duration: 0ms;
+  }
+  .part-btnPrimary--hero:active {
+    transform: none;
+  }
+}
+
+/* Lenis smooth-scroll disables iframe pointer-events by default; re-enable inside
+   Cal.com's modal overlay dialog so clicks/scrolls inside the popup work. */
+cal-modal-box iframe {
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   Contact page — "Book a Meeting" (#book-a-call) two-column rework
+   ========================================================================== */
+/* Replace overflow:hidden on /contact sticky ancestors with clip so
+   position: sticky works inside .booking-info while keeping corner clipping. */
+#main-content:has(.page-contact),
+.page-contact .sections-servicesList {
+  overflow: clip;
+}
+
+.parts-serviceBlock.booking-card {
+  padding: clamp(56px, 6vw, 96px) clamp(32px, 4vw, 64px);
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+.booking-card .booking-heading {
+  padding-left: 0;
+  margin-top: 16px;
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(38px, 5.8vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+/* Remove ContactBlock's default slot mt-20 / lg:mt-25 so heading -> chips is 28px */
+.booking-card > div > div:last-child {
+  margin-top: 0;
+}
+
+.booking-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 28px 0 clamp(56px, 5vw, 80px);
+  padding: 0;
+}
+.booking-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background-color: var(--brand-surface-alt, #f3e6d5);
+  border: 1px solid #e2cdb8;
+  color: var(--brand-bg-dark, #800020);
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.booking-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 56px;
+  align-items: start;
+}
+.booking-info {
+  position: static;
+  min-width: 0;
+  width: 100%;
+}
+.booking-embed {
+  min-width: 0;
+  width: 100%;
+  max-width: 1040px;
+}
+
+@media (min-width: 1100px) {
+  .booking-split {
+    grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
+    column-gap: 48px;
+    row-gap: 0;
+  }
+  .booking-info {
+    position: sticky;
+    top: 120px;
+  }
+}
+
+/* Keep .booking-embed >= 804px (774px iframe) so Cal keeps its 3-col side time rail */
+@media (min-width: 1280px) {
+  .booking-split {
+    grid-template-columns: minmax(272px, 1fr) minmax(804px, 860px);
+    column-gap: 48px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .booking-split {
+    grid-template-columns: clamp(360px, calc(368px + (100vw - 1440px) * 0.24), 480px) minmax(0, 1fr);
+    column-gap: clamp(64px, 7vw, 128px);
+  }
+}
+
+.booking-intro {
+  margin: 0;
+  max-width: 16em;
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--brand-bg-dark, #800020);
+  text-wrap: balance;
+}
+
+.booking-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+}
+.booking-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 20px;
+  align-items: baseline;
+}
+.booking-step__num {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: #b8384a;
+  transform: translateY(-1px);
+}
+.booking-step__copy {
+  min-width: 0;
+}
+.booking-step__title {
+  margin: 0;
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--brand-bg-dark, #800020);
+}
+.booking-step__desc {
+  margin: 8px 0 0;
+  font-family: var(--font-nohemi), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #6e2a3b;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+.booking-emailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #eadfd4;
+  font-family: var(--font-nohemi), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #6e2a3b;
+}
+.booking-emailLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b8384a;
+}
+.booking-emailLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--brand-bg-dark, #800020);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: opacity var(--dur-micro) var(--ease-brand);
+}
+.booking-emailLink:hover {
+  opacity: 0.78;
+}
+.booking-emailLink:focus-visible {
+  outline: 2px solid var(--brand-bg-dark, #800020);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Let Cal's auto-resize drive height with no forced min-height dead band on
+   the wrapper or injected <iframe class="cal-embed">. */
+.booking-card .cal-frame[data-cal-ready='false'] {
+  min-height: 440px;
+}
+.booking-card .cal-frame[data-cal-ready='true'] {
+  min-height: 0;
+}
+.booking-card .cal-embed-widget .cal-embed,
+.booking-card .cal-embed-widget .cal-embed iframe {
+  min-height: 0;
+}
+
+@media (min-width: 1024px) {
+  .booking-card .cal-frame {
+    max-width: none;
+    width: 100%;
+    margin-inline: 0;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #f3e6d5;
+    border: 1px solid #e2cdb8;
+    box-shadow: 0 10px 28px -18px color-mix(in srgb, var(--color-darkPurple) 22%, transparent);
+  }
+  .booking-card .cal-skeleton {
+    inset: 14px;
+  }
+  .booking-card .cal-fallback {
+    max-width: none;
+  }
+}
+
+/* ==========================================================================
+   Contact: Start a Project (#start-a-project)
+   ========================================================================== */
+#start-a-project .u-lede {
+  margin-top: 16px;
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--brand-bg-dark, #800020);
+}
+
+#start-a-project .project-process {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 12px;
+}
+
+@media (min-width: 1024px) {
+  #start-a-project .project-process {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 3vw, 44px);
+    margin-top: 18px;
+  }
+}
+
+#start-a-project .project-step {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#start-a-project .project-step__text {
+  margin: 0;
+  font-family: var(--font-nohemi), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 1.18vw, 18px);
+  line-height: 1.7;
+  letter-spacing: -0.005em;
+  color: var(--brand-bg-dark, #800020);
+  text-wrap: pretty;
+}
+
+

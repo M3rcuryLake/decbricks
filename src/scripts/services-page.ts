@@ -1,6 +1,11 @@
 import { gsap, ScrollTrigger, SplitText, bp, bus, prefersReducedMotion } from './core/gsap';
 import { getLenis } from './smooth-scroll';
-import { getWebGLExperience, type WebGLTrail } from './webgl/experience';
+import {
+  getWebGLExperience,
+  whenWebGLReady,
+  type WebGLExperienceAPI,
+  type WebGLTrail,
+} from './webgl/experience';
 import { CLIENT_LOGOS, type ClientLogo, SERVICES } from '../data/services';
 
 /** Section items derived from hero "Jump to" links so any page can reuse this
@@ -80,33 +85,41 @@ function initServicesHero(heroEl: HTMLElement) {
   let webGLTrail: WebGLTrail | null = null;
   let entranceTl: gsap.core.Timeline | null = null;
   let playQueued = false;
+  let unsubWebGLReady: (() => void) | null = null;
+  let destroyed = false;
+  let completedEmitted = false;
+  let readyEmitted = false;
 
-  const setupHeroEntrance = () => {
+  const emitHeroReadyOnce = () => {
+    if (readyEmitted) return;
+    readyEmitted = true;
+    bus.emit('hero-ready');
+  };
+
+  const emitComplete = () => {
+    if (completedEmitted) return;
+    completedEmitted = true;
+    bus.emit('hero-entrance-complete');
+    getLenis()?.start();
+  };
+
+  const mountTrailEntrance = (exp: WebGLExperienceAPI) => {
+    if (destroyed || webGLTrail) return;
     const trailSvg = heroEl.querySelector<SVGSVGElement>('.sections-servicesHero__trail');
     const isDesktop = window.innerWidth >= bp.lg;
     const reduced = prefersReducedMotion();
 
-    if (isDesktop && trailSvg && (window as any).hasWebGL) {
-      const exp = getWebGLExperience();
-      if (exp) {
-        webGLTrail = exp.createTrail(trailSvg, {
-          // Original gates on the 2xl breakpoint (1440px), not xl.
-          planeSize: () => ({
-            width: window.innerWidth < bp['2xl'] ? 75 : 100,
-            height: window.innerWidth < bp['2xl'] ? 75 : 100,
-          }),
-        });
-      }
-    }
+    if (!isDesktop || !trailSvg || !(window as any).hasWebGL) return;
+
+    webGLTrail = exp.createTrail(trailSvg, {
+      // Original gates on the 2xl breakpoint (1440px), not xl.
+      planeSize: () => ({
+        width: window.innerWidth < bp['2xl'] ? 75 : 100,
+        height: window.innerWidth < bp['2xl'] ? 75 : 100,
+      }),
+    });
 
     if (webGLTrail && !reduced) {
-      let completedEmitted = false;
-      const emitComplete = () => {
-        if (completedEmitted) return;
-        completedEmitted = true;
-        bus.emit('hero-entrance-complete');
-        getLenis()?.start();
-      };
       entranceTl = gsap.timeline({
         paused: !playQueued,
         onComplete: () => {
@@ -122,9 +135,31 @@ function initServicesHero(heroEl: HTMLElement) {
           ease: 'power1.out',
         })
         .call(emitComplete, undefined, '<+0.2');
+
+      if (playQueued && entranceTl.paused()) {
+        entranceTl.play(0);
+      }
+    }
+  };
+
+  const setupHeroEntrance = () => {
+    if (destroyed) return;
+    const trailSvg = heroEl.querySelector<SVGSVGElement>('.sections-servicesHero__trail');
+    const isDesktop = window.innerWidth >= bp.lg;
+
+    if (isDesktop && trailSvg) {
+      const exp = getWebGLExperience();
+      if (exp && (window as any).hasWebGL) {
+        mountTrailEntrance(exp);
+      } else if (!unsubWebGLReady) {
+        unsubWebGLReady = whenWebGLReady((readyExp) => {
+          unsubWebGLReady = null;
+          mountTrailEntrance(readyExp);
+        });
+      }
     }
 
-    bus.emit('hero-ready');
+    emitHeroReadyOnce();
   };
 
   const onPlayHero = () => {
@@ -133,8 +168,7 @@ function initServicesHero(heroEl: HTMLElement) {
       entranceTl.play();
     } else {
       playQueued = true;
-      bus.emit('hero-entrance-complete');
-      getLenis()?.start();
+      emitComplete();
     }
   };
 
@@ -151,6 +185,9 @@ function initServicesHero(heroEl: HTMLElement) {
   }
 
   return () => {
+    destroyed = true;
+    unsubWebGLReady?.();
+    unsubWebGLReady = null;
     bus.off('hero-transition-start', onPlayHero);
     bus.off('transition-entrance-done', onTransitionEntranceDone);
     heroTriggers.forEach((st) => st.kill());

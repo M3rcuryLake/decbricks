@@ -36,7 +36,7 @@ const isEven = index % 2 === 0;
     aria-hidden="true"
   >
     <span
-      class="absolute top-70 -left-7 font-offBit text-[275px] leading-[0.98] font-bold whitespace-nowrap text-purple/5 uppercase lg:top-75 lg:text-[310px] xl:top-95 xl:-left-10 xl:text-[390px] 3xl:top-125 3xl:text-[500px] 4xl:top-145 4xl:-left-15 4xl:text-[580px]"
+      class="absolute top-70 -left-7 font-offBit text-[275px] leading-[0.98] font-normal whitespace-nowrap text-purple/5 uppercase lg:top-75 lg:text-[310px] xl:top-95 xl:-left-10 xl:text-[390px] 3xl:top-125 3xl:text-[500px] 4xl:top-145 4xl:-left-15 4xl:text-[580px]"
     >
       {service.number}
     </span>
@@ -47,7 +47,7 @@ const isEven = index % 2 === 0;
     <div class="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-25">
       <div>
         <p
-          class="u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
+          class="u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
         >
           <svg
             class="svgs-doubleSlash w-15 shrink-0 text-purple xl:w-20 4xl:w-25"
@@ -74,7 +74,7 @@ const isEven = index % 2 === 0;
       </div>
       <div class="lg:max-w-480">
         <p
-          class="mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0 lg:leading-[1.05] xl:text-[18px] 3xl:text-[20px] 4xl:text-[22px]"
+          class="mt-15 font-neuePower text-[16px] leading-[1.1] font-medium text-darkPurple lg:mt-0 lg:leading-[1.05] xl:text-[18px] 3xl:text-[20px] 4xl:text-[22px]"
         >
           {service.lead}
         </p>
@@ -159,7 +159,7 @@ const isEven = index % 2 === 0;
             'mt-25 flex flex-col items-center lg:mt-auto lg:pt-40',
           ]}
         >
-          <p class="flex items-center gap-8 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase">
+          <p class="flex items-center gap-8 font-neuePower text-[12px] leading-none font-medium text-darkPurple uppercase">
             <svg
               class="svgs-doubleSlash w-15 shrink-0 text-purple"
               viewBox="0 0 18 10"
@@ -184,7 +184,7 @@ const isEven = index % 2 === 0;
           >
             {
               service.projects.map((project) => (
-                <li class="flex h-25 items-center gap-7 rounded-6 bg-neonGreen px-10 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:text-[14px]">
+                <li class="flex h-25 items-center gap-7 rounded-6 bg-neonGreen px-10 font-neuePower text-[12px] leading-none font-medium text-darkPurple uppercase lg:text-[14px]">
                   <svg
                     class="svgs-cross w-6 shrink-0"
                     viewBox="0 0 12 12"
@@ -216,7 +216,7 @@ const isEven = index % 2 === 0;
           </span>
           <a
             href={`/contact?service=${service.id}`}
-            class="parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-none font-bold text-darkPurple uppercase transition-colors duration-200"
+            class="parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-none font-medium text-darkPurple uppercase transition-colors duration-200"
           >
             <span>Discuss {service.navLabel}</span>
             <span aria-hidden="true">-&gt;</span>
