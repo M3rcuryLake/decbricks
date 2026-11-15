@@ -2,11 +2,11 @@
  * Testimonials content for the home page.
  *
  * Current set = clearly-marked placeholders derived from the template's own
- * quotes (sentiment + length variety preserved, all real names/companies and
- * "1minus1" mentions removed, every quote mapped to a real Decbricks service
+ * quotes (sentiment + length variety preserved, all original entity/company
+ * mentions removed, every quote mapped to a real Decbricks service
  * from `src/data/services.ts`).
  *
- * Placeholder safety (see docs/plans/testimonials-redesign-plan.md §7):
+ * Placeholder safety:
  * - The section is hidden in production builds while any `placeholder: true`
  *   entry exists, unless PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true.
  * - `scripts/check-placeholders.mjs` (npm run check:placeholders) guards the

@@ -285,5 +285,5 @@ export const SERVICES: ServiceItem[] = [
   },
 ];
 
-// Cleared of 1minus1 studio logos until real Decbricks client logos & permissions exist (open-items A14 / B2).
+// Cleared of template studio logos until real Decbricks client logos & permissions exist (open-items A14 / B2).
 export const CLIENT_LOGOS: ClientLogo[] = [];

@@ -56,7 +56,7 @@ export const FOOTER = {
     {
       id: 'services',
       heading: 'Services',
-      /** Kept empty until real Decbricks services replace 1minus1 copy (open-items C1/B2). */
+      /** Kept empty until real Decbricks services replace template copy (open-items C1/B2). */
       links: [],
     },
   ] as FooterColumn[],
@@ -72,13 +72,8 @@ export const FOOTER = {
     { label: 'Privacy', href: '/terms#privacy-policy', enabled: true },
     { label: 'Terms', href: '/terms', enabled: true },
   ] as FooterLink[],
-  newsletter: {
-    endpoint: import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT || '',
-  },
   cookieLabel: 'Manage Cookies',
   copyright: '© 2026 Decbricks. All rights reserved.',
-  /** Retired marquee adjectives preserved as optional reference copy (open-items C9). */
-  marqueeRetiredWords: ['Innovative', 'Distinct', 'Authentic', 'Creative', 'Brave'],
 } as const;
 
 export const FOOTER_CONTACT = {

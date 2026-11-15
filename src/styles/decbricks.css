@@ -869,7 +869,7 @@ li {
 
 /* --------------------------------------------------------------------------
    Phase 2 mobile menu (§4.2): full editorial overlay — straight grid, no
-   rotation, no 1minus1 glyph, mono meta row. The overlay nav itself spans
+   rotation, no template glyph, mono meta row. The overlay nav itself spans
    the viewport; links get hairline separators + mono indexes.
    -------------------------------------------------------------------------- */
 .structure-menu > nav.absolute {
