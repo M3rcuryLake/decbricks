@@ -6,8 +6,9 @@ const btnTeardowns = new WeakMap<HTMLElement, () => void>();
 
 function initCharSlideButton(btn: HTMLElement, textSelector: string) {
   if (btn.dataset.btnInit === '1') return;
-  btn.dataset.btnInit = '1';  const texts = btn.querySelectorAll<HTMLElement>(textSelector);
+  const texts = btn.querySelectorAll<HTMLElement>(textSelector);
   if (texts.length < 2) return;
+  btn.dataset.btnInit = '1';
 
   const mm = gsap.matchMedia();
   mm.add(
@@ -61,6 +62,7 @@ function initCharSlideButton(btn: HTMLElement, textSelector: string) {
 
   return () => {
     btnTeardowns.delete(btn);
+    delete btn.dataset.btnInit;
     mm.revert();
   };
 }

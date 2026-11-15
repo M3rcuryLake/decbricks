@@ -1,0 +1,98 @@
+{
+  "mode": "before",
+  "baseUrl": "http://127.0.0.1:4329",
+  "routes": [
+    {
+      "route": "/",
+      "name": "home",
+      "passed": true,
+      "imgCount": 75,
+      "brokenImgs": [],
+      "bgCount": 3,
+      "brokenBgs": [],
+      "failedLocalAssets": [],
+      "failedExternalCount": 0,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/about",
+      "name": "about",
+      "passed": true,
+      "imgCount": 10,
+      "brokenImgs": [],
+      "bgCount": 3,
+      "brokenBgs": [],
+      "failedLocalAssets": [],
+      "failedExternalCount": 0,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/services",
+      "name": "services",
+      "passed": true,
+      "imgCount": 10,
+      "brokenImgs": [],
+      "bgCount": 3,
+      "brokenBgs": [],
+      "failedLocalAssets": [],
+      "failedExternalCount": 0,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/contact",
+      "name": "contact",
+      "passed": true,
+      "imgCount": 3,
+      "brokenImgs": [],
+      "bgCount": 3,
+      "brokenBgs": [],
+      "failedLocalAssets": [],
+      "failedExternalCount": 0,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/terms",
+      "name": "terms",
+      "passed": true,
+      "imgCount": 1,
+      "brokenImgs": [],
+      "bgCount": 2,
+      "brokenBgs": [],
+      "failedLocalAssets": [],
+      "failedExternalCount": 0,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/404",
+      "name": "404",
+      "passed": true,
+      "imgCount": 1,
+      "brokenImgs": [],
+      "bgCount": 2,
+      "brokenBgs": [],
+      "failedLocalAssets": [],
+      "failedExternalCount": 0,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/definitely-missing-page-check",
+      "name": "dynamic-404",
+      "passed": true,
+      "imgCount": 1,
+      "brokenImgs": [],
+      "bgCount": 2,
+      "brokenBgs": [],
+      "failedLocalAssets": [],
+      "failedExternalCount": 0,
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "allPassed": true
+}

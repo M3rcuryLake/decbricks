@@ -1,7 +1,7 @@
 import { gsap, bp, ScrollTrigger } from './core/gsap';
 import { getLenis } from './smooth-scroll';
 
-const SHOWREEL_MP4 = '/videos/3a265a95e25bd70a0242eb3a163a177b.mp4';
+const SHOWREEL_MP4 = '/videos/decbricks-showreel.mp4';
 
 function formatTimestamp(sec: number): string {
   if (!isFinite(sec) || sec < 0) return '00.00';

@@ -50,6 +50,7 @@ const maxSlideIndex = Math.max(0, PROJECTS.length - 1);
                     height={logo.height}
                     class="max-h-150 object-contain max-w-150 h-full w-auto"
                     loading="lazy"
+                    decoding="async"
                     draggable="false"
                   />
                 </picture>
@@ -211,6 +212,7 @@ const maxSlideIndex = Math.max(0, PROJECTS.length - 1);
           height={logo.height}
           class="max-h-120 object-contain max-w-200 sticker pointer-events-none invisible absolute top-0 left-0 h-1 w-1"
           loading="lazy"
+          decoding="async"
           aria-hidden="true"
           draggable="false"
         />

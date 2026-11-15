@@ -1145,7 +1145,7 @@ export function createExperience(): WebGLExperienceAPI | null {
   const mouse = new THREE.Vector2(0, 0);
   const startTime = Date.now();
 
-  loadCachedTexture('/images/square-solid.png').then((squareTex) => {
+  loadCachedTexture('/assets/shared/square-solid.png').then((squareTex) => {
     if (!squareTex) return;
     const waveGeom = new THREE.PlaneGeometry(1, 1, 1, 1);
     for (let i = 0; i < maxWaves; i++) {
