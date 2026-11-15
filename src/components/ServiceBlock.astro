@@ -140,7 +140,7 @@ const isEven = index % 2 === 0;
             widths={[...BLOCK_IMAGE_WIDTHS]}
             sizes={BLOCK_IMAGE_SIZES}
             quality={55}
-            loading="eager"
+            loading={index === 0 ? 'eager' : 'lazy'}
             decoding="async"
             fetchpriority={index === 0 ? 'high' : undefined}
             {...(service.media.position ? { position: service.media.position } : {})}

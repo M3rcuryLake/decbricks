@@ -1,11 +1,11 @@
 import type { ImageMetadata } from 'astro';
-import strategyConsultingPic from '../assets/services/Strategy_Consulting.png';
-import designBrandingPic from '../assets/services/Design_Branding.png';
-import webSoftwarePic from '../assets/services/Web_n_Software_Development.png';
-import mobileAppPic from '../assets/services/Mobile_App_Development.png';
-import aiAutomationPic from '../assets/services/AI_Automation.png';
-import digitalMarketingPic from '../assets/services/Digital_Marketing_n_Growth.png';
-import businessOutreachPic from '../assets/services/Business_Development_n_Outreach.png';
+import strategyConsultingPic from '../assets/service/strategy-consulting.png';
+import designBrandingPic from '../assets/service/design-branding.png';
+import webSoftwarePic from '../assets/service/web-n-software-development.png';
+import mobileAppPic from '../assets/service/mobile-app-development.png';
+import aiAutomationPic from '../assets/service/ai-automation.png';
+import digitalMarketingPic from '../assets/service/digital-marketing-n-growth.png';
+import businessOutreachPic from '../assets/service/business-development-n-outreach.png';
 
 export type ServiceId =
   | 'strategy-consulting'

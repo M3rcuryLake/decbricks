@@ -132,7 +132,7 @@ const [first, ...rest] = section.paragraphs;
           widths={[...BLOCK_IMAGE_WIDTHS]}
           sizes={BLOCK_IMAGE_SIZES}
           quality={50}
-          loading="eager"
+          loading={index === 0 ? 'eager' : 'lazy'}
           decoding="async"
           fetchpriority={index === 0 ? 'high' : undefined}
           {...(section.image.position ? { position: section.image.position } : {})}

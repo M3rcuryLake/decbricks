@@ -1,17 +1,17 @@
 import type { ImageMetadata } from 'astro';
 
-import barclays from '../assets/company-logos/barclays.png';
-import chargebee from '../assets/company-logos/chargebee.png';
-import ey from '../assets/company-logos/ey.png';
-import findtern from '../assets/company-logos/findtern.png';
-import fourkites from '../assets/company-logos/fourkites.png';
-import logoutSpells from '../assets/company-logos/logout-spells.png';
-import sparq from '../assets/company-logos/sparq.png';
-import tcs from '../assets/company-logos/tcs.png';
-import turing from '../assets/company-logos/turing.png';
-import upcomingEngineer from '../assets/company-logos/upcoming-engineer.png';
-import vedricx from '../assets/company-logos/vedricx.png';
-import zoho from '../assets/company-logos/zoho.png';
+import barclays from '../assets/companyLogos/barclays.webp';
+import chargebee from '../assets/companyLogos/chargebee.webp';
+import ey from '../assets/companyLogos/ey.webp';
+import findtern from '../assets/companyLogos/findtern.webp';
+import fourkites from '../assets/companyLogos/fourkites.webp';
+import logoutSpells from '../assets/companyLogos/logout-spells.webp';
+import sparq from '../assets/companyLogos/sparq.webp';
+import tcs from '../assets/companyLogos/tcs.webp';
+import turing from '../assets/companyLogos/turing.webp';
+import upcomingEngineer from '../assets/companyLogos/upcoming-engineer.webp';
+import vedricx from '../assets/companyLogos/vedricx.webp';
+import zoho from '../assets/companyLogos/zoho.webp';
 
 export interface CompanyLogo {
   id: string;

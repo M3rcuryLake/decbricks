@@ -81,7 +81,12 @@ Fonts: Bricolage Grotesque (headings/UI) / Hanken Grotesk (body) / FK Raster Rom
 - Record every non-obvious decision in `docs/Design-handoff.md` (what / why / files).
 - Context hygiene: read files in slices; prefer `grep -n` + `sed -n 'a,bp'`; large files: Hero.astro, CaseStudies.astro, Testimonials.astro, global.css, experience.ts — do not open unless the task needs them.
 
+## Asset conventions
+- **Roots & groups:** Astro-bundled images stay in `src/assets/` (`about/`, `service/`, `projects/`, `companyLogos/`); plain URL strings stay in `public/assets/` (`shared/`, `home/`, `contact/`, etc.; client brand logos/favicons/OG remain in `public/brand/` and `public/og-default.png`). See `docs/ASSET_MAP.md`.
+- **Naming:** lowercase `kebab-case`, `.webp` extension (no spaces/special chars; company logos `<company>.webp`). Keep original format only when WebP is larger (e.g., indexed halftone PNGs or tiny solid textures).
+- **Optimisation:** WebP `quality: 80`, `effort: 6`, sRGB profile, non-colour metadata stripped, dimensions preserved via `node scripts/optimise-images.mjs --input <dir|file> [--output <dir>]`. Add explicit `width`/`height` + `loading="lazy"` + `decoding="async"` on below-the-fold images only.
+
 ## Docs index
-PROGRESS.md · Design-handoff.md · tokens.md · mapping.md · open-items.md · Implementation-plan.md · about-section-data.md
+PROGRESS.md · Design-handoff.md · tokens.md · mapping.md · open-items.md · Implementation-plan.md · about-section-data.md · ASSET_MAP.md
 
 See "Skills" above for `.agents/skills/*` routing; audit-script results belong in `docs/qa/`.
