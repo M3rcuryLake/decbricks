@@ -3,35 +3,10 @@ import { getLenis } from './smooth-scroll';
 
 let didWarnMissing = false;
 
-async function copyText(text: string): Promise<boolean> {
-  if (navigator.clipboard?.writeText) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch {
-      // Fallback below when clipboard permission is unavailable
-    }
-  }
-  try {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.setAttribute('readonly', '');
-    ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0;';
-    document.body.appendChild(ta);
-    ta.select();
-    const ok = document.execCommand('copy');
-    document.body.removeChild(ta);
-    return ok;
-  } catch {
-    return false;
-  }
-}
-
 /**
  * Footer lifecycle (Phases 1–4):
  * - Brick-laid wordmark IntersectionObserver adds `.is-built` once and disconnects.
  * - Studio clock updates via `Intl.DateTimeFormat`, pausing while tab is hidden.
- * - Copy-email button with clipboard + execCommand fallback and `role="status"` toast.
  * - Quantised 6-brick scroll-progress gauge on `.parts-btnScrollTop`.
  * - Full listener / timer / observer / ScrollTrigger teardown across client swaps.
  */
@@ -57,8 +32,6 @@ export function initFooter() {
   const brickEls = bricksWrap
     ? Array.from(bricksWrap.querySelectorAll<HTMLElement>('[data-brick]'))
     : [];
-  const copyBtn = footer.querySelector<HTMLButtonElement>('[data-copy-email]');
-  const copyStatus = footer.querySelector<HTMLElement>('[data-copy-status]');
   const statusWrap = footer.querySelector<HTMLElement>('[data-studio-tz]');
   const clockEl = footer.querySelector<HTMLTimeElement>('[data-footer-clock]');
 
@@ -139,43 +112,7 @@ export function initFooter() {
     document.addEventListener('visibilitychange', onVisibilityChange);
   }
 
-  // 3. Copy-email button with status live region
-  let copyTimer: number | null = null;
-  const clearCopyTimer = () => {
-    if (copyTimer !== null) {
-      window.clearTimeout(copyTimer);
-      copyTimer = null;
-    }
-  };
-
-  const onCopyEmail = async () => {
-    if (!copyBtn) return;
-    const email = copyBtn.dataset.copyEmail || '';
-    if (!email) return;
-    const ok = await copyText(email);
-    if (disposed) return;
-    clearCopyTimer();
-    if (ok) {
-      copyBtn.dataset.copied = 'true';
-      copyBtn.textContent = 'Copied';
-      if (copyStatus) copyStatus.textContent = 'Email copied';
-    } else {
-      delete copyBtn.dataset.copied;
-      if (copyStatus) copyStatus.textContent = 'Copy failed – select the address';
-    }
-    copyTimer = window.setTimeout(() => {
-      if (disposed) return;
-      if (copyBtn) {
-        delete copyBtn.dataset.copied;
-        copyBtn.textContent = 'Copy';
-      }
-      if (copyStatus) copyStatus.textContent = '';
-      copyTimer = null;
-    }, 2600);
-  };
-  copyBtn?.addEventListener('click', onCopyEmail);
-
-  // 4. Quantised 6-brick scroll-progress gauge on Rise to the top
+  // 3. Quantised 6-brick scroll-progress gauge on Rise to the top
   let lastFilled = -1;
   const applyBrickProgress = (progress: number) => {
     if (!brickEls.length) return;
@@ -226,8 +163,6 @@ export function initFooter() {
     if (clockFormatter) {
       document.removeEventListener('visibilitychange', onVisibilityChange);
     }
-    clearCopyTimer();
-    copyBtn?.removeEventListener('click', onCopyEmail);
     progressTrigger?.kill();
     progressTrigger = null;
     scrollTopBtn?.removeEventListener('click', onScrollTop);
