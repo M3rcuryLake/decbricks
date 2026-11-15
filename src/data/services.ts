@@ -227,7 +227,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Get noticed. Reach further. Grow faster.',
     paragraphs: [
       'We help businesses strengthen their online presence, connect with potential customers and build digital marketing strategies focused on meaningful growth.',
-      'From organic search foundations to event-led acquisition, we helped Findtern build a stronger digital presence through SEO-optimised website development targeting 10K+ potential student and recruiter visits, and supported DevSummit and DSC SRM through event marketing and digital outreach with campaigns designed to reach 5K+ students and tech enthusiasts.',
+      'From organic search foundations to paid and event-led acquisition, we have run Meta ads campaigns alongside helping Findtern build a stronger digital presence through SEO-optimised website development targeting 10K+ potential student and recruiter visits, and supporting DevSummit and DSC SRM through event marketing and digital outreach with campaigns designed to reach 5K+ students and tech enthusiasts.',
     ],
     capabilities: [
       'Search Engine Optimisation (SEO)',
@@ -235,7 +235,7 @@ export const SERVICES: ServiceItem[] = [
       'Social Media Management',
       'Performance Marketing',
       'Content Marketing',
-      'Paid Advertising',
+      'Paid Advertising (Meta Ads)',
       'Email Marketing',
       'Lead Generation',
     ],

@@ -350,8 +350,7 @@ export class Hero {
       const c = boxOf(d.end);
       const tilt = this.normalizeTilt(a);
       const cs = getComputedStyle(a);
-      const sx = c.width / s.width;
-      const sy = c.height / s.height;
+      const scale = Math.min(c.width / s.width, c.height / s.height);
       const tl = (this.scrollTl = gsap.timeline({
         paused: reduceMotion,
         defaults: { ease: 'linear', duration: 0.5 },
@@ -393,8 +392,8 @@ export class Hero {
           {
             x: c.x - s.x + (c.width - s.width) / 2,
             y: c.y - s.y + (c.height - s.height) / 2,
-            scaleX: sx,
-            scaleY: sy,
+            scaleX: scale,
+            scaleY: scale,
             rotate: 0,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
@@ -410,9 +409,11 @@ export class Hero {
         );
         this.pinBaseY = c.y - s.y + (c.height - s.height) / 2;
       } else {
-        // Mobile DOM morph: tween box dimensions cleanly so <video> stays 1x unstretched and radii never warp.
-        const targetX = c.x - s.x + (c.width - s.width);
-        const targetY = c.y - s.y;
+        // Mobile DOM morph: scale dimensions uniformly so <video> preserves native 16:9 aspect ratio inside #showreel.
+        const targetWidth = s.width * scale;
+        const targetHeight = s.height * scale;
+        const targetX = c.x - s.x + (c.width + targetWidth) / 2 - s.width;
+        const targetY = c.y - s.y + (c.height - targetHeight) / 2;
         const yProxy = { y: 0 };
         this.mobileMorphY = reduceMotion ? targetY : 0;
         this.mobilePinShift = 0;
@@ -433,8 +434,8 @@ export class Hero {
           },
           {
             x: targetX,
-            width: c.width,
-            height: c.height,
+            width: targetWidth,
+            height: targetHeight,
             rotate: 0,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,

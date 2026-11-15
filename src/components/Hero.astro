@@ -69,10 +69,10 @@ const HOME_CARD_STYLES = [
             ><span class="sections-hero__headingInner pointer-default block"> Beyond </span></span
           ></div
         ><div
-          class="pin-trigger__mobile start-mobile absolute -top-120 -right-100 z-20 aspect-8/5 w-320 rotate-14 overflow-hidden rounded-20 rounded-tr-none sm:w-480 lg:hidden"
+          class="pin-trigger__mobile start-mobile absolute -top-120 -right-100 z-20 aspect-video w-320 rotate-14 overflow-hidden rounded-20 rounded-tr-none sm:w-480 lg:hidden"
           ><video
-            data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
-            class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-cover"
+            data-preview-mp4="/videos/decbricks-showreel-preview.mp4"
+            class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-contain"
             playsinline
             loop
             preload="metadata"
@@ -103,8 +103,8 @@ const HOME_CARD_STYLES = [
         />
       </div
       ><video
-        data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
-        class="sections-hero__videoPreview start absolute top-40 right-1/12 z-10 hidden aspect-3/2 w-320 rotate-14 overflow-hidden rounded-40 rounded-tr-none lg:invisible lg:block 2xl:w-480 webgl-video parts-webglPreview overflow-hidden object-cover"
+        data-preview-mp4="/videos/decbricks-showreel-preview.mp4"
+        class="sections-hero__videoPreview start absolute top-40 right-1/12 z-10 hidden aspect-video w-320 rotate-14 overflow-hidden rounded-40 rounded-tr-none lg:invisible lg:block 2xl:w-480 webgl-video parts-webglPreview overflow-hidden object-contain"
         classname="lg:opacity-0"
         playsinline
         loop
@@ -361,8 +361,8 @@ const HOME_CARD_STYLES = [
         ><video
           preload="none"
           crossorigin="anonymous"
-          class="webgl-video h-full w-full object-cover opacity-0"
-          aria-label="1minus1 Showreel: Creative Agency for video games"
+          class="webgl-video h-full w-full object-contain opacity-0"
+          aria-label="Decbricks Showreel: Technology, creative & growth agency"
           aria-describedby="video-description"
           role="application"
           tabindex="0"
@@ -437,7 +437,7 @@ const HOME_CARD_STYLES = [
             <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
             <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg></div
         ><div class="overlay absolute inset-0 z-10 h-full w-full" tabindex="-1"></div
-        ><div id="video-description" class="sr-only">The 1minus1 showreel 2025.</div></div
+        ><div id="video-description" class="sr-only" set:html={brandify('The Decbricks showreel 2026.')} /></div
       ></div
     ></div
   ><div

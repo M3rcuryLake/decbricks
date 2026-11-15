@@ -1,6 +1,5 @@
 import type { ImageMetadata } from 'astro';
 
-import aura from '../assets/company-logos/aura.png';
 import barclays from '../assets/company-logos/barclays.png';
 import chargebee from '../assets/company-logos/chargebee.png';
 import ey from '../assets/company-logos/ey.png';
@@ -30,7 +29,6 @@ export const COMPANY_LOGOS: readonly CompanyLogo[] = [
   { id: 'fourkites', alt: 'FourKites', src: fourkites },
   { id: 'turing', alt: 'Turing', src: turing },
   { id: 'sparq', alt: 'Sparq', src: sparq },
-  { id: 'aura', alt: 'Aura Lifecare', src: aura },
   { id: 'findtern', alt: 'Findtern', src: findtern },
   { id: 'upcoming-engineer', alt: 'Upcoming Engineer', src: upcomingEngineer },
   { id: 'vedricx', alt: 'Vedricx Global LLP', src: vedricx },
