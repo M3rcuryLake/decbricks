@@ -7,7 +7,7 @@ Turn this template into the Decbricks site: brand palette + Bricolage Grotesque 
 
 ## Stack (verified from package.json)
 Astro ^5, TypeScript, GSAP ^3.15 (+ScrollTrigger), Lenis smooth scroll, three ^0.187 (WebGL). Scripts: `npm run dev | build | preview | check`.
-**There is NO Tailwind dependency.** `src/styles/global.css` is a *compiled, minified Tailwind v4 output* (~157 KB, effectively one line, 2 newline-terminated lines). Utilities in markup only work if the class already exists in that file. See "CSS rules".
+**There is NO Tailwind dependency.** `src/styles/global.css` is a *compiled, minified Tailwind v4 output* (~56 KB after `D-05` unused/duplicate rule purge, 2 newline-terminated lines). Utilities in markup only work if the class already exists in that file. See "CSS rules".
 
 ## Layout
 ```

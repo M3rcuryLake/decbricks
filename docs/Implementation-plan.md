@@ -74,13 +74,13 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 
 ## Phase 7 — Performance & a11y
 - Measure first: `npm run build && npm run preview`; Lighthouse (mobile) on `/about`, `/contact` if available; else inspect bundle sizes in `dist/_astro`.
-- Known suspects: `webgl/experience.ts` + three (≈48 KB source, large bundle) boots on every page via `main.ts` → lazy `import()` after first paint/idle and only where `.webgl-*` targets exist; Loader overlay delaying LCP; CookieBanner; font weights (max 4 files above fold); render-blocking CSS (157 KB) — consider `inlineStylesheets` / critical split only if safe.
+- Known suspects: `webgl/experience.ts` + three (≈48 KB source, large bundle) boots on every page via `main.ts` → lazy `import()` after first paint/idle and only where `.webgl-*` targets exist; Loader overlay delaying LCP; CookieBanner; font weights (max 4 files above fold); render-blocking CSS (originally 157 KB; purged via AST in `chore/repo-cleanup` (`D-05`) to ~56 KB source / ~109 KB total CSS) — consider `inlineStylesheets` / critical split only if safe.
 - INP: avoid long tasks in init functions; ScrollTrigger refresh debounced; passive listeners.
 - CLS: reserve Cal embed height; font fallback metrics; image dimensions.
 - Preserve animations. Reduced-motion: disable trail/marquee/transition extras where template lacks it, for new code at minimum.
 - a11y: skip link (`#main-content`), landmarks (`main`, `nav` labels), focus order through sidebar nav (it has `inert` + `lg:block` — confirm intended), form labels/errors (`aria-describedby`, live region), Cal fallback announcements, link purposes, 44px targets, colour contrast re-test.
 
 ## Phase 8 — Cleanup & handoff
-- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; unused source fonts, duplicate `docs/` source drops, retired docs/screenshots, dead copy-email/`ServiceArtwork` branches, empty-safe `D-01`–`D-04` scaffolds (`ContactNumbers`, `TeamSection`, `ServicesClients`, `FooterStatus`), `D-08` (`visual-diff.py`), and dead `decbricks.css` rules pruned during repo cleanup.
+- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; unused source fonts, duplicate `docs/` source drops, retired docs/screenshots, dead copy-email/`ServiceArtwork` branches, empty-safe `D-01`–`D-04` scaffolds (`ContactNumbers`, `TeamSection`, `ServicesClients`, `FooterStatus`), `D-08` (`visual-diff.py`), dead `decbricks.css` rules, and duplicate/unused Tailwind rules in `src/styles/global.css` (`D-05`, `157,592 B` → `56,369 B`) pruned during repo cleanup.
 - `npm run build`, `npm run check`, `check:brand`, `headings`, `links`, `check:placeholders`, `check:footer`, no `1minus1` string in shipped HTML (`grep -ri 1minus1 dist`).
 - Finalise all docs; PROGRESS.md fully current.
