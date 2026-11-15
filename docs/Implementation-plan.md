@@ -45,7 +45,7 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 
 ## Phase 5 — Contact page (§4.2)
 - **Delete/replace** `pages/contact.astro` (broken). New page per mapping.md.
-- SEO: title `Contact Decbricks | Start Your Digital Project`; description `Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.`; canonical `/contact`; JSON-LD `ContactPage` + `Organization` (with `contactPoint` from contact.ts) + `BreadcrumbList`.
+- SEO: title `Contact Decbricks | Start Your Digital Project`; description `Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.`; canonical `/contact`; JSON-LD `ContactPage` + `Organization` + `BreadcrumbList` (`contactPoint`/`PHONES` removed in `chore/repo-cleanup`).
 - **5A Cal.com** (`CalEmbed.astro`, `scripts/cal-embed.ts`, `src/data/contact.ts` → `CAL = { link: 'username/event', origin: 'https://app.cal.com' }`):
   - Use Cal.com's official inline embed (vanilla loader, `embed.js` from `https://app.cal.com/embed/embed.js`), namespaced; NOT a custom UI.
   - Lazy-init when the section nears the viewport (IntersectionObserver, rootMargin ~400px) → no LCP/INP cost. Show skeleton in brand colours while loading.
@@ -57,8 +57,8 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
   - If `CAL.link` is empty: dev console warning + production fallback card (email/phone) — never a blank box. Add to open-items.
   - Privacy: Cal embed sets third-party cookies → mention in CookieBanner category if the banner has categories; load only after consent if the existing banner gates third parties (read `cookies.ts`).
 - **5B** Let's Start Something Great block (verbatim copy, H2/H3 as given).
-- **5C** Meet the Team: `TeamCard` (photo via `<img loading="lazy" decoding="async" width height>` with `alt`, name, role, short bio, optional LinkedIn). Grid 1/2/3 cols (existing grid classes). Data array empty-safe; ship with entries clearly flagged placeholder until the owner supplies real ones; **no invented names/faces**. Image pipeline: accept jpg/png in `src/assets/team/`, use `astro:assets` `<Image>` (WebP/AVIF, responsive `widths`).
-- **5D** Contact numbers: list of `{label, display, e164}`; `<a href="tel:+…">`, min 44×44 tap target, visible focus, copy-safe text; optional WhatsApp link if owner provides. Hide section if no numbers + dev warning.
+- **5C** Meet the Team: *Removed in `chore/repo-cleanup` (`2026-11-16`, `D-02` — `TeamSection.astro` and `src/data/team.ts` removed while `TEAM = []`).*
+- **5D** Contact numbers: *Removed in `chore/repo-cleanup` (`2026-11-16`, `D-01` — `ContactNumbers.astro` and `PHONES` removed while `PHONES = []`).*
 - Contact form: wire a real submission. Default (keeps site static): POST to `PUBLIC_CONTACT_ENDPOINT` (Web3Forms/Formspree/own worker) using fetch in `contact.ts`, with loading/success/error states, honeypot field, server-error fallback to `mailto:`. If an Astro adapter already exists, a `/api/contact` route is acceptable. Document in Design-handoff + open-items.
 
 ## Phase 6 — SEO & technical (§5)
@@ -67,7 +67,7 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 - Headings audit script: build → parse `dist/**/*.html` → assert exactly one `<h1>`, no level jumps; print table. Fix offenders (e.g. ContactForm `h2` sr-only is fine; ServicesHero `h1` sr-only must be the only H1).
 - URLs: `/about`, `/contact`, `/services`; trailing-slash policy set in astro.config (`trailingSlash`/`build.format`) and canonicals consistent with it.
 - `src/pages/sitemap.xml.ts` (static endpoint, lists indexable pages with lastmod = build date) and `src/pages/robots.txt.ts` (Allow all + `Sitemap:`; `Disallow: /` unless production env). No new dependency.
-- JSON-LD builder `src/lib/schema.ts`: `Organization` (name, url, logo, sameAs, contactPoint[telephone, email, areaServed IN + international]), `WebSite`, `Service` entries for the capability list (custom software, web & mobile apps, AI, business automation, UI/UX design, digital marketing, business development) on the Services page **only if** that page's content is Decbricks content, `BreadcrumbList`, `AboutPage`, `ContactPage`. Must match visible content; no invented ratings/addresses.
+- JSON-LD builder `src/lib/schema.ts`: `Organization` (name, url, logo, sameAs; `contactPoint` omitted after `PHONES` removal in `chore/repo-cleanup`), `WebSite`, `Service` entries for the capability list (custom software, web & mobile apps, AI, business automation, UI/UX design, digital marketing, business development) on the Services page **only if** that page's content is Decbricks content, `BreadcrumbList`, `AboutPage`, `ContactPage`. Must match visible content; no invented ratings/addresses.
 - Internal linking: About ↔ Contact ↔ Services via descriptive anchors (e.g. "start a project", "our services"); header/footer consistent. Natural keywords from the supplied copy only; no stuffing.
 - Images: `astro:assets` for new images; descriptive alt; `loading="lazy"` except LCP candidate (`fetchpriority="high"`); explicit width/height.
 - GSC: `PUBLIC_GSC_VERIFICATION` meta (and note DNS option), sitemap URL ready, canonical + robots correct. Document in open-items.
@@ -81,6 +81,6 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 - a11y: skip link (`#main-content`), landmarks (`main`, `nav` labels), focus order through sidebar nav (it has `inert` + `lg:block` — confirm intended), form labels/errors (`aria-describedby`, live region), Cal fallback announcements, link purposes, 44px targets, colour contrast re-test.
 
 ## Phase 8 — Cleanup & handoff
-- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; unused source fonts, duplicate `docs/` source drops, retired docs/screenshots, dead copy-email/`ServiceArtwork` branches, and dead `decbricks.css` rules pruned during repo cleanup.
+- Remove or park 1minus1-identity leftovers per open-items "Scope decisions"; unused source fonts, duplicate `docs/` source drops, retired docs/screenshots, dead copy-email/`ServiceArtwork` branches, empty-safe `D-01`–`D-04` scaffolds (`ContactNumbers`, `TeamSection`, `ServicesClients`, `FooterStatus`), `D-08` (`visual-diff.py`), and dead `decbricks.css` rules pruned during repo cleanup.
 - `npm run build`, `npm run check`, `check:brand`, `headings`, `links`, `check:placeholders`, `check:footer`, no `1minus1` string in shipped HTML (`grep -ri 1minus1 dist`).
 - Finalise all docs; PROGRESS.md fully current.

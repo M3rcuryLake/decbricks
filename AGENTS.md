@@ -14,10 +14,10 @@ Astro ^5, TypeScript, GSAP ^3.15 (+ScrollTrigger), Lenis smooth scroll, three ^0
 src/layouts/Base.astro          <head>, SEO props, font preload, JSON-LD slot
 src/pages/                      index, about, services, contact, terms, 404, robots.txt.ts, sitemap.xml.ts
 src/components/                 ActionButton, Header, Footer (+ footer/*), Loader, TransitionOverlay, CookieBanner,
-                                ContactForm, ServicesHero, ServicesSidebarNav, ServiceBlock, ServicesClients,
-                                AboutBlock, ContactBlock, ContactNumbers, CalEmbed, LegalPage, TeamSection,
+                                ContactForm, ServicesHero, ServicesSidebarNav, ServiceBlock,
+                                AboutBlock, ContactBlock, CalEmbed, LegalPage,
                                 Hero, CaseStudies, Testimonials
-src/data/                       about, company-logos, contact, footer, legal, projects, services, site, team, testimonials
+src/data/                       about, company-logos, contact, footer, legal, projects, services, site, testimonials
 src/lib/                        brand, image-preload, schema
 src/scripts/                    main.ts (boot + swap lifecycle), core/*, services-page.ts, footer.ts, cal-*.ts,
                                 contact.ts, case-studies.ts, testimonials.ts, legal-page.ts, image-preload-runtime.ts
@@ -40,7 +40,7 @@ docs/                           PROGRESS, Design-handoff, tokens, mapping, open-
 10. Honour `prefers-reduced-motion` for anything new.
 
 ## Active launch gates & invariants
-- **Open placeholders / owner items:** see `docs/open-items.md` (`ServicesClients`, `TeamSection`, `ContactNumbers`, `FooterStatus` remain empty-safe/hidden until owner data is supplied; `src/data/legal.ts` `/terms` carries `noindex, nofollow` draft placeholders).
+- **Open placeholders / owner items:** see `docs/open-items.md` (`src/data/legal.ts` `/terms` carries `noindex, nofollow` draft placeholders; `D-01`–`D-04` empty scaffolds removed in repo cleanup).
 - **Coral small-text contrast:** resolved via the green layer (owner-approved sage/olive palette extension) — see `tokens.md` §2c.
 - **Launch-day flip:** `PUBLIC_ENV=production` enables indexing in `Base.astro` and `robots.txt.ts` (otherwise `noindex, nofollow` guard is active).
 - **WebGL swap invariant:** canvases live inside `.page` and are replaced by every client-side transition → `reattachCanvases()` in `webgl/impl.ts` is called from `main.ts` `onAfterSwap`. Any future change to transition swaps or canvas ownership must keep this in sync.
@@ -50,7 +50,7 @@ Invoke via the `skill` tool when the task matches. **Precedence: AGENTS.md wins 
 
 | Skill | Use it when | Don't use it for |
 |---|---|---|
-| `frontend-design` | Visual decisions for NEW components (AboutBlock, CalEmbed, TeamSection, ContactNumbers) and polish passes | Re-picking palette/fonts — they are fixed (see Precedence) |
+| `frontend-design` | Visual decisions for NEW components (AboutBlock, CalEmbed) and polish passes | Re-picking palette/fonts — they are fixed (see Precedence) |
 | `frontend-ui-engineering` | Component structure, WCAG a11y, state/loading/error handling, responsive behaviour for new components | Following its React/Tailwind file-structure examples verbatim |
 | `astro-best-practices` | `.astro`/TS conventions: props typing, islands/`client:*`, `astro:assets`, routing, endpoints (`sitemap.xml.ts`, `robots.txt.ts`), build/check hygiene | Island advice that conflicts with the init+teardown rule (Hard rule 2) |
 | `web-design-guidelines` | AUDIT only: review pages/components; log findings and apply fixes in workflow | Implementing changes directly from the audit |
