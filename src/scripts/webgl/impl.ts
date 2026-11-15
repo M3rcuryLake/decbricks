@@ -453,7 +453,7 @@ function getElementSpace(el: HTMLElement, width: number, height: number, stripSl
   };
 }
 
-export interface WebGLImageUpdateValues {
+interface WebGLImageUpdateValues {
   x?: number;
   y?: number;
   scaleX?: number;

@@ -25,7 +25,7 @@ let cssBrandMarksPromise: Promise<void> | null = null;
 export const isSaveDataEnabled = (): boolean =>
   Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
 
-export function supportsAvif(): Promise<boolean> {
+function supportsAvif(): Promise<boolean> {
   if (!avifSupportPromise) {
     avifSupportPromise = new Promise((resolve) => {
       const probe = new Image();

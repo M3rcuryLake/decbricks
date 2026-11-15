@@ -38,7 +38,7 @@ export function webSiteSchema(): Json {
 }
 
 /** Breadcrumb trail; items are [name, path] pairs, path '' = home. */
-export function breadcrumbSchema(items: Array<{ name: string; path?: string }>): Json {
+function breadcrumbSchema(items: Array<{ name: string; path?: string }>): Json {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

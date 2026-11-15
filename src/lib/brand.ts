@@ -4,7 +4,6 @@
  * Escape first so `set:html` output is safe for arbitrary strings, then
  * case-insensitively wrap the word, preserving its original casing.
  */
-export const BRAND = 'Decbricks';
 
 const ESC: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ESC[c]);

@@ -1,6 +1,6 @@
 import { gsap, Draggable } from './gsap';
 
-export interface HorizontalLoopConfig {
+interface HorizontalLoopConfig {
   paused?: boolean;
   repeat?: number;
   speed?: number;
@@ -13,7 +13,7 @@ export interface HorizontalLoopConfig {
   velocityScale?: number;
 }
 
-export type HorizontalLoop = gsap.core.Timeline & {
+type HorizontalLoop = gsap.core.Timeline & {
   draggable?: Draggable;
   closestIndex: (setCurrent?: boolean) => number;
   times: number[];
