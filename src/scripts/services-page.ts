@@ -200,71 +200,6 @@ function initServicesHero(heroEl: HTMLElement) {
   };
 }
 
-function initServiceBlocks() {
-  // AutoplayVideo play/pause on viewport enter/leave (Bm2y9FGs.js).
-  // The original defers setup until the page-level transition completes, so a block video
-  // sitting in the first viewport stays paused until the loader/entrance has finished.
-  // About blocks reuse this card chrome with a static <Picture> instead of a video
-  // (docs/plans/about-pictures-plan.md) — the `if (!video) return` guard skips them.
-  let mm: gsap.MatchMedia | null = null;
-  const wire = () => {
-    const videoWrappers = document.querySelectorAll<HTMLElement>('.parts-autoplayVideo');
-    mm = gsap.matchMedia();
-    mm.add(
-      { isDesktop: `(min-width: ${bp.lg}px)`, isMobile: `(max-width: ${bp.lg - 1}px)` },
-      () => {
-        const triggers: ScrollTrigger[] = [];
-        videoWrappers.forEach((wrapper) => {
-          const video = wrapper.querySelector<HTMLVideoElement>('video');
-          if (!video) return;
-
-          const playVideo = () => {
-            if (prefersReducedMotion()) return;
-            if (!video.src && video.dataset.src) {
-              video.src = video.dataset.src;
-              video.load();
-            }
-            video.play().catch(() => {});
-          };
-          const pauseVideo = () => {
-            video.pause();
-          };
-
-          triggers.push(
-            ScrollTrigger.create({
-              trigger: wrapper,
-              start: 'top bottom',
-              end: 'bottom top',
-              onEnter: playVideo,
-              onEnterBack: playVideo,
-              onLeave: pauseVideo,
-              onLeaveBack: pauseVideo,
-            })
-          );
-        });
-        return () => triggers.forEach((t) => t.kill());
-      }
-    );
-  };
-
-  // Defer until the loader/transition has finished:
-  const once = () => {
-    bus.off('page-transition-complete', once);
-    wire();
-  };
-  const loader = document.querySelector<HTMLElement>('.structure-loader');
-  if (!loader || loader.style.display === 'none') {
-    wire();
-  } else {
-    bus.on('page-transition-complete', once);
-  }
-
-  return () => {
-    bus.off('page-transition-complete', once);
-    mm?.revert();
-  };
-}
-
 function initServicesSidebarNav() {
   const navEl = document.querySelector<HTMLElement>('.sections-servicesSidebarNav');
   const listSection = document.querySelector<HTMLElement>('.sections-servicesList');
@@ -622,7 +557,6 @@ export function initServicesPage() {
 
   const teardowns = [
     initServicesHero(heroEl),
-    initServiceBlocks(),
     initServicesSidebarNav(),
     initServicesClients(),
   ];

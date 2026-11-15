@@ -16,10 +16,12 @@ export type ServiceId =
   | 'digital-marketing-growth'
   | 'business-development-outreach';
 
-export type ServiceMedia =
-  | { kind: 'artwork'; motif: ServiceId; alt: string; code: string }
-  | { kind: 'image'; src: ImageMetadata; alt: string; position?: string }
-  | { kind: 'video'; src: string; poster: string; alt: string };
+export type ServiceMedia = {
+  kind: 'image';
+  src: ImageMetadata;
+  alt: string;
+  position?: string;
+};
 
 export interface ServiceItem {
   id: ServiceId;

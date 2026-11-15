@@ -3,7 +3,6 @@ import type { ServiceItem } from '../data/services';
 import { brandify } from '../lib/brand';
 import { BLOCK_IMAGE_SIZES, BLOCK_IMAGE_WIDTHS } from '../lib/image-preload';
 import { Picture } from 'astro:assets';
-import ServiceArtwork from './ServiceArtwork.astro';
 
 export interface Props {
   service: ServiceItem;
@@ -116,40 +115,20 @@ const isEven = index % 2 === 0;
   </div>
   <div class="relative z-1 mt-40 flex flex-col lg:mt-0 lg:w-260 lg:shrink-0 xl:w-300 3xl:w-360 4xl:w-410">
     <div class="aspect-4/5 w-full overflow-hidden rounded-40 rounded-tr-none">
-      {
-        service.media.kind === 'video' ? (
-          <div class="parts-autoplayVideo h-full w-full">
-            <video
-              muted
-              loop
-              playsinline
-              preload="none"
-              poster={service.media.poster}
-              data-src={service.media.src}
-              crossorigin="anonymous"
-              class="block h-full w-full object-cover"
-              aria-label={service.media.alt || 'Video player'}
-            />
-          </div>
-        ) : service.media.kind === 'image' ? (
-          <Picture
-            formats={['avif', 'webp']}
-            fallbackFormat="webp"
-            src={service.media.src}
-            alt={service.media.alt}
-            widths={[...BLOCK_IMAGE_WIDTHS]}
-            sizes={BLOCK_IMAGE_SIZES}
-            quality={55}
-            loading={index === 0 ? 'eager' : 'lazy'}
-            decoding="async"
-            fetchpriority={index === 0 ? 'high' : undefined}
-            {...(service.media.position ? { position: service.media.position } : {})}
-            class="block h-full w-full object-cover"
-          />
-        ) : (
-          <ServiceArtwork motif={service.media.motif} code={service.media.code} />
-        )
-      }
+      <Picture
+        formats={['avif', 'webp']}
+        fallbackFormat="webp"
+        src={service.media.src}
+        alt={service.media.alt}
+        widths={[...BLOCK_IMAGE_WIDTHS]}
+        sizes={BLOCK_IMAGE_SIZES}
+        quality={55}
+        loading={index === 0 ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchpriority={index === 0 ? 'high' : undefined}
+        {...(service.media.position ? { position: service.media.position } : {})}
+        class="block h-full w-full object-cover"
+      />
     </div>
     {
       service.projects && service.projects.length > 0 ? (
