@@ -72,7 +72,7 @@ const HOME_CARD_STYLES = [
           class="pin-trigger__mobile start-mobile absolute -top-120 -right-100 z-20 aspect-video w-320 rotate-14 overflow-hidden rounded-20 rounded-tr-none sm:w-480 lg:hidden"
           ><video
             data-preview-mp4="/videos/decbricks-showreel.mp4"
-            class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-contain"
+            class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-cover"
             playsinline
             loop
             preload="metadata"
@@ -223,7 +223,7 @@ const HOME_CARD_STYLES = [
   ><div class="relative flex items-end lg:min-h-screen lg:items-start"
     ><div class="end relative z-20 mx-auto w-full"
       ><div
-        class="parts-webglVideoPlayer relative aspect-video-mobile max-h-screen w-full rotate-0 sm:aspect-video"
+        class="parts-webglVideoPlayer relative aspect-square max-h-screen w-full rotate-0 sm:aspect-video"
         id="showreel"
         ><div
           class="parts-videoPlayerControls flex items-center gap-9 rounded-8 bg-white p-4 lg:gap-16 lg:p-10 pointer-events-none absolute bottom-40 left-1/2 z-10 w-[calc(100%-40px)] -translate-x-1/2 opacity-0"

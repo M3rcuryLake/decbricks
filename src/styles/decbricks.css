@@ -2551,6 +2551,9 @@ a.structure-footer__link:hover {
     transform: translateZ(0);
     contain: paint;
   }
+  .parts-webglVideoPlayer > video.webgl-video {
+    object-fit: cover;
+  }
   .sections-services .parts-serviceCard__inner--even {
     rotate: -1.5deg;
   }
