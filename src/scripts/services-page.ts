@@ -6,7 +6,7 @@ import {
   type WebGLExperienceAPI,
   type WebGLTrail,
 } from './webgl/experience';
-import { CLIENT_LOGOS, type ClientLogo, SERVICES } from '../data/services';
+import { SERVICES } from '../data/services';
 
 /** Section items derived from hero "Jump to" links so any page can reuse this
  * init with its own section list (defaults to the SERVICES ids when absent). */
@@ -472,82 +472,6 @@ function initServicesSidebarNav() {
   };
 }
 
-function initServicesClients() {
-  const section = document.querySelector<HTMLElement>('.sections-servicesClients');
-  if (!section) return;
-
-  const slots = Array.from(section.querySelectorAll<HTMLLIElement>('li[data-slot]'));
-  if (slots.length === 0 || CLIENT_LOGOS.length <= slots.length) return;
-
-  // Original (IETaHSxK.js): first 12 logos fill the grid; a FIFO queue holds the rest.
-  // Every 2500 ms a random slot takes the queue head and the displaced logo re-joins
-  // the queue tail — the rotation never stops (ping-pong through the whole pool).
-  const displayed: ClientLogo[] = CLIENT_LOGOS.slice(0, slots.length);
-  const queue: ClientLogo[] = CLIENT_LOGOS.slice(slots.length);
-  let intervalId: number | null = null;
-
-  const swapRandomLogo = () => {
-    if (prefersReducedMotion() || queue.length === 0) return;
-
-    const slotIdx = Math.floor(Math.random() * slots.length);
-    const head = queue.shift()!;
-    const displaced = displayed[slotIdx];
-    displayed[slotIdx] = head;
-    queue.push(displaced);
-
-    const li = slots[slotIdx];
-    const oldWrap = li.querySelector<HTMLElement>(':scope > div:last-child');
-
-    const newWrap = document.createElement('div');
-    newWrap.className = 'col-start-1 row-start-1 size-full opacity-0 transition-opacity duration-700 ease-in-out';
-    newWrap.innerHTML = `<picture class="parts-webPicture"><img alt="${head.alt}" src="${head.src}" width="${head.width}" height="${head.height}" class="block size-full object-contain" sizes="215px" loading="lazy" draggable="false" /></picture>`;
-    li.appendChild(newWrap);
-
-    // Crossfade on next frame (Vue Transition enter/leave equivalent)
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (oldWrap) oldWrap.classList.add('opacity-0');
-        newWrap.classList.remove('opacity-0');
-      });
-    });
-
-    window.setTimeout(() => {
-      if (oldWrap && oldWrap.parentNode === li) {
-        oldWrap.remove();
-      }
-    }, 750);
-  };
-
-  const startRotation = () => {
-    if (intervalId !== null || prefersReducedMotion()) return;
-    intervalId = window.setInterval(swapRandomLogo, 2500);
-  };
-
-  const stopRotation = () => {
-    if (intervalId !== null) {
-      window.clearInterval(intervalId);
-      intervalId = null;
-    }
-  };
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) startRotation();
-        else stopRotation();
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  io.observe(section);
-
-  return () => {
-    stopRotation();
-    io.disconnect();
-  };
-}
-
 export function initServicesPage() {
   const heroEl = document.querySelector<HTMLElement>('.sections-servicesHero');
   if (!heroEl) return;
@@ -558,7 +482,6 @@ export function initServicesPage() {
   const teardowns = [
     initServicesHero(heroEl),
     initServicesSidebarNav(),
-    initServicesClients(),
   ];
   return () => teardowns.forEach((t) => t?.());
 }

@@ -130,78 +130,22 @@ const isEven = index % 2 === 0;
         class="block h-full w-full object-cover"
       />
     </div>
-    {
-      service.projects && service.projects.length > 0 ? (
-        <div
-          class:list={[
-            isEven ? 'lg:items-start' : 'lg:items-end',
-            'mt-25 flex flex-col items-center lg:mt-auto lg:pt-40',
-          ]}
-        >
-          <p class="flex items-center gap-8 font-neuePower text-[12px] leading-none font-medium text-darkPurple uppercase">
-            <svg
-              class="svgs-doubleSlash w-15 shrink-0 text-purple"
-              viewBox="0 0 18 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
-              <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
-              <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
-              <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
-              <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
-              <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
-            </svg>
-            Projects
-          </p>
-          <ul
-            class:list={[
-              isEven ? 'lg:justify-start' : 'lg:justify-end',
-              'mt-15 flex flex-wrap justify-center gap-5 lg:mt-20 lg:gap-9',
-            ]}
-          >
-            {
-              service.projects.map((project) => (
-                <li class="flex h-25 items-center gap-7 rounded-6 bg-neonGreen px-10 font-neuePower text-[12px] leading-none font-medium text-darkPurple uppercase lg:text-[14px]">
-                  <svg
-                    class="svgs-cross w-6 shrink-0"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
-                    <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
-                    <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
-                    <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
-                    <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
-                  </svg>
-                  <span>{project}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      ) : (
-        <div
-          class:list={[
-            !isEven ? 'parts-serviceBlock__actionRow--mediaRight' : '',
-            'parts-serviceBlock__actionRow mt-25 flex items-center justify-between gap-12 pt-15',
-          ]}
-        >
-          <span class="parts-serviceBlock__index font-offBit101 text-darkPurple uppercase">
-            {service.number} / 07
-          </span>
-          <a
-            href={`/contact?service=${service.id}`}
-            class="parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-none font-medium text-darkPurple uppercase transition-colors duration-200"
-          >
-            <span>Discuss {service.navLabel}</span>
-            <span aria-hidden="true">-&gt;</span>
-          </a>
-        </div>
-      )
-    }
+    <div
+      class:list={[
+        !isEven ? 'parts-serviceBlock__actionRow--mediaRight' : '',
+        'parts-serviceBlock__actionRow mt-25 flex items-center justify-between gap-12 pt-15',
+      ]}
+    >
+      <span class="parts-serviceBlock__index font-offBit101 text-darkPurple uppercase">
+        {service.number} / 07
+      </span>
+      <a
+        href={`/contact?service=${service.id}`}
+        class="parts-serviceBlock__cta inline-flex items-center gap-6 font-neuePower leading-none font-medium text-darkPurple uppercase transition-colors duration-200"
+      >
+        <span>Discuss {service.navLabel}</span>
+        <span aria-hidden="true">-&gt;</span>
+      </a>
+    </div>
   </div>
 </article>

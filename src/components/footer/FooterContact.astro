@@ -1,8 +1,8 @@
 ---
 import { FOOTER_CONTACT } from '../../data/footer';
 
-const { email, phones, socials } = FOOTER_CONTACT;
-const hasContact = Boolean(email || phones.length > 0 || socials.length > 0);
+const { email, socials } = FOOTER_CONTACT;
+const hasContact = Boolean(email || socials.length > 0);
 ---
 
 {
@@ -11,33 +11,13 @@ const hasContact = Boolean(email || phones.length > 0 || socials.length > 0);
       <h3 class="structure-footer__colHeading subheading u-kicker text-darkPurple uppercase">
         Reach us
       </h3>
-      {(email || phones.length > 0) && (
+      {email && (
         <ul class="structure-footer__colList">
-          {email && (
-            <li class="structure-footer__emailRow">
-              <p class="structure-footer__link text-darkPurple">
-                {email}
-              </p>
-            </li>
-          )}
-          {phones.map((phone) => (
-            <li>
-              <a href={`tel:${phone.e164}`} class="structure-footer__link text-darkPurple">
-                {phone.display}
-              </a>
-              {phone.whatsapp && (
-                <a
-                  href={phone.whatsapp}
-                  class="structure-footer__link structure-footer__link--sub subheading u-kicker text-darkPurple uppercase"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`WhatsApp ${phone.label}`}
-                >
-                  WhatsApp
-                </a>
-              )}
-            </li>
-          ))}
+          <li class="structure-footer__emailRow">
+            <p class="structure-footer__link text-darkPurple">
+              {email}
+            </p>
+          </li>
         </ul>
       )}
       {socials.length > 0 && (

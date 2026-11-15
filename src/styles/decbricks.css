@@ -646,60 +646,9 @@ li {
   outline-offset: 2px;
 }
 
-/* --------------------------------------------------------------------------
-   Meet the Team (map 5C) grid — custom because the compiled global.css has no
-   `sm:`/`lg:` grid-cols variants and the spacing differs from other grids.
-   -------------------------------------------------------------------------- */
-.team-grid {
-  display: grid;
-  list-style: none;
-  grid-template-columns: minmax(0, 1fr);
-}
-@media (min-width: 640px) {
-  .team-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (min-width: 1024px) {
-  .team-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-.team-card__photo--empty {
-  aspect-ratio: 4 / 5;
-  border-radius: 8px;
-  background-color: color-mix(in srgb, #800020 10%, transparent);
-}
-.team-card__link,
-.team-card :focus-visible,
 .cal-embed-widget :focus-visible {
   outline: 2px solid var(--brand-bg-dark);
   outline-offset: 2px;
-}
-
-/* --------------------------------------------------------------------------
-   Contact numbers (map 5D) — rows reuse the card pill shape; the link itself
-   keeps a ≥44px tap target and a visible focus ring.
-   -------------------------------------------------------------------------- */
-.numbers-list {
-  list-style: none;
-}
-.numbers-list__link {
-  /* Compiled global.css has no min-w-44/min-h-44 utilities; tap target here. */
-  min-width: 44px;
-  min-height: 44px;
-  text-underline-offset: 3px;
-}
-.numbers-list__link:hover,
-.numbers-list__link:focus-visible {
-  background-color: var(--brand-accent-deep);
-  color: var(--brand-on-dark);
-}
-.numbers-list__link:hover .numbers-list__label,
-.numbers-list__link:hover .numbers-list__wa,
-.numbers-list__link:focus-visible .numbers-list__label,
-.numbers-list__link:focus-visible .numbers-list__wa {
-  color: var(--brand-on-dark);
 }
 
 /* --------------------------------------------------------------------------
@@ -1217,55 +1166,6 @@ a.structure-footer__link:hover {
   gap: 4px 10px;
 }
 
-.structure-footer__clockWrap {
-  margin: 0;
-}
-.structure-footer__clock {
-  font-family: var(--font-brand);
-  font-size: clamp(48px, 5vw, 84px);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  display: inline-block;
-  min-width: 5ch;
-}
-.structure-footer__availability {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 12px 0 0;
-  padding: 8px 14px;
-  border: 1px solid color-mix(in oklab, var(--brand-on-dark) 35%, transparent);
-  border-radius: 999px;
-  font-family: var(--font-nohemi), system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1.2;
-}
-.structure-footer__statusDot {
-  width: 8px;
-  height: 8px;
-  flex: none;
-  display: block;
-  background-color: var(--brand-sage, #c9d3c0);
-}
-.structure-footer__availability[data-availability="limited"] .structure-footer__statusDot {
-  background-color: var(--brand-surface-alt, #f3e6d5);
-}
-.structure-footer__availability[data-availability="closed"] .structure-footer__statusDot {
-  background-color: transparent;
-  border: 1.5px solid var(--brand-on-dark);
-}
-@keyframes footerDotBlink {
-  50% {
-    opacity: 0.25;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .structure-footer__availability[data-availability="open"] .structure-footer__statusDot {
-    animation: footerDotBlink 1.6s steps(2) infinite;
-  }
-}
-
 .structure-footer__wordmarkRow {
   container-type: inline-size;
   width: 100%;
@@ -1446,8 +1346,7 @@ a.structure-footer__link:hover {
   .structure-footer__topBtn:active .structure-footer__brick--topB {
     transform: none;
   }
-  .structure-footer__topBtn .structure-footer__brick,
-  .structure-footer__statusDot {
+  .structure-footer__topBtn .structure-footer__brick {
     transition: none;
     animation: none;
   }

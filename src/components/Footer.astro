@@ -3,7 +3,6 @@ import { FOOTER, FOOTER_CONTACT } from '../data/footer';
 import FooterCta from './footer/FooterCta.astro';
 import FooterNav from './footer/FooterNav.astro';
 import FooterContact from './footer/FooterContact.astro';
-import FooterStatus from './footer/FooterStatus.astro';
 import FooterWordmark from './footer/FooterWordmark.astro';
 import FooterLegal from './footer/FooterLegal.astro';
 import FooterWebgl from './footer/FooterWebgl.astro';
@@ -19,11 +18,9 @@ const showCta = cta === 'show' || (cta === 'auto' && pathname !== '/contact');
 const missingDev: string[] = [];
 if (import.meta.env.DEV) {
   if (!FOOTER_CONTACT.email) missingDev.push('email (open-items A4)');
-  if (FOOTER_CONTACT.phones.length === 0) missingDev.push('phones (open-items A3)');
   if (!FOOTER_CONTACT.cal.link && !FOOTER_CONTACT.cal.bookingUrl) missingDev.push('cal (open-items A2)');
   if (FOOTER_CONTACT.socials.length === 0) missingDev.push('socials (open-items A8)');
   if (FOOTER.legal.every((l) => !l.enabled)) missingDev.push('legal page /terms (open-items A11)');
-  if (!FOOTER.studio.timeZone) missingDev.push('studio timezone PUBLIC_STUDIO_TZ');
 }
 ---
 
@@ -40,7 +37,6 @@ if (import.meta.env.DEV) {
       <div class="structure-footer__grid">
         <FooterNav />
         <FooterContact />
-        <FooterStatus />
         <div class="structure-footer__mark" aria-hidden="true">
           <img
             src="/brand/logo-cream.webp"

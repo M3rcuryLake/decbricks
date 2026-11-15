@@ -5,7 +5,6 @@ import Header from '../components/Header.astro';
 import ServicesHero from '../components/ServicesHero.astro';
 import ServiceBlock from '../components/ServiceBlock.astro';
 import ServicesSidebarNav from '../components/ServicesSidebarNav.astro';
-import ServicesClients from '../components/ServicesClients.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
@@ -70,7 +69,6 @@ const imagePreloads = await getBlockImagePreloads(
           </div>
         </section>
         <ServicesSidebarNav />
-        <ServicesClients />
         <ContactForm smileyCopy={SERVICES_SECTION_HEADER.intro} />
         <Footer />
       </div>
