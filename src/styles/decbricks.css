@@ -374,6 +374,9 @@ li {
   background-color: var(--brand-bg-dark);
   color: var(--brand-on-dark);
 }
+.part-btnPrimary.bg-purple:hover {
+  background-color: var(--brand-bg-deeper);
+}
 
 /* Home-hero capability pills (`bg-purple text-white` 12px) */
 .parts-keyword__inner.bg-purple {

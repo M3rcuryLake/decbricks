@@ -15,6 +15,9 @@ export function initPreviewVideos() {
       if (active && !has) {
         // Attach <source> immediately for the active viewport preview variant so
         // the hero preview decodes frame 0 right away instead of waiting on IO.
+        // Force muted defensively so tracks with audio still satisfy autoplay rules.
+        v.muted = true;
+        v.defaultMuted = true;
         const s = document.createElement('source');
         s.src = v.dataset.previewMp4!;
         s.type = 'video/mp4';
