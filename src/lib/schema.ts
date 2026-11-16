@@ -6,7 +6,7 @@ const abs = (path: string) => new URL(path, SITE_URL + '/').href.replace(/\/$/, 
 
 type Json = Record<string, unknown>;
 
-/** Organization (single source of truth for About/Contact/sitemap pages). */
+/** Organization (single source of truth for Home/About/Contact/Services pages). */
 export function organizationSchema(): Json {
   return {
     '@context': 'https://schema.org',
@@ -15,6 +15,13 @@ export function organizationSchema(): Json {
     url: SITE_URL,
     logo: `${SITE_URL}/brand/logo.png`,
     description: SITE.description,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Chennai',
+      addressRegion: 'Tamil Nadu',
+      addressCountry: 'IN',
+    },
+    areaServed: ['IN', 'Worldwide'],
     ...(EMAIL ? { email: EMAIL } : {}),
     ...(SITE.socials.length ? { sameAs: SITE.socials.map((s) => s.href) } : {}),
   };
@@ -53,6 +60,7 @@ export function aboutPageSchema(description: string): Json[] {
       description,
     },
     organizationSchema(),
+    webSiteSchema(),
     breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }]),
   ];
 }
@@ -67,6 +75,7 @@ export function contactPageSchema(description: string): Json[] {
       description,
     },
     organizationSchema(),
+    webSiteSchema(),
     breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }]),
   ];
 }
@@ -80,7 +89,7 @@ export function servicesPageSchema(
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: `Our Expertise & Services | ${SITE.name}`,
+      name: `Software, AI & Digital Growth Services | ${SITE.name}`,
       url: pageUrl,
       description,
       mainEntity: {
@@ -116,6 +125,7 @@ export function servicesPageSchema(
       },
     },
     organizationSchema(),
+    webSiteSchema(),
     breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }]),
   ];
 }

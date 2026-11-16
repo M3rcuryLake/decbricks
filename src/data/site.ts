@@ -21,9 +21,9 @@ export const SITE = {
   name: 'Decbricks',
   legalName: 'Decbricks',
   url: SITE_URL,
-  tagline: 'Building Technology. Empowering Businesses. Driving Growth.',
+  tagline: 'Build Beyond Ordinary',
   description:
-    'Decbricks is a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.',
+    'Decbricks builds custom software, AI automation, design and digital growth for startups and organisations in India and international markets.',
   /** Default Open Graph / Twitter share card (1200×630 derived from assets/brand/og-source.jpg). */
   ogImage: `${SITE_URL}/og-default.png`,
   ogImageWidth: 1200,
@@ -41,8 +41,8 @@ export const SITE = {
   ] as Array<{ label: string; href: string }>,
   /** Main nav; pages are enabled as they are rebuilt (About+Contact exist from Phase 4/5). */
   nav: [
-    { label: 'About', href: '/about', enabled: false },
+    { label: 'About', href: '/about', enabled: true },
     { label: 'Services', href: '/services', enabled: true },
-    { label: 'Contact', href: '/contact', enabled: false },
+    { label: 'Contact', href: '/contact', enabled: true },
   ] as NavLink[],
 } as const;

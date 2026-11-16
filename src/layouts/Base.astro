@@ -92,7 +92,7 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
     <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preload" as="image" href="/brand/logo-cream.webp" />
-    <link rel="canonical" href={canonical} />
+    {!noindex && <link rel="canonical" href={canonical} />}
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
