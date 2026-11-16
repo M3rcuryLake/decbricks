@@ -787,9 +787,30 @@ export class WebGLImage {
     ensurePreviewVideoSource(video);
     const hasFrame = await waitForVideoFirstFrame(video, {
       signal: this.ac.signal,
-      timeoutMs: 9000,
+      timeoutMs: 4000,
     });
-    if (this.isDestroyed || !hasFrame || video.videoWidth <= 0 || video.videoHeight <= 0) {
+    if (this.isDestroyed) return false;
+    if (!hasFrame || video.videoWidth <= 0 || video.videoHeight <= 0) {
+      // Wait passively for delayed first frame (Slow 4G / throttled stream) so DOM stays visible now and upgrades seamlessly when ready.
+      video.addEventListener(
+        'loadeddata',
+        () => {
+          if (
+            !this.isDestroyed &&
+            !this.isWebGLActive &&
+            video.readyState >= 2 &&
+            video.videoWidth > 0 &&
+            canUseDistortion() &&
+            !this.hooks.isContextLost()
+          ) {
+            this.ready = this.init().then(() => {
+              this.resize();
+              return this;
+            });
+          }
+        },
+        { once: true, signal: this.ac.signal }
+      );
       return false;
     }
 
@@ -1324,6 +1345,15 @@ export interface WebGLExperienceAPI {
 
 let experienceInstance: WebGLExperienceAPI | null = null;
 
+function createRendererForCanvas(canvas: HTMLCanvasElement): THREE.WebGLRenderer | null {
+  const attrs: WebGLContextAttributes = { antialias: true, stencil: false, alpha: true };
+  const context =
+    (canvas.getContext('webgl2', attrs) as WebGL2RenderingContext | null) ||
+    (canvas.getContext('webgl', attrs) as WebGLRenderingContext | null);
+  if (!context || context.isContextLost()) return null;
+  return new THREE.WebGLRenderer({ canvas, context, antialias: true, stencil: false, alpha: true });
+}
+
 export function createExperience(): WebGLExperienceAPI | null {
   if (experienceInstance) return experienceInstance;
   if (!canUseDistortion()) return null;
@@ -1334,19 +1364,19 @@ export function createExperience(): WebGLExperienceAPI | null {
   let fgCanvas = canvases[0];
   let bgCanvas = canvases[1];
 
-  let bgRenderer: THREE.WebGLRenderer;
-  let fgRenderer: THREE.WebGLRenderer;
-  try {
-    bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: true, stencil: false, alpha: true });
-    fgRenderer = new THREE.WebGLRenderer({ canvas: fgCanvas, antialias: true, stencil: false, alpha: true });
-    (window as any).hasWebGL = true;
-    (window as any).threeJSReady = true;
-  } catch (err) {
-    console.warn('WebGL not available:', err);
+  const bgRendererInit = createRendererForCanvas(bgCanvas);
+  const fgRendererInit = bgRendererInit ? createRendererForCanvas(fgCanvas) : null;
+  if (!bgRendererInit || !fgRendererInit) {
+    bgRendererInit?.dispose();
     (window as any).hasWebGL = false;
     gsap.set('.webgl-background', { opacity: 1, visibility: 'visible' });
     return null;
   }
+
+  let bgRenderer: THREE.WebGLRenderer = bgRendererInit;
+  let fgRenderer: THREE.WebGLRenderer = fgRendererInit;
+  (window as any).hasWebGL = true;
+  (window as any).threeJSReady = true;
 
   let width = window.innerWidth;
   let height = window.innerHeight;

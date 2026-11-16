@@ -116,12 +116,12 @@ export class Hero {
     const startEl = this.dom.start as HTMLVideoElement | null;
     if (!startEl) return;
 
-    const fallbackStart = () => {
+    const fallbackStart = (destroyInstance = true) => {
       if (this.ac.signal.aborted) return;
-      if (this.webGLImage && !this.webGLImage.isDestroyed) {
+      if (destroyInstance && this.webGLImage && !this.webGLImage.isDestroyed) {
         this.webGLImage.destroy();
+        this.webGLImage = undefined;
       }
-      this.webGLImage = undefined;
       startEl.classList.remove('lg:invisible');
       startEl.style.removeProperty('visibility');
       if (this.entranceFinished) {
@@ -133,7 +133,7 @@ export class Hero {
     const attachStart = (exp: WebGLExperienceAPI | null) => {
       if (this.ac.signal.aborted) return;
       if (!exp || !canUseDistortion()) {
-        fallbackStart();
+        fallbackStart(true);
         return;
       }
       ensurePreviewVideoSource(startEl);
@@ -151,7 +151,8 @@ export class Hero {
           wImg.resize();
           this.syncWebGLImageToStart();
         } else {
-          fallbackStart();
+          // Keep passive loadeddata upgrade alive on delayed/slow-network streams while showing DOM fallback cleanly.
+          fallbackStart(false);
         }
       });
     };
