@@ -40,11 +40,11 @@ const links = [
             ? 'parts-btnBlock flex items-center bg-darkPurple duration-500 focus:outline-none rounded-8 px-8 pt-9 pb-8 lg:py-14 lg:px-16 hover:bg-white hover:text-darkPurple'
             : 'parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none hover:bg-white focus:bg-white rounded-8 px-8 pt-9 pb-8 lg:py-14 lg:px-16',
         ]}
-        aria-label={link.label}
-      ><span class="parts-btnBlock__index" aria-hidden="true">{`0${i + 1}`}</span
-        ><div class="relative flex overflow-hidden"
+        aria-label={`${`0${i + 1}`} ${link.label}`}
+      ><span class="parts-btnBlock__index" aria-hidden="true">{`0${i + 1}`}</span>{' '}
+        <div class="relative flex overflow-hidden"
         ><span class="parts-btnBlock__label text-center btn-text uppercase">{link.label}</span
-        ><span class="parts-btnBlock__label absolute inset-x-0 top-full text-center btn-text uppercase">{link.label}</span></div
+        ><span class="parts-btnBlock__label absolute inset-x-0 top-full text-center btn-text uppercase" aria-hidden="true">{link.label}</span></div
       ></a>
     )) }</nav
   ><button
@@ -106,7 +106,7 @@ const links = [
             link.current && 'router-link-active router-link-exact-active',
             'link block btn-menu text-darkPurple uppercase',
           ]}
-          aria-label={link.label}
+          aria-label={`${`0${i + 1}`} ${link.label}`}
         ><span class="link-index" aria-hidden="true">{`0${i + 1}`}</span>{link.label}</a
         >
       ))}

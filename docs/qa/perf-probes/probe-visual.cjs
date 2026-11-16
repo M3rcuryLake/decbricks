@@ -12,7 +12,7 @@ const WIDTHS = [
   [768, 1024], [1024, 800], [1100, 800], [1280, 800],
   [1366, 850], [1440, 900], [1536, 960], [1920, 1080], [2560, 1200],
 ];
-const OUT = '/home/ankit/GitHub/decbricks/docs/qa/perf-before/visual-sweep.json';
+const OUT = process.env.VISUAL_OUT || '/home/ankit/GitHub/decbricks/docs/qa/perf-before/visual-sweep.json';
 
 (async () => {
   const browser = await chromium.launch({

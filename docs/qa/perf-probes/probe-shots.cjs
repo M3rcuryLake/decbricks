@@ -3,7 +3,7 @@ const { chromium } = require('/home/ankit/.npm/_npx/9833c18b2d85bc59/node_module
 const fs = require('fs');
 
 const BASE = 'http://localhost:4322';
-const OUT = '/home/ankit/GitHub/decbricks/docs/screenshots/perf-before';
+const OUT = process.env.SHOTS_OUT || '/home/ankit/GitHub/decbricks/docs/screenshots/perf-before';
 fs.mkdirSync(OUT, { recursive: true });
 const ROUTES = [['home', '/'], ['services', '/services'], ['about', '/about'], ['contact', '/contact'], ['terms', '/terms'], ['notfound', '/404']];
 const WIDTHS = [[390, 844], [768, 1024], [1024, 800], [1440, 900], [1920, 1080]];

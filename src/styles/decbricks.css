@@ -3149,4 +3149,65 @@ cal-modal-box iframe {
   text-wrap: pretty;
 }
 
+/* ============================================================
+   Phase 2 B1 — a11y markup + tap targets (PERF_BUG_REPORT §E B1)
+   ============================================================ */
+
+/* A11Y-03: duplicate hover-label spans double the rule-checked visible
+   text (axe's label-content-name-mismatch counts aria-hidden content —
+   verified against axe-core 4.10). Hide the copy from rendering and
+   innerText; the char-slide machinery in buttons.ts reveals it again on
+   hover/focus. Zero visual change: the copy sits below the overflow clip
+   until it is animated. */
+.part-btnPrimary__text:nth-child(2),
+.parts-btnBlock__label:nth-child(2) {
+  visibility: hidden;
+  transition: visibility 0s linear 0.35s;
+}
+
+.part-btnPrimary:hover .part-btnPrimary__text:nth-child(2),
+.part-btnPrimary:focus .part-btnPrimary__text:nth-child(2),
+.part-btnPrimary:focus-visible .part-btnPrimary__text:nth-child(2),
+.parts-btnBlock:hover .parts-btnBlock__label:nth-child(2),
+.parts-btnBlock:focus .parts-btnBlock__label:nth-child(2),
+.parts-btnBlock:focus-visible .parts-btnBlock__label:nth-child(2) {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* A11Y-05 (ND-8): grow the hit area, never the visible control.
+   Video progress/volume range inputs are invisible (opacity-0) overlays
+   on the drawn track, so enlarging their box changes nothing visible.
+   24px minimum everywhere, 44px on coarse pointers. */
+.parts-progressBar input[type='range'],
+.parts-volumeControl input[type='range'] {
+  height: 24px;
+}
+
+/* A11Y-05 (ND-8): consent ToS/Privacy links were ~13px tall. Inline
+   padding-block widens the hit area without touching the text run or
+   line box. */
+.parts-formCheckbox__label a {
+  padding-block: 6px;
+}
+
+@media (pointer: coarse) {
+  .parts-progressBar input[type='range'],
+  .parts-volumeControl input[type='range'] {
+    height: 44px;
+  }
+
+  .parts-formCheckbox__label a {
+    padding-block: 16px;
+  }
+
+  /* A11Y-05 (ND-8): footer nav/social link rows ~30px → 44px hit on touch.
+     Scoped to outgun the (0,3,0) min-height:30px rule above; inline-flex +
+     align-items:center keep the text centered in the taller box. */
+  .structure-footer .structure-footer__col .structure-footer__link {
+    min-height: 44px;
+  }
+}
+
+
 
