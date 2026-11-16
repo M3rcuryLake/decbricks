@@ -13,15 +13,15 @@ import { ABOUT } from '../data/about';
 import { getBlockImagePreloads } from '../lib/image-preload';
 import { aboutPageSchema } from '../lib/schema';
 
-const title = 'Our Purpose | Digital & Technology Solutions Agency';
+const title = 'About Decbricks: Purpose, Values & Engineering Craft';
 const description =
-  'Discover Decbricks, a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.';
+  'Meet our Chennai-based engineering, design and outreach team building purposeful software and AI systems for ambitious teams in India and abroad.';
 // Hero body: first sentence of the Intro block, verbatim.
 const heroBodyRaw = ABOUT[0].paragraphs[0].split('. ').slice(0, 2).join('. ');
 // Don't double the period when the sentence already ends with one (QA 2026-11-11).
 const heroBody = /[.!?…]$/.test(heroBodyRaw.trim()) ? heroBodyRaw : heroBodyRaw + '.';
 // Smiley sentence: Intro block first paragraph, verbatim (no template copy).
-const smileyCopy = ABOUT[0].paragraphs[0];
+const smileyCopy = heroBody;
 const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navLabel }));
 const imagePreloads = await getBlockImagePreloads(
   ABOUT.flatMap((section) =>
@@ -59,7 +59,7 @@ const imagePreloads = await getBlockImagePreloads(
       <div class="page page-about bg-darkPurple">
         <Header />
         <ServicesHero
-          srTitle="Our Purpose"
+          srTitle="About Decbricks: Our Purpose"
           headingParts={['Our', 'Purpose']}
           body={heroBody}
           navItems={ABOUT.map(({ id, navLabel }) => ({ id, navLabel }))}
@@ -77,6 +77,11 @@ const imagePreloads = await getBlockImagePreloads(
               class="mx-auto flex w-full max-w-1850 flex-col gap-40 lg:gap-55 xl:gap-65 3xl:gap-80 4xl:gap-95"
             >
               {ABOUT.map((section, index) => <AboutBlock section={section} index={index} />)}
+              <p class="u-ink mx-auto max-w-480 px-14 lg:max-w-1120 text-center font-nohemi text-[16px] leading-[22px] text-darkPurple lg:text-[18px] lg:leading-[26px]">
+                Based in Chennai, India, we work with clients across India and international markets.
+                <a href="/services" class="underline">Explore our seven services</a> or
+                <a href="/contact" class="underline">start a project with us</a>.
+              </p>
             </div>
           </div>
         </section>
