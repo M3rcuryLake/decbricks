@@ -1,23 +1,23 @@
 /**
- * experience.ts — thin facade over the three.js WebGL experience (§7 perf).
+ * experience.ts — capability-gated async facade over `impl.ts`.
  *
- * The heavy implementation lives in `impl.ts` (imports `three`) and is loaded
- * with a dynamic `import()` from `initWebGL()`, so three.js is not in the
- * render-blocking main bundle. Consumers (hero, services-page, case-studies)
- * only talk to the facade; the template already null-guards
- * `getWebGLExperience()` and falls back to non-WebGL behaviour until ready.
+ * Touch devices, `< 1024px` viewports, and `prefers-reduced-motion` users
+ * never download the Three.js `impl` bundle. Desktop fine-pointer sessions
+ * receive a single shared experience with explicit init/resume/suspend/fallback
+ * notifications so consumers never drop out due to a cold-load race.
  */
-import { bp, bus } from '../core/gsap';
+import { bus } from '../core/gsap';
+import { canUseDistortion, onDistortionCapabilityChange } from './capability';
 import type { WebGLExperienceAPI } from './impl';
 
 export type { WebGLImage, WebGLImageOptions, WebGLTrail, WebGLTrailOptions, WebGLExperienceAPI } from './impl';
 
 let experienceInstance: WebGLExperienceAPI | null | undefined = undefined;
-const readyCallbacks = new Set<(exp: WebGLExperienceAPI) => void>();
+let initPromise: Promise<WebGLExperienceAPI | null> | null = null;
+let stopCapabilityWatch: (() => void) | null = null;
 
-// Track the active page's hero lifecycle events from initial boot so if the
-// lazy three.js chunk finishes loading after reload/loader already emitted
-// `hero-transition-start` or `hero-entrance-complete`, hero flares still fire.
+const readyCallbacks = new Set<(exp: WebGLExperienceAPI | null) => void>();
+
 let pageHeroTransitionStarted = false;
 let pageHeroEntranceCompleted = false;
 
@@ -41,34 +41,85 @@ export function getWebGLExperience(): WebGLExperienceAPI | null {
   return experienceInstance ?? null;
 }
 
-export function whenWebGLReady(cb: (exp: WebGLExperienceAPI) => void): () => void {
-  if (typeof window === 'undefined' || window.innerWidth < bp.lg) return () => {};
-  if (experienceInstance) {
-    cb(experienceInstance);
+function flushReadyCallbacks(exp: WebGLExperienceAPI | null) {
+  if (!readyCallbacks.size) return;
+  const pending = [...readyCallbacks];
+  readyCallbacks.clear();
+  pending.forEach((cb) => cb(exp));
+}
+
+function ensureCapabilityWatcher() {
+  if (stopCapabilityWatch || typeof window === 'undefined') return;
+  stopCapabilityWatch = onDistortionCapabilityChange((enabled) => {
+    if (enabled) {
+      void initWebGL();
+    } else {
+      experienceInstance?.suspend();
+    }
+  });
+}
+
+/**
+ * Registers a one-shot callback invoked as soon as WebGL initialization settles
+ * with either the live `WebGLExperienceAPI` or `null` (fallback).
+ */
+export function whenWebGLReady(cb: (exp: WebGLExperienceAPI | null) => void): () => void {
+  if (typeof window === 'undefined') return () => {};
+  ensureCapabilityWatcher();
+
+  if (!canUseDistortion() || experienceInstance === null) {
+    queueMicrotask(() => cb(null));
     return () => {};
   }
-  if (experienceInstance === null) return () => {};
+  if (experienceInstance) {
+    experienceInstance.resume();
+    queueMicrotask(() => {
+      if (canUseDistortion() && experienceInstance) cb(experienceInstance);
+      else cb(null);
+    });
+    return () => {};
+  }
+
   readyCallbacks.add(cb);
+  void initWebGL();
   return () => {
     readyCallbacks.delete(cb);
   };
 }
 
-export function initWebGL() {
-  if (window.innerWidth < bp.lg) return;
-  if (experienceInstance !== undefined) return experienceInstance;
-  // Kick the chunk load in parallel with the loader intro (non-blocking).
-  import('./impl')
+/** Idempotently loads and initializes the Three.js distortion engine when allowed. */
+export function initWebGL(): Promise<WebGLExperienceAPI | null> {
+  if (typeof window === 'undefined') return Promise.resolve(null);
+  ensureCapabilityWatcher();
+
+  if (!canUseDistortion()) {
+    experienceInstance?.suspend();
+    return Promise.resolve(null);
+  }
+  if (experienceInstance) {
+    experienceInstance.resume();
+    flushReadyCallbacks(experienceInstance);
+    return Promise.resolve(experienceInstance);
+  }
+  if (experienceInstance === null) {
+    flushReadyCallbacks(null);
+    return Promise.resolve(null);
+  }
+  if (initPromise) return initPromise;
+
+  initPromise = import('./impl')
     .then(({ createExperience }) => {
+      if (!canUseDistortion()) {
+        flushReadyCallbacks(null);
+        return null;
+      }
       const exp = createExperience();
       if (!exp) {
         experienceInstance = null;
-        readyCallbacks.clear();
-        return;
+        flushReadyCallbacks(null);
+        return null;
       }
       experienceInstance = exp;
-      // A page swap may have happened while the chunk loaded — re-bind the
-      // renderers to the current canvases, then sync targets.
       exp.reattachCanvases();
       exp.rebuildPageTargets();
       if (pageHeroEntranceCompleted) {
@@ -76,13 +127,21 @@ export function initWebGL() {
       } else if (pageHeroTransitionStarted) {
         exp.notifyHeroTransitionStart();
       }
-      [...readyCallbacks].forEach((cb) => cb(exp));
-      readyCallbacks.clear();
+      flushReadyCallbacks(exp);
       window.dispatchEvent(new CustomEvent('threeJS-ready'));
+      return exp;
     })
     .catch((err) => {
       experienceInstance = null;
-      readyCallbacks.clear();
-      console.warn('Decbricks: WebGL chunk failed to load (page keeps CSS fallbacks):', err);
+      flushReadyCallbacks(null);
+      if (import.meta.env.DEV) {
+        console.warn('Decbricks: WebGL chunk failed to load (page keeps DOM fallbacks):', err);
+      }
+      return null;
+    })
+    .finally(() => {
+      initPromise = null;
     });
+
+  return initPromise;
 }

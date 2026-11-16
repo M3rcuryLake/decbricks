@@ -1,0 +1,371 @@
+{
+ "home": {
+  "scores": {
+   "performance": 92,
+   "accessibility": 96,
+   "best-practices": 100,
+   "seo": 69
+  },
+  "metrics": {
+   "fcp": 1956.2,
+   "lcp": 2964.2,
+   "tbt": 125,
+   "cls": 0,
+   "si": 2314,
+   "tti": 4536.2
+  },
+  "perRun": [
+   {
+    "perf": 90,
+    "lcp": 2977,
+    "tbt": 153,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 92,
+    "lcp": 2959,
+    "tbt": 124,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 92,
+    "lcp": 2964,
+    "tbt": 125,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   }
+  ],
+  "lcpElement": null,
+  "clsItems": [],
+  "longTasks": 0,
+  "mainThreadMs": 3089,
+  "bootupMs": 960,
+  "requests": 0,
+  "transferKB": 0,
+  "jsKB": 0,
+  "cssKB": 0,
+  "fontKB": 0,
+  "imgKB": 0,
+  "mediaKB": 0,
+  "a11yFails": [
+   "aria-allowed-role",
+   "color-contrast",
+   "label-content-name-mismatch"
+  ],
+  "bpFails": [],
+  "seoFails": [
+   "is-crawlable"
+  ]
+ },
+ "services": {
+  "scores": {
+   "performance": 61,
+   "accessibility": 96,
+   "best-practices": 100,
+   "seo": 69
+  },
+  "metrics": {
+   "fcp": 1954.1,
+   "lcp": 5328,
+   "tbt": 50,
+   "cls": 0.4,
+   "si": 2173.3,
+   "tti": 5500.5
+  },
+  "perRun": [
+   {
+    "perf": 61,
+    "lcp": 5405,
+    "tbt": 64,
+    "cls": 0.3709964727671672,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 61,
+    "lcp": 5328,
+    "tbt": 50,
+    "cls": 0.3709964727671672,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 61,
+    "lcp": 5328,
+    "tbt": 47,
+    "cls": 0.3709964727671672,
+    "jsKB": 0,
+    "transferKB": 0
+   }
+  ],
+  "lcpElement": null,
+  "clsItems": [],
+  "longTasks": 0,
+  "mainThreadMs": 2107,
+  "bootupMs": 664,
+  "requests": 0,
+  "transferKB": 0,
+  "jsKB": 0,
+  "cssKB": 0,
+  "fontKB": 0,
+  "imgKB": 0,
+  "mediaKB": 0,
+  "a11yFails": [
+   "aria-allowed-role",
+   "color-contrast"
+  ],
+  "bpFails": [],
+  "seoFails": [
+   "is-crawlable"
+  ]
+ },
+ "about": {
+  "scores": {
+   "performance": 84,
+   "accessibility": 96,
+   "best-practices": 100,
+   "seo": 69
+  },
+  "metrics": {
+   "fcp": 1956.2,
+   "lcp": 4258.4,
+   "tbt": 55,
+   "cls": 0,
+   "si": 2125.3,
+   "tti": 4480.5
+  },
+  "perRun": [
+   {
+    "perf": 84,
+    "lcp": 4267,
+    "tbt": 73,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 84,
+    "lcp": 4208,
+    "tbt": 53,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 84,
+    "lcp": 4258,
+    "tbt": 55,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   }
+  ],
+  "lcpElement": null,
+  "clsItems": [],
+  "longTasks": 0,
+  "mainThreadMs": 1995,
+  "bootupMs": 676,
+  "requests": 0,
+  "transferKB": 0,
+  "jsKB": 0,
+  "cssKB": 0,
+  "fontKB": 0,
+  "imgKB": 0,
+  "mediaKB": 0,
+  "a11yFails": [
+   "aria-allowed-role",
+   "color-contrast"
+  ],
+  "bpFails": [],
+  "seoFails": [
+   "is-crawlable"
+  ]
+ },
+ "contact": {
+  "scores": {
+   "performance": 94,
+   "accessibility": 96,
+   "best-practices": 100,
+   "seo": 69
+  },
+  "metrics": {
+   "fcp": 1804.1,
+   "lcp": 2929.1,
+   "tbt": 42.5,
+   "cls": 0,
+   "si": 2006.2,
+   "tti": 4241.8
+  },
+  "perRun": [
+   {
+    "perf": 94,
+    "lcp": 2912,
+    "tbt": 54,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 94,
+    "lcp": 2930,
+    "tbt": 39,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 94,
+    "lcp": 2929,
+    "tbt": 43,
+    "cls": 0.00003989112746645744,
+    "jsKB": 0,
+    "transferKB": 0
+   }
+  ],
+  "lcpElement": null,
+  "clsItems": [],
+  "longTasks": 0,
+  "mainThreadMs": 1956,
+  "bootupMs": 603,
+  "requests": 0,
+  "transferKB": 0,
+  "jsKB": 0,
+  "cssKB": 0,
+  "fontKB": 0,
+  "imgKB": 0,
+  "mediaKB": 0,
+  "a11yFails": [
+   "aria-allowed-role",
+   "color-contrast"
+  ],
+  "bpFails": [],
+  "seoFails": [
+   "is-crawlable"
+  ]
+ },
+ "terms": {
+  "scores": {
+   "performance": 95,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 66
+  },
+  "metrics": {
+   "fcp": 1953.5,
+   "lcp": 2628.5,
+   "tbt": 18,
+   "cls": 0,
+   "si": 2160.5,
+   "tti": 4027
+  },
+  "perRun": [
+   {
+    "perf": 95,
+    "lcp": 2679,
+    "tbt": 25,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 95,
+    "lcp": 2628,
+    "tbt": 18,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 95,
+    "lcp": 2629,
+    "tbt": 17,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   }
+  ],
+  "lcpElement": null,
+  "clsItems": [],
+  "longTasks": 0,
+  "mainThreadMs": 1650,
+  "bootupMs": 510,
+  "requests": 0,
+  "transferKB": 0,
+  "jsKB": 0,
+  "cssKB": 0,
+  "fontKB": 0,
+  "imgKB": 0,
+  "mediaKB": 0,
+  "a11yFails": [],
+  "bpFails": [],
+  "seoFails": [
+   "is-crawlable"
+  ]
+ },
+ "notfound": {
+  "scores": {
+   "performance": 96,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 66
+  },
+  "metrics": {
+   "fcp": 1804.8,
+   "lcp": 2629.8,
+   "tbt": 0,
+   "cls": 0,
+   "si": 1804.8,
+   "tti": 2637.3
+  },
+  "perRun": [
+   {
+    "perf": 96,
+    "lcp": 2630,
+    "tbt": 1,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 96,
+    "lcp": 2630,
+    "tbt": 0,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   },
+   {
+    "perf": 96,
+    "lcp": 2630,
+    "tbt": 0,
+    "cls": 0.004046290507142941,
+    "jsKB": 0,
+    "transferKB": 0
+   }
+  ],
+  "lcpElement": null,
+  "clsItems": [],
+  "longTasks": 0,
+  "mainThreadMs": 909,
+  "bootupMs": 290,
+  "requests": 0,
+  "transferKB": 0,
+  "jsKB": 0,
+  "cssKB": 0,
+  "fontKB": 0,
+  "imgKB": 0,
+  "mediaKB": 0,
+  "a11yFails": [
+   "label-content-name-mismatch"
+  ],
+  "bpFails": [],
+  "seoFails": [
+   "is-crawlable"
+  ]
+ }
+}

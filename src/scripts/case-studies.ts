@@ -11,7 +11,8 @@ import {
 } from './core/gsap';
 import { MomentumHover } from './core/momentum-hover';
 import { horizontalLoop } from './core/horizontal-loop';
-import { getWebGLExperience, type WebGLImage } from './webgl/experience';
+import { canUseDistortion, onDistortionCapabilityChange, setDistortionState } from './webgl/capability';
+import { whenWebGLReady, type WebGLExperienceAPI, type WebGLImage } from './webgl/experience';
 
 class StickerMouseTrail {
   private increment = 0;
@@ -379,24 +380,25 @@ export function initCaseStudies() {
   const paginationControl = sliderEl.querySelector<HTMLElement>('.parts-caseStudySlider__paginationControl')!;
 
   // Setup WebGLCaseStudySlider (matches class w in C1VH0-3n.js)
-  const exp = window.innerWidth >= bp.lg && (window as any).hasWebGL ? getWebGLExperience() : null;
+  let activeExp: WebGLExperienceAPI | null = null;
   let sliderGroup: THREE.Group | null = null;
   const webglImages = new Map<string, WebGLImage>();
 
-  if (exp) {
-    sliderGroup = exp.createGroup();
-    exp.fgScene.add(sliderGroup);
-    sliderEl.querySelectorAll<HTMLImageElement>('.parts-caseStudySlider__slide img.parts-caseStudyCard__image').forEach((img) => {
-      const id = img.getAttribute('data-case-study-id');
-      if (!id || webglImages.has(id)) return;
-      const wImg = exp.createImage(img, { group: sliderGroup });
-      webglImages.set(id, wImg);
-    });
-  } else {
+  const applyDomFallbackToCards = () => {
+    webglImages.forEach((wImg) => wImg.destroy());
+    webglImages.clear();
+    if (sliderGroup && activeExp) {
+      activeExp.fgScene.remove(sliderGroup);
+      sliderGroup = null;
+    }
     section.querySelectorAll<HTMLElement>('.parts-caseStudyCard__image').forEach((img) => {
       img.classList.remove('lg:opacity-0');
+      img.style.removeProperty('opacity');
     });
-  }
+    section.querySelectorAll<HTMLElement>('.parts-caseStudyCard').forEach((card) => {
+      setDistortionState(card, 'fallback');
+    });
+  };
 
   const syncSlideToWebGL = (slideEl: HTMLElement) => {
     if (!webglImages.size) return;
@@ -676,23 +678,90 @@ export function initCaseStudies() {
     syncAllCardsToWebGL();
   };
 
-  if (webglImages.size > 0) {
-    Promise.all(Array.from(webglImages.values()).map((w) => w.ready)).then(() => {
-      startEntrance();
-    });
-  } else {
+  let entranceStarted = false;
+  const startEntranceOnce = () => {
+    if (entranceStarted || ac.signal.aborted) return;
+    entranceStarted = true;
     startEntrance();
+  };
+
+  const attachWebGLToCards = (exp: WebGLExperienceAPI | null) => {
+    if (ac.signal.aborted) return;
+    if (!exp || !canUseDistortion()) {
+      applyDomFallbackToCards();
+      startEntranceOnce();
+      return;
+    }
+    activeExp = exp;
+    if (!sliderGroup) {
+      sliderGroup = exp.createGroup();
+      exp.fgScene.add(sliderGroup);
+    } else if (!sliderGroup.parent) {
+      exp.fgScene.add(sliderGroup);
+    }
+
+    const readyPromises: Promise<unknown>[] = [];
+    sliderEl.querySelectorAll<HTMLImageElement>('.parts-caseStudySlider__slide img.parts-caseStudyCard__image').forEach((img) => {
+      const id = img.getAttribute('data-case-study-id');
+      if (!id) return;
+      if (img.loading === 'lazy') img.loading = 'eager';
+      const existing = webglImages.get(id);
+      if (existing && !existing.isDestroyed && existing.isWebGLActive) {
+        readyPromises.push(existing.ready);
+        return;
+      }
+      setDistortionState(img.closest('.parts-caseStudyCard'), 'pending');
+      const wImg = exp.createImage(img, { group: sliderGroup });
+      webglImages.set(id, wImg);
+      readyPromises.push(
+        wImg.ready.then(() => {
+          if (!ac.signal.aborted) syncAllCardsToWebGL();
+        })
+      );
+    });
+
+    if (readyPromises.length > 0) {
+      Promise.allSettled(readyPromises).then(() => {
+        if (ac.signal.aborted) return;
+        syncAllCardsToWebGL();
+        startEntranceOnce();
+      });
+    } else {
+      startEntranceOnce();
+    }
+  };
+
+  let cancelWhenWebGLReady: () => void = () => {};
+  if (canUseDistortion()) {
+    section.querySelectorAll<HTMLElement>('.parts-caseStudyCard').forEach((card) => {
+      setDistortionState(card, 'pending');
+    });
+    cancelWhenWebGLReady = whenWebGLReady(attachWebGLToCards);
+  } else {
+    applyDomFallbackToCards();
+    startEntranceOnce();
   }
 
+  const stopCapWatch = onDistortionCapabilityChange((enabled) => {
+    if (ac.signal.aborted) return;
+    cancelWhenWebGLReady();
+    if (enabled) {
+      cancelWhenWebGLReady = whenWebGLReady(attachWebGLToCards);
+    } else {
+      applyDomFallbackToCards();
+    }
+  });
+
   // Card title hover SplitText
+  const cardSplits: SplitText[] = [];
   sliderEl.querySelectorAll<HTMLElement>('.parts-caseStudySlider__slide').forEach((slide) => {
     const texts = slide.querySelectorAll<HTMLElement>('.parts-caseStudyCard__textInner');
     if (texts.length < 2) return;
     const tl = gsap.timeline({ paused: true });
-    SplitText.create(texts, {
+    const split = SplitText.create(texts, {
       type: 'lines,chars',
       charsClass: 'char',
-      autoSplit: true,
+      autoSplit: false,
       onSplit: (self) => {
         self.lines.forEach((line, idx) => {
           const chars = line.querySelectorAll('.char');
@@ -704,6 +773,7 @@ export function initCaseStudies() {
         });
       },
     });
+    cardSplits.push(split);
     slide.addEventListener(
       'mouseenter',
       () => {
@@ -722,6 +792,8 @@ export function initCaseStudies() {
 
   return () => {
     ac.abort();
+    cancelWhenWebGLReady();
+    stopCapWatch();
     mm.revert();
     resizeManager.remove(onSliderResize);
     sliderEl.removeEventListener('keydown', onSliderKeydown);
@@ -732,5 +804,12 @@ export function initCaseStudies() {
     pageTimeline?.kill();
     stickerTrail.destroy();
     destroyMobileStickerSlider?.();
+    cardSplits.forEach((s) => s.revert());
+    webglImages.forEach((wImg) => wImg.destroy());
+    webglImages.clear();
+    if (sliderGroup && activeExp) {
+      activeExp.fgScene.remove(sliderGroup);
+      sliderGroup = null;
+    }
   };
 }

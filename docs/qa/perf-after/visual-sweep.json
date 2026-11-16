@@ -1,0 +1,6244 @@
+[
+ {
+  "route": "home",
+  "w": 360,
+  "h": 780,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 390,
+  "h": 844,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 430,
+  "h": 932,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 844,
+  "h": 390,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 768,
+  "h": 1024,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 1024,
+  "h": 800,
+  "errs": [
+   "warning: [.WebGL-0x3a1c01d7dc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+   "warning: [.WebGL-0x3a1c0013a000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+   "warning: [.WebGL-0x3a1c01d7dc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+   "warning: [.WebGL-0x3a1c0013a000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+  ],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 1100,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 1280,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": false
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 1366,
+  "h": 850,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": false
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 1440,
+  "h": 900,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 1536,
+  "h": 960,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 1920,
+  "h": 1080,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "home",
+  "w": 2560,
+  "h": 1200,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [
+   {
+    "paused": true,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": false
+   },
+   {
+    "paused": false,
+    "muted": true,
+    "hasPoster": false,
+    "inViewport": true
+   },
+   {
+    "paused": true,
+    "muted": false,
+    "hasPoster": false,
+    "inViewport": true
+   }
+  ],
+  "small": [
+   {
+    "min": 24,
+    "tag": "button",
+    "label": "Play video"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Video progress: 00.00 of 00.00"
+   },
+   {
+    "min": 28,
+    "tag": "button",
+    "label": "Mute"
+   },
+   {
+    "min": 24,
+    "tag": "input",
+    "label": "Volume: 1"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 360,
+  "h": 780,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 390,
+  "h": 844,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 430,
+  "h": 932,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 844,
+  "h": 390,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 768,
+  "h": 1024,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 1024,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 1100,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 1280,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 1366,
+  "h": 850,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 1440,
+  "h": 900,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 1536,
+  "h": 960,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 1920,
+  "h": 1080,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "services",
+  "w": 2560,
+  "h": 1200,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Strategy"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Design"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Web & Software"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Mobile Apps"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    AI & Automation"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Growth"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Outreach"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 360,
+  "h": 780,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 390,
+  "h": 844,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 430,
+  "h": 932,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 844,
+  "h": 390,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 768,
+  "h": 1024,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 1024,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 1100,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 1280,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 1366,
+  "h": 850,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 1440,
+  "h": 900,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 1536,
+  "h": 960,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 1920,
+  "h": 1080,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "about",
+  "w": 2560,
+  "h": 1200,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Who We Are"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    What Drives Us"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "03    Mission"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "04    Vision"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "05    Values"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "06    Experience"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "07    Philosophy"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 360,
+  "h": 780,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 390,
+  "h": 844,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 430,
+  "h": 932,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 844,
+  "h": 390,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 768,
+  "h": 1024,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Terms of Service"
+   },
+   {
+    "min": 25,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Submit"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 1024,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 1100,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 1280,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 1366,
+  "h": 850,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 1440,
+  "h": 900,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 1536,
+  "h": 960,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 1920,
+  "h": 1080,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "contact",
+  "w": 2560,
+  "h": 1200,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "01    Book a Call"
+   },
+   {
+    "min": 40,
+    "tag": "a",
+    "label": "02    Start a Project"
+   },
+   {
+    "min": 1,
+    "tag": "input",
+    "label": ""
+   },
+   {
+    "min": 43,
+    "tag": "a",
+    "label": "Privacy Policy"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 360,
+  "h": 780,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 390,
+  "h": 844,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 430,
+  "h": 932,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 34,
+    "tag": "button",
+    "label": "Accept All"
+   },
+   {
+    "min": 36,
+    "tag": "button",
+    "label": "Manage"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 844,
+  "h": 390,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 768,
+  "h": 1024,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 1024,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 1100,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 1280,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 1366,
+  "h": 850,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 1440,
+  "h": 900,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 1536,
+  "h": 960,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 1920,
+  "h": 1080,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "terms",
+  "w": 2560,
+  "h": 1200,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helv",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Hanken Grotesk:100 900",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 360,
+  "h": 780,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 390,
+  "h": 844,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 430,
+  "h": 932,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 844,
+  "h": 390,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 768,
+  "h": 1024,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 1024,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 1100,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 1280,
+  "h": 800,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 1366,
+  "h": 850,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 1440,
+  "h": 900,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 1536,
+  "h": 960,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 1920,
+  "h": 1080,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ },
+ {
+  "route": "notfound",
+  "w": 2560,
+  "h": 1200,
+  "errs": [],
+  "hsX": null,
+  "bodyX": null,
+  "brokenImgs": [],
+  "vids": [],
+  "small": [
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Home"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "About"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Services"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Contact"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Who We Are"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Mission"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Vision"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Values"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "hello@decbricks.com"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "X (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "Instagram (opens in a new tab)"
+   },
+   {
+    "min": 30,
+    "tag": "a",
+    "label": "LinkedIn (opens in a new tab)"
+   }
+  ],
+  "fonts": {
+   "h1": "\"FK Raster Roman Compact\", \"FK Raster Fallback\", \"Departure ",
+   "brand": "\"FK Raster Roman Compact\", \"Departure Mono\", ui-monospace, m",
+   "body": "\"Power Grotesk\", \"Power Grotesk Fallback\", system-ui, sans-s",
+   "kicker": "\"Departure Mono\", ui-monospace, monospace, ui-monospace, mon",
+   "loaded": [
+    "FK Raster Roman Compact:400",
+    "Power Grotesk:400 800",
+    "Departure Mono:400"
+   ],
+   "powerGrotesk": true,
+   "bricolage": true
+  },
+  "hscrollDetected": false
+ }
+]

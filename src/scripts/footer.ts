@@ -3,9 +3,35 @@ import { getLenis } from './smooth-scroll';
 
 let didWarnMissing = false;
 
+async function copyText(text: string): Promise<boolean> {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // Fallback below when clipboard permission is unavailable
+    }
+  }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0;';
+    document.body.appendChild(ta);
+    ta.select();
+    const execFn = (document as unknown as Record<string, ((commandId: string) => boolean) | undefined>)['execCommand'];
+    const ok = typeof execFn === 'function' ? execFn.call(document, 'copy') : false;
+    document.body.removeChild(ta);
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Footer lifecycle (Phases 1–4):
  * - Brick-laid wordmark IntersectionObserver adds `.is-built` once and disconnects.
+ * - Click-to-copy email with aria-live status confirmation.
  * - Quantised 6-brick scroll-progress gauge on `.parts-btnScrollTop`.
  * - Full listener / observer / ScrollTrigger teardown across client swaps.
  */
@@ -25,10 +51,13 @@ export function initFooter() {
   const wordmarkRow = footer.querySelector<HTMLElement>('.structure-footer__wordmarkRow');
   const scrollTopBtn = footer.querySelector<HTMLButtonElement>('.parts-btnScrollTop');
   const manageCookiesBtn = footer.querySelector<HTMLButtonElement>('button[aria-label="Manage Cookies"]');
+  const copyBtn = footer.querySelector<HTMLButtonElement>('[data-copy-email]');
+  const copyStatus = footer.querySelector<HTMLElement>('[data-copy-status]');
   const bricksWrap = footer.querySelector<HTMLElement>('[data-footer-bricks]');
   const brickEls = bricksWrap
     ? Array.from(bricksWrap.querySelectorAll<HTMLElement>('[data-brick]'))
     : [];
+  let disposed = false;
 
   // 1. Wordmark brick-laying observer
   let layObserver: IntersectionObserver | null = null;
@@ -79,7 +108,41 @@ export function initFooter() {
     applyBrickProgress(maxY > 0 ? window.scrollY / maxY : 0);
   }
 
-  // 3. Scroll-to-top & Manage Cookies actions
+  // 3. Copy-email action with aria-live status
+  let copyTimer: number | null = null;
+  const clearCopyTimer = () => {
+    if (copyTimer !== null) {
+      window.clearTimeout(copyTimer);
+      copyTimer = null;
+    }
+  };
+  const onCopyEmail = async () => {
+    const addr = copyBtn?.dataset.copyEmail;
+    if (!copyBtn || !addr) return;
+    const ok = await copyText(addr);
+    if (disposed) return;
+    clearCopyTimer();
+    if (ok) {
+      copyBtn.dataset.copied = 'true';
+      copyBtn.textContent = 'Copied';
+      if (copyStatus) copyStatus.textContent = 'Email copied';
+    } else {
+      delete copyBtn.dataset.copied;
+      if (copyStatus) copyStatus.textContent = 'Copy failed – select the address';
+    }
+    copyTimer = window.setTimeout(() => {
+      if (disposed) return;
+      if (copyBtn) {
+        delete copyBtn.dataset.copied;
+        copyBtn.textContent = 'Copy';
+      }
+      if (copyStatus) copyStatus.textContent = '';
+      copyTimer = null;
+    }, 2600);
+  };
+  copyBtn?.addEventListener('click', onCopyEmail);
+
+  // 4. Scroll-to-top & Manage Cookies actions
   const onScrollTop = () => {
     const reduced = prefersReducedMotion();
     const lenis = getLenis();
@@ -97,8 +160,11 @@ export function initFooter() {
   manageCookiesBtn?.addEventListener('click', onManageCookies);
 
   return () => {
+    disposed = true;
     layObserver?.disconnect();
     layObserver = null;
+    clearCopyTimer();
+    copyBtn?.removeEventListener('click', onCopyEmail);
     progressTrigger?.kill();
     progressTrigger = null;
     scrollTopBtn?.removeEventListener('click', onScrollTop);

@@ -1,0 +1,311 @@
+{
+ "log": [
+  {
+   "label": "boot /",
+   "heap": 9,
+   "addon": 445,
+   "removed": 90,
+   "bysrc": {
+    "IMG": 88,
+    "window": 82,
+    "BUTTON": 65,
+    "A": 48,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 43,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/",
+    "/",
+    "/"
+   ],
+   "path": "/"
+  },
+  {
+   "label": "hop1 -> /services",
+   "heap": 9,
+   "addon": 579,
+   "removed": 286,
+   "bysrc": {
+    "A": 110,
+    "window": 107,
+    "BUTTON": 103,
+    "IMG": 88,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 23,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/services",
+    "/services"
+   ],
+   "path": "/services"
+  },
+  {
+   "label": "hop2 -> /about",
+   "heap": 9,
+   "addon": 713,
+   "removed": 370,
+   "bysrc": {
+    "A": 172,
+    "BUTTON": 141,
+    "window": 132,
+    "IMG": 88,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 23,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/about",
+    "/about"
+   ],
+   "path": "/about"
+  },
+  {
+   "label": "hop3 -> /contact",
+   "heap": 9,
+   "addon": 796,
+   "removed": 454,
+   "bysrc": {
+    "A": 200,
+    "BUTTON": 172,
+    "window": 147,
+    "IMG": 88,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 13,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/contact",
+    "/contact"
+   ],
+   "path": "/contact"
+  },
+  {
+   "label": "hop4 -> /terms",
+   "heap": 7,
+   "addon": 206,
+   "removed": 71,
+   "bysrc": {
+    "IMG": 70,
+    "BUTTON": 41
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 3,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [],
+   "path": "/terms"
+  },
+  {
+   "label": "hop5 -> /",
+   "heap": 9,
+   "addon": 487,
+   "removed": 154,
+   "bysrc": {
+    "BUTTON": 100,
+    "window": 83,
+    "IMG": 82,
+    "A": 68,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 42,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/",
+    "/",
+    "/"
+   ],
+   "path": "/"
+  },
+  {
+   "label": "hop6 -> /services",
+   "heap": 9,
+   "addon": 623,
+   "removed": 350,
+   "bysrc": {
+    "BUTTON": 138,
+    "A": 130,
+    "window": 109,
+    "IMG": 82,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 23,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/services",
+    "/services"
+   ],
+   "path": "/services"
+  },
+  {
+   "label": "hop7 -> /contact",
+   "heap": 9,
+   "addon": 706,
+   "removed": 434,
+   "bysrc": {
+    "BUTTON": 169,
+    "A": 158,
+    "window": 124,
+    "IMG": 82,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 13,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/contact",
+    "/contact"
+   ],
+   "path": "/contact"
+  },
+  {
+   "label": "hop8 -> /about",
+   "heap": 9,
+   "addon": 840,
+   "removed": 500,
+   "bysrc": {
+    "A": 220,
+    "BUTTON": 207,
+    "window": 149,
+    "IMG": 82,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 23,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/about",
+    "/about"
+   ],
+   "path": "/about"
+  },
+  {
+   "label": "hop9 -> /",
+   "heap": 10,
+   "addon": 1125,
+   "removed": 601,
+   "bysrc": {
+    "A": 268,
+    "BUTTON": 266,
+    "window": 204,
+    "IMG": 94,
+    "DIV": 67,
+    "ARTICLE": 64,
+    "obj": 37
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 42,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/",
+    "/",
+    "/"
+   ],
+   "path": "/"
+  },
+  {
+   "label": "hop10 -> /terms",
+   "heap": 7,
+   "addon": 206,
+   "removed": 71,
+   "bysrc": {
+    "IMG": 70,
+    "BUTTON": 41
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 3,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [],
+   "path": "/terms"
+  },
+  {
+   "label": "hop11 -> /404",
+   "heap": 5,
+   "addon": 115,
+   "removed": 2,
+   "bysrc": {},
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 2,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [],
+   "path": "/404"
+  },
+  {
+   "label": "hop12 -> /",
+   "heap": 8,
+   "addon": 438,
+   "removed": 86,
+   "bysrc": {
+    "IMG": 88,
+    "window": 79,
+    "BUTTON": 65,
+    "A": 48,
+    "DIV": 34,
+    "ARTICLE": 32
+   },
+   "canvases": [
+    "1280x800",
+    "1280x800"
+   ],
+   "stCount": 43,
+   "bodyClass": "bg-darkPurple",
+   "ariaCurrent": [
+    "/",
+    "/",
+    "/"
+   ],
+   "path": "/"
+  }
+ ],
+ "errs": []
+}

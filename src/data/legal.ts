@@ -1,16 +1,9 @@
 /**
  * Legal-page content (/terms, including Privacy Policy section) — open-items A11.
  *
- * TEMPLATE DRAFT: every company-specific fact is a bracketed placeholder.
- * Nothing here is presented as the owner's real legal position; the owner
- * replaces the placeholders and gets the text legally reviewed before the
- * page becomes indexable (see docs/open-items.md A11 and Design-handoff).
- *
- * Copy rules: plain professional English, typographic apostrophes, no bare
- * brand word in body copy (headings render through brandify() where needed).
- * The privacy section describes only what this site actually does today:
- * Formspree contact form, optional Cal.com booking, the cookie banner
- * (functional/essential + optional analytics), and standard server logs.
+ * Word-for-word from `docs/decbricks-legal.docx` (Last Updated: 16th November, 2026).
+ * Every visible standalone "Decbricks" word is rendered through `brandify()`
+ * in `LegalPage.astro` and `ServicesHero.astro`.
  */
 
 export interface LegalSection {
@@ -18,8 +11,10 @@ export interface LegalSection {
   id: string;
   heading: string;
   body: string[];
-  /** Optional bullet list rendered under the body paragraphs. */
+  /** Optional bullet list rendered under the opening body paragraphs. */
   bullets?: string[];
+  /** Optional closing paragraphs rendered after the bullet list. */
+  afterBullets?: string[];
 }
 
 export interface TermsDocument {
@@ -27,228 +22,421 @@ export interface TermsDocument {
   title: string;
   seoTitle: string;
   seoDescription: string;
-  /** Shown in the hero stamp; 'TEMPLATE DRAFT' until the owner supplies a date. */
+  /** Shown in the hero stamp (`Last Updated: {updated}`). */
   updated: string;
   intro: string;
+  /** Opening paragraph(s) rendered at the top of the Terms reading box before Section 1. */
+  preamble: string[];
   /** The two giant ServicesHero display words (FK Raster Compact). */
   heroHeading: readonly [string, string];
   sections: LegalSection[];
   privacy: {
     id: 'privacy-policy';
     heading: string;
+    updated: string;
+    preamble: string[];
     sections: LegalSection[];
   };
 }
 
-const CONTACT_LINE =
-  'Questions about this document can be sent through the contact form on our website, or by email to [Contact email].';
-
 const TERMS: LegalSection[] = [
   {
-    id: 'acceptance',
-    heading: '1. Acceptance of these terms',
-    body: [
-      'By accessing this website or engaging us for services, you agree to these Terms of Service. If you do not agree, please do not use the website or submit enquiries through it.',
-      'These terms apply to the website and to any statement of work we both sign. Where a signed statement of work conflicts with these terms, the statement of work prevails for that engagement.',
+    "id": "about-decbricks",
+    "heading": "1. About Decbricks",
+    "body": [
+      "\"Decbricks\", \"we\", \"us\" and \"our\" mean the founders of Decbricks, based in Chennai, India, who operate the website decbricks.com.",
+      "We provide technology-driven services and digital solutions, including:"
     ],
+    "bullets": [
+      "Website design and development",
+      "Web application development",
+      "UI/UX design",
+      "Digital strategy and consulting",
+      "Branding and creative solutions",
+      "Technology and business support services",
+      "Other customised digital solutions agreed upon with clients"
+    ],
+    "afterBullets": [
+      "We work with individuals, startups, businesses and organisations, in India and abroad, to develop solutions suited to their requirements."
+    ]
   },
   {
-    id: 'who-we-are',
-    heading: '2. Who we are',
-    body: [
-      '“We”, “us” and “our” mean [Legal entity name], a company registered in [Jurisdiction] with its registered office at [Registered address], operating the website decbricks.com and providing the services described on it.',
-    ],
+    "id": "scope-of-services",
+    "heading": "2. Scope of Services",
+    "body": [
+      "The specific services, deliverables, timelines and pricing will be agreed in a written proposal or statement of work before a project begins. These Terms apply to the website and to every statement of work we both sign. If a signed statement of work conflicts with these Terms, the statement of work prevails for that engagement.",
+      "Nothing on this website is a binding offer. Enquiries submitted through the contact form or the booking widget are requests to start a conversation, not orders.",
+      "Any additional requirements or changes requested after a project has started may result in revised timelines, deliverables or costs, which we will quote before carrying them out.",
+      "Decbricks reserves the right to modify its service offerings based on business requirements and operational capabilities."
+    ]
   },
   {
-    id: 'services',
-    heading: '3. Services',
-    body: [
-      'We provide technology and digital services, currently including web and software development, AI and automation, strategy consulting, business development and outreach, design and branding, and digital marketing and growth. The exact scope, deliverables, timeline and price for any engagement are agreed in a written proposal or statement of work before work begins.',
-      'Nothing on this website is a binding offer. Enquiries submitted through the contact form are requests to start a conversation, not orders.',
+    "id": "client-responsibilities",
+    "heading": "3. Client Responsibilities",
+    "body": [
+      "Clients agree to:"
     ],
+    "bullets": [
+      "Provide accurate project information and requirements.",
+      "Supply necessary content, materials, credentials and resources on time.",
+      "Ensure that all materials provided to Decbricks (copy, images, logos, data, access credentials) are legally authorised for use, and that supplying them for the project does not infringe anyone's rights.",
+      "Review deliverables and respond to requests for feedback, approvals and clarifications within the review period stated in the proposal (usually 5–8 days, or 7 days if none is stated). If we receive no response by the end of that period, we may treat the stage as approved and proceed.",
+      "Nominate a single point of contact for approvals.",
+      "Avoid using our services for unlawful, misleading or unauthorised activities."
+    ],
+    "afterBullets": [
+      "Delays caused by incomplete information, delayed feedback or approvals, or unavailable resources may shift agreed timelines.",
+      "Clients are responsible for, and will indemnify Decbricks against, third-party claims arising from the materials they supply for a project."
+    ]
   },
   {
-    id: 'payment',
-    heading: '4. Quotes and payment',
-    body: [
-      'Prices are quoted per engagement and exclude taxes unless stated otherwise. Unless the statement of work says otherwise, an advance of [Advance percentage] is due before work starts and the remainder is due on delivery of agreed milestones.',
-      'Invoices are payable within [Payment terms] days. Late payments may pause work and accrue interest at [Late interest rate] per month. Third-party costs (fonts, licences, hosting, media spend) are passed through at cost unless stated otherwise.',
+    "id": "payments-and-pricing",
+    "heading": "4. Payments and Pricing",
+    "body": [
+      "Project pricing, payment schedules and milestones will be communicated and agreed before work begins. Prices exclude applicable taxes unless stated otherwise.",
+      "Unless otherwise agreed in writing:"
     ],
+    "bullets": [
+      "An advance of 50% is due before work starts, and the remainder is due on delivery of the agreed milestones.",
+      "Invoices are payable within 7 days.",
+      "Late payments may pause project activities and may accrue interest at 1.5% per month.",
+      "Third-party costs (such as fonts, licences, hosting and media spend) are passed through at cost.",
+      "Work outside the original scope may be charged separately.",
+      "Any applicable taxes or transaction charges will be communicated where relevant."
+    ],
+    "afterBullets": [
+      "Specific payment and refund conditions may be included in individual project agreements or proposals."
+    ]
   },
   {
-    id: 'client-responsibilities',
-    heading: '5. Your responsibilities',
-    body: [
-      'You confirm that content and materials you supply to us (copy, images, logos, data, access credentials) are yours to use, and that supplying them to us for the engagement does not infringe anyone’s rights.',
-      'You agree to review deliverables and give feedback within [Review window] days, and to provide a single point of contact for approvals. Delays in feedback or materials may shift agreed timelines.',
-    ],
+    "id": "project-execution-and-collaborations",
+    "heading": "5. Project Execution and Collaborations",
+    "body": [
+      "Decbricks works with a network of developers, designers, creative professionals and other independent contributors to deliver project requirements.",
+      "Depending on project complexity, workload, timelines and specialised requirements, Decbricks may engage or invite external agencies, freelancers or individuals, including collaborators based outside India, to assist with specific aspects of a project.",
+      "Decbricks remains responsible for coordinating the agreed scope of work and expects all collaborators to follow applicable confidentiality, security and project-related requirements. Decbricks is responsible for the work of its collaborators as for its own, and obtains written confidentiality and intellectual-property assignments from each of them.",
+      "Portfolio projects shown on the website were delivered by Decbricks and its collaborators."
+    ]
   },
   {
-    id: 'revisions',
-    heading: '6. Revisions and timelines',
-    body: [
-      'Each deliverable includes [Number of revision rounds] rounds of revisions as described in the statement of work. Additional rounds or scope changes are quoted separately before they are carried out.',
+    "id": "revisions-and-changes",
+    "heading": "6. Revisions and Changes",
+    "body": [
+      "Each project includes a defined number of revision rounds based on the project scope and overall engagement value:"
     ],
+    "bullets": [
+      "Standard Projects: Up to 2 rounds of revisions.",
+      "Premium Projects: Up to 3 rounds of revisions."
+    ],
+    "afterBullets": [
+      "The applicable revision allowance, and whether a project is treated as Standard or Premium, will be specified in the project proposal or Statement of Work before commencement. Any additional revisions or significant changes beyond the agreed scope may incur additional charges and require revised timelines."
+    ]
   },
   {
-    id: 'ip',
-    heading: '7. Intellectual property',
-    body: [
-      'You own the final agreed deliverables (excluding our pre-existing tools, code libraries and know-how, and third-party licensed components, which remain with their owners) once payment for them is received in full. Until then, we retain ownership of the work in progress.',
-      'We keep the right to reuse general skills, techniques and anonymised lessons learned, and — unless you ask us not to — to reference the engagement in our portfolio.',
-      'Third-party material included in deliverables (fonts, stock media, open-source libraries) is licensed under its own terms; we will identify what we used on request.',
+    "id": "intellectual-property",
+    "heading": "7. Intellectual Property",
+    "body": [
+      "Unless otherwise agreed in writing:"
     ],
+    "bullets": [
+      "Clients retain ownership of the original materials, content and intellectual property they provide.",
+      "On receipt of full payment for a deliverable, Decbricks assigns to the client, worldwide and in perpetuity, all rights, including copyright, in the custom-developed deliverables for that engagement, and the assignment does not lapse through non-use. Until then, Decbricks retains ownership of the work in progress. Decbricks also grants the client a perpetual, worldwide, non-exclusive, royalty-free licence to use any Decbricks pre-existing materials incorporated in the deliverables, as part of them.",
+      "Decbricks retains ownership of its pre-existing tools, frameworks, code libraries, reusable components, methodologies, know-how and internal resources.",
+      "Decbricks may reuse general skills, techniques and anonymised lessons learned from an engagement.",
+      "Third-party software, libraries, fonts, plugins, stock media and other licensed materials remain subject to their respective licence terms. We will identify what we used on request."
+    ],
+    "afterBullets": [
+      "Decbricks may request permission to showcase completed projects in its portfolio, website or promotional materials. Client-specific confidential information will not be disclosed without appropriate authorisation."
+    ]
   },
   {
-    id: 'confidentiality',
-    heading: '8. Confidentiality',
-    body: [
-      'Each side keeps the other’s non-public information confidential and uses it only for the engagement, except where required by law or where the information is already public.',
-    ],
+    "id": "third-party-services",
+    "heading": "8. Third-Party Services",
+    "body": [
+      "Certain projects may involve third-party platforms, hosting providers, APIs, payment gateways, software tools or other external services.",
+      "Decbricks is not responsible for interruptions, policy changes, security incidents or service failures originating from third-party providers, although we will make reasonable efforts to assist clients in resolving project-related issues."
+    ]
   },
   {
-    id: 'warranties',
-    heading: '9. Warranties and disclaimers',
-    body: [
-      'We warrant that services are performed with reasonable skill and care. Beyond that, the website and services are provided “as is”, and we disclaim all other warranties to the extent permitted by law, including fitness for a particular purpose.',
-      'We do not guarantee that the website will be uninterrupted or error-free, or that search rankings, ad performance or other third-party results will reach any particular level.',
-    ],
+    "id": "confidentiality",
+    "heading": "9. Confidentiality",
+    "body": [
+      "Both Decbricks and its clients agree to treat non-public business information, project details, credentials, documents and other confidential materials with reasonable care, and to use them only for the purposes of the project.",
+      "Such information will not be disclosed to unauthorised parties except where necessary for project execution, required by law, authorised by the relevant party, or already public. These obligations continue after a project ends."
+    ]
   },
   {
-    id: 'liability',
-    heading: '10. Limitation of liability',
-    body: [
-      'To the extent permitted by law, our total liability for any claim connected to the website or an engagement is limited to the fees you paid us for the engagement giving rise to the claim. Neither side is liable for indirect or consequential loss, including lost profits or data.',
-    ],
+    "id": "warranties-and-disclaimers",
+    "heading": "10. Warranties and Disclaimers",
+    "body": [
+      "We warrant that our services will be performed with reasonable skill and care and in line with the agreed requirements and professional standards.",
+      "For 14 days after launch, Decbricks will fix, at no charge, defects where a deliverable does not work as specified in the statement of work. New features, content changes, and issues caused by third-party platforms or client edits are not defects and are quoted separately.",
+      "Beyond that, and to the extent permitted by applicable law, the website and our services are provided \"as is\", and we disclaim all other warranties, including fitness for a particular purpose.",
+      "We do not guarantee uninterrupted or error-free website availability, specific search engine rankings, advertising performance, business growth, revenue or other commercial outcomes."
+    ]
   },
   {
-    id: 'termination',
-    heading: '11. Termination',
-    body: [
-      'Either side may end an engagement with [Notice period] written notice. You pay for work performed and costs incurred up to the termination date; we hand over completed deliverables paid for to that point.',
-      'We may suspend or terminate work immediately if payment is overdue or if you ask us to work with infringing or unlawful material.',
-    ],
+    "id": "limitation-of-liability",
+    "heading": "11. Limitation of Liability",
+    "body": [
+      "To the extent permitted by applicable law, Decbricks' total liability for any claim connected to the website or an engagement is limited to the fees paid to us for the engagement giving rise to the claim.",
+      "Neither party is liable for indirect or consequential losses, including lost profits or data, arising from the use of our services or third-party platforms.",
+      "Nothing in these Terms excludes or limits liability that cannot legally be excluded or limited."
+    ]
   },
   {
-    id: 'governing-law',
-    heading: '12. Governing law and disputes',
-    body: [
-      'These terms are governed by the laws of [Jurisdiction], and the courts of [Jurisdiction] have exclusive jurisdiction over disputes, after the parties first attempt to resolve the matter in good-faith discussion for [Dispute negotiation period] days.',
+    "id": "termination",
+    "heading": "12. Termination",
+    "body": [
+      "Either party may end an engagement by giving 14 days' written notice for projects, or 30 days' written notice for retainers, in accordance with the applicable project agreement.",
+      "Upon termination:"
     ],
+    "bullets": [
+      "Outstanding payments for completed work and agreed expenses, including costs incurred up to the termination date, remain payable.",
+      "Decbricks will hand over completed deliverables that have been paid for up to that point.",
+      "Access to project resources may be withdrawn where appropriate.",
+      "Confidentiality obligations continue.",
+      "The 50% advance is non-refundable once work has started. If an engagement ends early, Decbricks invoices work completed and work in progress up to the termination date and credits the advance against that invoice. Any other refunds are handled according to the agreed payment and project terms."
+    ],
+    "afterBullets": [
+      "Decbricks may suspend or terminate services immediately in cases of overdue payment, misuse, unlawful activity, a request to work with infringing or unlawful material, or material breach of these Terms."
+    ]
   },
   {
-    id: 'changes',
-    heading: '13. Changes to these terms',
-    body: [
-      'We may update these terms from time to time. The version published on this page applies from its stated effective date; for ongoing engagements, the version in force when the statement of work was signed applies to that engagement.',
+    "id": "website-usage",
+    "heading": "13. Website Usage",
+    "body": [
+      "Users agree not to:"
     ],
+    "bullets": [
+      "Attempt unauthorised access to our website or systems.",
+      "Distribute malicious software or harmful content.",
+      "Copy or reproduce website content without permission.",
+      "Misuse our contact forms or communication channels.",
+      "Engage in activities that interfere with the operation of our website."
+    ]
   },
   {
-    id: 'contact',
-    heading: '14. Contact',
-    body: [CONTACT_LINE],
+    "id": "privacy",
+    "heading": "14. Privacy",
+    "body": [
+      "We handle personal information as described in our Privacy Policy. Where project materials are shared with collaborators, including those outside India, we share only what is needed for the work and require them to protect it under the confidentiality and security expectations in Section 5.",
+      "If your project involves us processing personal data on your behalf (for example, your customers' data in an application we build), we will agree data-processing terms with you in the statement of work or a separate data-processing agreement."
+    ]
   },
+  {
+    "id": "changes-to-these-terms",
+    "heading": "15. Changes to These Terms",
+    "body": [
+      "Decbricks may update these Terms periodically to reflect changes in our services, business practices or legal requirements.",
+      "Updated versions will be published on this page with a revised Last Updated date and apply from that date. For ongoing engagements, the version in force when the statement of work was signed applies to that engagement."
+    ]
+  },
+  {
+    "id": "governing-law-and-disputes",
+    "heading": "16. Governing Law and Disputes",
+    "body": [
+      "These Terms, and every engagement with Decbricks, are governed by the laws of India.",
+      "If a dispute arises, the parties will first try to resolve it through good-faith discussion for 30 days. If it remains unresolved:"
+    ],
+    "bullets": [
+      "Clients based in India: the dispute is subject to the jurisdiction of the competent courts in Chennai, Tamil Nadu, India, subject to applicable law.",
+      "Clients based outside India: the dispute will be finally resolved by arbitration under the Arbitration and Conciliation Act, 1996, before a sole arbitrator appointed by agreement within 15 days of a notice of arbitration, failing which in accordance with that Act, seated in Chennai, Tamil Nadu, India. The language of the arbitration is English. The Madras High Court has supervisory jurisdiction over the arbitration, and either party may seek urgent interim relief from any competent court. Decbricks may also sue for unpaid fees in the competent courts at Chennai."
+    ],
+    "afterBullets": [
+      "Nothing in this section stops either party from seeking urgent protection of its confidential information or intellectual property from a court of competent jurisdiction."
+    ]
+  },
+  {
+    "id": "clients-and-visitors-outside-india",
+    "heading": "17. Clients and Visitors Outside India",
+    "body": [
+      "Decbricks follows Indian law, and we aim to work smoothly with clients elsewhere. For international clients:"
+    ],
+    "bullets": [
+      "Local mandatory rights. If you are a consumer, or the law of your country gives you rights that cannot be waived by contract, nothing in these Terms removes them. In that case, these Terms apply to the fullest extent your local law allows.",
+      "Currency, taxes and payment. Invoices are issued in the currency stated in the statement of work. You bear any withholding taxes, duties, bank charges and currency-conversion costs, and we will receive the full invoiced amount unless the statement of work says otherwise. Indian taxes, where applicable, are shown on the invoice.",
+      "Sanctions and export rules. Neither party will use the services in breach of applicable sanctions or export-control laws. We may decline or stop work where continuing would break such laws.",
+      "Language and notices. The English version of these Terms is the governing version. Formal notices are given by email to the addresses in the statement of work.",
+      "Your local compliance. You are responsible for making sure that what we build for you (for example, cookie notices, accessibility, consumer-law disclosures or sector rules in your market) meets the requirements where your users are, unless the statement of work says we will handle a specific item.",
+      "Time zones and timelines. Dates and deadlines follow India Standard Time unless the statement of work says otherwise."
+    ]
+  },
+  {
+    "id": "general",
+    "heading": "18. General",
+    "body": [],
+    "bullets": [
+      "Entire agreement. These Terms and the signed statement of work are the whole agreement for an engagement and replace earlier discussions about it.",
+      "Severability. If a part of these Terms is found unenforceable, the rest stays in force.",
+      "No waiver. Not enforcing a right straight away does not give it up.",
+      "Assignment. Neither party may transfer an engagement to someone else without the other's written consent, except to a successor of the whole business.",
+      "Events beyond our control. Neither party is liable for delay or failure caused by events outside its reasonable control (such as natural disasters, power or internet outages, government action or third-party platform failures), provided it tells the other promptly and tries to limit the effect. Payment obligations for work already done continue.",
+      "Independent parties. Nothing here makes either party the partner, employee or agent of the other."
+    ]
+  },
+  {
+    "id": "contact-us",
+    "heading": "19. Contact Us",
+    "body": [
+      "For questions, clarifications or concerns regarding these Terms of Service, contact us through the contact form on our website or at:",
+      "Email: hello@decbricks.com",
+      "Website: https://decbricks.com"
+    ]
+  }
 ];
 
 const PRIVACY: LegalSection[] = [
   {
-    id: 'who-we-are-privacy',
-    heading: '1. Who we are and how to reach us',
-    body: [
-      'This policy explains what personal data this website collects and why. “We”, “us” and “our” mean [Legal entity name], [Registered address], acting as the data controller for this website. [Contact email] is the address for privacy questions.',
-    ],
+    "id": "who-we-are-and-how-to-reach-us-privacy",
+    "heading": "1. Who we are and how to reach us",
+    "body": [
+      "\"Decbricks\", \"we\", \"us\" and \"our\" mean the founders of Decbricks, based in Chennai, India, who operate decbricks.com. We decide why and how your personal data is processed, which makes us the Data Fiduciary under the DPDP Act.",
+      "Privacy questions and grievances go to our designated contact (Grievance Contact, Decbricks): 99507 64003, hello@decbricks.com."
+    ]
   },
   {
-    id: 'data-we-collect',
-    heading: '2. Data we collect',
-    // Paragraphical (owner request): the former bullet list lives on as one
-    // paragraph per point, words verbatim.
-    body: [
-      'We collect only what the features below need:',
-      'Contact form (name, email, company, message, and your consent to submit): sent through the form service Formspree (formspree.io), which delivers it as an email to our team inbox. The form service stores submissions and may apply spam checks to the data you send.',
-      'Booking a call (when the booking widget is enabled): the scheduling service Cal.com processes the name, email and any details you enter to create the meeting.',
-      'Cookies and similar storage: the cookie banner on this site lets you accept all, reject non-essential, or manage categories — functional/essential cookies (always on, required for the site to work) and optional analytics cookies (off unless you enable them).',
-      'Server logs: our hosting records standard request data (page requested, approximate IP, timestamp, browser type) to operate and secure the site.',
+    "id": "data-we-collect-privacy",
+    "heading": "2. Data we collect",
+    "body": [
+      "We collect only what each feature below needs."
     ],
+    "bullets": [
+      "Contact form (name, business email, company, website, country, service required, estimated budget, project timeline, your message, and your consent to submit): sent through the form service Formspree (formspree.io), which delivers it as an email to our team inbox. The form service stores submissions and may run spam checks on what you send.",
+      "Booking a call (when the booking widget is enabled): the scheduling service Cal.com processes the name, email and any details you enter to create the meeting.",
+      "Cookies and similar storage: we use only essential cookies and similar storage that the site needs to work. We do not use analytics or advertising cookies.",
+      "Server logs: our hosting provider, Vercel, records standard request data (page requested, approximate IP address, timestamp, browser type) to operate and secure the site."
+    ],
+    "afterBullets": [
+      "If you become a client, the materials you share for your project (content, files, credentials, business data) are handled under your statement of work and the confidentiality terms in our Terms of Service, in addition to this policy."
+    ]
   },
   {
-    id: 'why-and-basis',
-    heading: '3. Why we use it, and on what basis',
-    body: [
-      'Enquiry and booking data is used to respond to you and prepare proposals — the basis is taking steps at your request before a contract, and your consent where the form asks for it.',
-      'Essential cookies and server logs are used to keep the site working and secure — legitimate interest. Optional analytics is used to understand how the site is used — only with your consent, which you can withdraw any time through the cookie banner’s “Manage Cookies” control.',
+    "id": "why-we-use-it-and-on-what-basis-privacy",
+    "heading": "3. Why we use it, and on what basis",
+    "body": [],
+    "bullets": [
+      "Enquiries and bookings: to respond to you and prepare proposals. We rely on your consent, which you give by submitting the form or booking a slot, and on your voluntary provision of the data for that purpose.",
+      "Essential cookies and server logs: to keep the site working and secure, as part of our duty to maintain reasonable security safeguards."
     ],
+    "afterBullets": [
+      "We do not use your data for any purpose beyond those above without asking you first."
+    ]
   },
   {
-    id: 'sharing',
-    heading: '4. Who we share it with',
-    body: [
-      'We share data only with the processors listed above (form delivery, scheduling, hosting, and — if you enable it — analytics), and with authorities where the law requires it. We do not sell personal data. The current processors and their regions are [Processor names and regions — confirm].',
+    "id": "who-we-share-it-with-privacy",
+    "heading": "4. Who we share it with",
+    "body": [
+      "We share data only with:"
     ],
+    "bullets": [
+      "the service providers (processors) named in Section 2, which handle form delivery, scheduling and hosting;",
+      "collaborators we engage on a client project, who are bound by confidentiality and security requirements and receive only what the work needs; and",
+      "government authorities or courts where the law requires it."
+    ],
+    "afterBullets": [
+      "We do not sell personal data, and we do not share it for targeted advertising. Our current processors and their regions are Formspree (United States), Cal.com (United States), Vercel (United States, with a global edge network)."
+    ]
   },
   {
-    id: 'retention',
-    heading: '5. How long we keep it',
-    body: [
-      'Enquiry emails and booking records are kept for [Retention period] so we can follow up and keep a history of our correspondence. Server logs are kept for [Log retention period]. Aggregated, non-identifying analytics data may be kept longer.',
+    "id": "how-long-we-keep-it-privacy",
+    "heading": "5. How long we keep it",
+    "body": [],
+    "bullets": [
+      "Enquiry emails and booking records are kept for 12 months so we can follow up and keep a record of our correspondence.",
+      "Server logs are kept for 12 months."
     ],
+    "afterBullets": [
+      "When the purpose is served and no law requires us to keep the data, we erase it. Invoice and tax records for clients are kept for as long as the law requires."
+    ]
   },
   {
-    id: 'your-rights',
-    heading: '6. Your rights',
-    body: [
-      'You can ask for a copy of your data, correction, deletion, restriction, portability, or object to particular uses, and withdraw consent (for example, analytics) at any time. Write to [Contact email] or use the contact form; we respond within [Response window] days. You also have the right to complain to your local data-protection authority — [Authority name and address].',
+    "id": "your-rights-privacy",
+    "heading": "6. Your rights",
+    "body": [
+      "The rights below follow the Digital Personal Data Protection Act, 2023, whose rights provisions are not yet fully in force; we honour them voluntarily now. You can:"
     ],
+    "bullets": [
+      "ask for a summary of the personal data we hold about you and how it is processed;",
+      "ask us to correct, complete or update it;",
+      "ask us to erase it;",
+      "withdraw your consent at any time (for example, for an enquiry you have submitted), which will not affect processing already done on the basis of your consent;",
+      "nominate another person to exercise these rights for you if you die or become unable to do so; and",
+      "raise a grievance with us."
+    ],
+    "afterBullets": [
+      "Write to hello@decbricks.com or use the contact form. We will acknowledge your request within 7 days and resolve it within 30 days. If you are not satisfied with our response, you may complain to the Data Protection Board of India."
+    ]
   },
   {
-    id: 'international',
-    heading: '7. International transfers',
-    body: [
-      'Our processors operate in [Processor regions]. Where data leaves your country, it is protected by [Transfer mechanism — confirm, e.g. standard contractual clauses].',
-    ],
+    "id": "transfers-outside-india-privacy",
+    "heading": "7. Transfers outside India",
+    "body": [
+      "Our processors operate in the United States (Formspree, Cal.com and Vercel, which also serves content through a global edge network). Where your data leaves India, we transfer it only to providers that protect it under contractual safeguards, including data processing agreements with each processor, and not to any country the Government of India has restricted."
+    ]
   },
   {
-    id: 'security',
-    heading: '8. Security',
-    body: [
-      'The site is served over HTTPS, form submission uses encrypted transport, and access to our inbox and booking dashboard is protected by [Security measures in place]. No online service is perfectly secure, so please do not send sensitive information (national IDs, payment card numbers, health data) through the contact form.',
-    ],
+    "id": "security-privacy",
+    "heading": "8. Security",
+    "body": [
+      "The site is served over HTTPS, form submissions use encrypted transport, and access to our inbox and booking dashboard is protected by access controls and reasonable technical and organisational security measures. If a personal data breach affects you, we will notify you and the Data Protection Board of India as the law requires.",
+      "No online service is perfectly secure, so please do not send sensitive information (government ID numbers, payment card details, health data, passwords) through the contact form."
+    ]
   },
   {
-    id: 'children',
-    heading: '9. Children',
-    body: [
-      'This website is aimed at businesses and is not directed at children. We do not knowingly collect data from children; contact us if you believe a child has submitted data and we will delete it.',
-    ],
+    "id": "children-privacy",
+    "heading": "9. Children",
+    "body": [
+      "This website is aimed at businesses and is not directed at children. In India, a child is anyone under 18. We do not knowingly collect data from children, and we do not offer a way to give the parental consent that would be required. If you believe a child has submitted data to us, contact us and we will delete it."
+    ]
   },
   {
-    id: 'changes-privacy',
-    heading: '10. Changes to this policy',
-    body: [
-      'We update this policy when our processing changes. The version on this page, with its stated date, is the current one.',
-    ],
+    "id": "changes-to-this-policy-privacy",
+    "heading": "10. Changes to this policy",
+    "body": [
+      "We update this policy when our processing changes. The version on this page, with its Last Updated date, is the current one. If a change affects how we use data you have already given us, we will ask for your consent again where the law requires it."
+    ]
   },
   {
-    id: 'contact-privacy',
-    heading: '11. Contact',
-    body: [CONTACT_LINE],
+    "id": "if-you-are-outside-india-privacy",
+    "heading": "11. If you are outside India",
+    "body": [
+      "Decbricks follows Indian law and applies the same practices to everyone who uses our site. If you are in another country, the following also applies:"
+    ],
+    "bullets": [
+      "Where your data goes. When you submit a form or book a call, your data is sent to India and to the processors in Section 4, whose locations are listed there. By submitting, you understand your data will be processed in those places.",
+      "Rights in your country. The laws where you live may give you rights similar to those in Section 6, such as access, correction, deletion, objection, portability, and withdrawal of consent. Send your request to hello@decbricks.com and we will handle it under the law that applies to you, as far as we are able. You may also complain to your local data-protection authority.",
+      "Legal basis. Where your local law requires a legal basis, we rely on your consent, or on taking steps at your request before a contract.",
+      "Safeguards for transfers. Where your local law requires a safeguard for sending data abroad, we use appropriate contractual, confidentiality and data protection safeguards with the processors involved.",
+      "Client data. If we handle personal data for you as a client, we act on your instructions and will agree data-processing terms with you.",
+      "No sale of data. We do not sell personal data or share it for targeted advertising, in the sense those terms are used in laws such as California's."
+    ]
   },
+  {
+    "id": "contact-privacy",
+    "heading": "12. Contact",
+    "body": [
+      "Questions, requests and grievances about this policy: hello@decbricks.com, or through the contact form at decbricks.com."
+    ]
+  }
 ];
 
 export const TERMS_DOC: TermsDocument = {
   slug: 'terms',
   title: 'Terms of Service',
-  seoTitle: 'Terms of Service | Decbricks',
+  seoTitle: 'Terms of Service & Privacy Policy | Decbricks',
   seoDescription:
-    'The terms and privacy policy that govern the use of decbricks.com and our web, AI, design and growth services — template draft pending owner review.',
-  updated: 'TEMPLATE DRAFT',
-  intro:
-    'These terms cover the use of this website, the services we provide through it, and how we handle personal data. The text is a template draft: bracketed placeholders mark the details the owner must supply before the page goes live.',
+    'Terms of Service and Privacy Policy governing your access to and use of the Decbricks website (decbricks.com), services and digital solutions.',
+  updated: "16th November, 2026",
+  intro: "Welcome to Decbricks. These Terms of Service govern your access to and use of the Decbricks website, services and digital solutions. By accessing our website or engaging our services, you agree to the terms below. If you do not agree, please do not use the website or submit enquiries through it.",
+  preamble: ["Decbricks is an Indian business and these Terms are governed by Indian law, wherever you are located. Section 17 adds a few points for clients and visitors outside India."],
   heroHeading: ['Terms', 'Of Service'] as const,
   sections: TERMS,
   privacy: {
     id: 'privacy-policy',
     heading: 'Privacy Policy',
+    updated: "16th November, 2026",
+    preamble: ["This policy explains what personal data the Decbricks website collects, why we collect it, and the choices you have. It should be read together with our Terms of Service.", "Decbricks is based in India and handles personal data under Indian law: the Information Technology Act, 2000 and its rules, and the Digital Personal Data Protection Act, 2023 (the \"DPDP Act\") as its provisions come into force. Section 11 explains what this means if you are outside India."],
     sections: PRIVACY,
   },
 };

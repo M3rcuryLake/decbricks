@@ -1,7 +1,13 @@
 import * as THREE from 'three';
-import { gsap, ScrollTrigger, bp, bus, prefersReducedMotion, resizeManager } from '../core/gsap';
+import { gsap, ScrollTrigger, bus, prefersReducedMotion } from '../core/gsap';
+import { ensurePreviewVideoSource, waitForVideoFirstFrame } from '../media';
 import { getLenis } from '../smooth-scroll';
-import squareSolidUrl from '../../assets/shared/square-solid.png?url';
+import {
+  loadCachedTexture,
+  markCachedTexturesDirtyForRestore,
+  preloadSquareStampTexture,
+} from './cache';
+import { canUseDistortion, setDistortionState } from './capability';
 
 const TOUCH_VERTEX_SHADER = `uniform float uTime;
 uniform float uBirthTime;
@@ -295,8 +301,7 @@ function clamp01(v: number) {
 /**
  * Numeric THREE.Color args are treated as LINEAR working-space values, and the
  * renderer converts linear→sRGB on output. CSS colour strings are sRGB, so they
- * must be converted sRGB→linear before constructing a Color, otherwise every
- * CSS-sourced colour renders washed out (e.g. coral #D45060 → rgb(235,152,165)).
+ * must be converted sRGB→linear before constructing a Color.
  */
 function srgbColor(r: number, g: number, b: number): THREE.Color {
   return new THREE.Color().setRGB(
@@ -328,9 +333,6 @@ function parseCssColor(str: string | null | undefined, fallback = new THREE.Colo
     const r = 4.0767416621 * l - 3.3077115913 * mCube + 0.2309699292 * sCube;
     const g = -1.2684380046 * l + 2.6097574011 * mCube - 0.3413193965 * sCube;
     const bl = -0.0041960863 * l - 0.7034186147 * mCube + 1.707614701 * sCube;
-    // OKLab→linear-sRGB: these components are already linear working-space
-    // values, so construct directly (no sRGB pre-convert — the renderer does
-    // that once on output).
     return new THREE.Color(clamp01(r), clamp01(g), clamp01(bl));
   }
   if (s.startsWith('rgb')) {
@@ -454,6 +456,37 @@ function getElementSpace(el: HTMLElement, width: number, height: number, stripSl
   };
 }
 
+/**
+ * Verifies a ShaderMaterial compiles and links cleanly against a renderer's
+ * active WebGL context; throws if compilation/linking failed or context was lost.
+ */
+function compileAndVerifyObject(
+  renderer: THREE.WebGLRenderer,
+  object: THREE.Object3D,
+  camera: THREE.Camera,
+  material: THREE.Material
+): void {
+  const gl = renderer.getContext();
+  if (gl.isContextLost()) {
+    throw new Error('WebGL context is lost');
+  }
+  renderer.compile(object, camera);
+  const props = renderer.properties.get(material) as
+    | { currentProgram?: { program?: WebGLProgram; diagnostics?: { runnable?: boolean } } }
+    | undefined;
+  const currentProgram = props?.currentProgram;
+  if (!currentProgram?.program) {
+    throw new Error('Shader program missing after compile');
+  }
+  if (currentProgram.diagnostics?.runnable === false) {
+    throw new Error('Shader program diagnostics reported non-runnable');
+  }
+  if (!gl.getProgramParameter(currentProgram.program, gl.LINK_STATUS)) {
+    const log = gl.getProgramInfoLog(currentProgram.program) || 'unknown link error';
+    throw new Error(`Shader program link failed: ${log}`);
+  }
+}
+
 interface WebGLImageUpdateValues {
   x?: number;
   y?: number;
@@ -475,30 +508,65 @@ export interface WebGLImageOptions {
   group?: THREE.Group | null;
 }
 
-const textureCache = new Map<string, Promise<THREE.Texture | null>>();
-const sharedTextureLoader = new THREE.TextureLoader();
-sharedTextureLoader.crossOrigin = 'anonymous';
+interface ImageRuntimeHooks {
+  getRenderer: () => THREE.WebGLRenderer;
+  getCamera: () => THREE.Camera;
+  isContextLost: () => boolean;
+  onDirty: () => void;
+  onDisposed: (img: WebGLImage) => void;
+}
 
-function loadCachedTexture(url: string): Promise<THREE.Texture | null> {
-  if (!url) return Promise.resolve(null);
-  const existing = textureCache.get(url);
-  if (existing) return existing;
-  const p = sharedTextureLoader
-    .loadAsync(url)
-    .then((tex) => {
-      tex.generateMipmaps = false;
-      tex.minFilter = THREE.LinearFilter;
-      tex.magFilter = THREE.LinearFilter;
-      tex.userData.shared = true;
-      return tex;
-    })
-    .catch((err) => {
-      console.warn(`[Resources] Failed to load texture: ${url}`, err);
-      textureCache.delete(url);
-      return null;
+function getDistortionHost(el: HTMLElement): HTMLElement {
+  return el.closest<HTMLElement>('.parts-caseStudyCard') ?? el;
+}
+
+function revealDomFallback(el: HTMLElement, type: 'image' | 'video'): void {
+  if (type === 'video') {
+    el.classList.remove('lg:invisible');
+    el.style.removeProperty('visibility');
+  } else {
+    el.classList.remove('lg:opacity-0');
+    el.style.removeProperty('opacity');
+  }
+  setDistortionState(getDistortionHost(el), 'fallback');
+}
+
+function hideDomForWebGL(el: HTMLElement, type: 'image' | 'video'): void {
+  if (type === 'video') {
+    el.classList.add('lg:invisible');
+  } else {
+    el.classList.add('lg:opacity-0');
+  }
+  setDistortionState(getDistortionHost(el), 'ready');
+}
+
+function waitForNonZeroLayout(el: HTMLElement, signal: AbortSignal): Promise<boolean> {
+  const rect = el.getBoundingClientRect();
+  if (rect.width > 0 && rect.height > 0) return Promise.resolve(true);
+  if (signal.aborted || typeof ResizeObserver === 'undefined') {
+    return Promise.resolve(rect.width > 0 && rect.height > 0);
+  }
+
+  return new Promise((resolve) => {
+    let settled = false;
+    const ro = new ResizeObserver(() => {
+      const r = el.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0 && !settled) {
+        settled = true;
+        ro.disconnect();
+        signal.removeEventListener('abort', onAbort);
+        resolve(true);
+      }
     });
-  textureCache.set(url, p);
-  return p;
+    const onAbort = () => {
+      if (settled) return;
+      settled = true;
+      ro.disconnect();
+      resolve(false);
+    };
+    signal.addEventListener('abort', onAbort, { once: true });
+    ro.observe(el);
+  });
 }
 
 export class WebGLImage {
@@ -511,6 +579,7 @@ export class WebGLImage {
   }
 
   public isReady = false;
+  public isWebGLActive = false;
   public isDestroyed = false;
   public group: THREE.Group | null = null;
   public mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial> | null = null;
@@ -518,17 +587,22 @@ export class WebGLImage {
   public imageTexture: THREE.Texture | null = null;
   public imageSpace: ReturnType<WebGLImage['getImageSpace']> | null = null;
   public ready: Promise<this>;
+  public options: Required<WebGLImageOptions>;
 
-  private options: Required<WebGLImageOptions>;
+  private ac = new AbortController();
   private pivot = { x: 0, y: 0 };
   private currentTextureUrl = '';
   private pendingTransform: { values: WebGLImageUpdateValues; updateMeshPos: boolean } | null = null;
+  private videoIo: IntersectionObserver | null = null;
+  private videoOnscreen = true;
+  private rvfcId = 0;
 
   constructor(
     public image: HTMLImageElement | HTMLVideoElement,
     private scene: THREE.Scene,
     private getSizes: () => { width: number; height: number },
     private sharedUniforms: Record<string, THREE.IUniform>,
+    private hooks: ImageRuntimeHooks,
     options: WebGLImageOptions = {}
   ) {
     this.options = {
@@ -537,118 +611,283 @@ export class WebGLImage {
       group: null,
       ...options,
     };
-    this.handleVideoMetadata = this.handleVideoMetadata.bind(this);
-    this.handleVideoLoaded = this.handleVideoLoaded.bind(this);
     this.handleSourceChange = this.handleSourceChange.bind(this);
+    setDistortionState(getDistortionHost(this.image), 'pending');
     if (this.options.type !== 'video') {
-      this.image.addEventListener('load', this.handleSourceChange);
+      this.image.addEventListener('load', this.handleSourceChange, { signal: this.ac.signal });
     }
     this.ready = this.init();
   }
 
   private async init(): Promise<this> {
     try {
-      await this.setupTexture();
-      if (this.isDestroyed) return this;
+      if (!canUseDistortion() || this.hooks.isContextLost()) {
+        this.activateFallback();
+        return this;
+      }
+
+      const sized = await waitForNonZeroLayout(this.image, this.ac.signal);
+      if (this.isDestroyed || !sized) {
+        if (!this.isDestroyed) this.activateFallback();
+        return this;
+      }
+
+      const [stampOk, texOk] = await Promise.all([
+        preloadSquareStampTexture(),
+        this.setupTexture(),
+      ]);
+      if (this.isDestroyed || !stampOk || !texOk || !this.imageTexture) {
+        if (!this.isDestroyed) this.activateFallback();
+        return this;
+      }
+
+      if (!canUseDistortion() || this.hooks.isContextLost()) {
+        this.activateFallback();
+        return this;
+      }
+
       this.imageSpace = this.getImageSpace();
+      if (!this.imageSpace.width || !this.imageSpace.height) {
+        this.activateFallback();
+        return this;
+      }
+
       this.setupMaterial();
       this.setupMesh();
-      this.isReady = true;
-      if (!(window as any).hasWebGL) {
-        gsap.set(this.image, { opacity: 1, visibility: 'visible' });
+
+      if (this.mesh && this.material) {
+        compileAndVerifyObject(
+          this.hooks.getRenderer(),
+          this.mesh,
+          this.hooks.getCamera(),
+          this.material
+        );
       }
+
+      this.isWebGLActive = true;
+      this.isReady = true;
+      hideDomForWebGL(this.image, this.options.type);
+      this.hooks.onDirty();
     } catch (err) {
-      console.warn('[WebGLImage] init failed', err);
-      if (this.image) {
-        gsap.set(this.image, { opacity: 1, visibility: 'visible' });
+      if (import.meta.env.DEV) {
+        console.warn('[WebGLImage] Falling back cleanly after init failure:', err);
       }
-      this.isReady = true;
+      if (!this.isDestroyed) {
+        this.activateFallback();
+      }
     }
     return this;
   }
 
-  private async setupTexture() {
-    if (this.options.type === 'video') {
-      this.setupVideoTexture();
-      return;
-    }
-    const url = await this.resolveSourceUrl();
-    if (this.isDestroyed) return;
-    this.currentTextureUrl = url;
-    this.imageTexture = await loadCachedTexture(url);
-    if (this.imageTexture) {
-      this.imageTexture.minFilter = THREE.LinearFilter;
-      this.imageTexture.magFilter = THREE.LinearFilter;
+  public activateFallback(): void {
+    this.isWebGLActive = false;
+    this.isReady = true;
+    this.disposeGpuNodes();
+    if (this.image) {
+      revealDomFallback(this.image, this.options.type);
     }
   }
 
-  private resolveSourceUrl(): Promise<string> {
-    const img = this.image as HTMLImageElement;
-    if (!img) return Promise.resolve('');
-    if (img.currentSrc) return Promise.resolve(img.currentSrc);
-    if (img.loading === 'lazy') img.loading = 'eager';
-    if (img.complete && (img.currentSrc || img.src)) {
-      return Promise.resolve(img.currentSrc || img.src);
+  public restoreAfterContextLost(): void {
+    if (this.isDestroyed || !canUseDistortion()) return;
+    if (this.mesh && this.material) {
+      try {
+        if (this.imageTexture) {
+          this.imageTexture.needsUpdate = true;
+        }
+        this.material.needsUpdate = true;
+        compileAndVerifyObject(
+          this.hooks.getRenderer(),
+          this.mesh,
+          this.hooks.getCamera(),
+          this.material
+        );
+        this.isWebGLActive = true;
+        hideDomForWebGL(this.image, this.options.type);
+        this.resize();
+        this.hooks.onDirty();
+      } catch (err) {
+        if (import.meta.env.DEV) {
+          console.warn('[WebGLImage] Restore failed; staying on fallback:', err);
+        }
+        this.activateFallback();
+      }
+    } else {
+      void this.init();
     }
-    return new Promise((resolve) => {
-      let timer: number | undefined;
-      const done = () => {
-        window.clearTimeout(timer);
-        img.removeEventListener('load', done);
-        img.removeEventListener('error', done);
-        resolve(img.currentSrc || img.src || '');
-      };
-      timer = window.setTimeout(done, 3000);
-      img.addEventListener('load', done, { once: true });
-      img.addEventListener('error', done, { once: true });
-    });
+  }
+
+  private async setupTexture(): Promise<boolean> {
+    if (this.options.type === 'video') {
+      return this.setupVideoTexture();
+    }
+    const url = await this.resolveImageUrl();
+    if (this.isDestroyed || !url) return false;
+    this.currentTextureUrl = url;
+    const tex = await loadCachedTexture(url);
+    if (!tex || this.isDestroyed) return false;
+    this.imageTexture = tex;
+    return true;
+  }
+
+  private async resolveImageUrl(): Promise<string> {
+    const img = this.image as HTMLImageElement;
+    if (!img) return '';
+    if (img.loading === 'lazy') img.loading = 'eager';
+
+    if (!img.complete) {
+      const loaded = await new Promise<boolean>((resolve) => {
+        if (this.ac.signal.aborted) return resolve(false);
+        let timer = 0;
+        const done = (ok: boolean) => {
+          window.clearTimeout(timer);
+          img.removeEventListener('load', onLoad);
+          img.removeEventListener('error', onErr);
+          this.ac.signal.removeEventListener('abort', onAbort);
+          resolve(ok);
+        };
+        const onLoad = () => done(true);
+        const onErr = () => done(false);
+        const onAbort = () => done(false);
+        timer = window.setTimeout(() => done(img.complete && img.naturalWidth > 0), 8000);
+        img.addEventListener('load', onLoad, { once: true });
+        img.addEventListener('error', onErr, { once: true });
+        this.ac.signal.addEventListener('abort', onAbort, { once: true });
+      });
+      if (!loaded || this.isDestroyed) return '';
+    }
+
+    if (img.naturalWidth === 0 || img.naturalHeight === 0) return '';
+    if (typeof img.decode === 'function') {
+      try {
+        await img.decode();
+      } catch {
+        if (img.naturalWidth === 0) return '';
+      }
+    }
+    return img.currentSrc || img.src || '';
   }
 
   private async handleSourceChange() {
+    if (this.isDestroyed || !canUseDistortion()) return;
     const img = this.image as HTMLImageElement;
     const url = img?.currentSrc;
-    if (this.isDestroyed || !url || url === this.currentTextureUrl) return;
+    if (!url || url === this.currentTextureUrl || img.naturalWidth === 0) return;
     const tex = await loadCachedTexture(url);
     if (!this.isDestroyed && tex && this.material) {
-      tex.minFilter = THREE.LinearFilter;
-      tex.magFilter = THREE.LinearFilter;
       this.currentTextureUrl = url;
+      this.imageTexture = tex;
       this.material.uniforms.uTexture.value = tex;
+      this.hooks.onDirty();
     }
   }
 
-  private setupVideoTexture() {
+  private async setupVideoTexture(): Promise<boolean> {
     const video = this.image as HTMLVideoElement;
-    if (video.preload === 'none') video.preload = 'metadata';
-    this.imageTexture = new THREE.VideoTexture(video);
-    this.imageTexture.generateMipmaps = false;
-    this.imageTexture.minFilter = THREE.LinearFilter;
-    this.imageTexture.magFilter = THREE.LinearFilter;
-    if (video.readyState >= 1) {
-      this.handleVideoMetadata();
-    } else {
-      video.addEventListener('loadedmetadata', this.handleVideoMetadata, { once: true });
+    ensurePreviewVideoSource(video);
+    const hasFrame = await waitForVideoFirstFrame(video, {
+      signal: this.ac.signal,
+      timeoutMs: 4000,
+    });
+    if (this.isDestroyed) return false;
+    if (!hasFrame || video.videoWidth <= 0 || video.videoHeight <= 0) {
+      // Wait passively for delayed first frame (Slow 4G / throttled stream) so DOM stays visible now and upgrades seamlessly when ready.
+      video.addEventListener(
+        'loadeddata',
+        () => {
+          if (
+            !this.isDestroyed &&
+            !this.isWebGLActive &&
+            video.readyState >= 2 &&
+            video.videoWidth > 0 &&
+            canUseDistortion() &&
+            !this.hooks.isContextLost()
+          ) {
+            this.ready = this.init().then(() => {
+              this.resize();
+              return this;
+            });
+          }
+        },
+        { once: true, signal: this.ac.signal }
+      );
+      return false;
     }
-    if (video.readyState >= 2) {
-      this.handleVideoLoaded();
-    } else {
-      video.addEventListener('loadeddata', this.handleVideoLoaded, { once: true });
-    }
-  }
 
-  private handleVideoMetadata() {
-    if (!this.isDestroyed && this.material) {
-      this.resize();
-      if (this.pendingTransform) {
-        this.updatePosition(this.pendingTransform.values, this.pendingTransform.updateMeshPos);
-      }
-    }
-  }
+    // Use controlled THREE.Texture + isVideoTexture flag (texImage2D path) with a
+    // no-op update() so frames only upload when a new decoded frame arrives while visible.
+    const tex = new THREE.Texture(video) as THREE.Texture & {
+      isVideoTexture: boolean;
+      update: () => void;
+    };
+    tex.isVideoTexture = true;
+    tex.generateMipmaps = false;
+    tex.minFilter = THREE.LinearFilter;
+    tex.magFilter = THREE.LinearFilter;
+    tex.needsUpdate = true;
+    tex.update = () => {};
+    this.imageTexture = tex;
 
-  private handleVideoLoaded() {
-    const video = this.image as HTMLVideoElement;
-    if (!this.isDestroyed && video && video.autoplay) {
+    if (video.autoplay && video.paused && this.videoOnscreen && !document.hidden) {
       video.play()?.catch(() => {});
+    }
+
+    this.bindVideoFrameDriver(video);
+    return true;
+  }
+
+  private bindVideoFrameDriver(video: HTMLVideoElement): void {
+    const markFrame = () => {
+      if (this.isDestroyed || !this.imageTexture) return;
+      if (
+        video.readyState >= 2 &&
+        video.videoWidth > 0 &&
+        this.videoOnscreen &&
+        !document.hidden
+      ) {
+        this.imageTexture.needsUpdate = true;
+        this.hooks.onDirty();
+      }
+    };
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      this.videoIo = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            this.videoOnscreen = entry.isIntersecting;
+            if (this.videoOnscreen && !document.hidden) {
+              markFrame();
+            }
+          }
+        },
+        { rootMargin: '100px' }
+      );
+      this.videoIo.observe(video);
+    }
+
+    const rVfcVideo = video as HTMLVideoElement & {
+      requestVideoFrameCallback?: (cb: () => void) => number;
+      cancelVideoFrameCallback?: (id: number) => void;
+    };
+
+    if (typeof rVfcVideo.requestVideoFrameCallback === 'function') {
+      const schedule = () => {
+        if (this.isDestroyed || this.ac.signal.aborted) return;
+        this.rvfcId = rVfcVideo.requestVideoFrameCallback!(() => {
+          this.rvfcId = 0;
+          if (!video.paused) {
+            markFrame();
+          }
+          schedule();
+        });
+      };
+      schedule();
+      video.addEventListener('seeked', markFrame, { signal: this.ac.signal });
+      video.addEventListener('loadeddata', markFrame, { signal: this.ac.signal });
+    } else {
+      video.addEventListener('timeupdate', markFrame, { signal: this.ac.signal });
+      video.addEventListener('seeked', markFrame, { signal: this.ac.signal });
+      video.addEventListener('loadeddata', markFrame, { signal: this.ac.signal });
     }
   }
 
@@ -790,6 +1029,7 @@ export class WebGLImage {
       );
     }
     target.rotation.set(0, 0, -rotation * (Math.PI / 180));
+    this.hooks.onDirty();
   }
 
   public resize() {
@@ -816,16 +1056,10 @@ export class WebGLImage {
     if (this.pendingTransform) {
       this.updatePosition(this.pendingTransform.values, this.pendingTransform.updateMeshPos);
     }
+    this.hooks.onDirty();
   }
 
-  public destroy() {
-    this.isDestroyed = true;
-    if (this.options.type === 'video' && this.image) {
-      this.image.removeEventListener('loadedmetadata', this.handleVideoMetadata);
-      this.image.removeEventListener('loadeddata', this.handleVideoLoaded);
-    } else if (this.image) {
-      this.image.removeEventListener('load', this.handleSourceChange);
-    }
+  private disposeGpuNodes() {
     if (this.group) {
       this.getParent()?.remove(this.group);
       this.group.clear();
@@ -838,6 +1072,22 @@ export class WebGLImage {
     this.imageTexture = null;
     this.mesh = null;
     this.group = null;
+  }
+
+  public destroy() {
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+    this.isWebGLActive = false;
+    this.ac.abort();
+    this.videoIo?.disconnect();
+    this.videoIo = null;
+    if (this.rvfcId && this.options.type === 'video') {
+      const v = this.image as HTMLVideoElement & { cancelVideoFrameCallback?: (id: number) => void };
+      v.cancelVideoFrameCallback?.(this.rvfcId);
+      this.rvfcId = 0;
+    }
+    this.disposeGpuNodes();
+    this.hooks.onDisposed(this);
   }
 }
 
@@ -864,6 +1114,7 @@ export class WebGLTrail {
     private el: SVGSVGElement,
     private scene: THREE.Scene,
     private getSizes: () => { width: number; height: number },
+    private onDirty?: () => void,
     options: WebGLTrailOptions = {}
   ) {
     if (options.planeCount !== undefined) this.planeCount = options.planeCount;
@@ -1022,6 +1273,7 @@ export class WebGLTrail {
           ease: 'power2.out',
           onUpdate: () => {
             attr.needsUpdate = true;
+            this.onDirty?.();
           },
         },
         i * this.staggerDelay
@@ -1029,13 +1281,12 @@ export class WebGLTrail {
       this.exitTimeline.to(
         arr,
         {
-          // Original (ohW50ZDL.js de class): the exit timeline drives the REVERSED
-          // opacity array, so the trail extinguishes from the far end backwards.
           [this.planeCount - 1 - i]: 0,
           duration: 0.5,
           ease: 'power2.out',
           onUpdate: () => {
             attr.needsUpdate = true;
+            this.onDirty?.();
           },
         },
         i * this.staggerDelay
@@ -1060,6 +1311,7 @@ export class WebGLTrail {
       this.instancedMesh!.setMatrixAt(idx, transMat);
     });
     this.instancedMesh.instanceMatrix.needsUpdate = true;
+    this.onDirty?.();
   }
 
   destroy() {
@@ -1079,20 +1331,32 @@ export interface WebGLExperienceAPI {
   bgScene: THREE.Scene;
   createImage: (el: HTMLImageElement | HTMLVideoElement, options?: WebGLImageOptions) => WebGLImage;
   createTrail: (el: SVGSVGElement, options?: WebGLTrailOptions) => WebGLTrail;
-  /** Scene-graph helper so consumers (case-studies slider) never import three. */
   createGroup: () => THREE.Group;
   relayout: () => void;
   rebuildPageTargets: () => void;
-  /** Re-bind the renderers to the canvases created by a page swap. */
   reattachCanvases: () => void;
   notifyHeroTransitionStart: () => void;
   notifyHeroEntranceComplete: () => void;
+  warmupGPU: () => Promise<void>;
+  suspend: () => void;
+  resume: () => void;
+  isContextLost: () => boolean;
 }
 
 let experienceInstance: WebGLExperienceAPI | null = null;
 
+function createRendererForCanvas(canvas: HTMLCanvasElement): THREE.WebGLRenderer | null {
+  const attrs: WebGLContextAttributes = { antialias: true, stencil: false, alpha: true };
+  const context =
+    (canvas.getContext('webgl2', attrs) as WebGL2RenderingContext | null) ||
+    (canvas.getContext('webgl', attrs) as WebGLRenderingContext | null);
+  if (!context || context.isContextLost()) return null;
+  return new THREE.WebGLRenderer({ canvas, context, antialias: true, stencil: false, alpha: true });
+}
+
 export function createExperience(): WebGLExperienceAPI | null {
-  if (window.innerWidth < bp.lg) return null;
+  if (experienceInstance) return experienceInstance;
+  if (!canUseDistortion()) return null;
 
   const canvases = document.querySelectorAll<HTMLCanvasElement>('canvas.webgl');
   if (canvases.length < 2) return null;
@@ -1100,55 +1364,66 @@ export function createExperience(): WebGLExperienceAPI | null {
   let fgCanvas = canvases[0];
   let bgCanvas = canvases[1];
 
-  let bgRenderer: THREE.WebGLRenderer;
-  let fgRenderer: THREE.WebGLRenderer;
-  try {
-    bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: true, stencil: false, alpha: true });
-    fgRenderer = new THREE.WebGLRenderer({ canvas: fgCanvas, antialias: true, stencil: false, alpha: true });
-    (window as any).hasWebGL = true;
-    (window as any).threeJSReady = true;
-  } catch (err) {
-    console.warn('WebGL not available:', err);
+  const bgRendererInit = createRendererForCanvas(bgCanvas);
+  const fgRendererInit = bgRendererInit ? createRendererForCanvas(fgCanvas) : null;
+  if (!bgRendererInit || !fgRendererInit) {
+    bgRendererInit?.dispose();
     (window as any).hasWebGL = false;
     gsap.set('.webgl-background', { opacity: 1, visibility: 'visible' });
-    return;
+    return null;
   }
+
+  let bgRenderer: THREE.WebGLRenderer = bgRendererInit;
+  let fgRenderer: THREE.WebGLRenderer = fgRendererInit;
+  (window as any).hasWebGL = true;
+  (window as any).threeJSReady = true;
 
   let width = window.innerWidth;
   let height = window.innerHeight;
-  let aspect = width / height;
-  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  let aspect = width / Math.max(1, height);
+  let pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  let suspended = false;
+  let fgContextLost = false;
+  let bgContextLost = false;
+  let dirtyFrames = 3;
+  let waveActiveUntilElapsed = -1;
+  let lastRenderedScrollY = Number.NaN;
+  let resizeRafId = 0;
+  let dprMedia: MediaQueryList | null = null;
 
-  bgRenderer.outputColorSpace = THREE.SRGBColorSpace;
-  bgRenderer.setSize(width, height);
-  bgRenderer.setPixelRatio(pixelRatio);
-
-  fgRenderer.outputColorSpace = THREE.SRGBColorSpace;
-  fgRenderer.setSize(width, height);
-  fgRenderer.setPixelRatio(pixelRatio);
+  const configureRenderer = (r: THREE.WebGLRenderer) => {
+    r.outputColorSpace = THREE.SRGBColorSpace;
+    r.setPixelRatio(pixelRatio);
+    r.setSize(width, height);
+  };
+  configureRenderer(bgRenderer);
+  configureRenderer(fgRenderer);
 
   const bgScene = new THREE.Scene();
   const fgScene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 1, 1000);
   camera.position.set(0, 0, 2);
 
-  // TouchTexture scene + separate WebGLRenderTargets per renderer context
   const touchScene = new THREE.Scene();
   const touchCamera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 1, 1000);
   touchCamera.position.set(0, 0, 1);
   touchScene.add(touchCamera);
 
-  const bgTouchTarget = new THREE.WebGLRenderTarget(50, Math.round(50 * aspect));
-  const fgTouchTarget = new THREE.WebGLRenderTarget(50, Math.round(50 * aspect));
+  let bgTouchTarget = new THREE.WebGLRenderTarget(50, Math.max(1, Math.round(50 * aspect)));
+  let fgTouchTarget = new THREE.WebGLRenderTarget(50, Math.max(1, Math.round(50 * aspect)));
   const waveMeshes: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>[] = [];
   const maxWaves = 150;
   let currentWave = 0;
   const mouse = new THREE.Vector2(0, 0);
   const startTime = Date.now();
+  const waveGeom = new THREE.PlaneGeometry(1, 1, 1, 1);
 
-  loadCachedTexture(squareSolidUrl).then((squareTex) => {
-    if (!squareTex) return;
-    const waveGeom = new THREE.PlaneGeometry(1, 1, 1, 1);
+  const markDirty = (frames = 2) => {
+    dirtyFrames = Math.max(dirtyFrames, frames);
+  };
+
+  const ensureWaveMeshesPromise = preloadSquareStampTexture().then((squareTex) => {
+    if (!squareTex || waveMeshes.length) return;
     for (let i = 0; i < maxWaves; i++) {
       const mat = new THREE.ShaderMaterial({
         vertexShader: TOUCH_VERTEX_SHADER,
@@ -1170,32 +1445,31 @@ export function createExperience(): WebGLExperienceAPI | null {
       touchScene.add(mesh);
       waveMeshes.push(mesh);
     }
+    markDirty();
   });
 
-  window.addEventListener(
-    'mousemove',
-    (e) => {
-      if (!waveMeshes.length) return;
-      const mx = e.clientX - width / 2;
-      const my = -e.clientY + height / 2;
-      const dx = mx - mouse.x;
-      const dy = my - mouse.y;
-      if (dx * dx + dy * dy >= 1) {
-        mouse.set(mx, my);
-        const mesh = waveMeshes[currentWave];
-        currentWave = (currentWave + 1) % maxWaves;
-        const now = (Date.now() - startTime) / 1000;
-        const scrollY = getLenis()?.scroll ?? window.scrollY;
-        mesh.position.set(mx, my, 0);
-        mesh.material.uniforms.uBirthTime.value = now;
-        mesh.material.uniforms.uBirthScroll.value = scrollY;
-        mesh.material.uniforms.uCurrentScroll.value = scrollY;
-      }
-    },
-    { passive: true }
-  );
+  const onMouseMove = (e: MouseEvent) => {
+    if (suspended || fgContextLost || !waveMeshes.length || !canUseDistortion()) return;
+    const mx = e.clientX - width / 2;
+    const my = -e.clientY + height / 2;
+    const dx = mx - mouse.x;
+    const dy = my - mouse.y;
+    if (dx * dx + dy * dy >= 1) {
+      mouse.set(mx, my);
+      const mesh = waveMeshes[currentWave];
+      currentWave = (currentWave + 1) % maxWaves;
+      const now = (Date.now() - startTime) / 1000;
+      const scrollY = getLenis()?.scroll ?? window.scrollY;
+      mesh.position.set(mx, my, 0);
+      mesh.material.uniforms.uBirthTime.value = now;
+      mesh.material.uniforms.uBirthScroll.value = scrollY;
+      mesh.material.uniforms.uCurrentScroll.value = scrollY;
+      waveActiveUntilElapsed = Math.max(waveActiveUntilElapsed, now + 0.8);
+      markDirty();
+    }
+  };
+  window.addEventListener('mousemove', onMouseMove, { passive: true });
 
-  // Shared uniforms for foreground WebGLImage instances (matches Experience.sharedUniforms in ohW50ZDL.js)
   const sharedUniforms: Record<string, THREE.IUniform> = {
     uTime: { value: 0 },
     uResolution: { value: new THREE.Vector2(width, height) },
@@ -1210,15 +1484,40 @@ export function createExperience(): WebGLExperienceAPI | null {
   };
 
   const fgImages = new Set<WebGLImage>();
+  const imageRegistry = new WeakMap<HTMLElement, WebGLImage>();
   const getSizes = () => ({ width, height });
 
   const createImage = (el: HTMLImageElement | HTMLVideoElement, options: WebGLImageOptions = {}) => {
-    const img = new WebGLImage(el, fgScene, getSizes, sharedUniforms, options);
+    const existing = imageRegistry.get(el);
+    if (existing && !existing.isDestroyed) {
+      if ((existing.options.group ?? null) === (options.group ?? null)) {
+        existing.resize();
+        return existing;
+      }
+      existing.destroy();
+    }
+    const img = new WebGLImage(
+      el,
+      fgScene,
+      getSizes,
+      sharedUniforms,
+      {
+        getRenderer: () => fgRenderer,
+        getCamera: () => camera,
+        isContextLost: () => fgContextLost || suspended,
+        onDirty: () => markDirty(),
+        onDisposed: (target) => {
+          fgImages.delete(target);
+          if (imageRegistry.get(el) === target) imageRegistry.delete(el);
+        },
+      },
+      options
+    );
     fgImages.add(img);
+    imageRegistry.set(el, img);
     return img;
   };
 
-  // Create WebGLBackground planes for .webgl-background elements
   const sharedPlane = new THREE.PlaneGeometry(1, 1, 1, 1);
   const bgItems: { el: HTMLElement; mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial> }[] = [];
   const allTrails: WebGLTrail[] = [];
@@ -1233,7 +1532,6 @@ export function createExperience(): WebGLExperienceAPI | null {
     tl
       .set(tr.timeline, { progress: 0 }, startPos)
       .to(tr.timeline, { progress: 1, duration: 1, ease: 'linear' })
-      // Keep the full flare visible for ~2s before extinguishing backwards.
       .set(tr.exitTimeline, { progress: 0 }, '>+2')
       .to(tr.exitTimeline, { progress: 1, duration: 1, ease: 'linear' });
 
@@ -1250,6 +1548,7 @@ export function createExperience(): WebGLExperienceAPI | null {
     });
     appendTrailPulse(tl, tr, 0);
     heroEntranceTrailTl = tl;
+    markDirty();
   };
   bus.on('hero-transition-start', fireHomeEntranceFlare);
 
@@ -1284,6 +1583,7 @@ export function createExperience(): WebGLExperienceAPI | null {
       appendTrailPulse(loopTl, tr, delayPos);
     });
     heroTrailLoopTl = loopTl;
+    markDirty();
   };
   bus.on('hero-entrance-complete', () => startHeroTrailLoop());
 
@@ -1331,14 +1631,14 @@ export function createExperience(): WebGLExperienceAPI | null {
     });
 
     document.querySelectorAll<SVGSVGElement>('.sections-hero svg.webgl-trail').forEach((svg) => {
-      const t = new WebGLTrail(svg, bgScene, getSizes);
+      const t = new WebGLTrail(svg, bgScene, getSizes, () => markDirty());
       allTrails.push(t);
       heroTrails.push(t);
     });
 
     const contactTrailSvg = document.querySelector<SVGSVGElement>('.sections-contactForm svg.webgl-trail');
     if (contactTrailSvg) {
-      const ct = new WebGLTrail(contactTrailSvg, fgScene, getSizes);
+      const ct = new WebGLTrail(contactTrailSvg, fgScene, getSizes, () => markDirty());
       allTrails.push(ct);
       if (!prefersReducedMotion()) {
         contactTrailTween = gsap.to(ct.timeline, {
@@ -1354,6 +1654,7 @@ export function createExperience(): WebGLExperienceAPI | null {
     }
 
     footerEl = document.querySelector<HTMLElement>('.structure-footer');
+    markDirty();
   };
 
   const rebuildPageTargets = () => {
@@ -1377,10 +1678,9 @@ export function createExperience(): WebGLExperienceAPI | null {
     allTrails.length = 0;
     heroTrails.length = 0;
 
-    fgImages.forEach((img) => img.destroy());
+    [...fgImages].forEach((img) => img.destroy());
     fgImages.clear();
 
-    // Remove any remaining non-camera groups in fgScene (e.g. caseStudy sliderGroup)
     for (let i = fgScene.children.length - 1; i >= 0; i--) {
       const child = fgScene.children[i];
       if (child !== camera) {
@@ -1391,8 +1691,6 @@ export function createExperience(): WebGLExperienceAPI | null {
     scanPageTargets();
     relayout();
   };
-
-  scanPageTargets();
 
   const updateFooterClip = () => {
     if (!footerEl) return;
@@ -1417,31 +1715,14 @@ export function createExperience(): WebGLExperienceAPI | null {
     });
     allTrails.forEach((tr) => tr.updatePositions());
     updateFooterClip();
+    markDirty();
   };
 
-  // Layout observer on document.body (matches original setupLayoutObserver in ohW50ZDL.js)
-  if (typeof ResizeObserver !== 'undefined' && document.body) {
-    let lastLayoutHeight = document.body.offsetHeight;
-    let layoutTimer: number | undefined;
-    const layoutObserver = new ResizeObserver(() => {
-      const h = document.body.offsetHeight;
-      if (h !== lastLayoutHeight) {
-        lastLayoutHeight = h;
-        window.clearTimeout(layoutTimer);
-        layoutTimer = window.setTimeout(() => relayout(), 100);
-      }
-    });
-    layoutObserver.observe(document.body);
-  }
-
-  ScrollTrigger.addEventListener('refresh', () => relayout());
-  bus.on('hero-entrance-complete', () => relayout());
-
-  // Resize handler
-  resizeManager.add(() => {
+  const applyViewportAndDpr = () => {
     width = window.innerWidth;
     height = window.innerHeight;
-    aspect = width / height;
+    aspect = width / Math.max(1, height);
+    pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
     camera.left = -width / 2;
     camera.right = width / 2;
@@ -1455,19 +1736,136 @@ export function createExperience(): WebGLExperienceAPI | null {
     touchCamera.bottom = -height / 2;
     touchCamera.updateProjectionMatrix();
 
-    bgRenderer.setSize(width, height);
-    fgRenderer.setSize(width, height);
-    bgTouchTarget.setSize(50, Math.round(50 * aspect));
-    fgTouchTarget.setSize(50, Math.round(50 * aspect));
+    configureRenderer(bgRenderer);
+    configureRenderer(fgRenderer);
+    bgTouchTarget.setSize(50, Math.max(1, Math.round(50 * aspect)));
+    fgTouchTarget.setSize(50, Math.max(1, Math.round(50 * aspect)));
 
     relayout();
+  };
+
+  const scheduleResize = () => {
+    if (resizeRafId) cancelAnimationFrame(resizeRafId);
+    resizeRafId = requestAnimationFrame(() => {
+      resizeRafId = 0;
+      applyViewportAndDpr();
+    });
+  };
+
+  const armDprWatcher = () => {
+    if (dprMedia) {
+      dprMedia.removeEventListener('change', onDprChange);
+      dprMedia = null;
+    }
+    if (typeof window.matchMedia !== 'function') return;
+    dprMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
+    dprMedia.addEventListener('change', onDprChange);
+  };
+  const onDprChange = () => {
+    armDprWatcher();
+    scheduleResize();
+  };
+  armDprWatcher();
+
+  window.addEventListener('resize', scheduleResize, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) markDirty(3);
   });
 
-  // Render loop on GSAP ticker
+  if (typeof ResizeObserver !== 'undefined' && document.body) {
+    let lastLayoutHeight = document.body.offsetHeight;
+    let layoutRaf = 0;
+    const layoutObserver = new ResizeObserver(() => {
+      const h = document.body.offsetHeight;
+      if (h !== lastLayoutHeight) {
+        lastLayoutHeight = h;
+        if (layoutRaf) cancelAnimationFrame(layoutRaf);
+        layoutRaf = requestAnimationFrame(() => {
+          layoutRaf = 0;
+          relayout();
+        });
+      }
+    });
+    layoutObserver.observe(document.body);
+  }
+
+  ScrollTrigger.addEventListener('refresh', () => relayout());
+  bus.on('hero-entrance-complete', () => relayout());
+
+  const bindCanvasContextListeners = (canvas: HTMLCanvasElement, kind: 'fg' | 'bg') => {
+    canvas.addEventListener('webglcontextlost', (e) => {
+      e.preventDefault();
+      if (kind === 'fg') fgContextLost = true;
+      else bgContextLost = true;
+      (window as any).hasWebGL = false;
+      gsap.set('.webgl-background', { opacity: 1, visibility: 'visible' });
+      fgImages.forEach((img) => img.activateFallback());
+    });
+
+    canvas.addEventListener('webglcontextrestored', async () => {
+      if (kind === 'fg') {
+        fgContextLost = false;
+        fgTouchTarget.dispose();
+        fgTouchTarget = new THREE.WebGLRenderTarget(50, Math.max(1, Math.round(50 * aspect)));
+        sharedUniforms.uMouseTexture.value = fgTouchTarget.texture;
+      } else {
+        bgContextLost = false;
+        bgTouchTarget.dispose();
+        bgTouchTarget = new THREE.WebGLRenderTarget(50, Math.max(1, Math.round(50 * aspect)));
+        bgItems.forEach(({ mesh }) => {
+          mesh.material.uniforms.uMouseTexture.value = bgTouchTarget.texture;
+          mesh.material.needsUpdate = true;
+        });
+      }
+      await markCachedTexturesDirtyForRestore();
+      const markObjDirty = (obj: THREE.Object3D) => {
+        const m = (obj as THREE.Mesh).material;
+        if (Array.isArray(m)) m.forEach((mat) => { mat.needsUpdate = true; });
+        else if (m) m.needsUpdate = true;
+        const g = (obj as THREE.Mesh).geometry;
+        if (g) {
+          Object.values(g.attributes).forEach((attr) => {
+            attr.needsUpdate = true;
+          });
+        }
+      };
+      fgScene.traverse(markObjDirty);
+      bgScene.traverse(markObjDirty);
+      touchScene.traverse(markObjDirty);
+      allTrails.forEach((tr) => tr.updatePositions());
+      if (!fgContextLost && !bgContextLost) {
+        (window as any).hasWebGL = true;
+        gsap.set('.webgl-background', { clearProps: 'opacity,visibility' });
+        fgImages.forEach((img) => img.restoreAfterContextLost());
+      }
+      applyViewportAndDpr();
+      markDirty(4);
+    });
+  };
+  bindCanvasContextListeners(fgCanvas, 'fg');
+  bindCanvasContextListeners(bgCanvas, 'bg');
+
+  scanPageTargets();
+
   gsap.ticker.add(() => {
-    if (document.hidden) return;
+    if (document.hidden || suspended) return;
     const scrollY = getLenis()?.scroll ?? window.scrollY;
     const elapsed = (Date.now() - startTime) / 1000;
+
+    const scrollChanged = scrollY !== lastRenderedScrollY;
+    if (scrollChanged) lastRenderedScrollY = scrollY;
+
+    const wavesActive = elapsed <= waveActiveUntilElapsed;
+    const trailsAnimating = Boolean(
+      heroTrailLoopTl?.isActive() ||
+        heroEntranceTrailTl?.isActive() ||
+        contactTrailTween?.isActive()
+    );
+
+    if (dirtyFrames <= 0 && !scrollChanged && !wavesActive && !trailsAnimating) {
+      return;
+    }
+    if (dirtyFrames > 0) dirtyFrames--;
 
     camera.position.y = -scrollY;
     camera.updateProjectionMatrix();
@@ -1477,41 +1875,44 @@ export function createExperience(): WebGLExperienceAPI | null {
     sharedUniforms.uMouseTexture.value = fgTouchTarget.texture;
     updateFooterClip();
 
-    waveMeshes.forEach((m) => {
-      m.material.uniforms.uTime.value = elapsed;
-      m.material.uniforms.uCurrentScroll.value = scrollY;
-    });
+    if (wavesActive) {
+      for (let i = 0; i < waveMeshes.length; i++) {
+        const u = waveMeshes[i].material.uniforms;
+        u.uTime.value = elapsed;
+        u.uCurrentScroll.value = scrollY;
+      }
+    }
 
-    bgItems.forEach(({ mesh }) => {
-      mesh.material.uniforms.uScrollY.value = scrollY;
-    });
+    for (let i = 0; i < bgItems.length; i++) {
+      bgItems[i].mesh.material.uniforms.uScrollY.value = scrollY;
+    }
 
-    bgRenderer.setRenderTarget(bgTouchTarget);
-    bgRenderer.render(touchScene, touchCamera);
-    bgRenderer.setRenderTarget(null);
-    bgRenderer.clear();
-    bgRenderer.render(bgScene, camera);
+    if (!bgContextLost && (bgItems.length > 0 || heroTrails.length > 0)) {
+      bgRenderer.setRenderTarget(bgTouchTarget);
+      bgRenderer.render(touchScene, touchCamera);
+      bgRenderer.setRenderTarget(null);
+      bgRenderer.clear();
+      bgRenderer.render(bgScene, camera);
+    }
 
-    fgRenderer.setRenderTarget(fgTouchTarget);
-    fgRenderer.render(touchScene, touchCamera);
-    fgRenderer.setRenderTarget(null);
-    fgRenderer.clear();
-    fgRenderer.render(fgScene, camera);
+    if (!fgContextLost) {
+      fgRenderer.setRenderTarget(fgTouchTarget);
+      fgRenderer.render(touchScene, touchCamera);
+      fgRenderer.setRenderTarget(null);
+      fgRenderer.clear();
+      if (fgImages.size > 0 || allTrails.length > heroTrails.length) {
+        fgRenderer.render(fgScene, camera);
+      }
+    }
   });
 
   const createTrail = (el: SVGSVGElement, options: WebGLTrailOptions = {}) => {
-    const tr = new WebGLTrail(el, fgScene, getSizes, options);
+    const tr = new WebGLTrail(el, fgScene, getSizes, () => markDirty(), options);
     allTrails.push(tr);
+    markDirty();
     return tr;
   };
 
-  // After a client-side page swap the swapped-out `.page` contents (including
-  // these canvases, which live in Footer.astro) are replaced by fresh nodes
-  // from the fetched document, while these renderers keep drawing to the now
-  // detached old canvases (visible as 300x150 default-size canvases). Re-bind
-  // both renderers to the new canvases. Scene contents survive untouched:
-  // three.js allocates GL resources per renderer context, and the render loop
-  // re-reads the touch targets' textures every frame.
   const reattachCanvases = () => {
     const next = document.querySelectorAll<HTMLCanvasElement>('canvas.webgl');
     if (next.length < 2) return;
@@ -1525,12 +1926,10 @@ export function createExperience(): WebGLExperienceAPI | null {
       newBg = new THREE.WebGLRenderer({ canvas: nextBg, antialias: true, stencil: false, alpha: true });
       newFg = new THREE.WebGLRenderer({ canvas: nextFg, antialias: true, stencil: false, alpha: true });
     } catch (err) {
-      console.warn('Decbricks: WebGL renderer re-attach failed:', err);
+      if (import.meta.env.DEV) console.warn('Decbricks: WebGL renderer re-attach failed:', err);
       return;
     }
 
-    // Tear the old renderers down only once the new ones exist (fail-safe),
-    // and release their GPU contexts so repeated swaps cannot exhaust them.
     bgRenderer.dispose();
     bgRenderer.forceContextLoss();
     fgRenderer.dispose();
@@ -1540,14 +1939,59 @@ export function createExperience(): WebGLExperienceAPI | null {
     bgCanvas = nextBg;
     bgRenderer = newBg;
     fgRenderer = newFg;
+    bindCanvasContextListeners(fgCanvas, 'fg');
+    bindCanvasContextListeners(bgCanvas, 'bg');
+    configureRenderer(bgRenderer);
+    configureRenderer(fgRenderer);
+    markDirty(3);
+  };
 
-    bgRenderer.outputColorSpace = THREE.SRGBColorSpace;
-    bgRenderer.setSize(width, height);
-    bgRenderer.setPixelRatio(pixelRatio);
+  const warmupGPU = async () => {
+    if (suspended || fgContextLost || bgContextLost || !canUseDistortion()) return;
+    await ensureWaveMeshesPromise;
+    try {
+      if (!fgContextLost) {
+        fgRenderer.compile(fgScene, camera);
+        if (waveMeshes.length) {
+          fgRenderer.setRenderTarget(fgTouchTarget);
+          fgRenderer.render(touchScene, touchCamera);
+          fgRenderer.setRenderTarget(null);
+        }
+      }
+      if (!bgContextLost && (bgItems.length || heroTrails.length)) {
+        bgRenderer.compile(bgScene, camera);
+        bgRenderer.setRenderTarget(bgTouchTarget);
+        bgRenderer.render(touchScene, touchCamera);
+        bgRenderer.setRenderTarget(null);
+      }
+      markDirty(2);
+    } catch (err) {
+      if (import.meta.env.DEV) {
+        console.warn('[WebGL] GPU warmup skipped:', err);
+      }
+    }
+  };
 
-    fgRenderer.outputColorSpace = THREE.SRGBColorSpace;
-    fgRenderer.setSize(width, height);
-    fgRenderer.setPixelRatio(pixelRatio);
+  const suspend = () => {
+    if (suspended) return;
+    suspended = true;
+    (window as any).hasWebGL = false;
+    fgRenderer.clear();
+    bgRenderer.clear();
+    gsap.set('.webgl-background', { opacity: 1, visibility: 'visible' });
+    fgImages.forEach((img) => img.activateFallback());
+  };
+
+  const resume = () => {
+    if (!suspended || !canUseDistortion()) return;
+    suspended = false;
+    if (!fgContextLost && !bgContextLost) {
+      (window as any).hasWebGL = true;
+      gsap.set('.webgl-background', { clearProps: 'opacity,visibility' });
+      fgImages.forEach((img) => img.restoreAfterContextLost());
+    }
+    applyViewportAndDpr();
+    markDirty(4);
   };
 
   experienceInstance = {
@@ -1561,6 +2005,10 @@ export function createExperience(): WebGLExperienceAPI | null {
     reattachCanvases,
     notifyHeroTransitionStart: fireHomeEntranceFlare,
     notifyHeroEntranceComplete: () => startHeroTrailLoop(true),
+    warmupGPU,
+    suspend,
+    resume,
+    isContextLost: () => fgContextLost || bgContextLost || suspended,
   };
   (window as any).__webglExp = experienceInstance;
   return experienceInstance;

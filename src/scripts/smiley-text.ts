@@ -143,6 +143,8 @@ interface SmileyConfig {
   hasExit: boolean;
   id: string;
   seed?: string;
+  /** ND-5 (owner): services-hero body paints at reveal — no line-hold entrance. */
+  skipLineHold?: boolean;
 }
 
 function hydrateInner(el: HTMLElement, cfg: SmileyConfig): HTMLElement {
@@ -225,6 +227,7 @@ export function initSmileyTexts() {
       scrollTrigger: !inHero,
       hasExit: isHeroMobile,
       id: inHero ? 'hero-smileyText' : 'smiley-text',
+      skipLineHold: inServicesHero,
     };
 
     const innerEl = hydrateInner(el, cfg);
@@ -276,7 +279,11 @@ export function initSmileyTexts() {
           : undefined,
         onComplete,
       });
-      if (lines.length) {
+      // ND-5 (owner): inside .sections-servicesHero the body paints at its
+      // natural position at reveal — the line from-hold is skipped, so the
+      // LCP text is not held invisible behind entrance choreography.
+      // Pills, exit machinery and every other context are unchanged.
+      if (lines.length && !cfg.skipLineHold) {
         tl.from(
           lines,
           {
