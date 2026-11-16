@@ -2631,6 +2631,11 @@ a.structure-footer__link:hover {
   padding-inline: 0.025em;
 }
 
+.sections-hero__heading--beyond,
+.sections-hero__heading--beyond .sections-hero__headingInner {
+  color: #ffffff;
+}
+
 /* ==========================================================================
    Home hero "Book a call" CTA & Cal.com modal integration
    ========================================================================== */
