@@ -424,10 +424,10 @@ const PRIVACY: LegalSection[] = [
 
 export const TERMS_DOC: TermsDocument = {
   slug: 'terms',
-  title: 'Terms of Service',
-  seoTitle: 'Terms of Service & Privacy Policy | Decbricks',
+  title: 'Terms of Service and Privacy Policy',
+  seoTitle: 'Decbricks Terms of Service and DPDP Privacy Policy',
   seoDescription:
-    'Terms of Service and Privacy Policy governing your access to and use of the Decbricks website (decbricks.com), services and digital solutions.',
+    'Read the Terms of Service and DPDP Act Privacy Policy governing decbricks.com, project proposals, payments, intellectual property and cookies.',
   updated: "16th November, 2026",
   intro: "Welcome to Decbricks. These Terms of Service govern your access to and use of the Decbricks website, services and digital solutions. By accessing our website or engaging our services, you agree to the terms below. If you do not agree, please do not use the website or submit enquiries through it.",
   preamble: ["Decbricks is an Indian business and these Terms are governed by Indian law, wherever you are located. Section 17 adds a few points for clients and visitors outside India."],

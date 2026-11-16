@@ -17,7 +17,7 @@
 
 ## Critical
 
-### T-1 — Unique Page Titles, Meta Descriptions & Main Heading Agreement
+### T-1 — [x] Unique Page Titles, Meta Descriptions & Main Heading Agreement
 - **Where:** `src/data/site.ts`, `src/pages/index.astro`, `src/pages/about.astro`, `src/pages/services.astro`, `src/pages/contact.astro`, `src/components/Hero.astro`, `src/components/CaseStudies.astro`
 - **What:**
   - Set unique, topic-first `<title>`s ending in `| Decbricks` (50–60 chars) and unique 140–155 char single-sentence human meta descriptions on `/`, `/about`, `/services`, `/contact` (removing the shared `/`–`/about` boilerplate). Note `V-8`: owner sign-off needed to update `Implementation-plan.md` `/about` title format.
@@ -45,7 +45,7 @@
   - `npm run check:footer` passes (parity between footer contact/socials and `Organization` schema).
 - **Verify after release:** `npm run build && npm run check:footer` and JSON-LD parse check across `dist/**/*.html`.
 
-### T-3 — Differentiate Home (`/`), About (`/about`), and Services (`/services`) Value Propositions
+### T-3 — [x] Differentiate Home (`/`), About (`/about`), and Services (`/services`) Value Propositions
 - **Where:** `src/components/Hero.astro`, `src/data/services.ts`, `src/pages/services.astro`
 - **What:**
   - Rewrite Home `Hero.astro` `<h1>` / smiley intro (`parts-smileyText`) using `decbricks-copy` so the first 100 words state what Decbricks builds (software, web/mobile apps, AI automation, design, growth), for whom (startups, businesses, and student-led initiatives), and why to book a call. Keep `"award-winning"` omitted (`V-1`).
@@ -63,7 +63,7 @@
 
 ## Quick wins
 
-### T-4 — Descriptive Internal Linking, Footer Services Links & `?service=` Pre-fill
+### T-4 — [x] Descriptive Internal Linking, Footer Services Links & `?service=` Pre-fill
 - **Where:** `src/data/site.ts`, `src/data/footer.ts`, `src/components/Hero.astro`, `src/pages/about.astro`, `src/pages/contact.astro`, `src/scripts/contact.ts`
 - **What:**
   - Update `SITE.nav` in `src/data/site.ts` so `enabled: true` reflects live routes (`/about`, `/services`, `/contact`).
@@ -79,7 +79,7 @@
   - `npm run links` passes with zero broken internal links or anchors.
 - **Verify after release:** `npm run build && npm run links` + Playwright navigation check from `/services#ai-automation` → `/contact?service=ai-automation`.
 
-### T-5 — About Page Source Completeness & Next-Step Framing
+### T-5 — [x] About Page Source Completeness & Next-Step Framing
 - **Where:** `src/data/about.ts`, `src/pages/about.astro`
 - **What:**
   - Investigate `V-7`: restore the omitted first sentence of `docs/about-section-data.md` into `ABOUT[0]` (strictly adhering to `AGENTS.md` rule 5 verbatim source) or confirm with owner.
@@ -91,7 +91,7 @@
   - `/about` visitors have an explicit contextual link to `/services` and `/contact` above the bottom form.
 - **Verify after release:** `npm run build && npm run check:brand && npm run links`.
 
-### T-6 — Contact Page Copy Clarity, Booking Chip Sync & Microcopy
+### T-6 — [x] Contact Page Copy Clarity, Booking Chip Sync & Microcopy
 - **Where:** `src/pages/contact.astro`, `src/components/ContactForm.astro`, `src/components/CalEmbed.astro`
 - **What:**
   - Replace `contact.astro` `heroBody` (currently identical to meta description) with direct visitor-oriented hero prose explaining how to reach Decbricks (book a call or send a brief).
@@ -106,7 +106,7 @@
   - Cal.com embed, Formspree submission, and `data-lenis-prevent` remain untouched functionally.
 - **Verify after release:** `npm run build && npm run check` + Playwright check on `/contact` at `375px` and `1440px`.
 
-### T-7 — Legal & 404 Page Titles, Meta Descriptions & Heading Structure
+### T-7 — [x] Legal & 404 Page Titles, Meta Descriptions & Heading Structure
 - **Where:** `src/data/legal.ts`, `src/components/LegalPage.astro`, `src/pages/404.astro`
 - **What:**
   - **Terms (`/terms`):** Do **not** alter legal clause wording (`TERMS`, `PRIVACY`, preambles). Update `TERMS_DOC.seoTitle` (`Terms of Service & Privacy Policy | Decbricks`, 45 chars → target 50–60 chars, e.g. `Terms of Service & Privacy Policy Guide | Decbricks` or keep `Terms of Service & Privacy Policy | Decbricks` if clearest) and `seoDescription` (140–155 chars); verify `<h1>` covers both Terms of Service and Privacy Policy (`Terms of Service & Privacy Policy`), keeping `noindex={true}` intact.
@@ -123,7 +123,7 @@
 
 ## Planned
 
-### T-8 — Investigation & Context for Logos, Testimonials & Project Cards (Value: High · Reach: `/` · Effort: 2h · Risk: Medium)
+### T-8 — [x] Investigation & Context for Logos, Testimonials & Project Cards (Value: High · Reach: `/` · Effort: 2h · Risk: Medium)
 - **Where:** `src/data/company-logos.ts`, `src/data/projects.ts`, `src/data/testimonials.ts`, `src/components/CaseStudies.astro`, `src/components/Testimonials.astro`
 - **What (Investigation + Copy):**
   - **Questions to answer (`V-2`, `V-3`, `V-4`):**
@@ -137,7 +137,7 @@
   - Zero unverified client claims on `/`; every logo group and testimonial quote has explicit verified framing; all `<img>` `alt`s follow `decbricks-copy` (1 short descriptive sentence or `""` for decorative).
 - **Verify after release:** `npm run check:placeholders && npm run build` + inspect `CaseStudies` and `Testimonials` in Playwright.
 
-### T-9 — Shared Chrome Microcopy Polish (Value: Medium · Reach: All Pages · Effort: 1h · Risk: Low)
+### T-9 — [x] Shared Chrome Microcopy Polish (Value: Medium · Reach: All Pages · Effort: 1h · Risk: Low)
 - **Where:** `src/data/footer.ts`, `src/components/footer/FooterCta.astro`, `src/components/footer/FooterContact.astro`, `src/components/CookieBanner.astro`
 - **What:**
   - Standardise CTA phrasing across `FooterCta` (`"Start a project"`, `"Book a call"` — `open-items.md` A19), ensure British/Indian English spelling across shared UI (`CookieBanner.astro` `"We're using cookies..."` / policy wording aligned with `/terms#privacy-policy`), and add a direct link from `CookieBanner` `"Cookie Policy"` text to `/terms#privacy-policy` if helpful.

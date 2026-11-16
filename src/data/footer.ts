@@ -56,8 +56,15 @@ export const FOOTER = {
     {
       id: 'services',
       heading: 'Services',
-      /** Kept empty until real Decbricks services replace template copy (open-items C1/B2). */
-      links: [],
+      links: [
+        { label: 'Strategy & Consulting', href: '/services#strategy-consulting', enabled: true },
+        { label: 'Design & Branding', href: '/services#design-branding', enabled: true },
+        { label: 'Web & Software', href: '/services#web-software-development', enabled: true },
+        { label: 'Mobile Apps', href: '/services#mobile-app-development', enabled: true },
+        { label: 'AI & Automation', href: '/services#ai-automation', enabled: true },
+        { label: 'Digital Marketing', href: '/services#digital-marketing-growth', enabled: true },
+        { label: 'Business Outreach', href: '/services#business-development-outreach', enabled: true },
+      ],
     },
   ] as FooterColumn[],
   legal: [
