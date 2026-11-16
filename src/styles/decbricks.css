@@ -3211,3 +3211,20 @@ cal-modal-box iframe {
 
 
 
+
+/* ============================================================
+   Phase 2 B2 — colour + footer email (PERF_BUG_REPORT §E B2)
+   ============================================================ */
+
+/* A11Y-02 (owner ND-4): consent ToS/Privacy links keep the template's
+   violet oklch (≈#9860ff, 3.68:1 on the Off-White form card at 12px —
+   below the 4.5:1 AA floor). Switch to the Phase-1 brand ink token,
+   the same colour as the surrounding sentence (≈13.5:1). Underline
+   keeps the links identifiable without colour (WCAG 1.4.1) once the
+   violet distinction is gone; global.css's hover underline becomes a
+   no-op. Selector matches the template rule's specificity
+   (0,2,1) so this later tie-break wins. */
+.parts-formCheckbox .parts-formCheckbox__label a {
+  color: var(--color-ink);
+  text-decoration: underline;
+}
