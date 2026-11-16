@@ -29,8 +29,22 @@ interface Props {
 const { doc } = Astro.props;
 
 const groups = [
-  { kind: 'terms' as const, id: undefined, heading: undefined, sections: doc.sections },
-  { kind: 'privacy' as const, id: doc.privacy.id, heading: doc.privacy.heading, sections: doc.privacy.sections },
+  {
+    kind: 'terms' as const,
+    id: undefined,
+    heading: undefined,
+    updated: undefined,
+    preamble: doc.preamble,
+    sections: doc.sections,
+  },
+  {
+    kind: 'privacy' as const,
+    id: doc.privacy.id,
+    heading: doc.privacy.heading,
+    updated: doc.privacy.updated,
+    preamble: doc.privacy.preamble,
+    sections: doc.privacy.sections,
+  },
 ];
 ---
 
@@ -49,7 +63,7 @@ const groups = [
       <Header />
       <div class="legal-progress" aria-hidden="true"></div>
       <ServicesHero srTitle={doc.title} headingParts={doc.heroHeading} body={doc.intro} navItems={[]}>
-        <p class="legal-hero__stamp" data-legal-draft-stamp>Last updated: {doc.updated}</p>
+        <p class="legal-hero__stamp" data-legal-draft-stamp>Last Updated: {doc.updated}</p>
       </ServicesHero>
       <section data-theme="light" class="legal-island relative overflow-hidden bg-darkPurple pt-20 lg:pt-0" aria-label={doc.title}>
         <div
@@ -74,9 +88,8 @@ const groups = [
                         <ClauseHeading
                           id={`${section.id}-heading`}
                           class={`legal-clauseTitle font-neuePower ${group.kind === 'privacy' ? 'font-medium' : 'font-bold'} text-darkPurple`}
-                        >
-                          {section.heading}
-                        </ClauseHeading>
+                          set:html={brandify(section.heading)}
+                        />
                         <div class="mt-10 flex flex-col gap-12 lg:mt-15">
                           {section.body.map((paragraph) => (
                             <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
@@ -88,19 +101,43 @@ const groups = [
                               ))}
                             </ul>
                           )}
+                          {section.afterBullets?.map((paragraph) => (
+                            <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
+                          ))}
                         </div>
                       </section>
                     ));
 
                     return group.kind === 'privacy' ? (
                       <section id={group.id} aria-labelledby={`${group.id}-heading`} class="legal-section legal-privacySection">
-                        <h2 id={`${group.id}-heading`} class="legal-privacyTitle font-neuePower font-bold text-darkPurple uppercase">
-                          {group.heading}
-                        </h2>
+                        <h2
+                          id={`${group.id}-heading`}
+                          class="legal-privacyTitle font-neuePower font-bold text-darkPurple uppercase"
+                          set:html={brandify(group.heading)}
+                        />
+                        {group.updated && (
+                          <p class="legal-privacyUpdated">Last Updated: {group.updated}</p>
+                        )}
+                        {group.preamble.length > 0 && (
+                          <div class="legal-privacyPreamble flex flex-col gap-12">
+                            {group.preamble.map((paragraph) => (
+                              <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
+                            ))}
+                          </div>
+                        )}
                         <div class="legal-privacyClauses">{clauses}</div>
                       </section>
                     ) : (
-                      clauses
+                      <>
+                        {group.preamble.length > 0 && (
+                          <div class="legal-preamble flex flex-col gap-12">
+                            {group.preamble.map((paragraph) => (
+                              <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
+                            ))}
+                          </div>
+                        )}
+                        {clauses}
+                      </>
                     );
                   })
                 }
