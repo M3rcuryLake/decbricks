@@ -114,31 +114,11 @@ const sidebarItems = [
                 <div class="booking-split">
                   <div class="booking-info">
                     <p class="booking-intro">
-                      Tell us what you’re building. We’ll tell you how we’d build it.
+                        Tell us what you're building, and we'll show you how we'd bring it to life.
+                        <br> Choose a time that works for you, and the meeting will be added straight to your calendar.
+                        <br> Share a little about your goals, timeline, and budget so we can come prepared.
+                        <br> You'll speak directly with the people responsible for planning, building, and delivering your project.
                     </p>
-
-                    <ol class="booking-steps">
-                      {bookingSteps.map((step) => (
-                        <li class="booking-step">
-                          <span class="booking-step__num" aria-hidden="true">
-                            {step.number}
-                          </span>
-                          <div class="booking-step__copy">
-                            <h3 class="booking-step__title">{step.title}</h3>
-                            <p class="booking-step__desc">{step.description}</p>
-                          </div>
-                        </li>
-                      ))}
-                    </ol>
-
-                    {EMAIL && (
-                      <div class="booking-emailRow">
-                        <span class="booking-emailLabel">Prefer email?</span>
-                        <a href={`mailto:${EMAIL}`} class="booking-emailLink">
-                          {EMAIL}
-                        </a>
-                      </div>
-                    )}
                   </div>
 
                   <div class="booking-embed">
