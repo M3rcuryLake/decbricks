@@ -21,16 +21,16 @@ export interface CompanyLogo {
 
 /** Company logo sticker badges displayed in the Home "Our Work" ticker and hover trail. */
 export const COMPANY_LOGOS: readonly CompanyLogo[] = [
-  { id: 'barclays', alt: 'Barclays', src: barclays },
-  { id: 'ey', alt: 'EY', src: ey },
-  { id: 'tcs', alt: 'TCS', src: tcs },
-  { id: 'zoho', alt: 'Zoho', src: zoho },
-  { id: 'chargebee', alt: 'Chargebee', src: chargebee },
-  { id: 'fourkites', alt: 'FourKites', src: fourkites },
-  { id: 'turing', alt: 'Turing', src: turing },
-  { id: 'sparq', alt: 'Sparq', src: sparq },
-  { id: 'findtern', alt: 'Findtern', src: findtern },
-  { id: 'upcoming-engineer', alt: 'Upcoming Engineer', src: upcomingEngineer },
-  { id: 'vedricx', alt: 'Vedricx Global LLP', src: vedricx },
-  { id: 'logout-spells', alt: 'Logout Spells', src: logoutSpells },
+  { id: 'barclays', alt: 'Barclays logo', src: barclays },
+  { id: 'ey', alt: 'EY logo', src: ey },
+  { id: 'tcs', alt: 'TCS logo', src: tcs },
+  { id: 'zoho', alt: 'Zoho logo', src: zoho },
+  { id: 'chargebee', alt: 'Chargebee logo', src: chargebee },
+  { id: 'fourkites', alt: 'FourKites logo', src: fourkites },
+  { id: 'turing', alt: 'Turing logo', src: turing },
+  { id: 'sparq', alt: 'Sparq logo', src: sparq },
+  { id: 'findtern', alt: 'Findtern logo', src: findtern },
+  { id: 'upcoming-engineer', alt: 'Upcoming Engineer logo', src: upcomingEngineer },
+  { id: 'vedricx', alt: 'Vedricx Global LLP logo', src: vedricx },
+  { id: 'logout-spells', alt: 'Logout Spells logo', src: logoutSpells },
 ];

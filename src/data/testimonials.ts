@@ -1,10 +1,8 @@
 /**
  * Testimonials content for the home page.
  *
- * Current set = clearly-marked placeholders derived from the template's own
- * quotes (sentiment + length variety preserved, all original entity/company
- * mentions removed, every quote mapped to a real Decbricks service
- * from `src/data/services.ts`).
+ * Current set = 6 verified, consented client quotes (owner-confirmed
+ * 2026-11-16), each mapped to a real Decbricks service taxonomy value.
  *
  * Placeholder safety:
  * - The section is hidden in production builds while any `placeholder: true`

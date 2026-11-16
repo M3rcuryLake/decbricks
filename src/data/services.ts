@@ -83,7 +83,7 @@ export const SERVICES: ServiceItem[] = [
       position: '50% 50%',
     },
     homeSummary:
-      'We help businesses identify opportunities, define product requirements and choose the right technology and strategies to achieve their objectives.',
+      'Define what to build and which technology to use before development starts.',
     homeTags: ['Technology Consulting', 'Digital Strategy', 'Product Planning'],
   },
   {
@@ -113,7 +113,7 @@ export const SERVICES: ServiceItem[] = [
       position: '50% 50%',
     },
     homeSummary:
-      'We create thoughtful digital experiences and distinctive brand identities that communicate your value, strengthen your presence and connect with your audience.',
+      'Brand identities, interfaces and creative assets that make your business easy to recognise and trust.',
     homeTags: ['UI/UX Design', 'Website Design', 'Marketing Materials'],
   },
   {
@@ -145,7 +145,7 @@ export const SERVICES: ServiceItem[] = [
       position: '50% 42%',
     },
     homeSummary:
-      'We develop modern websites, web applications and customised software that help businesses improve operations, serve customers and scale confidently.',
+      'Websites, web applications and custom software built to serve your customers and scale.',
     homeTags: ['Website Development', 'SaaS Development', 'API Development'],
   },
   {
@@ -175,7 +175,7 @@ export const SERVICES: ServiceItem[] = [
       position: '50% 50%',
     },
     homeSummary:
-      'We build intuitive and scalable mobile applications designed to deliver seamless user experiences and support your business objectives.',
+      'Android, iOS and cross-platform apps, from interface design through launch and maintenance.',
     homeTags: ['Android App Development', 'iOS App Development', 'Mobile UI/UX Design'],
   },
   {
@@ -206,7 +206,7 @@ export const SERVICES: ServiceItem[] = [
       position: '50% 50%',
     },
     homeSummary:
-      'We help businesses use artificial intelligence and automation to streamline workflows, improve efficiency and unlock new possibilities.',
+      'AI agents, chatbots and automations that take repetitive work off your team.',
     homeTags: ['AI Agent Development', 'LLM Integration', 'Workflow Automation'],
   },
   {
@@ -237,7 +237,7 @@ export const SERVICES: ServiceItem[] = [
       position: '50% 50%',
     },
     homeSummary:
-      'We help businesses strengthen their online presence, connect with potential customers and build digital marketing strategies focused on meaningful growth.',
+      'SEO, social and paid campaigns that bring the right audience to your business.',
     homeTags: ['Search Engine Optimisation (SEO)', 'Lead Generation', 'Paid Advertising'],
   },
   {
@@ -269,7 +269,7 @@ export const SERVICES: ServiceItem[] = [
       position: '50% 50%',
     },
     homeSummary:
-      'Business growth takes more than having a great product or service. It requires reaching the right audience, starting meaningful conversations and building relationships.',
+      'Structured email, LinkedIn and cold-calling outreach that starts conversations with prospects.',
     homeTags: ['B2B Lead Generation', 'LinkedIn Outreach', 'Cold Email Campaigns'],
   },
 ];

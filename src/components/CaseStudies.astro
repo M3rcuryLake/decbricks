@@ -36,7 +36,7 @@ const maxSlideIndex = Math.max(0, PROJECTS.length - 1);
           class="sections-caseStudies__headingOverlay mouse-target absolute inset-x-0 top-0 h-[80%] w-full"
         ></span></h2
       ><div
-        class="parts-stickerSlider absolute bottom-40 left-1/2 z-20 flex w-[200vw] -translate-x-1/2 justify-center lg:hidden"
+        role="group" aria-label="Where our builders have worked" class="parts-stickerSlider absolute bottom-40 left-1/2 z-20 flex w-[200vw] -translate-x-1/2 justify-center lg:hidden"
         ><div class="slider flex w-max min-w-max items-center"
           >{
             tickerLogos.map((logo) => (

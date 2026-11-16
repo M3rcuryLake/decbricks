@@ -88,21 +88,20 @@ const groups = [
                         <ClauseHeading
                           id={`${section.id}-heading`}
                           class={`legal-clauseTitle font-neuePower ${group.kind === 'privacy' ? 'font-medium' : 'font-bold'} text-darkPurple`}
-                          set:html={brandify(section.heading)}
-                        />
+                        >{section.heading}</ClauseHeading>
                         <div class="mt-10 flex flex-col gap-12 lg:mt-15">
                           {section.body.map((paragraph) => (
-                            <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
+                            <p class="u-ink copy-lg text-darkPurple">{paragraph}</p>
                           ))}
                           {section.bullets && (
                             <ul class="legal-list flex flex-col gap-8">
                               {section.bullets.map((item) => (
-                                <li class="u-ink copy-lg text-darkPurple" set:html={brandify(item)} />
+                                <li class="u-ink copy-lg text-darkPurple">{item}</li>
                               ))}
                             </ul>
                           )}
                           {section.afterBullets?.map((paragraph) => (
-                            <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
+                            <p class="u-ink copy-lg text-darkPurple">{paragraph}</p>
                           ))}
                         </div>
                       </section>
@@ -113,15 +112,14 @@ const groups = [
                         <h2
                           id={`${group.id}-heading`}
                           class="legal-privacyTitle font-neuePower font-bold text-darkPurple uppercase"
-                          set:html={brandify(group.heading)}
-                        />
+                        >{group.heading}</h2>
                         {group.updated && (
                           <p class="legal-privacyUpdated">Last Updated: {group.updated}</p>
                         )}
                         {group.preamble.length > 0 && (
                           <div class="legal-privacyPreamble flex flex-col gap-12">
                             {group.preamble.map((paragraph) => (
-                              <p class="u-ink copy-lg text-darkPurple" set:html={brandify(paragraph)} />
+                              <p class="u-ink copy-lg text-darkPurple">{paragraph}</p>
                             ))}
                           </div>
                         )}

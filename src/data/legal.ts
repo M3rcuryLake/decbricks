@@ -2,8 +2,9 @@
  * Legal-page content (/terms, including Privacy Policy section) — open-items A11.
  *
  * Word-for-word from `docs/decbricks-legal.docx` (Last Updated: 16th November, 2026).
- * Every visible standalone "Decbricks" word is rendered through `brandify()`
- * in `LegalPage.astro` and `ServicesHero.astro`.
+ * Only `intro` (`ServicesHero.astro`) and the opening Terms `preamble` in
+ * `LegalPage.astro` use `brandify()`; all Terms and Privacy Policy clauses and
+ * the Privacy preamble render as plain body text.
  */
 
 export interface LegalSection {
