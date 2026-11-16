@@ -27,7 +27,7 @@ const smileyCopy = 'Start your digital project with Decbricks.';
 // from the repo — open-items.md A15). Blocks render with the supplied H2/H3
 // and a neutral navigation sentence; verbatim paragraphs slot in when given.
 const startProjectBody =
-    'Every Decbricks project starts with a conversation. We listen to your goals, your audience, your timeline and your constraints, and we ask the questions that help us understand what success looks like for you. Within a few days you receive a written proposal covering scope, deliverables, timeline and pricing, so you know exactly what you’re getting before any work begins. Once you approve it, we agree on an advance and a milestone schedule, and we kick off.\n From there, we build in clear stages and share progress as we go, so you can see the work take shape instead of waiting for a big reveal. Depending on the project, we may bring in trusted developers, designers or other specialists to strengthen the team. We stay responsible for coordinating the work, and everyone involved follows the same confidentiality and security standards. We allow a generous 5-8 days for you to review each stage, and your feedback shapes the work through 2-3 revision rounds, depending on the scope of the project. If you need more rounds, we’re happy to negotiate them on mutually agreed terms.\n When everything is approved and the final payment is received, we hand over the finished deliverables along with the files, access and documentation you need to run them on your own. Ownership of the final work passes to you at that point. After launch, we stay available to answer questions, fix anything that doesn’t behave as agreed, and help with what comes next.\n Not sure where to start? <a href="/services" class="underline">See our seven services</a> or <a href="/about" class="underline">read how we work</a>.';
+    'Every Decbricks project starts with a conversation. We listen to your goals, your audience, your timeline and your constraints, and we ask the questions that help us understand what success looks like for you. Within a few days you receive a written proposal covering scope, deliverables, timeline and pricing, so you know exactly what you’re getting before any work begins. Once you approve it, we agree on an advance and a milestone schedule, and we kick off.\n From there, we build in clear stages and share progress as we go, so you can see the work take shape instead of waiting for a big reveal. Depending on the project, we may bring in trusted developers, designers or other specialists to strengthen the team. We stay responsible for coordinating the work, and everyone involved follows the same confidentiality and security standards. We allow a generous 5-8 days for you to review each stage, and your feedback shapes the work through 2-3 revision rounds, depending on the scope of the project. If you need more rounds, we’re happy to negotiate them on mutually agreed terms.\n When everything is approved and the final payment is received, we hand over the finished deliverables along with the files, access and documentation you need to run them on your own. Ownership of the final work passes to you at that point. After launch, we stay available to answer questions, fix anything that doesn’t behave as agreed, and help with what comes next.';
 const startProjectParagraphs = startProjectBody
   .split('\n')
   .map((p) => p.trim())
@@ -164,6 +164,12 @@ const sidebarItems = [
                       />
                     </div>
                   ))}
+                  <div class="project-step">
+                    <p class="project-step__text">
+                      Not sure where to start? <a href="/services" class="underline">See our seven services</a> or{' '}
+                      <a href="/about" class="underline">read how we work</a>.
+                    </p>
+                  </div>
                 </div>
               </ContactBlock>
             </div>
