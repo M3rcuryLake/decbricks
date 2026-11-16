@@ -129,6 +129,22 @@ export function initContact() {
   // Form checkbox & client-side validation (UI-only)
   if (!formEl) return;
 
+  // `/contact?service=<id>` (from "Discuss …" links on /services): seed an empty message.
+  const serviceLabels: Record<string, string> = {
+    'strategy-consulting': 'Strategy & Consulting',
+    'design-branding': 'Design & Branding',
+    'web-software-development': 'Web & Software Development',
+    'mobile-app-development': 'Mobile App Development',
+    'ai-automation': 'AI & Automation',
+    'digital-marketing-growth': 'Digital Marketing & Growth',
+    'business-development-outreach': 'Business Development & Outreach',
+  };
+  const serviceParam = new URLSearchParams(location.search).get('service');
+  const messageEl = formEl.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
+  if (serviceParam && serviceLabels[serviceParam] && messageEl && !messageEl.value.trim()) {
+    messageEl.value = `I'd like to discuss ${serviceLabels[serviceParam]}. `;
+  }
+
   const checkboxInput = formEl.querySelector<HTMLInputElement>('.parts-formCheckbox input[type="checkbox"]');
   const checkboxSvg = formEl.querySelector<SVGElement>('.parts-formCheckbox svg');
   if (checkboxInput && checkboxSvg) {

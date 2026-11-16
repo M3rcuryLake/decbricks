@@ -14,11 +14,12 @@ import { EMAIL } from '../data/contact';
 import { contactPageSchema } from '../lib/schema';
 import { brandify } from '../lib/brand';
 
-const title = 'Contact Decbricks | Start Your Digital Project';
+const title = 'Contact Decbricks — Book a Call or Start Your Project';
 const description =
-  'Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.';
+  'Book a 30-minute or 1-hour Google Meet discovery call or send your project brief to our Chennai team for custom software, AI and growth work.';
 // Hero body: owner-supplied SEO description (docs/Implementation-plan.md §4.2).
-const heroBody = description;
+const heroBody =
+  'Book a call or send us a brief. Tell us what you’re building and we’ll reply with how we’d approach it.';
 // Smiley line: derived from the page's own supplied H1 strings — the original
 // template copy must not ship here (open-items.md C2/B2).
 const smileyCopy = 'Start your digital project with Decbricks.';
@@ -26,7 +27,7 @@ const smileyCopy = 'Start your digital project with Decbricks.';
 // from the repo — open-items.md A15). Blocks render with the supplied H2/H3
 // and a neutral navigation sentence; verbatim paragraphs slot in when given.
 const startProjectBody =
-    'Every Decbricks project starts with a conversation. We listen to your goals, your audience, your timeline and your constraints, and we ask the questions that help us understand what success looks like for you. Within a few days you receive a written proposal covering scope, deliverables, timeline and pricing, so you know exactly what you’re getting before any work begins. Once you approve it, we agree on an advance and a milestone schedule, and we kick off.\n From there, we build in clear stages and share progress as we go, so you can see the work take shape instead of waiting for a big reveal. Depending on the project, we may bring in trusted developers, designers or other specialists to strengthen the team. We stay responsible for coordinating the work, and everyone involved follows the same confidentiality and security standards. We allow a generous 5-8 days for you to review each stage, and your feedback shapes the work through 2-3 revision rounds, depending on the scope of the project. If you need more rounds, we’re happy to negotiate them on mutually agreed terms.\n When everything is approved and the final payment is received, we hand over the finished deliverables along with the files, access and documentation you need to run them on your own. Ownership of the final work passes to you at that point. After launch, we stay available to answer questions, fix anything that doesn’t behave as agreed, and help with what comes next.';
+    'Every Decbricks project starts with a conversation. We listen to your goals, your audience, your timeline and your constraints, and we ask the questions that help us understand what success looks like for you. Within a few days you receive a written proposal covering scope, deliverables, timeline and pricing, so you know exactly what you’re getting before any work begins. Once you approve it, we agree on an advance and a milestone schedule, and we kick off.\n From there, we build in clear stages and share progress as we go, so you can see the work take shape instead of waiting for a big reveal. Depending on the project, we may bring in trusted developers, designers or other specialists to strengthen the team. We stay responsible for coordinating the work, and everyone involved follows the same confidentiality and security standards. We allow a generous 5-8 days for you to review each stage, and your feedback shapes the work through 2-3 revision rounds, depending on the scope of the project. If you need more rounds, we’re happy to negotiate them on mutually agreed terms.\n When everything is approved and the final payment is received, we hand over the finished deliverables along with the files, access and documentation you need to run them on your own. Ownership of the final work passes to you at that point. After launch, we stay available to answer questions, fix anything that doesn’t behave as agreed, and help with what comes next.\n Not sure where to start? <a href="/services" class="underline">See our seven services</a> or <a href="/about" class="underline">read how we work</a>.';
 const startProjectParagraphs = startProjectBody
   .split('\n')
   .map((p) => p.trim())
