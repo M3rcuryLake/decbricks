@@ -272,8 +272,8 @@ export class Hero {
   /** Called by the loader or transition overlay at the end of its timeline. */
   playEntrance() {
     if (this.entranceFinished) return;
+    this.playQueued = true;
     if (this.entrance) this.entrance.play(0);
-    else this.playQueued = true;
   }
 
   private setOrigin(el: HTMLElement) {
