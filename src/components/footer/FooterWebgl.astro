@@ -1,10 +1,9 @@
 ---
 /**
- * Global WebGL canvases mounted at the end of `.page` (after `</footer>`) in
- * strict fg-then-bg order. Kept here so `reattachCanvases()` in
- * `src/scripts/webgl/impl.ts` continues to re-bind renderers after every
- * client-side swap (see BUG-015 / footer-redesign-plan §5.3).
+ * Persistent global WebGL canvases mounted in Base.astro outside `.page` so
+ * client-side swaps never unmount or recreate WebGL contexts.
+ * Strict fg-then-bg order (canvas[0] z-10 foreground, canvas[1] z-0 background).
  */
 ---
-<canvas class="webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block"></canvas
-><canvas class="webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block"></canvas>
+<canvas aria-hidden="true" class="webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block"></canvas
+><canvas aria-hidden="true" class="webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block"></canvas>

@@ -1,6 +1,8 @@
 import { gsap, ScrollTrigger, SplitText, bus, bp } from './core/gsap';
 import { getLenis } from './smooth-scroll';
-import { getWebGLExperience, type WebGLImage } from './webgl/experience';
+import { ensurePreviewVideoSource } from './media';
+import { canUseDistortion, onDistortionCapabilityChange, setDistortionState } from './webgl/capability';
+import { whenWebGLReady, type WebGLExperienceAPI, type WebGLImage } from './webgl/experience';
 
 type Conds = { isDesktop: boolean; isMobile: boolean; reduceMotion: boolean };
 type HeroScrollConds = Conds & { isSmallMobile: boolean };
@@ -53,6 +55,8 @@ export class Hero {
   private mobilePinShift = 0;
   private dom: ReturnType<Hero['getDom']>;
   private ac = new AbortController();
+  private cancelWhenReady?: () => void;
+  private stopCapWatch?: () => void;
   private onRefreshEvaluate?: () => void;
   /** Per-element initial tilt (deg) captured from CSS `rotate` (14deg desktop, 5deg mobile). */
   private elementTilts = new WeakMap<HTMLElement, number>();
@@ -108,22 +112,76 @@ export class Hero {
     };
   }
 
+  private setupShowreelWebGL() {
+    const startEl = this.dom.start as HTMLVideoElement | null;
+    if (!startEl) return;
+
+    const fallbackStart = () => {
+      if (this.ac.signal.aborted) return;
+      if (this.webGLImage && !this.webGLImage.isDestroyed) {
+        this.webGLImage.destroy();
+      }
+      this.webGLImage = undefined;
+      startEl.classList.remove('lg:invisible');
+      startEl.style.removeProperty('visibility');
+      if (this.entranceFinished) {
+        gsap.set(startEl, { clearProps: 'opacity' });
+      }
+      setDistortionState(startEl, 'fallback');
+    };
+
+    const attachStart = (exp: WebGLExperienceAPI | null) => {
+      if (this.ac.signal.aborted) return;
+      if (!exp || !canUseDistortion()) {
+        fallbackStart();
+        return;
+      }
+      ensurePreviewVideoSource(startEl);
+      if (this.webGLImage && !this.webGLImage.isDestroyed && this.webGLImage.isWebGLActive) {
+        this.webGLImage.resize();
+        this.syncWebGLImageToStart();
+        return;
+      }
+      setDistortionState(startEl, 'pending');
+      const wImg = exp.createImage(startEl, { type: 'video' });
+      this.webGLImage = wImg;
+      void wImg.ready.then(() => {
+        if (this.ac.signal.aborted || this.webGLImage !== wImg) return;
+        if (wImg.isWebGLActive) {
+          wImg.resize();
+          this.syncWebGLImageToStart();
+        } else {
+          fallbackStart();
+        }
+      });
+    };
+
+    if (canUseDistortion()) {
+      setDistortionState(startEl, 'pending');
+      this.cancelWhenReady = whenWebGLReady(attachStart);
+    } else {
+      fallbackStart();
+    }
+
+    this.stopCapWatch = onDistortionCapabilityChange((enabled) => {
+      if (this.ac.signal.aborted) return;
+      this.cancelWhenReady?.();
+      this.cancelWhenReady = undefined;
+      if (enabled) {
+        ensurePreviewVideoSource(startEl);
+        setDistortionState(startEl, 'pending');
+        this.cancelWhenReady = whenWebGLReady(attachStart);
+      } else {
+        fallbackStart();
+      }
+    });
+  }
+
   private async init() {
     this.normalizeTilt(this.dom.start);
     this.normalizeTilt(this.dom.startMobile ?? undefined);
 
-    if (window.innerWidth >= bp.lg && (window as any).hasWebGL && this.dom.start) {
-      const exp = getWebGLExperience();
-      if (exp) {
-        this.webGLImage = exp.createImage(this.dom.start as HTMLVideoElement, { type: 'video' });
-        this.webGLImage.ready.then(() => {
-          this.webGLImage?.resize();
-          this.syncWebGLImageToStart();
-        });
-      }
-    } else {
-      this.dom.start?.classList.remove('lg:invisible');
-    }
+    this.setupShowreelWebGL();
 
     this.initVideoPlayerListeners();
     this.initEntrance();
@@ -174,22 +232,22 @@ export class Hero {
   }
 
   private hideWebGLVideo() {
-    if (window.innerWidth >= bp.lg) {
-      if (!(window as any).hasWebGL && this.dom.start) {
-        gsap.to(this.dom.start, { opacity: 0 });
-      } else if (this.webGLImage?.material?.uniforms?.uOpacity) {
+    if (window.innerWidth >= bp.lg && this.dom.start) {
+      if (this.webGLImage?.isWebGLActive && this.webGLImage.material?.uniforms?.uOpacity) {
         gsap.to(this.webGLImage.material.uniforms.uOpacity, { value: 0 });
+      } else {
+        gsap.to(this.dom.start, { opacity: 0 });
       }
     }
     if (this.dom.startMobile) gsap.to(this.dom.startMobile, { opacity: 0 });
   }
 
   private showWebGLVideo() {
-    if (window.innerWidth >= bp.lg) {
-      if (!(window as any).hasWebGL && this.dom.start) {
-        gsap.to(this.dom.start, { opacity: 1 });
-      } else if (this.webGLImage?.material?.uniforms?.uOpacity) {
+    if (window.innerWidth >= bp.lg && this.dom.start) {
+      if (this.webGLImage?.isWebGLActive && this.webGLImage.material?.uniforms?.uOpacity) {
         gsap.to(this.webGLImage.material.uniforms.uOpacity, { value: 1 });
+      } else {
+        gsap.to(this.dom.start, { opacity: 1 });
       }
     }
     if (this.dom.startMobile) gsap.to(this.dom.startMobile, { opacity: 1 });
@@ -227,7 +285,7 @@ export class Hero {
     const { text, start, startMobile } = this.dom;
     this.mm.add(MQ, (ctx) => {
       const { isDesktop, reduceMotion } = ctx.conditions as unknown as Conds;
-      if (reduceMotion || text.length < 2) return;
+      if (this.entranceFinished || reduceMotion || text.length < 2) return;
       const tl = (this.entrance = gsap.timeline({
         paused: !this.playQueued,
         onComplete: () => this.finishEntrance(),
@@ -539,6 +597,9 @@ export class Hero {
       el!.style.removeProperty('rotate');
     });
     gsap.set([start, startMobile].filter(Boolean), { clearProps: 'x,y,width,height,scaleX,scaleY,rotate,borderRadius' });
+    if (this.entranceFinished && start) {
+      gsap.set(start, { clearProps: 'opacity' });
+    }
     if (startMobileInner) gsap.set(startMobileInner, { clearProps: 'scaleX,scaleY' });
     if (player) gsap.set(player, { clearProps: 'y' });
     text.forEach((t) => gsap.set(t, { clearProps: 'x' }));
@@ -560,6 +621,10 @@ export class Hero {
       ScrollTrigger.removeEventListener('refresh', this.onRefreshEvaluate);
       this.onRefreshEvaluate = undefined;
     }
+    this.cancelWhenReady?.();
+    this.cancelWhenReady = undefined;
+    this.stopCapWatch?.();
+    this.stopCapWatch = undefined;
     this.ac.abort();
     this.mm.revert();
     this.scrollTl?.kill();

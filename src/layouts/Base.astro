@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/decbricks.css';
 import { SITE, SITE_URL } from '../data/site';
+import FooterWebgl from '../components/footer/FooterWebgl.astro';
 
 interface Props {
   title?: string;
@@ -121,5 +122,6 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
   <body class={bodyClass}>
     <a class="part-skipLink" href="#main-content">Skip to main content</a>
     <slot />
+    <FooterWebgl />
   </body>
 </html>
