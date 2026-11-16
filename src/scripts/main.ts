@@ -29,6 +29,7 @@ import { initCalModals } from './cal-modal';
 import { initFooter } from './footer';
 import { initLegalPage } from './legal-page';
 import { getWebGLExperience, initWebGL, resetHeroLifecycleState } from './webgl/experience';
+import { preloadDistortionForIntro } from './webgl/preload';
 
 let hero: Hero | undefined;
 let heroPlayHandler: (() => void) | null = null;
@@ -146,6 +147,7 @@ bus.on('transition-entrance-done', onInitialTransitionEntranceDone);
 const startLoaderBoot = () => {
   const waitForAssets = Promise.allSettled([
     preloadCurrentPageImages(document, { timeoutMs: 3400 }),
+    preloadDistortionForIntro({ timeoutMs: 2400 }),
   ]).then(() => undefined);
 
   const launch = () => {

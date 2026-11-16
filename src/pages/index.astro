@@ -12,6 +12,28 @@ import TransitionOverlay from '../components/TransitionOverlay.astro';
 import { organizationSchema, webSiteSchema } from '../lib/schema';
 ---
 <Base schema={[organizationSchema(), webSiteSchema()]}>
+  <Fragment slot="head">
+    <script is:inline>
+      (function () {
+        var c = '__DB_WEBGL_CHUNK__';
+        if (!c || c.charAt(0) !== '/') return;
+        if (window.innerWidth < 1024) return;
+        var conn = navigator.connection;
+        if (conn && conn.saveData) return;
+        if (
+          typeof window.matchMedia === 'function' &&
+          (!window.matchMedia('(hover: hover) and (pointer: fine)').matches ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+        ) {
+          return;
+        }
+        var l = document.createElement('link');
+        l.rel = 'modulepreload';
+        l.href = c;
+        document.head.appendChild(l);
+      })();
+    </script>
+  </Fragment>
   
     <main id="main-content" class="layout overflow-hidden bg-darkPurple">
       <Loader />

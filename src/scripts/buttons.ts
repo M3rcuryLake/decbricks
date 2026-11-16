@@ -29,7 +29,7 @@ function initCharSlideButton(btn: HTMLElement, textSelector: string) {
       const split = SplitText.create(gsap.utils.toArray<HTMLElement>(texts), {
         type: 'lines,chars',
         charsClass: 'char',
-        autoSplit: true,
+        autoSplit: false,
         onSplit: (self) => {
           self.lines.forEach((line, i) => {
             tl.to(
