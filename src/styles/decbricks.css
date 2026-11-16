@@ -3248,3 +3248,52 @@ cal-modal-box iframe {
     max-height: 100svh;
   }
 }
+
+/* ============================================================
+   B4 (CLS-01) — metric-matched fallback faces
+   FK Raster had no fallback face at all, and the template's
+   Arial-metric fallback faces ("Power Grotesk Fallback",
+   "Hanken Fallback") are inert on machines without Arial
+   (local("Arial") fails -> system-ui -> re-wrap on font load).
+   Re-declaring the same descriptors later in the cascade wins
+   the face tie-break and adds Liberation Sans (Arial-metric)
+   as a second source. Zero final-visual impact: faces are
+   metric-matched, so the swap changes no layout.
+   ============================================================ */
+@font-face {
+  font-family: "FK Raster Fallback";
+  src: local("Arial"), local("Liberation Sans");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 105.18%;
+  ascent-override: 103%;
+  descent-override: 31.69%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Power Grotesk Fallback";
+  src: local("Arial"), local("Liberation Sans");
+  font-display: swap;
+  font-weight: 400 800;
+  font-style: normal;
+  size-adjust: 100.34%;
+  ascent-override: 79.73%;
+  descent-override: 19.93%;
+  line-gap-override: 19.93%;
+}
+@font-face {
+  font-family: "Hanken Fallback";
+  src: local("Arial"), local("Liberation Sans");
+  font-display: swap;
+  font-weight: 100 900;
+  font-style: normal;
+  size-adjust: 102.61%;
+  ascent-override: 95.87%;
+  descent-override: 29.11%;
+  line-gap-override: 0%;
+}
+:root {
+  --font-offBit: "FK Raster Roman Compact", "FK Raster Fallback", "Departure Mono", ui-monospace, monospace;
+  --font-offBit101: "FK Raster Roman Compact", "FK Raster Fallback", "Departure Mono", ui-monospace, monospace;
+}

@@ -15,7 +15,7 @@ import {
   scrollToAnchor,
   setActiveAnchor,
 } from './menu';
-import { initPageTransition, warmAllRoutes } from './page-transition';
+import { initPageTransition } from './page-transition';
 import { preloadCurrentPageImages } from './image-preload-runtime';
 import { initVideoPlayer } from './video-player';
 import { initServices } from './services';
@@ -146,7 +146,6 @@ bus.on('transition-entrance-done', onInitialTransitionEntranceDone);
 const startLoaderBoot = () => {
   const waitForAssets = Promise.allSettled([
     preloadCurrentPageImages(document, { timeoutMs: 3400 }),
-    warmAllRoutes(),
   ]).then(() => undefined);
 
   const launch = () => {
