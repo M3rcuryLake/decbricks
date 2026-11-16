@@ -6,9 +6,9 @@ Owner decisions applied: see [verify-list.md](verify-list.md). Tagline: **Build 
 
 | Page | Title (chars) | Meta (chars) | Other changes |
 |---|---|---|---|
-| `/` | Decbricks: Custom Software, AI, Design & Growth Studio (54) | 143 | New hero H1 + intro (no "award-winning" claim; none exists); `<h1>` now precedes headings, duplicate "Our Work" `<h2>` removed; Work intro copy tightened; logo alts now "<Company> logo"; logo ticker labelled "Where our builders have worked"; 7 service-card summaries rewritten so they no longer duplicate `/services` |
+| `/` | Decbricks: Build Beyond Ordinary — Software, AI & Growth (56) | 143 | New hero H1 + intro (no "award-winning" claim; none exists); `<h1>` now precedes headings, duplicate "Our Work" `<h2>` removed; Work intro copy tightened; logo alts now "<Company> logo"; logo ticker labelled "Where our builders have worked"; 7 service-card summaries rewritten so they no longer duplicate `/services` |
 | `/about` | About Decbricks: Purpose, Values & Engineering Craft (52) | 145 | Verbatim opening sentence restored from `docs/about-section-data.md`; Chennai, India + links to `/services` and `/contact` added below the sections |
-| `/services` | Custom Software, AI, Design & Digital Growth Services (53) | 141 | Meta/title only; service paragraphs and approved targets (10K+, 500+, 5K+) unchanged |
+| `/services` | Our Services: Software, AI, Design & Digital Growth (51) | 141 | Meta/title prefixed with `Our Services:` (+ `srTitle` / `CollectionPage.name`); service paragraphs and approved targets (10K+, 500+, 5K+) unchanged |
 | `/contact` | Contact Decbricks — Book a Call or Start Your Project (53) | 141 | Hero intro no longer repeats the meta; links to `/services` and `/about` in the process text; `?service=<id>` now seeds the message field ("I'd like to discuss AI & Automation."); booking chip kept at "30 min or 1 hour" |
 | `/terms` | Decbricks Terms of Service and DPDP Privacy Policy (50) | 142 | Only title, meta and H1 text changed; no clause edited; still `noindex`, not in sitemap |
 | `/404` | Page Not Found — Explore Decbricks Services & Work (50) | 141 | Added "Contact Us" button and recovery copy; still `noindex` |

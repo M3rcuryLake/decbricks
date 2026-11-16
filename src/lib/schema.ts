@@ -89,7 +89,7 @@ export function servicesPageSchema(
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: `Software, AI & Digital Growth Services | ${SITE.name}`,
+      name: 'Our Services: Software, AI, Design & Digital Growth',
       url: pageUrl,
       description,
       mainEntity: {
