@@ -20,14 +20,19 @@ BRAND = re.compile(r'(?<![@./-])\bDecbricks\b(?!\.[a-z]{2,}\b|-[a-z])', re.IGNOR
 DIST = pathlib.Path(__file__).resolve().parent.parent / 'dist'
 
 SKIP_TAGS = {'head', 'script', 'style', 'title'}
+VOID_TAGS = {
+    'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
+    'link', 'meta', 'param', 'source', 'track', 'wbr',
+}
 
 
 class Checker(html.parser.HTMLParser):
     def __init__(self, rel):
         super().__init__(convert_charrefs=True)
         self.rel = rel
+        self.is_terms = rel.replace('\\', '/') == 'terms/index.html'
         self.skip_depth = 0
-        self.stack = []       # list of (tag, has_brand_class)
+        self.stack = []       # list of (tag, has_brand_class, is_legal_exempt)
         self.offenders = []
         self.leaks = []
 
@@ -39,20 +44,35 @@ class Checker(html.parser.HTMLParser):
         return []
 
     def has_brand_in_ancestors(self):
-        return any(brand for _, brand in self.stack)
+        return any(brand for _, brand, _ in self.stack)
+
+    def is_exempt_legal_context(self):
+        # Owner decision (2026-11-16): /terms renders plain prose inside ToS/Privacy
+        # clauses (`.legal-clause`, `.legal-privacySection`) while keeping
+        # `.font-brand` on the hero intro and opening `.legal-preamble`.
+        return self.is_terms and any(exempt for _, _, exempt in self.stack)
 
     def handle_starttag(self, tag, attrs):
-        self.stack.append((tag, 'font-brand' in self._classes(attrs)))
+        if tag in VOID_TAGS:
+            return
+        classes = set(self._classes(attrs))
+        self.stack.append((
+            tag,
+            'font-brand' in classes,
+            bool(classes & {'legal-clause', 'legal-privacySection'}),
+        ))
 
     def handle_startendtag(self, tag, attrs):
         pass
 
     def handle_endtag(self, tag):
-        if self.stack:
-            self.stack.pop()
+        for i in range(len(self.stack) - 1, -1, -1):
+            if self.stack[i][0] == tag:
+                del self.stack[i:]
+                break
 
     def handle_data(self, data):
-        visible = not self.has_brand_in_ancestors()
+        visible = not self.has_brand_in_ancestors() and not self.is_exempt_legal_context()
         if self.skip_depth == 0 and visible and data.strip() and BRAND.search(data):
             self.offenders.append(
                 f'  {self.rel}: "…{data.strip()[:70]}…" not inside .font-brand'
