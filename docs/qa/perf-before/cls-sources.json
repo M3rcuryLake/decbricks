@@ -1,0 +1,82 @@
+[
+ {
+  "path": "/services",
+  "repeatVisit": false,
+  "totalCls": 0,
+  "shifts": [],
+  "fontEvents": [
+   {
+    "t": 182,
+    "fonts": [
+     "Power Grotesk",
+     "FK Raster Roman Compact",
+     "Hanken Grotesk",
+     "Departure Mono"
+    ]
+   }
+  ],
+  "fontsReadyAt": 20,
+  "monoLoaded": true,
+  "powerLoaded": true
+ },
+ {
+  "path": "/services",
+  "repeatVisit": true,
+  "totalCls": 0,
+  "shifts": [],
+  "fontEvents": [
+   {
+    "t": 91,
+    "fonts": [
+     "Power Grotesk",
+     "Departure Mono",
+     "FK Raster Roman Compact",
+     "Hanken Grotesk"
+    ]
+   }
+  ],
+  "fontsReadyAt": 30,
+  "monoLoaded": true,
+  "powerLoaded": true
+ },
+ {
+  "path": "/about",
+  "repeatVisit": true,
+  "totalCls": 0,
+  "shifts": [],
+  "fontEvents": [
+   {
+    "t": 83,
+    "fonts": [
+     "Power Grotesk",
+     "Departure Mono",
+     "FK Raster Roman Compact",
+     "Hanken Grotesk"
+    ]
+   }
+  ],
+  "fontsReadyAt": 27,
+  "monoLoaded": true,
+  "powerLoaded": true
+ },
+ {
+  "path": "/",
+  "repeatVisit": true,
+  "totalCls": 0,
+  "shifts": [],
+  "fontEvents": [
+   {
+    "t": 132,
+    "fonts": [
+     "Power Grotesk",
+     "Departure Mono",
+     "FK Raster Roman Compact",
+     "Hanken Grotesk"
+    ]
+   }
+  ],
+  "fontsReadyAt": 23,
+  "monoLoaded": true,
+  "powerLoaded": true
+ }
+]
