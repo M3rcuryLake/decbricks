@@ -3228,3 +3228,23 @@ cal-modal-box iframe {
   color: var(--color-ink);
   text-decoration: underline;
 }
+
+/* ============================================================
+   Mobile (< md / 768px) showreel scroll factor (Option A)
+   ============================================================ */
+:root {
+  --showreel-scroll-mobile: 1;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --showreel-scroll-mobile: 0.6;
+  }
+
+  /* Match the 16:9 showreel frame on mobile (< 768px) and cap with svh so
+     iOS Safari address-bar resizing does not shift sequence geometry. */
+  #showreel.parts-webglVideoPlayer {
+    aspect-ratio: 16 / 9;
+    max-height: 100svh;
+  }
+}

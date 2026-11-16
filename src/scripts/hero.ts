@@ -3,13 +3,25 @@ import { getLenis } from './smooth-scroll';
 import { getWebGLExperience, type WebGLImage } from './webgl/experience';
 
 type Conds = { isDesktop: boolean; isMobile: boolean; reduceMotion: boolean };
+type HeroScrollConds = Conds & { isSmallMobile: boolean };
 const MQ = {
   isDesktop: `(min-width: ${bp.lg}px)`,
   isMobile: `(max-width: ${bp.lg - 1}px)`,
   reduceMotion: '(prefers-reduced-motion: reduce)',
 };
+const HERO_SCROLL_MQ = {
+  ...MQ,
+  isSmallMobile: `(max-width: ${bp.md - 1}px)`,
+};
 
 const px = (v: string) => parseFloat(v) || 0;
+
+/** Read CSS-tunable `--showreel-scroll-mobile` multiplier (clamped to [0.2, 1]). */
+function readMobileScrollFactor(): number {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue('--showreel-scroll-mobile').trim();
+  const parsed = parseFloat(raw);
+  return Number.isFinite(parsed) && parsed > 0 ? Math.min(1, Math.max(0.2, parsed)) : 1;
+}
 
 /** Bounding box of an element with its transform/rotate temporarily removed. */
 function boxOf(el: HTMLElement) {
@@ -342,8 +354,8 @@ export class Hero {
   /** Scroll-scrubbed move of the preview from the hero to the "end" slot; headings slide apart. */
   private initImageAndText() {
     const d = this.dom;
-    this.mm.add(MQ, (ctx) => {
-      const { isDesktop, isMobile, reduceMotion } = ctx.conditions as unknown as Conds;
+    this.mm.add(HERO_SCROLL_MQ, (ctx) => {
+      const { isDesktop, isMobile, isSmallMobile, reduceMotion } = ctx.conditions as unknown as HeroScrollConds;
       const a = isDesktop ? d.start : d.startMobile;
       if (!a || !d.end || !d.text.length) return;
       const s = boxOf(a);
@@ -359,7 +371,15 @@ export class Hero {
           : {
               trigger: isDesktop ? d.end : d.top,
               start: 'clamp(top 110%)',
-              end: isDesktop ? 'clamp(top 20%)' : 'bottom 30%',
+              end: isDesktop
+                ? 'clamp(top 20%)'
+                : isSmallMobile
+                  ? () => {
+                      const docBottom = d.top.getBoundingClientRect().bottom + window.scrollY;
+                      const baseEnd = Math.max(120, docBottom - window.innerHeight * 0.3);
+                      return Math.round(baseEnd * readMobileScrollFactor());
+                    }
+                  : 'bottom 30%',
               scrub: 0.5,
               id: 'hero',
               onUpdate: (st) => {
@@ -460,6 +480,12 @@ export class Hero {
       }
       if (reduceMotion) tl.progress(1);
       this.initServicesPin(isDesktop);
+      return () => {
+        this.scrollTl?.kill();
+        this.pin?.kill();
+        this.scrollTl = undefined;
+        this.pin = undefined;
+      };
     });
   }
 
