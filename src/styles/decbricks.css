@@ -2710,13 +2710,6 @@ cal-modal-box iframe {
 /* ==========================================================================
    Contact page — "Book a Meeting" (#book-a-call) two-column rework
    ========================================================================== */
-/* Replace overflow:hidden on /contact sticky ancestors with clip so
-   position: sticky works inside .booking-info while keeping corner clipping. */
-#main-content:has(.page-contact),
-.page-contact .sections-servicesList {
-  overflow: clip;
-}
-
 .parts-serviceBlock.booking-card {
   padding: clamp(56px, 6vw, 96px) clamp(32px, 4vw, 64px);
   -webkit-font-smoothing: antialiased;
@@ -2787,10 +2780,6 @@ cal-modal-box iframe {
     grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
     column-gap: 48px;
     row-gap: 0;
-  }
-  .booking-info {
-    position: sticky;
-    top: 120px;
   }
 }
 

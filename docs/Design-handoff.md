@@ -676,3 +676,7 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 ### Footer Mobile Link Spacing & Services Column Removal (2026-11-17)
 - **What / Why:** Per owner request, removed the `#footer-nav-services` (`Services`) column from `FOOTER.columns` in [footer.ts](file:///home/ankit/GitHub/decbricks/src/data/footer.ts) (restoring the 4-item footer grid `Pages`, `Company`, `Reach us`, `mark`) and reduced vertical spacing between `.structure-footer__link` items on mobile devices in [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css) (removed the `min-height: 44px` coarse-pointer override on `.structure-footer .structure-footer__col .structure-footer__link` and set `min-height: 24px; padding-block: 1px; line-height: 1.1` under `@media (max-width: 767px)`).
 - **Files:** `src/data/footer.ts`, `src/styles/decbricks.css`, `docs/PROGRESS.md`.
+
+### Contact Page `.booking-info` Sticky Removal (2026-11-17)
+- **What / Why:** Removed `position: sticky; top: 120px;` on `.booking-info` under `@media (min-width: 1100px)` (and the associated `#main-content:has(.page-contact), .page-contact .sections-servicesList { overflow: clip; }` workaround) in [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css) so `.booking-info` scrolls normally with the `#book-a-call` card on `/contact`.
+- **Files:** `src/styles/decbricks.css`, `docs/PROGRESS.md`.
