@@ -1,0 +1,518 @@
+{
+  "home": {
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "fcp": 1572.6,
+      "lcp": 3003.7,
+      "tbt": 211,
+      "cls": 0.0001,
+      "si": 3409.8,
+      "tti": 4769.5
+    },
+    "perRun": [
+      {
+        "perf": 93,
+        "a11y": 100,
+        "fcp": 1728,
+        "lcp": 3004,
+        "tbt": 84,
+        "cls": 0.0001,
+        "jsKB": 123,
+        "transferKB": 14111
+      },
+      {
+        "perf": 86,
+        "a11y": 100,
+        "fcp": 1573,
+        "lcp": 3112,
+        "tbt": 295,
+        "cls": 0,
+        "jsKB": 123,
+        "transferKB": 13471
+      },
+      {
+        "perf": 94,
+        "a11y": 100,
+        "fcp": 1333,
+        "lcp": 2109,
+        "tbt": 211,
+        "cls": 0.0001,
+        "jsKB": 123,
+        "transferKB": 12959
+      }
+    ],
+    "lcpElement": {
+      "type": "node",
+      "lhId": "page-0-SPAN",
+      "path": "1,HTML,1,BODY,1,MAIN,2,DIV,1,SECTION,0,DIV,1,DIV,1,DIV,1,DIV,2,SPAN,0,DIV,0,SPAN",
+      "selector": "div.mb-52 > span.sections-hero__heading > div.line > span.sections-hero__headingInner",
+      "boundingRect": {
+        "top": 223,
+        "bottom": 308,
+        "left": 0,
+        "right": 430,
+        "width": 430,
+        "height": 85
+      },
+      "snippet": "<span class=\"sections-hero__headingInner pointer-default block\">",
+      "nodeLabel": "BEYOND"
+    },
+    "clsItems": [],
+    "longTasks": 6,
+    "mainThreadMs": 5538,
+    "bootupMs": 1630,
+    "requests": 62,
+    "transferKB": 13471,
+    "jsKB": 123,
+    "cssKB": 38,
+    "fontKB": 105,
+    "imgKB": 2563,
+    "mediaKB": 10560,
+    "a11yFails": [],
+    "bpFails": [],
+    "seoFails": [
+      "is-crawlable"
+    ]
+  },
+  "services": {
+    "scores": {
+      "performance": 79,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "fcp": 1560.5,
+      "lcp": 5478.6,
+      "tbt": 114,
+      "cls": 0.0094,
+      "si": 2060.1,
+      "tti": 5651.1
+    },
+    "perRun": [
+      {
+        "perf": 78,
+        "a11y": 100,
+        "fcp": 1584,
+        "lcp": 5479,
+        "tbt": 145,
+        "cls": 0.0094,
+        "jsKB": 109,
+        "transferKB": 1728
+      },
+      {
+        "perf": 79,
+        "a11y": 96,
+        "fcp": 1561,
+        "lcp": 5479,
+        "tbt": 89,
+        "cls": 0.0094,
+        "jsKB": 109,
+        "transferKB": 1728
+      },
+      {
+        "perf": 80,
+        "a11y": 100,
+        "fcp": 1123,
+        "lcp": 5105,
+        "tbt": 114,
+        "cls": 0.0094,
+        "jsKB": 109,
+        "transferKB": 1728
+      }
+    ],
+    "lcpElement": {
+      "type": "node",
+      "lhId": "page-0-P",
+      "path": "1,HTML,1,BODY,1,MAIN,2,DIV,1,SECTION,0,DIV,3,DIV,0,DIV,1,P",
+      "selector": "div.relative > div.sections-servicesHero__display > div.contents > p.sections-servicesHero__body",
+      "boundingRect": {
+        "top": 276,
+        "bottom": 402,
+        "left": 31,
+        "right": 361,
+        "width": 330,
+        "height": 126
+      },
+      "snippet": "<p class=\"sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 m…\">",
+      "nodeLabel": "We bring together technology, design and business growth expertise to help comp…"
+    },
+    "clsItems": [
+      {
+        "score": 0.009363248879052868,
+        "node": "JUMP TO\n\nSTRATEGY\nSTRATEGY\nDESIGN\nDESIGN\nWEB & SOFTWARE\nWEB "
+      },
+      {
+        "score": 0.00004295857312862844,
+        "node": "359"
+      },
+      {
+        "score": 0.000007686531478220555,
+        "node": "359"
+      },
+      {
+        "score": 0.000006659644915643597,
+        "node": "359"
+      }
+    ],
+    "longTasks": 4,
+    "mainThreadMs": 3139,
+    "bootupMs": 1036,
+    "requests": 28,
+    "transferKB": 1728,
+    "jsKB": 109,
+    "cssKB": 38,
+    "fontKB": 105,
+    "imgKB": 1441,
+    "mediaKB": 0,
+    "a11yFails": [
+      "color-contrast"
+    ],
+    "bpFails": [],
+    "seoFails": [
+      "is-crawlable"
+    ]
+  },
+  "about": {
+    "scores": {
+      "performance": 88,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "fcp": 1653.8,
+      "lcp": 3831.1,
+      "tbt": 43.5,
+      "cls": 0,
+      "si": 1796.5,
+      "tti": 3986.7
+    },
+    "perRun": [
+      {
+        "perf": 88,
+        "a11y": 100,
+        "fcp": 1654,
+        "lcp": 3831,
+        "tbt": 40,
+        "cls": 0.0001,
+        "jsKB": 109,
+        "transferKB": 1202
+      },
+      {
+        "perf": 88,
+        "a11y": 100,
+        "fcp": 1727,
+        "lcp": 3829,
+        "tbt": 44,
+        "cls": 0,
+        "jsKB": 109,
+        "transferKB": 1202
+      },
+      {
+        "perf": 88,
+        "a11y": 100,
+        "fcp": 1551,
+        "lcp": 3833,
+        "tbt": 69,
+        "cls": 0,
+        "jsKB": 109,
+        "transferKB": 1202
+      }
+    ],
+    "lcpElement": {
+      "type": "node",
+      "lhId": "page-0-P",
+      "path": "1,HTML,1,BODY,1,MAIN,2,DIV,1,SECTION,0,DIV,3,DIV,0,DIV,1,P",
+      "selector": "div.relative > div.sections-servicesHero__display > div.contents > p.sections-servicesHero__body",
+      "boundingRect": {
+        "top": 276,
+        "bottom": 423,
+        "left": 31,
+        "right": 361,
+        "width": 330,
+        "height": 147
+      },
+      "snippet": "<p class=\"sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 m…\">",
+      "nodeLabel": "We partner with startups, emerging businesses, agencies, and established organi…"
+    },
+    "clsItems": [],
+    "longTasks": 2,
+    "mainThreadMs": 1876,
+    "bootupMs": 604,
+    "requests": 28,
+    "transferKB": 1202,
+    "jsKB": 109,
+    "cssKB": 38,
+    "fontKB": 105,
+    "imgKB": 918,
+    "mediaKB": 0,
+    "a11yFails": [],
+    "bpFails": [],
+    "seoFails": [
+      "is-crawlable"
+    ]
+  },
+  "contact": {
+    "scores": {
+      "performance": 95,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "fcp": 1577.5,
+      "lcp": 2846.5,
+      "tbt": 51,
+      "cls": 0.0001,
+      "si": 1577.5,
+      "tti": 3060.6
+    },
+    "perRun": [
+      {
+        "perf": 95,
+        "a11y": 100,
+        "fcp": 1578,
+        "lcp": 2854,
+        "tbt": 51,
+        "cls": 0,
+        "jsKB": 112,
+        "transferKB": 470
+      },
+      {
+        "perf": 95,
+        "a11y": 100,
+        "fcp": 1577,
+        "lcp": 2846,
+        "tbt": 44,
+        "cls": 0.0001,
+        "jsKB": 112,
+        "transferKB": 470
+      },
+      {
+        "perf": 98,
+        "a11y": 100,
+        "fcp": 1328,
+        "lcp": 1968,
+        "tbt": 116,
+        "cls": 0.0001,
+        "jsKB": 112,
+        "transferKB": 470
+      }
+    ],
+    "lcpElement": {
+      "type": "node",
+      "lhId": "page-0-P",
+      "path": "1,HTML,1,BODY,1,MAIN,2,DIV,1,SECTION,0,DIV,3,DIV,0,DIV,1,P",
+      "selector": "div.relative > div.sections-servicesHero__display > div.contents > p.sections-servicesHero__body",
+      "boundingRect": {
+        "top": 276,
+        "bottom": 384,
+        "left": 31,
+        "right": 361,
+        "width": 330,
+        "height": 108
+      },
+      "snippet": "<p class=\"sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 m…\">",
+      "nodeLabel": "Contact Decbricks for website development, app development, AI automation, cust…"
+    },
+    "clsItems": [
+      {
+        "score": 0.00004528065816260836,
+        "node": "359"
+      },
+      {
+        "score": 0.000006987755889291414,
+        "node": "359"
+      },
+      {
+        "score": 0.000006659644915643597,
+        "node": "359"
+      },
+      {
+        "score": 0.00000376263778654153,
+        "node": "359"
+      }
+    ],
+    "longTasks": 4,
+    "mainThreadMs": 2012,
+    "bootupMs": 580,
+    "requests": 22,
+    "transferKB": 470,
+    "jsKB": 112,
+    "cssKB": 38,
+    "fontKB": 105,
+    "imgKB": 189,
+    "mediaKB": 0,
+    "a11yFails": [],
+    "bpFails": [],
+    "seoFails": [
+      "is-crawlable"
+    ]
+  },
+  "terms": {
+    "scores": {
+      "performance": 96,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 66
+    },
+    "metrics": {
+      "fcp": 1535.3,
+      "lcp": 2564.6,
+      "tbt": 47,
+      "cls": 0,
+      "si": 2174.9,
+      "tti": 4234.1
+    },
+    "perRun": [
+      {
+        "perf": 97,
+        "a11y": 100,
+        "fcp": 1505,
+        "lcp": 2484,
+        "tbt": 16,
+        "cls": 0,
+        "jsKB": 101,
+        "transferKB": 2900
+      },
+      {
+        "perf": 96,
+        "a11y": 100,
+        "fcp": 1537,
+        "lcp": 2570,
+        "tbt": 50,
+        "cls": 0,
+        "jsKB": 101,
+        "transferKB": 2900
+      },
+      {
+        "perf": 96,
+        "a11y": 100,
+        "fcp": 1535,
+        "lcp": 2565,
+        "tbt": 47,
+        "cls": 0,
+        "jsKB": 101,
+        "transferKB": 2900
+      }
+    ],
+    "lcpElement": {
+      "type": "node",
+      "lhId": "page-0-P",
+      "path": "1,HTML,1,BODY,1,MAIN,1,DIV,2,SECTION,0,DIV,3,DIV,0,DIV,1,P",
+      "selector": "div.relative > div.sections-servicesHero__display > div.contents > p.sections-servicesHero__body",
+      "boundingRect": {
+        "top": 276,
+        "bottom": 444,
+        "left": 31,
+        "right": 361,
+        "width": 330,
+        "height": 168
+      },
+      "snippet": "<p class=\"sections-servicesHero__body parts-smileyText relative z-20 order-3 mx-15 m…\">",
+      "nodeLabel": "These terms cover the use of this website, the services we provide through it, …"
+    },
+    "clsItems": [],
+    "longTasks": 4,
+    "mainThreadMs": 2190,
+    "bootupMs": 651,
+    "requests": 54,
+    "transferKB": 2900,
+    "jsKB": 101,
+    "cssKB": 38,
+    "fontKB": 105,
+    "imgKB": 2563,
+    "mediaKB": 0,
+    "a11yFails": [],
+    "bpFails": [],
+    "seoFails": [
+      "is-crawlable"
+    ]
+  },
+  "notfound": {
+    "scores": {
+      "performance": 96,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 66
+    },
+    "metrics": {
+      "fcp": 1538.7,
+      "lcp": 2578.4,
+      "tbt": 0,
+      "cls": 0,
+      "si": 1538.7,
+      "tti": 2580.9
+    },
+    "perRun": [
+      {
+        "perf": 97,
+        "a11y": 100,
+        "fcp": 1503,
+        "lcp": 2578,
+        "tbt": 0,
+        "cls": 0,
+        "jsKB": 100,
+        "transferKB": 273
+      },
+      {
+        "perf": 96,
+        "a11y": 100,
+        "fcp": 1577,
+        "lcp": 2576,
+        "tbt": 0,
+        "cls": 0,
+        "jsKB": 100,
+        "transferKB": 273
+      },
+      {
+        "perf": 96,
+        "a11y": 100,
+        "fcp": 1539,
+        "lcp": 2611,
+        "tbt": 25,
+        "cls": 0,
+        "jsKB": 100,
+        "transferKB": 273
+      }
+    ],
+    "lcpElement": {
+      "type": "node",
+      "lhId": "page-0-H1",
+      "path": "1,HTML,1,BODY,1,MAIN,1,DIV,1,SECTION,1,H1",
+      "selector": "main#main-content > div.page > section.relative > h1.heading-3.5xl",
+      "boundingRect": {
+        "top": 308,
+        "bottom": 401,
+        "left": 115,
+        "right": 297,
+        "width": 182,
+        "height": 93
+      },
+      "snippet": "<h1 class=\"heading-3.5xl font-offBit101 font-normal text-neonGreen uppercase\">",
+      "nodeLabel": "404"
+    },
+    "clsItems": [],
+    "longTasks": 1,
+    "mainThreadMs": 697,
+    "bootupMs": 242,
+    "requests": 16,
+    "transferKB": 273,
+    "jsKB": 100,
+    "cssKB": 38,
+    "fontKB": 105,
+    "imgKB": 10,
+    "mediaKB": 0,
+    "a11yFails": [],
+    "bpFails": [],
+    "seoFails": [
+      "is-crawlable"
+    ]
+  }
+}

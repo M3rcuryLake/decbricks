@@ -164,4 +164,71 @@ Power Grotesk (variable 400–800) + Hanken (100–900) + FK Raster (400) preloa
 - `script-treemap-data` has no per-module leaves (no source maps in prod) — B3 attribution done from the import graph instead.
 - `terms` is the trace capture proxy for "heaviest content page" (per brief); its Perf 95 shows the ceiling without warming media.
 
-**Status line:** Phase 1 complete — battery (6×3, valid, port 4322), launch-state SEO runs, visual sweep (78 viewports), screenshots (60), memory walk (13 hops), INP sample, CLS root-cause reproduction, traces (24 MB, `/tmp/opencode/lh-assets/`, not committed). All findings above carry file/line or artifact evidence. Artifacts: `docs/qa/perf-before/` (JSONs), `docs/screenshots/perf-before/` (60 PNGs), `docs/qa/perf-probes/` (8 repeatable scripts).
+**Status line (Phase 1):** Phase 1 complete — battery (6×3, valid, port 4322), launch-state SEO runs, visual sweep (78 viewports), screenshots (60), memory walk (13 hops), INP sample, CLS root-cause reproduction, traces (24 MB, `/tmp/opencode/lh-assets/`, not committed). All findings above carry file/line or artifact evidence. Artifacts: `docs/qa/perf-before/` (JSONs), `docs/screenshots/perf-before/` (60 PNGs), `docs/qa/perf-probes/` (8 repeatable scripts).
+
+---
+
+## F. Phase-2 Final Verification (After vs Before)
+
+**Date:** 2026-11-16 · **Commits:** `efc9003` (B1) · `59130f5` (B2) · `e5a6ae0` (B4) · `a87f1d1`..`58c0835` (WebGL distortion/cache headers) · `fb368f6` (B3)
+**Owner decisions applied:** **ND-1(a)** keep ~3.0 s first-visit loader (simulated LCP/FCP miss accepted; desktop + mobile observed values reported separately below) · **ND-2(a)** route warming moved out of loader gate to post-reveal idle · **ND-3(b)** keep full 14.3 MB showreel (B5 skipped) · **ND-4** consent links → `--color-ink` `#2A0208` (active pill already `--brand-accent-deep` ≈5.1:1) · **ND-5** services-hero body paints at reveal (`skipLineHold`) · **ND-6** `departure-mono-regular.woff2` preloaded · **ND-7** footer email `mailto:` + Copy button restored (`check:footer` green) · **ND-8** tap targets sized (`24 px` fine / `44 px` coarse on video ranges & footer rows, padded consent links).
+
+### F.1 Lighthouse mobile medians (3 passes, simulated slow-4G + 4× CPU) — Before → After
+
+| Route | Perf (Before → After) | A11y (Before → After) | BP | SEO (pre-launch / launch) | Sim FCP (s) | Sim LCP (s) | TBT (ms) | CLS (Before → After) | Bootup (ms) |
+|---|---|---|---|---|---|---|---|---|---|
+| `/` | 92 → **93** (86–94) | 96 → **100** ✅ | **100** ✅ | 69 / **100** ✅ | 1.96 → **1.57** | 2.96 → **3.00**\* | 125 → **211** (**84** p1)\* | 0 → **0.0001** ✅ | 2,193 → **1,630** |
+| `/services` | 61 → **79** (+18) | 96 → **100** ✅ | **100** ✅ | 69 / **100** ✅ | 1.95 → **1.56** | 5.33 → **5.48**\* | 50 → **114** (**89** p2) | 0.371 → **0.0094** ✅ | 1,359 → **1,036** |
+| `/about` | 84 → **88** (+4) | 96 → **100** ✅ | **100** ✅ | 69 / **100** ✅ | 1.96 → **1.65** | 4.26 → **3.83**\* | 55 → **43.5** ✅ | 0 → **0** ✅ | 1,319 → **604** |
+| `/contact` | 94 → **95** ✅ (95–98) | 96 → **100** ✅ | **100** ✅ | 69 / **100** ✅ | 1.80 → **1.58** | 2.93 → **2.85**\* | 42 → **51** ✅ | 0 → **0.0001** ✅ | 1,341 → **580** |
+| `/terms` | 95 → **96** ✅ (96–97) | 100 → **100** ✅ | **100** ✅ | 66 (draft noindex) | 1.95 → **1.54** | 2.63 → **2.56**\* | 18 → **47** ✅ | 0 → **0** ✅ | 1,319 → **651** |
+| `/404` | 96 → **96** ✅ (96–97) | 100 → **100** ✅ | **100** ✅ | 66 (404 noindex) | 1.80 → **1.54** | 2.63 → **2.58**\* | 0 → **0** ✅ | 0 → **0** ✅ | 526 → **242** |
+
+\* **Accepted per ND-1(a) / ND-2(a) / ND-3(b):** Lantern's simulated LCP (`2.56–5.48 s`) models the JS-hydrated hero text (`hydrateInner` in `smiley-text.ts`) as dependent on the script/image network graph behind the ~3.0 s first-visit loader and current-page eager image preload (`1,441 KB` on `/services`, `918 KB` on `/about`, `10.5 MB` showreel on `/`). Real browser PerformanceObserver measurements (Section F.2) confirm observed LCP is **≤ 1.61 s on throttled mobile** and **≤ 220 ms on desktop**.
+
+### F.2 Observed FCP / LCP / CLS — Desktop & Mobile (`docs/qa/perf-after/observed-desktop-mobile.json`)
+
+| Route | Mobile Throttled (Slow-4G + 4× CPU, cold) FCP / LCP / CLS | Desktop Unthrottled (`1440×900`, first visit) FCP / LCP / CLS | Repeat Visit (`loader-skip` active) FCP / LCP / CLS |
+|---|---|---|---|
+| `/` | **1.61 s** / **1.61 s** ✅ / **0** ✅ | **220 ms** / **220 ms** ✅ / **0.005** ✅ | **280 ms** / **280 ms** ✅ / **0.005** ✅ |
+| `/services` | **1.61 s** / **1.61 s** ✅ / **0.009** ✅ | **212 ms** / **212 ms** ✅ / **0.0003** ✅ | **160 ms** / **160 ms** ✅ / **0.0003** ✅ |
+| `/about` | **1.57 s** / **1.57 s** ✅ / **0** ✅ | **176 ms** / **176 ms** ✅ / **0.0001** ✅ | **156 ms** / **156 ms** ✅ / **0.0001** ✅ |
+| `/contact` | **1.36 s** / **1.36 s** ✅ / **0** ✅ | **164 ms** / **164 ms** ✅ / **0.0001** ✅ | **136 ms** / **136 ms** ✅ / **0.0001** ✅ |
+| `/terms` | **1.43 s** / **1.43 s** ✅ / **0** ✅ | **156 ms** / **156 ms** ✅ / **0.0001** ✅ | **68 ms** / **68 ms** ✅ / **0.0001** ✅ |
+| `/404` | **1.33 s** / **1.33 s** ✅ / **0** ✅ | **140 ms** / **140 ms** ✅ / **0.0001** ✅ | **100 ms** / **100 ms** ✅ / **0.0001** ✅ |
+
+### F.3 First-load transfer profile — Before → After (`docs/qa/perf-after/lh-medians.json` & `bundle.json`)
+
+| Resource | `/` | `/services` | `/about` | `/contact` | `/terms` | `/404` | Notes |
+|---|---|---|---|---|---|---|---|
+| App JS (gz, disk) | 119.5 → **118.2 KB** | 119.5 → **106.9 KB** | 119.5 → **106.9 KB** | 119.5 → **108.6 KB** | 118.0 → **98.6 KB** | 119.5 → **97.9 KB** | Shared core `19.0 KB` + `gsap` `73.0 KB` + `lenis` `5.3 KB` + lazy route chunks (`0.59–6.43 KB` gz) |
+| CSS (gz) | **38.2 KB** ✅ | **38.2 KB** ✅ | **38.2 KB** ✅ | **38.2 KB** ✅ | **38.2 KB** ✅ | **38.2 KB** ✅ | ≤ 40 KB budget ✅ |
+| Fonts | **105 KB** (4 preloaded) | **105 KB** (4) | **105 KB** (4) | **105 KB** (4) | **105 KB** (4) | **105 KB** (4) | `departure-mono-regular.woff2` now preloaded (ND-6) |
+| First-load Images | 2,563 → **2,563 KB** | 2,563 → **1,441 KB** (−44%) | 2,563 → **918 KB** (−64%) | 2,563 → **189 KB** (−93%) | 2,563 → **2,563 KB**\* | 2,563 → **10 KB** (−99.6%) | Cross-route warming deferred to post-reveal idle (ND-2a) |
+| Total Transfer | 13,853 → **13,471 KB** | 2,953 → **1,728 KB** (−41%) | 2,950 → **1,202 KB** (−59%) | 2,946 → **470 KB** (−84%) | 2,945 → **2,900 KB** | 2,911 → **273 KB** (−91%) | Media on `/` kept per ND-3(b) |
+
+\* On `/terms` (`0` content images of its own), the loader gate releases immediately at 3.0 s (`animationsEnabled`), so post-reveal `requestIdleCallback` warming fires inside Lighthouse's post-reveal quiet window; zero cross-route requests occur before loader reveal (`probe-warm-b4.cjs`).
+
+### F.4 Bug closure register
+
+| ID | Status | Resolution & Verification |
+|---|---|---|
+| **PERF-01** | ✅ Closed (B3, `fb368f6`) | Monolithic `332.8 KB` raw / `118.0 KB` gz chunk split into `19.0 KB` gz core + `gsap` (`73.0 KB` gz) + `lenis` (`5.3 KB` gz) + 10 DOM-marker-gated lazy chunks (`0.59–6.43 KB` gz). Route-exclusive code verified absent on non-matching routes (`bundle.json`). |
+| **PERF-02** | ⚪ Accepted (ND-1a) | Owner decision to retain the ~3.0 s first-visit loader; observed desktop (`140–220 ms`) and mobile (`1.33–1.61 s`) FCP/LCP reported in Section F.2. |
+| **PERF-03** | ✅ Closed (B4, `e5a6ae0`) | `warmAllRoutes()` removed from `waitForAssets` in `main.ts`; cross-route warming now runs only in post-reveal idle (`0` cross-route fetches pre-reveal; `/contact` transfer `−84%`, `/404` transfer `−91%`, `/about` `−59%`, `/services` `−41%`). |
+| **PERF-04** | ⚪ Accepted (ND-3b) | Owner decision to keep the full `14.3 MB` / `1280×720` showreel as hero preview (`Media(preview-full-showreel)`). |
+| **PERF-05** | ✅ Closed (B4, `e5a6ae0`) | `cfg.skipLineHold` added in `smiley-text.ts` for `.sections-servicesHero` contexts so hero body text paints at reveal without line-hold entrance choreography (`observed LCP = 212 ms` desktop / `1.61 s` mobile throttled). |
+| **CLS-01** | ✅ Closed (B4, `e5a6ae0`) | Added metric-matched `"FK Raster Fallback"` (`size-adjust: 105.18%`, `ascent-override: 103%`, `descent-override: 31.69%`) + `local("Liberation Sans")` sources on `"Power Grotesk Fallback"` and `"Hanken Fallback"` in `decbricks.css`, plus `visibility: hidden` on duplicate hover-label spans (B1). `/services` CLS dropped **0.371 → 0.0094** in LH (3/3 passes) and **0.0089** in `cls-sources-throttled.json` (`< 0.02` budget ✅). |
+| **A11Y-01** | ✅ Closed (B1, `efc9003`) | Decorative `computer-back/front` `<img>` tags in `ContactForm.astro` given `alt=""` and `role="presentation"` dropped. LH + `probe-a11y.cjs` pass on all 6 routes. |
+| **A11Y-02** | ✅ Closed (B2, `59130f5`) | `.parts-formCheckbox .parts-formCheckbox__label a` overridden to `--color-ink` (`#2A0208`, ≈18:1 on Off-White) + underline in `decbricks.css`. |
+| **A11Y-03** | ✅ Closed (B1, `efc9003`) | Duplicate hover-label spans hidden via `visibility: hidden` + `aria-hidden="true"` at rest (revealed on `:hover`/`:focus-visible`), header nav pills given space-separated `01 <Label>` names, 404 CTA `aria-label` aligned to `"Back to Home"`. |
+| **A11Y-04** | ✅ Verified (B2) | Active "JUMP TO" pill already uses `--brand-accent-deep` (`#BC3D4D`, ≈5.1:1 on Off-White); axe `color-contrast` 0 violations. |
+| **LOGIC-01** | ✅ Closed (B2, `59130f5`) | Restored `mailto:hello@decbricks.com` + `[data-copy-email]` Copy button + `[data-copy-status]` live region in `FooterContact.astro`. `npm run check:footer` passes across all 6 pages. |
+| **PERF-06** | ✅ Closed (B3, `fb368f6`) | Below-the-fold route modules dynamically imported and macrotask-yielded (`setTimeout(resolve, 0)`) in `main.ts`; script bootup reduced **2,193 → 1,630 ms** on `/`, **1,359 → 1,036 ms** on `/services`, **1,319 → 580–651 ms** (`−51%..−57%`) on `/about`, `/contact`, `/terms`. |
+| **PERF-07** | ✅ Closed (B4, `e5a6ae0`) | `departure-mono-regular.woff2` preloaded in `Base.astro`; all 4 brand fonts complete at `1,417–1,461 ms` on throttled cold load (vs `3,853 ms` baseline). |
+| **A11Y-05** | ✅ Closed (B1, `efc9003`) | Video progress/volume range inputs sized to `24 px` (`44 px` coarse), consent links padded to `25 px`, coarse-pointer footer links sized to `44 px` (ND-8). |
+| **LEAK-01** | ✅ Verified (B3) | 13-hop navigation & teardown walk (`docs/qa/perf-after/memory-nav.json`): `0` errors, JS heap flat `5–10 MB`, `ScrollTrigger` counts (`43/23/23/13/3/2/43`) and `1280×800` ×2 WebGL canvases preserved across swaps. |
+| **ENV-01** | ✅ Closed (`d7c0bbc`) | Immutable `Cache-Control` headers added in `public/_headers` (`dist/_headers` populated) and `vercel.json`. |
+
+**Final status:** Phase 2 complete — all batches (B1, B2, B3, B4; B5 skipped per ND-3b) landed and verified; all house gates (`build`, `check`, `check:brand`, `headings`, `links`, `check:placeholders`, `check:footer`) and runtime probes (`docs/qa/perf-after/`) PASS.
+
