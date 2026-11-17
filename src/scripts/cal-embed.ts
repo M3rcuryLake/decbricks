@@ -156,7 +156,7 @@ export function initCalEmbed() {
 
   const onBookingSuccess = () => {
     if (disposed) return;
-    say('Your meeting is booked — a confirmation is on its way. Talk soon!');
+    say('Your meeting is booked. A confirmation is on its way. Talk soon!');
     // Conversion event (T-10): Cal's own confirmed booking callback; no-op
     // without analytics consent.
     trackEvent('booking_completed', { placement: 'contact' });

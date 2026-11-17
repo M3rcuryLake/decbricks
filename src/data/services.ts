@@ -66,7 +66,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'A clear direction for every big idea.',
     paragraphs: [
       'We help businesses identify opportunities, define product requirements and choose the right technology and strategies to achieve their objectives.',
-      'At Decbricks, we partner with founders and growing teams to audit existing workflows, validate market direction and shape practical technical architectures before development begins—helping turn early concepts into focused, scalable digital products.',
+      'At Decbricks, we partner with founders and growing teams to audit existing workflows, validate market direction and shape practical technical architectures before development begins, helping turn early concepts into focused, scalable digital products.',
     ],
     capabilities: [
       'Technology Consulting',
@@ -96,7 +96,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Make your brand impossible to overlook.',
     paragraphs: [
       'We create thoughtful digital experiences and distinctive brand identities that communicate your value, strengthen your presence and connect with your audience.',
-      'From cohesive visual identities and design systems to intuitive website and application interfaces, Decbricks crafts creative assets built for clarity and consistency—backed by campaign graphics, social media creatives and marketing materials that stand out across every touchpoint.',
+      'From cohesive visual identities and design systems to intuitive website and application interfaces, Decbricks crafts creative assets built for clarity and consistency, backed by campaign graphics, social media creatives and marketing materials that stand out across every touchpoint.',
     ],
     capabilities: [
       'Brand Identity & Logo Design',
@@ -127,7 +127,7 @@ export const SERVICES: ServiceItem[] = [
     paragraphs: [
       'We develop modern websites, web applications and customised software that help businesses improve operations, serve customers and scale confidently.',
       'At Decbricks, we pair clean technical architecture with search-ready performance. We helped Findtern build a stronger digital presence through SEO-optimised website development, targeting 10K+ potential student and recruiter visits, and developed a digital platform for Upcoming Engineers designed to make 500+ engineering resources and career opportunities easier to discover.',
-      'We also support community and event-driven launches—delivering website development for DevSummit and DSC SRM alongside digital campaigns designed to reach 5K+ students and tech enthusiasts.',
+      'We also support community and event-driven launches, delivering website development for DevSummit and DSC SRM alongside digital campaigns designed to reach 5K+ students and tech enthusiasts.',
     ],
     capabilities: [
       'Website Development',
@@ -158,7 +158,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Your business, within reach.',
     paragraphs: [
       'We build intuitive and scalable mobile applications designed to deliver seamless user experiences and support your business objectives.',
-      'Whether launching on Android, iOS or cross-platform frameworks, Decbricks handles the full lifecycle from mobile UI/UX and backend API integration to deployment and ongoing maintenance—ensuring fast, reliable apps ready to grow with your users.',
+      'Whether launching on Android, iOS or cross-platform frameworks, Decbricks handles the full lifecycle from mobile UI/UX and backend API integration to deployment and ongoing maintenance, ensuring fast, reliable apps ready to grow with your users.',
     ],
     capabilities: [
       'Android App Development',
@@ -188,7 +188,7 @@ export const SERVICES: ServiceItem[] = [
     lead: 'Make technology work smarter.',
     paragraphs: [
       'We help businesses use artificial intelligence and automation to streamline workflows, improve efficiency and unlock new possibilities.',
-      'Decbricks designs and integrates practical AI agents, custom chatbots and LLM-powered workflows tailored to your daily operations—connecting your existing tools to automate repetitive tasks, speed up customer responses and turn manual processes into reliable, intelligent systems.',
+      'Decbricks designs and integrates practical AI agents, custom chatbots and LLM-powered workflows tailored to your daily operations, connecting your existing tools to automate repetitive tasks, speed up customer responses and turn manual processes into reliable, intelligent systems.',
     ],
     capabilities: [
       'AI Agent Development',
@@ -296,8 +296,8 @@ export const SCOPE_SECTION: AboutSection = {
   navLabel: 'How We Scope & Price',
   title: 'How we scope and price',
   paragraphs: [
-    'No two projects are the same, so there is no fixed price list here. Every engagement starts with a conversation about your goals, audience, timeline and constraints, and begins with a written proposal — covering scope, deliverables, timeline and pricing — that we both agree on before any work starts.',
-    'From there, we build in clear stages and share progress as we go, so you see the work take shape instead of waiting for a big reveal. You can bring us in for a milestone-based project, an ongoing retainer or a dedicated team — whatever matches how you work.',
+    'No two projects are the same, so there is no fixed price list here. Every engagement starts with a conversation about your goals, audience, timeline and constraints, and begins with a written proposal (covering scope, deliverables, timeline and pricing) that we both agree on before any work starts.',
+    'From there, we build in clear stages and share progress as we go, so you see the work take shape instead of waiting for a big reveal. You can bring us in for a milestone-based project, an ongoing retainer or a dedicated team, whatever matches how you work.',
   ],
   values: [
     {
@@ -306,7 +306,7 @@ export const SCOPE_SECTION: AboutSection = {
     },
     {
       name: 'Staged delivery',
-      text: 'We build in stages and you review each one within the window set in your proposal — usually 5–8 days — before we move on.',
+      text: 'We build in stages and you review each one within the window set in your proposal (usually 5–8 days) before we move on.',
     },
     {
       name: 'Revisions defined up front',
@@ -322,7 +322,7 @@ export const SCOPE_SECTION: AboutSection = {
     },
     {
       name: 'Flexible engagement',
-      text: 'Milestone-based project contracts, ongoing retainers or a dedicated team — sized to the work, and revisable as it grows.',
+      text: 'Milestone-based project contracts, ongoing retainers or a dedicated team, sized to the work and revisable as it grows.',
     },
   ],
 };
