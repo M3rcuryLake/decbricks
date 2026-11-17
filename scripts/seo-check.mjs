@@ -114,7 +114,10 @@ const routeExists = (route) => {
 let sitemapRoutes = [];
 const sitemapEntries = new Map(); // route -> { loc, lastmod, images: [absolute urls] }
 let sitemapOrigin = null;
-const todayStr = new Date().toISOString().slice(0, 10);
+// Local calendar day, not UTC: lastmod dates come from git commit dates (local
+// time), so an UTC-based "today" reads them as "tomorrow" during the first
+// hours of a day that is ahead of UTC (e.g. IST before 05:30).
+const todayStr = new Date().toLocaleDateString('en-CA');
 const sitemapPath = path.join(DIST, 'sitemap.xml');
 if (existsSync(sitemapPath)) {
   const xml = readFileSync(sitemapPath, 'utf8');

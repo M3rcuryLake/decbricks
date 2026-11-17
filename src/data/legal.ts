@@ -2,8 +2,15 @@
  * Legal-page content (/terms, including Privacy Policy section) — open-items A11.
  *
  * Word-for-word from `docs/decbricks-legal.docx` (Last Updated: 16th November, 2026),
- * except the Privacy Policy processor name/region, retention context and its
- * Last Updated date (2026-11-18: contact-form processor switched Formspree → Formspark).
+ * except the Privacy Policy processor name/region/retention context and its
+ * Last Updated date (owner-authorized divergence, 2026-11-18):
+ * 1. contact-form processor switched Formspree → Formspark;
+ * 2. cookie/analytics disclosure made truthful (consent-gated GTM/GA4 analytics,
+ *    was "We do not use analytics or advertising cookies" — the launch-blocking
+ *    A11 disclosure fix) and the matching §3/§4/§5/§7 analytics mentions added;
+ * 3. §5 retention aligned to Formspark's actual storage model.
+ * The docx source copy has NOT been regenerated (owner deploys legal edits from
+ * code); this file is the operative legal text.
  * Only `intro` (`ServicesHero.astro`) and the opening Terms `preamble` in
  * `LegalPage.astro` use `brandify()`; all Terms and Privacy Policy clauses and
  * the Privacy preamble render as plain body text.
@@ -307,7 +314,7 @@ const PRIVACY: LegalSection[] = [
     "bullets": [
       "Contact form (name, business email, company, website, country, service required, estimated budget, project timeline, your message, and your consent to submit): sent through the form service Formspark (submit-form.com), which delivers it as an email to our team inbox. The form service stores submissions and may run spam checks on what you send.",
       "Booking a call (when the booking widget is enabled): the scheduling service Cal.com processes the name, email and any details you enter to create the meeting.",
-      "Cookies and similar storage: we use only essential cookies and similar storage that the site needs to work. We do not use analytics or advertising cookies.",
+      "Cookies and similar storage: we use only essential cookies and similar storage that the site needs to work. We also use optional analytics cookies (such as the _ga cookies set through Google Tag Manager) to understand how the site is used. They are set only if you accept them in the cookie banner; if you decline or withdraw, no analytics cookies are set. We do not use advertising cookies.",
       "Server logs: our hosting provider, Vercel, records standard request data (page requested, approximate IP address, timestamp, browser type) to operate and secure the site."
     ],
     "afterBullets": [
@@ -320,7 +327,8 @@ const PRIVACY: LegalSection[] = [
     "body": [],
     "bullets": [
       "Enquiries and bookings: to respond to you and prepare proposals. We rely on your consent, which you give by submitting the form or booking a slot, and on your voluntary provision of the data for that purpose.",
-      "Essential cookies and server logs: to keep the site working and secure, as part of our duty to maintain reasonable security safeguards."
+      "Essential cookies and server logs: to keep the site working and secure, as part of our duty to maintain reasonable security safeguards.",
+      "Optional analytics: to understand how the site is used (pages visited, approximate location, device type), only if you accept analytics cookies in the cookie banner. We rely on your consent, which you can withdraw at any time."
     ],
     "afterBullets": [
       "We do not use your data for any purpose beyond those above without asking you first."
@@ -334,11 +342,12 @@ const PRIVACY: LegalSection[] = [
     ],
     "bullets": [
       "the service providers (processors) named in Section 2, which handle form delivery, scheduling and hosting;",
+      "Google, as the analytics provider, when you accept optional analytics cookies;",
       "collaborators we engage on a client project, who are bound by confidentiality and security requirements and receive only what the work needs; and",
       "government authorities or courts where the law requires it."
     ],
     "afterBullets": [
-      "We do not sell personal data, and we do not share it for targeted advertising. Our current processors and their regions are Formspark (European Union: data stored in Ireland and Germany), Cal.com (United States), Vercel (United States, with a global edge network)."
+      "We do not sell personal data, and we do not share it for targeted advertising. Our current processors and their regions are Formspark (European Union: data stored in Ireland and Germany), Cal.com (United States), Vercel (United States, with a global edge network), and Google (Google Analytics, only when you accept analytics cookies: United States)."
     ]
   },
   {
@@ -346,8 +355,9 @@ const PRIVACY: LegalSection[] = [
     "heading": "5. How long we keep it",
     "body": [],
     "bullets": [
-      "Enquiry emails and booking records are kept for 12 months so we can follow up and keep a record of our correspondence.",
-      "Server logs are kept for 12 months."
+      "Enquiry form submissions and booking records are kept for 12 months so we can follow up and keep a record of our correspondence. Our form service stores each submission until we delete it; a deleted submission stays recoverable in the service for about 30 days before it is erased for good.",
+      "Server logs are kept for 12 months.",
+      "Optional analytics data is kept by Google under its own retention setting when you accept analytics cookies."
     ],
     "afterBullets": [
       "When the purpose is served and no law requires us to keep the data, we erase it. Invoice and tax records for clients are kept for as long as the law requires."
@@ -375,7 +385,7 @@ const PRIVACY: LegalSection[] = [
     "id": "transfers-outside-india-privacy",
     "heading": "7. Transfers outside India",
     "body": [
-      "Our processors operate in the United States (Cal.com and Vercel, which also serves content through a global edge network) and in the European Economic Area (Formspark, which stores data in Ireland and Germany). Where your data leaves India, we transfer it only to providers that protect it under contractual safeguards, including data processing agreements with each processor, and not to any country the Government of India has restricted."
+      "Our processors operate in the United States (Cal.com, Vercel, which also serves content through a global edge network, and Google Analytics when you accept analytics cookies) and in the European Economic Area (Formspark, which stores data in Ireland and Germany). Where your data leaves India, we transfer it only to providers that protect it under contractual safeguards, including data processing agreements with each processor, and not to any country the Government of India has restricted."
     ]
   },
   {
