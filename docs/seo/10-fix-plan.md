@@ -6,6 +6,8 @@ Builds on: the technical audit (`01-code-audit.md`), rendered audit (`02-rendere
 
 ---
 
+> **Review-gate update (2026-11-17):** owner approved Phase 5 with these changes — T-7 and T-8 **dropped** (new pages not required); T-9 **closed, no change** (emblem OG card kept, V-14); T-10 tool = **GTM container `GTM-MRLF44ZP`**, consent-gated. V-11/V-12/V-13/V-15/V-17/V-18 closed "not required" — see `verify-list.md`.
+
 ## Critical
 
 ### T-1 — [ ] Production launch gate + environmental verification
@@ -19,7 +21,7 @@ The site cannot be indexed at all today (`PUBLIC_ENV` unset → site-wide `noind
 
 ## Quick wins
 
-### T-2 — [ ] `scripts/seo-check.mjs` + `npm run seo:check` (Task 1 of the implementation plan)
+### T-2 — [x] `scripts/seo-check.mjs` + `npm run seo:check` (Task 1 of the implementation plan) *(done in Phase 4 — baseline in `12-baseline.md`)*
 - **Where:** `scripts/seo-check.mjs` (new, parse5), `package.json` script.
 - **What / acceptance / verify:** see `11-implementation-plan.md` Task 1; runs against `dist/`, fails on duplicated titles/descriptions, bad canonicals, unintended noindex, unparseable JSON-LD, dead internal links, images without alt, HTML > 1.5 MB, banned strings, sitemap/indexation mismatches. Baseline run recorded in `12-baseline.md`.
 - **Who:** Frontend engineer. **Effort:** 0.5 d.
@@ -49,21 +51,21 @@ The site cannot be indexed at all today (`PUBLIC_ENV` unset → site-wide `noind
 - **Value:** answers the #1 unvoiced buyer question on the goal pages; reach: all service intent. Confidence: high (facts exist). Deps: none. Effort: 1 d. Risk: low (template component reuse — `AboutBlock`/`ServiceBlock` pattern).
 - **Acceptance:** visible section on the page; heading hierarchy intact (`npm run headings`); no `[VERIFY]` in copy.
 
-### T-7 — [ ] Service detail page: `/services/ai-automation` (gated on approval + owner proof)
+### T-7 — [~] ~~Service detail page: `/services/ai-automation`~~ DROPPED at review gate (owner: new pages not required)
 - **Where:** new `src/pages/services/[service].astro` (or single page); copy drafted in `04-content-plan.md`; schema via a new `serviceDetailSchema()` in `src/lib/schema.ts`; breadcrumb Home › Services › AI Automation; sitemap updated.
 - **Value:** first depth page on the highest-differentiator cluster. Reach: AI-intent queries. Confidence: medium (demand unvalidated). Deps: owner approval of new-page decision at the review gate + a verifiable proof line (or ship without proof section). Effort: 2 d. Risk: low-medium (new route → checker guards duplicates/canonicals).
 - **Acceptance:** unique title/description (seo:check), one H1, internal links both directions to `/services`, sitemap updated, `?service=` CTA works.
 
-### T-8 — [ ] Case-study pages `/work/<project>` + `/work` hub (gated on owner-supplied verified content)
+### T-8 — [~] ~~Case-study pages `/work/<project>` + `/work` hub~~ DROPPED at review gate (owner: new pages not required; V-10 outcomes kept on record in `verify-list.md`)
 - **Where:** new pages from `src/data/projects.ts` + owner-verified one-sentence outcomes with permission (`[VERIFY]`, V-4 follow-up); links from home `#work` cards (F-9).
 - **Value:** crawlable proof — the asset AI engines and vetting buyers can cite. Confidence: medium. Deps: **hard** — no page ships without a verified, publishable outcome per project. Effort: 2 d after owner content. Risk: low.
 - **Acceptance:** each page has ≥1 sourced outcome sentence; home cards link to them with project-name anchors; sitemap updated.
 
-### T-9 — [ ] Real OG/share image (open-items A6)
+### T-9 — [x] Real OG/share image — CLOSED at review gate: owner keeps the emblem card (V-14). No file change.
 - **Where:** `public/og-default.png` (currently TEMP brand emblem PNG), `src/data/site.ts:28-32`.
 - **What:** designed 1200×630 brand card (owner asset decision); optional per-page OG images later. Effort: owner + 0.5 d integration. Risk: none.
 
-### T-10 — [ ] Consent-gated analytics + conversion events (08-measurement; only after approval)
+### T-10 — [ ] Consent-gated analytics + conversion events (08-measurement; owner chose GTM container `GTM-MRLF44ZP`)
 - **Where:** GA4 (or chosen tool) loaded only after the cookie banner's analytics consent (`cookies-decided` bus event, same gate as the Cal embed); events per `08-measurement.md` hooked to the *existing* confirmed-success branches (`contact.ts` success state, `cal-embed.ts` `bookingSuccessful`).
 - **Value:** makes GSC queries → enquiries measurable. Deps: owner approval of tool + plan. Effort: 1 d. Risk: medium (must not fire pre-consent; verify test events in DebugView before done).
 - **Acceptance:** with consent declined, zero network calls to the analytics origin (DevTools-verified); with consent, one test form submission and one test booking appear as events.
