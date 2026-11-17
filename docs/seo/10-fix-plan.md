@@ -46,7 +46,7 @@ The site cannot be indexed at all today (`PUBLIC_ENV` unset → site-wide `noind
 
 ## Planned (ranked by value · reach · confidence · dependencies · effort · risk)
 
-### T-6 — [ ] "How we scope and price" section (facts already in repo)
+### T-6 — [x] "How we scope and price" section (facts already in repo) *(done Phase 5 — rendered with reused `AboutBlock`; every fact traced in `src/data/services.ts` `SCOPE_SECTION` comment)*
 - **Where:** `/services` (preferred, as a closing block) or `/about`; content from `src/data/legal.ts` (proposal review 5–8 days, 2–3 revision rounds, 14 days post-launch support) and product-marketing engagement models (retainer / milestone / dedicated team). No invented prices.
 - **Value:** answers the #1 unvoiced buyer question on the goal pages; reach: all service intent. Confidence: high (facts exist). Deps: none. Effort: 1 d. Risk: low (template component reuse — `AboutBlock`/`ServiceBlock` pattern).
 - **Acceptance:** visible section on the page; heading hierarchy intact (`npm run headings`); no `[VERIFY]` in copy.

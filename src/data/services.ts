@@ -1,4 +1,5 @@
 import type { ImageMetadata } from 'astro';
+import type { AboutSection } from './about';
 import strategyConsultingPic from '../assets/service/strategy-consulting.png';
 import designBrandingPic from '../assets/service/design-branding.png';
 import webSoftwarePic from '../assets/service/web-n-software-development.png';
@@ -273,3 +274,55 @@ export const SERVICES: ServiceItem[] = [
     homeTags: ['B2B Lead Generation', 'LinkedIn Outreach', 'Cold Email Campaigns'],
   },
 ];
+
+/**
+ * "How we scope and price" — closing block on /services (SEO ticket T-6).
+ * Rendered with AboutBlock (ServiceBlock card chrome, no new CSS).
+ * Every fact below traces to existing repo content — no invented numbers:
+ * - Written proposal/SOW before work begins: `src/data/legal.ts` (§ how-it-works).
+ * - Stage review window usually 5–8 days: `src/data/legal.ts` (client obligations).
+ * - Revision rounds: Standard up to 2, Premium up to 3: `src/data/legal.ts` (§ revisions-and-changes).
+ * - Advance + milestone schedule, "know exactly what you're getting": owner copy
+ *   live on /contact (startProjectBody, src/pages/contact.astro).
+ * - Invoices payable within 7 days: `src/data/legal.ts` (§ payment).
+ * - 14 days post-launch defect fixes at no charge: `src/data/legal.ts` (§ warranty).
+ * - Engagement models (milestone contracts / retainers / dedicated teams):
+ *   .agents/product-marketing.md (business model).
+ */
+export const SCOPE_SECTION: AboutSection = {
+  id: 'how-we-scope-and-price',
+  number: '08',
+  eyebrow: 'Process & Pricing',
+  navLabel: 'How We Scope & Price',
+  title: 'How we scope and price',
+  paragraphs: [
+    'No two projects are the same, so there is no fixed price list here. Every engagement starts with a conversation about your goals, audience, timeline and constraints, and begins with a written proposal — covering scope, deliverables, timeline and pricing — that we both agree on before any work starts.',
+    'From there, we build in clear stages and share progress as we go, so you see the work take shape instead of waiting for a big reveal. You can bring us in for a milestone-based project, an ongoing retainer or a dedicated team — whatever matches how you work.',
+  ],
+  values: [
+    {
+      name: 'Proposal first',
+      text: 'Scope, deliverables, timeline and pricing are agreed in writing before work begins, so you know exactly what you’re getting.',
+    },
+    {
+      name: 'Staged delivery',
+      text: 'We build in stages and you review each one within the window set in your proposal — usually 5–8 days — before we move on.',
+    },
+    {
+      name: 'Revisions defined up front',
+      text: 'Standard projects include up to 2 revision rounds and Premium projects up to 3, as set out in your proposal before commencement.',
+    },
+    {
+      name: 'Milestone-based payments',
+      text: 'Work starts on an agreed advance and milestone schedule; invoices are payable within 7 days.',
+    },
+    {
+      name: 'Support after launch',
+      text: 'For 14 days after launch we fix, at no charge, defects where a deliverable doesn’t work as specified in the statement of work.',
+    },
+    {
+      name: 'Flexible engagement',
+      text: 'Milestone-based project contracts, ongoing retainers or a dedicated team — sized to the work, and revisable as it grows.',
+    },
+  ],
+};

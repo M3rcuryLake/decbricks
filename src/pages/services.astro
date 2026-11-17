@@ -9,7 +9,8 @@ import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
-import { SERVICES, SERVICES_SECTION_HEADER } from '../data/services';
+import { SERVICES, SERVICES_SECTION_HEADER, SCOPE_SECTION } from '../data/services';
+import AboutBlock from '../components/AboutBlock.astro';
 import { getBlockImagePreloads } from '../lib/image-preload';
 import { servicesPageSchema } from '../lib/schema';
 
@@ -65,6 +66,7 @@ const imagePreloads = await getBlockImagePreloads(
               class="mx-auto flex w-full max-w-1850 flex-col gap-40 lg:gap-55 xl:gap-65 3xl:gap-80 4xl:gap-95"
             >
               {SERVICES.map((service, index) => <ServiceBlock service={service} index={index} />)}
+              <AboutBlock section={SCOPE_SECTION} index={SERVICES.length} />
             </div>
           </div>
         </section>
