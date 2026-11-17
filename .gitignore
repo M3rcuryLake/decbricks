@@ -171,3 +171,8 @@ Thumbs.db
 .vscode/
 .idea/
 docs/qa/baseline/
+
+# Multi-MB QA screenshots (perf-before/webp-before/webp-after) bloated Git
+# history ~60 MB before the 2026-11-18 cleanup — keep them out of git; the
+# probes that produce them live in scripts/.
+docs/screenshots/
