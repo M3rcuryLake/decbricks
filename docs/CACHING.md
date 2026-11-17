@@ -37,6 +37,8 @@ Files kept in `public/` keep stable URLs (for CSS `url()`, favicons, JSON-LD `Or
 | `public/og-default.png` | `439,643 B` | PNG (`1200×630`) | Stable URL required by social/OpenGraph scrapers |
 | `public/fonts/*.woff2` | `22–34 KB` | WOFF2 | Preloaded font URLs in `global.css` & `Base.astro` |
 
+Non-media metadata served from the build: `robots.txt` + `sitemap.xml` (endpoints) and `public/5916762549f64c18a08b8e4218667fe9.txt` (IndexNow ownership key file, protocol Option 1 — must be a UTF-8 text file at the site root containing only the key) all revalidate at `max-age=3600, must-revalidate`.
+
 ---
 
 ## 3. Baseline Response Headers (`npm run preview` on `http://127.0.0.1:4332`)
@@ -97,8 +99,8 @@ server {
         add_header Cache-Control "public, max-age=86400, stale-while-revalidate=604800";
     }
 
-    # Metadata & manifests
-    location ~* ^/(site\.webmanifest|robots\.txt|sitemap\.xml)$ {
+    # Metadata, manifests & the IndexNow ownership key file
+    location ~* ^/(site\.webmanifest|robots\.txt|sitemap\.xml|5916762549f64c18a08b8e4218667fe9\.txt)$ {
         add_header Cache-Control "public, max-age=3600, must-revalidate";
     }
 

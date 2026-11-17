@@ -14,7 +14,8 @@
     "check:brand": "python3 scripts/check-brand.py",
     "check:placeholders": "node scripts/check-placeholders.mjs",
     "check:footer": "node scripts/check-footer-schema.mjs",
-    "seo:check": "node scripts/seo-check.mjs"
+    "seo:check": "node scripts/seo-check.mjs",
+    "indexnow": "node scripts/indexnow-submit.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",

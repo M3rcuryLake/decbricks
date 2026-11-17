@@ -39,7 +39,7 @@
       ]
     },
     {
-      "source": "/(site\\.webmanifest|robots\\.txt|sitemap\\.xml)",
+      "source": "/(site\\.webmanifest|robots\\.txt|sitemap\\.xml|5916762549f64c18a08b8e4218667fe9\\.txt)",
       "headers": [
         {
           "key": "Cache-Control",

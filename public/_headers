@@ -27,6 +27,9 @@
 /robots.txt
   Cache-Control: public, max-age=3600, must-revalidate
 
+/5916762549f64c18a08b8e4218667fe9.txt
+  Cache-Control: public, max-age=3600, must-revalidate
+
 /sitemap.xml
   Cache-Control: public, max-age=3600, must-revalidate
 
