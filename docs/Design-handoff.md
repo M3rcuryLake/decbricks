@@ -731,3 +731,9 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 - **B1 fonts rights confirmed** (incl. FK Raster Trial-derived source) → resolved. **B4 Zeka Design poster rights confirmed** → resolved. **A2 closed by decision:** slots 30m/1h, display name stays `"DecBricks Team"`. **A19 approved** as shipped. **A4 closed:** no street address will be published. **E6 apex/www redirect** resolved at launch (owner flipped Vercel direction; recorded). **E7 IndexNow verified** in Bing Webmaster Tools (ongoing protocol unchanged: changed URLs only). **T-12 share-parity spot-check verified**. **A7.1 Formspark dashboard work done** by owner.
 - **Deliberately deferred (owner):** GA4 container-side `page_view`/conversion triggers (A10) — skipped this round entirely; the code-side direct-GA4 wiring option was NOT implemented. A10 remains the only open analytics item.
 
+## Analytics — GTM trigger verification (2026-11-18, owner added 4 triggers)
+- **What / Why:** Owner published container triggers for `page_view` + 3 conversion events. Live verification on the production preview with a route-mocked Formspark endpoint (no real email sent) and the real consent banner.
+- **Verified working:** SPA `page_view` = exactly 1 collect per client-side swap with correct page URL/title; consent gate intact (GTM loads only post-consent; decline path still zero requests — regression from 2026-11-17 unchanged).
+- **Broken (container-side, owner):** conversion events arrive as `page_view` duplicates (triggers attached to a Configuration-type tag — they must be **GA4 Event** tags), and every landing fires `page_view` twice (config tag on two consent triggers; loader pushes consent default+update back-to-back, which is required for first-visit compliance). Full diagnosis + tag-level fix list in open-items A10.
+- **Files:** `docs/open-items.md`, `docs/PROGRESS.md`. No source changes.
+
