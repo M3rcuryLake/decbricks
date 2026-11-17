@@ -82,7 +82,7 @@ Generated during WebP optimisation & folder reorganisation (`chore/webp-assets`)
 | `assets/brand/logo-trim.png` | 1240×1141 | 1,299,750 B | Archival offline brand master (not shipped to `dist/`) |
 | `assets/brand/og-source.jpg` | 1920×1920 | 263,159 B | Archival OG artwork master (not shipped to `dist/`) |
 | `docs/logo.png` | `1240×1141` | `1,335,204 B` | Protected master logo asset (`docs/` source drops/screenshots pruned during cleanup) |
-| SVGs, fonts, videos | — | — | Non-raster assets (inline SVGs, `public/fonts/`, `public/videos/decbricks-showreel.mp4`) |
+| SVGs, fonts, videos | — | — | Non-raster assets (inline SVGs, `public/fonts/`, `public/videos/decbricks-showreel.mp4` + `public/videos/decbricks-showreel-preview.mp4` — 391 KB 640×360 hero-preview derivative, H.264 CRF 27, no audio, faststart) |
 
 ---
 
