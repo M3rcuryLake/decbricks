@@ -186,7 +186,7 @@ const smileyHtml = brandify(smileyCopy);
       ><div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between"
         ><div class="parts-formCheckbox w-full lg:w-6/12" name="Terms and Conditions" is-valid="false"
           ><div class="flex items-center gap-10"
-            ><div class="relative mt-2 flex-shrink-0"
+            ><label for="terms" class="relative mt-2 flex-shrink-0"
               ><input id="terms" name="terms" type="checkbox" required class="sr-only" aria-invalid="false" /><div
                 class="border-darkPurple flex h-16 min-h-16 w-16 min-w-16 cursor-pointer items-center justify-center rounded-4 border transition-colors lg:h-21 lg:min-h-21 lg:w-21 lg:min-w-21"
               ><svg
@@ -200,7 +200,7 @@ const smileyHtml = brandify(smileyCopy);
                 <path
                   fill="currentColor"
                   d="M6.4 9.6H3.2V6.4h3.2zM3.2 6.4H0V3.2h3.2z"
-                ></path></svg></div></div
+                ></path></svg></div></label
               ><div class="flex-1"
               ><label
                 for="terms"
