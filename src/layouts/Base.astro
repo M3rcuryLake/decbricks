@@ -70,18 +70,10 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {/* Phase 0 (R9): decide the cookie-banner reservation before first paint so
-        the safe-area never causes a runtime layout shift. Mirrors the banner's
-        own condition in scripts/cookies.ts (no essential-consent cookie). The
-        reserved height default lives in decbricks.css; cookies.ts keeps
-        re-measuring so manage mode stays accurate. */}
+    {/* Phase 2 loader policy: hide the loader before first paint on repeat
+        visits of the same session (companion to scripts/loader.ts, which
+        skips the timeline entirely and emits its lifecycle events anyway). */}
     <script is:inline>
-      if (!document.cookie.includes('essential-consent')) {
-        document.documentElement.classList.add('has-cookie-banner');
-      }
-      // Phase 2 loader policy: hide the loader before first paint on repeat
-      // visits of the same session (companion to scripts/loader.ts, which
-      // skips the timeline entirely and emits its lifecycle events anyway).
       try {
         if (sessionStorage.getItem('decbricks:loader-seen') === '1') {
           document.documentElement.classList.add('loader-skip');

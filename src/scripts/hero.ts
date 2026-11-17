@@ -65,10 +65,6 @@ export class Hero {
     if (this.dom.player) gsap.set(this.dom.player, { clearProps: 'y' });
   };
 
-  private onSafeAreaChange = () => {
-    this.resize();
-  };
-
   private normalizeTilt(el: HTMLElement | undefined): number {
     if (!el) return 0;
     let tilt = this.elementTilts.get(el);
@@ -196,7 +192,6 @@ export class Hero {
     this.initImageAndText();
     this.initPlayerTimeline();
     ScrollTrigger.addEventListener('refreshInit', this.onRefreshInit);
-    bus.on('cookie-safe-area-changed', this.onSafeAreaChange);
     const refresh = () => this.refreshTakeover();
     document.fonts?.ready?.then(refresh);
     document
@@ -623,7 +618,6 @@ export class Hero {
   destroy() {
     window.clearTimeout(this.refreshTimeout);
     ScrollTrigger.removeEventListener('refreshInit', this.onRefreshInit);
-    bus.off('cookie-safe-area-changed', this.onSafeAreaChange);
     if (this.onRefreshEvaluate) {
       ScrollTrigger.removeEventListener('refresh', this.onRefreshEvaluate);
       this.onRefreshEvaluate = undefined;
