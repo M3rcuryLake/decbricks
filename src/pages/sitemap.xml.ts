@@ -147,6 +147,14 @@ const locFor = (origin: string, url: string): string =>
 /** Bundled asset path (e.g. `/_astro/x.hash.webp`) → absolute image URL. */
 const imageUrl = (origin: string, src: string): string => new URL(src, origin + '/').href;
 
+/**
+ * XML-escape every value interpolated into the document. Today's values are
+ * safe (hashed asset paths, dates), but an unescaped `&` would break the
+ * whole file with "EntityRef: expecting ';'" — escape at the boundary.
+ */
+const xmlEsc = (s: string): string =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
 export const GET: APIRoute = ({ site }) => {
   const origin = originFor(site);
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -158,12 +166,12 @@ ${ROUTES.map(({ url, sources, images }) => {
   const imageXml = images
     .map(
       (src) => `    <image:image>
-      <image:loc>${imageUrl(origin, src)}</image:loc>
+      <image:loc>${xmlEsc(imageUrl(origin, src))}</image:loc>
     </image:image>`
     )
     .join('\n');
   return `  <url>
-    <loc>${locFor(origin, url)}</loc>
+    <loc>${xmlEsc(locFor(origin, url))}</loc>
     <lastmod>${lastmodFor(sources)}</lastmod>${imageXml ? `\n${imageXml}` : ''}
   </url>`;
 }).join('\n')}

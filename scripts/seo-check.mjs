@@ -121,6 +121,15 @@ if (existsSync(sitemapPath)) {
   if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>/.test(xml.trim())) {
     fail('sitemap.xml: missing `<?xml version="1.0" encoding="UTF-8"?>` declaration');
   }
+  // XML well-formedness: a raw `&` (the classic "EntityRef: expecting ';'"
+  // libxml error) must never ship. Zero-dep stand-in for a real parser —
+  // catches exactly the unescaped-ampersand class; the structural checks
+  // below cover the rest.
+  if (/&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)/.test(xml)) {
+    const hit = xml.match(/&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)/);
+    const line = xml.slice(0, hit.index).split('\n').length;
+    fail(`sitemap.xml: unescaped "&" on line ${line} — XML entity references must end with ";"`);
+  }
   const urlBlocks = xml.match(/<url>[\s\S]*?<\/url>/g) || [];
   if (urlBlocks.length === 0) fail('sitemap.xml: no <url> entries');
   for (const block of urlBlocks) {
