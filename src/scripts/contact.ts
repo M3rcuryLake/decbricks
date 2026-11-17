@@ -1,6 +1,7 @@
 import { gsap, bp, initSvgRectReveal } from './core/gsap';
 import { setBtnPrimaryLabel } from './buttons';
 import { CONTACT_ENDPOINT, EMAIL } from '../data/contact';
+import { trackEvent } from './analytics';
 
 export function initContact() {
   const section = document.querySelector<HTMLElement>('.sections-contactForm');
@@ -336,6 +337,12 @@ export function initContact() {
           lastSentAt = Date.now();
           setSending(false);
           statusEl?.focus(); // success confirmation is announced + focusable
+          // Conversion event (T-10): confirmed success only, never the submit
+          // click; no-op without analytics consent.
+          trackEvent('contact_form_submitted', {
+            form_location: location.pathname,
+            service: new URLSearchParams(location.search).get('service') || undefined,
+          });
           return;
         }
         // Non-OK: Formspree replies { errors: [{ field, message }] } on 4xx.

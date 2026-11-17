@@ -18,6 +18,7 @@
  * initCalEmbed() returns a teardown; registered in main.ts boot + onAfterSwap.
  */
 import { bus, prefersReducedMotion } from './core/gsap';
+import { trackEvent } from './analytics';
 import { getLenis } from './smooth-scroll';
 import { CAL } from '../data/contact';
 import {
@@ -147,6 +148,8 @@ export function initCalEmbed() {
     if (!calReady) {
       calReady = true;
       settledAt = performance.now();
+      // High-intent signal (T-10): the booking calendar mounted successfully.
+      trackEvent('booking_started', { placement: 'contact' });
     }
     ensureIframeTitle();
   };
@@ -154,6 +157,9 @@ export function initCalEmbed() {
   const onBookingSuccess = () => {
     if (disposed) return;
     say('Your meeting is booked — a confirmation is on its way. Talk soon!');
+    // Conversion event (T-10): Cal's own confirmed booking callback; no-op
+    // without analytics consent.
+    trackEvent('booking_completed', { placement: 'contact' });
   };
 
   const onLinkFailed = () => {

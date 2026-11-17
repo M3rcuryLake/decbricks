@@ -18,6 +18,7 @@ import {
 import { initPageTransition } from './page-transition';
 import { preloadCurrentPageImages } from './image-preload-runtime';
 import { initCalModals } from './cal-modal';
+import { initAnalytics, trackPageView } from './analytics';
 import { initFooter } from './footer';
 import { getWebGLExperience, initWebGL, resetHeroLifecycleState } from './webgl/experience';
 import { preloadDistortionForIntro } from './webgl/preload';
@@ -221,6 +222,7 @@ teardown(initCalModals());
 teardown(initFooter());
 initRouteFeatures(routeGen);
 initCookies();
+initAnalytics();
 
 initPageTransition({
   onBeforeSwap: () => {
@@ -253,6 +255,7 @@ initPageTransition({
     teardown(initCalModals());
     teardown(initFooter());
     refreshHeaderForRoute(newPath);
+    trackPageView(newPath); // consent-gated SPA page_view (T-10)
     initRouteFeatures(gen);
     void mountHeroForCurrentPage(gen);
     playInlineVideos();

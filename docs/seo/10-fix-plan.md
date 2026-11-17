@@ -65,7 +65,7 @@ The site cannot be indexed at all today (`PUBLIC_ENV` unset → site-wide `noind
 - **Where:** `public/og-default.png` (currently TEMP brand emblem PNG), `src/data/site.ts:28-32`.
 - **What:** designed 1200×630 brand card (owner asset decision); optional per-page OG images later. Effort: owner + 0.5 d integration. Risk: none.
 
-### T-10 — [ ] Consent-gated analytics + conversion events (08-measurement; owner chose GTM container `GTM-MRLF44ZP`)
+### T-10 — [x] Consent-gated analytics + conversion events (08-measurement; owner chose GTM container `GTM-MRLF44ZP`) *(done Phase 5 — verified: zero GTM requests with consent declined; GTM + page_view + form/booking events on consent; live Formspree test POST succeeded)*
 - **Where:** GA4 (or chosen tool) loaded only after the cookie banner's analytics consent (`cookies-decided` bus event, same gate as the Cal embed); events per `08-measurement.md` hooked to the *existing* confirmed-success branches (`contact.ts` success state, `cal-embed.ts` `bookingSuccessful`).
 - **Value:** makes GSC queries → enquiries measurable. Deps: owner approval of tool + plan. Effort: 1 d. Risk: medium (must not fire pre-consent; verify test events in DebugView before done).
 - **Acceptance:** with consent declined, zero network calls to the analytics origin (DevTools-verified); with consent, one test form submission and one test booking appear as events.
