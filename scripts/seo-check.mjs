@@ -112,16 +112,72 @@ const routeExists = (route) => {
 
 /* ---------- sitemap ---------- */
 let sitemapRoutes = [];
+const sitemapEntries = new Map(); // route -> { loc, lastmod, images: [absolute urls] }
+let sitemapOrigin = null;
+const todayStr = new Date().toISOString().slice(0, 10);
 const sitemapPath = path.join(DIST, 'sitemap.xml');
 if (existsSync(sitemapPath)) {
   const xml = readFileSync(sitemapPath, 'utf8');
-  for (const m of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
-    try {
-      const u = new URL(m[1].trim());
-      sitemapRoutes.push((u.pathname.replace(/\/+$/, '') || '/'));
-    } catch {
-      fail(`sitemap.xml: unparseable <loc>: ${m[1]}`);
+  if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>/.test(xml.trim())) {
+    fail('sitemap.xml: missing `<?xml version="1.0" encoding="UTF-8"?>` declaration');
+  }
+  const urlBlocks = xml.match(/<url>[\s\S]*?<\/url>/g) || [];
+  if (urlBlocks.length === 0) fail('sitemap.xml: no <url> entries');
+  for (const block of urlBlocks) {
+    const locM = block.match(/<loc>([^<]+)<\/loc>/);
+    if (!locM) {
+      fail('sitemap.xml: <url> block without <loc>');
+      continue;
     }
+    let u;
+    try {
+      u = new URL(locM[1].trim());
+    } catch {
+      fail(`sitemap.xml: unparseable <loc>: ${locM[1]}`);
+      continue;
+    }
+    if (u.protocol !== 'https:') fail(`sitemap.xml: <loc> ${locM[1]} is not https`);
+    if (sitemapOrigin === null) sitemapOrigin = u.origin;
+    else if (u.origin !== sitemapOrigin) {
+      fail(`sitemap.xml: <loc> origin ${u.origin} differs from ${sitemapOrigin} (all URLs must share one origin)`);
+    }
+    const route = u.pathname.replace(/\/+$/, '') || '/';
+    if (sitemapEntries.has(route)) fail(`sitemap.xml: duplicate <loc> for ${route}`);
+    const lastmodM = block.match(/<lastmod>([^<]+)<\/lastmod>/);
+    let lastmod = null;
+    if (!lastmodM) {
+      fail(`sitemap.xml: ${route} is missing <lastmod>`);
+    } else {
+      lastmod = lastmodM[1].trim();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(lastmod)) {
+        fail(`sitemap.xml: ${route} lastmod "${lastmod}" is not a YYYY-MM-DD date`);
+      } else if (lastmod > todayStr) {
+        fail(`sitemap.xml: ${route} lastmod ${lastmod} is in the future`);
+      }
+    }
+    const images = [...block.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((m) => m[1].trim());
+    for (const img of images) {
+      let iu;
+      try {
+        iu = new URL(img);
+      } catch {
+        fail(`sitemap.xml: ${route} has an unparseable <image:loc>: ${img}`);
+        continue;
+      }
+      if (iu.protocol !== 'https:') fail(`sitemap.xml: ${route} image <image:loc> ${img} is not https`);
+      if (iu.origin !== sitemapOrigin) {
+        fail(`sitemap.xml: ${route} image origin ${iu.origin} differs from sitemap origin ${sitemapOrigin}`);
+      }
+      if (!/\.(webp|png|jpe?g|gif|avif)$/i.test(iu.pathname)) {
+        fail(`sitemap.xml: ${route} image ${iu.pathname} is not an image file`);
+      }
+      const imgPath = path.join(DIST, decodeURIComponent(iu.pathname).replace(/^\/+/, ''));
+      if (!existsSync(imgPath)) {
+        fail(`sitemap.xml: ${route} image ${iu.pathname} does not exist in dist/`);
+      }
+    }
+    sitemapEntries.set(route, { loc: locM[1].trim(), lastmod, images });
+    sitemapRoutes.push(route);
   }
 } else {
   fail('dist/sitemap.xml missing');
@@ -230,6 +286,13 @@ for (const [route, p] of parsed) {
         if (abs.protocol !== 'https:') fail(`${route}: canonical is not https`);
         const self = (abs.pathname.replace(/\/+$/, '') || '/') === (route === '/404.html' ? '/404.html' : route);
         if (!self) fail(`${route}: canonical "${p.canonical}" does not point at itself`);
+      }
+      // Sitemap/canonical parity: the <loc> must be byte-identical to the page's
+      // own canonical (origin, trailing slash and scheme in one check). Only
+      // enforceable when a canonical exists — launch-gate noindex builds omit it.
+      const entry = sitemapEntries.get(route);
+      if (entry && entry.loc !== p.canonical) {
+        fail(`${route}: sitemap <loc> ${entry.loc} != canonical ${p.canonical}`);
       }
     }
   } else if (!isNoindex) {
