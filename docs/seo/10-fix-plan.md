@@ -70,7 +70,7 @@ The site cannot be indexed at all today (`PUBLIC_ENV` unset → site-wide `noind
 - **Value:** makes GSC queries → enquiries measurable. Deps: owner approval of tool + plan. Effort: 1 d. Risk: medium (must not fire pre-consent; verify test events in DebugView before done).
 - **Acceptance:** with consent declined, zero network calls to the analytics origin (DevTools-verified); with consent, one test form submission and one test booking appear as events.
 
-### T-11 — [ ] Copy polish from DOM observations + post-GSC title/description review
+### T-11 — [x] Copy polish from DOM observations + post-GSC title/description review *(H1 polish done Phase 5: `/services` H1 → "Our services and expertise", `/about` H1 → "About Decbricks: our purpose and values"; the post-GSC title/description review stays scheduled after 4–8 weeks of data)*
 - **Where:** H1 compositions reading duplicated ("Our Services: Our Expertise" `/services`, "About Decbricks: Our Purpose" `/about`); revisit titles/descriptions after 4–8 weeks of GSC data (page cards hold alternatives).
 - **Acceptance:** `npm run headings` + `check:brand` pass; unique titles preserved. Effort: 0.5 d now + 0.5 d after GSC. Risk: low.
 

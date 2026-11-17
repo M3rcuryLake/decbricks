@@ -51,7 +51,7 @@ export const SERVICES_SECTION_HEADER = {
 } as const;
 
 export const SERVICES_HERO = {
-  srTitle: 'Our Services: Our Expertise',
+  srTitle: 'Our services and expertise',
   headingParts: ['Our', 'Expertise'] as const,
   body: SERVICES_SECTION_HEADER.intro,
 };
