@@ -684,3 +684,11 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 ### SEO Phase 5 — @types/node dev dependency (2026-11-17)
 - **What / Why:** `@types/node` added as a devDependency — **justification (one line, per hard rule 7):** the sitemap endpoint (`src/pages/sitemap.xml.ts`) derives `lastmod` from git at build time (`node:child_process`) and `astro check` needs Node type declarations; types-only, never bundled, no runtime dependency. Also removed the now-unused `bookingSteps` const from `src/pages/contact.astro` (its markup was removed in owner commit `2058f69`; the data remained and failed `noUnusedLocals`) — restorable from git history if the booking-steps list returns.
 - **Files:** `package.json`, `package-lock.json`, `tsconfig.json` (unchanged — no `types` restriction), `src/pages/sitemap.xml.ts`, `src/pages/contact.astro`, `docs/PROGRESS.md`.
+
+### SEO Phase 5 — Departure Mono preload removal supersedes perf-phase ND-6 (2026-11-17)
+- **What / Why:** SEO audit finding F-11 / ticket T-4: the perf phase (B4, ND-6) re-added a `departure-mono-regular.woff2` preload that contradicted the shipped 2026-11-11 fallback-only decision; removed again per the fix plan. The face still loads on use (`src: local()` first, `@font-face` intact; `document.fonts.check` verified live). CLS unaffected (mono usage is not first-paint; fallback faces for the other three families remain).
+- **Files:** `src/layouts/Base.astro`.
+
+### SEO Phase 5 — review-gate decisions (2026-11-17, owner in-session)
+- **What / Why:** T-7 (`/services/ai-automation`) and T-8 (case-study pages) dropped — owner: new pages not required; T-9 closed (OG emblem card kept, V-14); T-10 tool = GTM container `GTM-MRLF44ZP` (consent-gated, prod-builds-only); V-11/V-12/V-13/V-15/V-17/V-18 closed "not required"; AI-crawler robots policy stays Option A (allow, no robots.txt change beyond the launch gate); competitor set for offsite layer = 1minus1.com, gapsystudio.com, studiomoara.com. Full record: `docs/seo/verify-list.md`.
+- **Files:** `docs/seo/10-fix-plan.md`, `docs/seo/verify-list.md`, `docs/open-items.md`.
