@@ -32,13 +32,13 @@ The site cannot be indexed at all today (`PUBLIC_ENV` unset → site-wide `noind
 - **Acceptance:** lastmod matches each page file's last content commit; sitemap still lists the four indexable URLs.
 - **Who:** Frontend engineer. **Effort:** 1 h.
 
-### T-4 — [ ] Remove the Departure Mono font preload (or re-record the decision)
+### T-4 — [x] Remove the Departure Mono font preload (or re-record the decision) *(done Phase 5 — commit `a4df59e`)*
 - **Where:** `src/layouts/Base.astro:118`.
 - **What:** the `@font-face` uses `src: local("Departure Mono")` first and the shipped decision (`PROGRESS.md` 2026-11-11) says it is fallback-only and not preloaded — but it still preloads. Remove the preload line; if a first-paint mono usage is later proven, re-add consciously and update PROGRESS.
 - **Acceptance:** no Departure Mono preload in built HTML; `npm run check` and visual spot-check unchanged.
 - **Who:** Frontend engineer. **Effort:** 15 min.
 
-### T-5 — [ ] Give the hero "Book a call" CTA an `href` fallback (progressive enhancement)
+### T-5 — [x] Give the hero "Book a call" CTA an `href` fallback (progressive enhancement) *(done Phase 5 — verified in browser: click still opens the Cal modal, no navigation)*
 - **Where:** `src/components/Hero.astro:54,95` — `href={hasCalLink ? undefined : CAL.bookingUrl || '/contact#book-a-call'}`.
 - **What:** render the hero CTA as `<a href="/contact#book-a-call">`; existing JS intercepts the click and opens the Cal modal exactly as today (behaviour for JS visitors unchanged; no-JS visitors get a working destination). Verify the modal-open click handler's `preventDefault` covers the anchor before merging.
 - **Acceptance:** rendered anchor has href; clicking with JS opens the modal as before (manual Playwright check); no change to Cal payload/namespace.

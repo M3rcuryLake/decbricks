@@ -51,7 +51,7 @@ const HOME_CARD_STYLES = [
             ><div class="hero-introCta hero-introCta--desktop">
               <ActionButton
                 label="Book a call"
-                href={hasCalLink ? undefined : CAL.bookingUrl || '/contact#book-a-call'}
+                href={hasCalLink ? '/contact#book-a-call' : CAL.bookingUrl || '/contact#book-a-call'}
                 target={!hasCalLink && CAL.bookingUrl ? '_blank' : undefined}
                 rel={!hasCalLink && CAL.bookingUrl ? 'noopener noreferrer' : undefined}
                 variant="hero-light"
@@ -92,7 +92,7 @@ const HOME_CARD_STYLES = [
       ><div class="hero-introCta hero-introCta--compact relative z-20">
         <ActionButton
           label="Book a call"
-          href={hasCalLink ? undefined : CAL.bookingUrl || '/contact#book-a-call'}
+          href={hasCalLink ? '/contact#book-a-call' : CAL.bookingUrl || '/contact#book-a-call'}
           target={!hasCalLink && CAL.bookingUrl ? '_blank' : undefined}
           rel={!hasCalLink && CAL.bookingUrl ? 'noopener noreferrer' : undefined}
           variant="hero-light"

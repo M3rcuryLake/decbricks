@@ -80,6 +80,11 @@ export function initCalModals(): () => void {
     const calLink = btn.dataset.calLink || CAL.link;
     if (!calLink) return;
 
+    // The hero trigger is an <a href="/contact#book-a-call"> for no-JS/crawler
+    // fallback (T-5). With JS, intercept the navigation and open the modal
+    // instead — behaviour identical to the previous <button>.
+    e.preventDefault();
+
     const ns = btn.dataset.calNamespace || CAL.namespace;
     let config: Record<string, unknown> = { layout: 'month_view' };
     if (btn.dataset.calConfig) {
