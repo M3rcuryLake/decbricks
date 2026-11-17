@@ -79,7 +79,18 @@ export function trackPageView(path: string): void {
  */
 export function initAnalytics(): void {
   const onCookiesDecided = (granted: unknown) => {
-    if (granted === true) loadGtm();
+    if (granted === true) {
+      loadGtm();
+    } else if (gtmRequested) {
+      // Consent WITHDRAWN after the container already loaded (footer "Manage
+      // cookies" → save with analytics unchecked). GTM's own tags would keep
+      // running in this document, so mirror the banner's revoke path (the
+      // "Delete" button in cookies.ts): clear the consent cookies and reload.
+      // The fresh document boots without the container, and the banner re-asks.
+      document.cookie = 'essential-consent=; max-age=0; path=/';
+      document.cookie = 'analytics-consent=; max-age=0; path=/';
+      window.location.reload();
+    }
   };
   bus.on('cookies-decided', onCookiesDecided);
   if (hasAnalyticsConsent()) loadGtm();
