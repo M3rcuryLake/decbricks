@@ -10,7 +10,7 @@ Builds on: the technical audit (`01-code-audit.md`), rendered audit (`02-rendere
 
 ## Critical
 
-### T-1 — [ ] Production launch gate + environmental verification
+### T-1 — [x] Production launch gate + environmental verification *(DONE 2026-11-17 by owner: `PUBLIC_ENV=production` set in Vercel + deployed; live-verified — robots `Allow` + Sitemap line, indexable meta, all-in sitemap with images live; owner kept the **apex** as canonical form and flipped the Vercel domain direction so www 308 → apex; GSC live-test passes)*
 The site cannot be indexed at all today (`PUBLIC_ENV` unset → site-wide `noindex, nofollow` + `Disallow: /`). Every other ticket is worthless before this ships correctly.
 - **Where:** build/deploy environment (owner), verification script touches `scripts/seo-check.mjs`; host config (not in repo).
 - **What:** set `PUBLIC_ENV=production` on the production build; verify (a) `https://www.decbricks.com` and `http://decbricks.com` 301 → `https://decbricks.com`; (b) unknown URLs return HTTP 404 status serving `dist/404.html`; (c) the contact form endpoint is set and one real test submission arrives; (d) `PUBLIC_GSC_VERIFICATION` (or DNS verification) present; (e) Cal link set; (f) built robots.txt is `Allow` + Sitemap line and no page ships noindex except `/terms`.
