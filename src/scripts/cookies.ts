@@ -26,7 +26,10 @@ export function initCookies() {
       ? '<svg viewBox="0 0 12 12" class="w-10 text-darkPurple" fill="none"><path d="M1 6l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg>' : '';
   };
   paintBox();
-  box.addEventListener('click', () => { analytics.checked = !analytics.checked; paintBox(); });
+  // The visible box sits inside a <label for> wrapping the input (native
+  // activation for mouse/touch), so paint from `change` — that keeps keyboard
+  // toggles in sync too (previously only box clicks repainted the visual).
+  analytics.addEventListener('change', paintBox);
 
   const hide = () => {
     gsap.to(card, { autoAlpha: 0, duration: 0.5, onComplete: () => { card.hidden = true; } });
