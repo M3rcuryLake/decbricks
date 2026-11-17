@@ -184,7 +184,7 @@ export function initContact() {
   const setBtn = (label: string) => setBtnPrimaryLabel(submitBtn, label);
   const textFields = Array.from(formEl.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input:not([type="hidden"]):not([type="checkbox"]), textarea'));
 
-  // --- Per-field inline errors (Formspree `errors[]` mapping + client validation) ---
+  // --- Per-field inline errors (server `errors[]` mapping + client validation) ---
   const fieldError = (name: string) => formEl.querySelector<HTMLElement>(`#${name}-error`);
   const setFieldError = (input: HTMLElement, msg: string) => {
     const name = (input as HTMLInputElement).name;
@@ -273,7 +273,7 @@ export function initContact() {
     // Cool-down between successful submissions (in-memory; resets on navigation).
     if (lastSentAt && Date.now() - lastSentAt < COOLDOWN_MS) {
       const wait = Math.ceil((COOLDOWN_MS - (Date.now() - lastSentAt)) / 1000);
-      setStatus(`Your message was just sent — please wait ${wait}s before sending another.`, 'ok');
+      setStatus(`Your message was just sent. Please wait ${wait}s before sending another.`, 'ok');
       setBtn('Submit');
       return;
     }
@@ -297,16 +297,17 @@ export function initContact() {
       const value = (name: string) => (formEl.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${name}"]`) as HTMLInputElement | HTMLTextAreaElement | null)?.value.trim() ?? '';
       const body = encodeURIComponent(`Name: ${value('name')}\nCompany: ${value('company')}\n\n${value('message')}`);
       window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Project enquiry from decbricks.com')}&body=${body}`;
-      setStatus('Opening your email client — press send there and we will reply.', 'ok');
+      setStatus('Opening your email client. Press send there and we will reply.', 'ok');
       setBtn('Message Sent!');
       formEl.reset();
       if (checkboxSvg) checkboxSvg.classList.add('opacity-0');
       return;
     }
 
-    // Hidden metadata fields live in the markup (so no-JS POSTs carry _subject);
-    // JS personalises them per submission.
-    const subjectInput = formEl.querySelector<HTMLInputElement>('input[name="_subject"]');
+    // Hidden metadata fields live in the markup (so no-JS POSTs carry _email.subject);
+    // JS personalises them per submission. Formspark treats underscore-prefixed
+    // names as control fields: they shape delivery but are not stored.
+    const subjectInput = formEl.querySelector<HTMLInputElement>('input[name="_email.subject"]');
     const senderName = (formEl.querySelector<HTMLInputElement>('input[name="name"]') as HTMLInputElement | null)?.value.trim();
     if (subjectInput) subjectInput.value = senderName ? `New enquiry from ${senderName} - Decbricks` : 'New enquiry from decbricks.com';
     const sourceInput = formEl.querySelector<HTMLInputElement>('input[name="source_page"]');
@@ -321,10 +322,18 @@ export function initContact() {
       timedOut = true;
       currentAbort?.abort();
     }, SUBMIT_TIMEOUT_MS);
+    // Formspark AJAX contract (documentation.formspark.io/examples/ajax): POST with
+    // Content-Type + Accept `application/json` ⇒ 200 + JSON on accept; errors come
+    // back as a short plain-text message (403 spam-rejected, 402 out of submissions),
+    // which falls through to the generic error handling below.
+    const payload: Record<string, string> = {};
+    new FormData(formEl).forEach((value, key) => {
+      if (key !== '_gotcha' && typeof value === 'string') payload[key] = value; // honeypot never leaves the client
+    });
     fetch(CONTACT_ENDPOINT, {
       method: 'POST',
-      body: new FormData(formEl),
-      headers: { Accept: 'application/json' },
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
       signal: currentAbort.signal,
     })
       .then(async (res) => {
@@ -345,7 +354,8 @@ export function initContact() {
           });
           return;
         }
-        // Non-OK: Formspree replies { errors: [{ field, message }] } on 4xx.
+        // Non-OK: Formspark answers plain text (403 "Rejected by spam protection",
+        // 402 out of submissions); a JSON `errors[]` body is still handled if present.
         let data: { errors?: Array<{ field?: string; message?: string }> } | null = null;
         try {
           data = await res.json();
@@ -386,7 +396,7 @@ export function initContact() {
       .catch((err: unknown) => {
         if (currentAbort?.signal.aborted && !timedOut) return; // teardown aborted the request — stay silent
         if (timedOut) {
-          setStatus('Sending took too long and was stopped. Your message is still here — please try again.', 'error');
+          setStatus('Sending took too long and was stopped. Your message is still here. Please try again.', 'error');
         } else if (err instanceof TypeError) {
           setStatus('We could not reach the server. Check your connection and try again.', 'error');
         } else {
@@ -411,7 +421,7 @@ export function initContact() {
   };
 }
 
-/** Wire constants for the Formspree POST. */
+/** Wire constants for the Formspark POST. */
 const SUBMIT_TIMEOUT_MS = 15000;
 const COOLDOWN_MS = 20000;
 let submitting = false;

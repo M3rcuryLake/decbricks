@@ -1,7 +1,9 @@
 /**
  * Legal-page content (/terms, including Privacy Policy section) — open-items A11.
  *
- * Word-for-word from `docs/decbricks-legal.docx` (Last Updated: 16th November, 2026).
+ * Word-for-word from `docs/decbricks-legal.docx` (Last Updated: 16th November, 2026),
+ * except the Privacy Policy processor name/region, retention context and its
+ * Last Updated date (2026-11-18: contact-form processor switched Formspree → Formspark).
  * Only `intro` (`ServicesHero.astro`) and the opening Terms `preamble` in
  * `LegalPage.astro` use `brandify()`; all Terms and Privacy Policy clauses and
  * the Privacy preamble render as plain body text.
@@ -303,7 +305,7 @@ const PRIVACY: LegalSection[] = [
       "We collect only what each feature below needs."
     ],
     "bullets": [
-      "Contact form (name, business email, company, website, country, service required, estimated budget, project timeline, your message, and your consent to submit): sent through the form service Formspree (formspree.io), which delivers it as an email to our team inbox. The form service stores submissions and may run spam checks on what you send.",
+      "Contact form (name, business email, company, website, country, service required, estimated budget, project timeline, your message, and your consent to submit): sent through the form service Formspark (submit-form.com), which delivers it as an email to our team inbox. The form service stores submissions and may run spam checks on what you send.",
       "Booking a call (when the booking widget is enabled): the scheduling service Cal.com processes the name, email and any details you enter to create the meeting.",
       "Cookies and similar storage: we use only essential cookies and similar storage that the site needs to work. We do not use analytics or advertising cookies.",
       "Server logs: our hosting provider, Vercel, records standard request data (page requested, approximate IP address, timestamp, browser type) to operate and secure the site."
@@ -336,7 +338,7 @@ const PRIVACY: LegalSection[] = [
       "government authorities or courts where the law requires it."
     ],
     "afterBullets": [
-      "We do not sell personal data, and we do not share it for targeted advertising. Our current processors and their regions are Formspree (United States), Cal.com (United States), Vercel (United States, with a global edge network)."
+      "We do not sell personal data, and we do not share it for targeted advertising. Our current processors and their regions are Formspark (European Union: data stored in Ireland and Germany), Cal.com (United States), Vercel (United States, with a global edge network)."
     ]
   },
   {
@@ -373,7 +375,7 @@ const PRIVACY: LegalSection[] = [
     "id": "transfers-outside-india-privacy",
     "heading": "7. Transfers outside India",
     "body": [
-      "Our processors operate in the United States (Formspree, Cal.com and Vercel, which also serves content through a global edge network). Where your data leaves India, we transfer it only to providers that protect it under contractual safeguards, including data processing agreements with each processor, and not to any country the Government of India has restricted."
+      "Our processors operate in the United States (Cal.com and Vercel, which also serves content through a global edge network) and in the European Economic Area (Formspark, which stores data in Ireland and Germany). Where your data leaves India, we transfer it only to providers that protect it under contractual safeguards, including data processing agreements with each processor, and not to any country the Government of India has restricted."
     ]
   },
   {
@@ -436,7 +438,7 @@ export const TERMS_DOC: TermsDocument = {
   privacy: {
     id: 'privacy-policy',
     heading: 'Privacy Policy',
-    updated: "16th November, 2026",
+    updated: "18th November, 2026",
     preamble: ["This policy explains what personal data the Decbricks website collects, why we collect it, and the choices you have. It should be read together with our Terms of Service.", "Decbricks is based in India and handles personal data under Indian law: the Information Technology Act, 2000 and its rules, and the Digital Personal Data Protection Act, 2023 (the \"DPDP Act\") as its provisions come into force. Section 11 explains what this means if you are outside India."],
     sections: PRIVACY,
   },

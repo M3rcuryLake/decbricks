@@ -23,14 +23,15 @@ export const CAL: CalConfig = {
 
 export const EMAIL = import.meta.env.PUBLIC_CONTACT_EMAIL || 'hello@decbricks.com';
 
-/** Contact-form delivery endpoint (Web3Forms/Formspree/owner worker) — A7. */
-export const CONTACT_ENDPOINT = import.meta.env.PUBLIC_CONTACT_ENDPOINT || '';
+/** Contact-form delivery endpoint (Formspark form ID → https://submit-form.com/<ID>) — A7. */
+const FORMSPARK_FORM_ID = import.meta.env.PUBLIC_FORMSPARK_FORM_ID || '';
+export const CONTACT_ENDPOINT = FORMSPARK_FORM_ID ? `https://submit-form.com/${FORMSPARK_FORM_ID}` : '';
 
 // Fail visibly in dev when the form cannot actually deliver anywhere, so the
 // missing config is never mistaken for a working form. Prod stays silent —
 // the runtime fallback (status message) handles it gracefully there.
 if (import.meta.env.DEV && !CONTACT_ENDPOINT) {
   console.warn(
-    '[decbricks] PUBLIC_CONTACT_ENDPOINT is not set — the contact form will not submit anywhere. See .env.example and docs/open-items.md A7.'
+    '[decbricks] PUBLIC_FORMSPARK_FORM_ID is not set — the contact form will not submit anywhere. See .env.example and docs/open-items.md A7.'
   );
 }

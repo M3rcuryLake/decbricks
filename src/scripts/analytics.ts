@@ -13,7 +13,7 @@
  * Consent state itself is unaffected.
  *
  * Events (pushed into `window.dataLayer`, all consent-gated):
- * - `contact_form_submitted` — confirmed Formspree success only (contact.ts)
+ * - `contact_form_submitted` — confirmed Formspark success only (contact.ts)
  * - `booking_started` / `booking_completed` — Cal inline embed lifecycle (cal-embed.ts)
  * - `page_view` (SPA) — pushed on every client-side route swap from main.ts
  *

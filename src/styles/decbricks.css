@@ -619,7 +619,7 @@ li {
 .form-status--error {
   color: var(--brand-error);
 }
-/* Formspree field errors (form-tsx): inline message under the invalid field.
+/* Form field errors (form-tsx): inline message under the invalid field.
    Same error colour as .form-status--error; copy-xs keeps it out of the way. */
 .form-fieldError {
   color: var(--brand-error);
