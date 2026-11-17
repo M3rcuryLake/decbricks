@@ -2,7 +2,7 @@
  * analytics.ts — Consent-gated Google Tag Manager container + conversion events
  * (SEO ticket T-10, per docs/seo/08-measurement.md).
  *
- * The container (`GTM-MRLF44ZP`, owner-supplied snippet) is injected ONLY after
+ * The container (`GTM-TJ995HPJ`, owner-supplied snippet 2026-11-18) is injected ONLY after
  * the cookie banner's analytics consent exists — same gate the Cal embed uses
  * (`cookies-decided` bus event + `analytics-consent` cookie). Visitors who
  * decline analytics are never counted: zero network requests to
@@ -22,7 +22,7 @@
  */
 import { bus } from './core/gsap';
 
-const GTM_ID = import.meta.env.PUBLIC_GTM_ID || 'GTM-MRLF44ZP';
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID || 'GTM-TJ995HPJ';
 const ANALYTICS_COOKIE = 'analytics-consent';
 
 type EventParams = Record<string, string | number | boolean | undefined>;
