@@ -33,23 +33,6 @@ const startProjectParagraphs = startProjectBody
   .map((p) => p.trim())
   .filter(Boolean);
 const bookingChips = ['Free, no commitment', '30 min or 1 hour', 'Google Meet'] as const;
-const bookingSteps = [
-  {
-    number: '01',
-    title: 'Pick a time',
-    description: 'Choose a slot that suits you. It adds straight to your calendar.',
-  },
-  {
-    number: '02',
-    title: 'Share the project',
-    description: 'A few lines on goals, timeline and budget are plenty.',
-  },
-  {
-    number: '03',
-    title: 'We come prepared',
-    description: 'You’ll talk with the people who’ll actually build it.',
-  },
-] as const;
 
 if (import.meta.env.DEV && !EMAIL) {
   console.warn('[decbricks] EMAIL is empty — "Prefer email?" row in #book-a-call will omit mailto link.');

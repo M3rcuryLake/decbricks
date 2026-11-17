@@ -680,3 +680,7 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 ### Contact Page `.booking-info` Sticky Removal (2026-11-17)
 - **What / Why:** Removed `position: sticky; top: 120px;` on `.booking-info` under `@media (min-width: 1100px)` (and the associated `#main-content:has(.page-contact), .page-contact .sections-servicesList { overflow: clip; }` workaround) in [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css) so `.booking-info` scrolls normally with the `#book-a-call` card on `/contact`.
 - **Files:** `src/styles/decbricks.css`, `docs/PROGRESS.md`.
+
+### SEO Phase 5 — @types/node dev dependency (2026-11-17)
+- **What / Why:** `@types/node` added as a devDependency — **justification (one line, per hard rule 7):** the sitemap endpoint (`src/pages/sitemap.xml.ts`) derives `lastmod` from git at build time (`node:child_process`) and `astro check` needs Node type declarations; types-only, never bundled, no runtime dependency. Also removed the now-unused `bookingSteps` const from `src/pages/contact.astro` (its markup was removed in owner commit `2058f69`; the data remained and failed `noUnusedLocals`) — restorable from git history if the booking-steps list returns.
+- **Files:** `package.json`, `package-lock.json`, `tsconfig.json` (unchanged — no `types` restriction), `src/pages/sitemap.xml.ts`, `src/pages/contact.astro`, `docs/PROGRESS.md`.
