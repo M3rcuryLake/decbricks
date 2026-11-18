@@ -24,11 +24,17 @@ export const SITE = {
   tagline: 'Build Beyond Ordinary',
   description:
     'Decbricks builds custom software, AI automation, design and digital growth for startups and organisations in India and international markets.',
-  /** Default Open Graph / Twitter share card (1200×630 derived from assets/brand/og-source.jpg). */
-  ogImage: `${SITE_URL}/og-default.png`,
+  /**
+   * Default Open Graph / Twitter share card (1200×630 derived from
+   * assets/brand/og-source.jpg). JPEG, not PNG: WhatsApp drops the thumbnail
+   * for cards above roughly 300 KB, and the 63 KB JPEG is visually identical
+   * to the 439 KB PNG while staying well inside that budget.
+   * public/og-default.png is kept only for previews cached against the old URL.
+   */
+  ogImage: `${SITE_URL}/og-default.jpg`,
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  ogImageType: 'image/png',
+  ogImageType: 'image/jpeg',
   ogImageAlt: 'Decbricks emblem and wordmark on a deep burgundy background',
   locale: 'en',
   themeColor: '#800020',

@@ -102,7 +102,7 @@ def check_assets():
     required = [
         'brand/logo.webp', 'brand/logo-cream.webp', 'brand/logo.png',
         'brand/favicon.ico', 'brand/icon-192.png', 'brand/icon-512.png',
-        'brand/apple-touch-icon.png', 'og-default.png',
+        'brand/apple-touch-icon.png', 'og-default.png', 'og-default.jpg',
     ]
     for rel in required:
         if not (DIST / rel).exists():

@@ -39,6 +39,15 @@
       ]
     },
     {
+      "source": "/og-default.jpg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
       "source": "/(site\\.webmanifest|robots\\.txt|sitemap\\.xml|5916762549f64c18a08b8e4218667fe9\\.txt)",
       "headers": [
         {

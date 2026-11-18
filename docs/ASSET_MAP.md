@@ -3,7 +3,7 @@
 Generated during WebP optimisation & folder reorganisation (`chore/webp-assets`).
 
 - **Astro-bundled assets (`src/assets/`):** `about/`, `service/`, `projects/`, `companyLogos/`
-- **Plain-URL assets (`public/assets/` & `public/brand/`):** `public/assets/shared/` (runtime shared images); client favicons, PWA icons, brand marks, and OG/schema assets stay in `public/brand/` and `public/og-default.png`.
+- **Plain-URL assets (`public/assets/` & `public/brand/`):** `public/assets/shared/` (runtime shared images); client favicons, PWA icons, brand marks, and OG/schema assets stay in `public/brand/`, `public/og-default.jpg` (canonical), and `public/og-default.png` (legacy cached-preview fallback).
 - **Optimisation profile:** WebP `quality: 80`, `effort: 6`, lossy, alpha preserved, sRGB colour profile (`toColorspace('srgb').withIccProfile('srgb')`), non-colour metadata stripped, original pixel dimensions retained via `scripts/optimise-images.mjs`. Originals are retained whenever WebP output is `>=` original bytes.
 
 ---
@@ -68,7 +68,8 @@ Generated during WebP optimisation & folder reorganisation (`chore/webp-assets`)
 
 | Path | Dimensions | Size | Reason Excluded |
 |---|---:|---:|---|
-| `public/og-default.png` | 1200×630 | 439,643 B | Open Graph / Twitter share card (social crawlers handle WebP unreliably) |
+| `public/og-default.jpg` | 1200×630 | 63,290 B | Canonical Open Graph / Twitter share card. JPEG because WhatsApp drops thumbnails above ~300 KB (social crawlers also handle WebP unreliably) |
+| `public/og-default.png` | 1200×630 | 439,643 B | Legacy fallback for previews already cached against the old URL; superseded 2026-11-18 |
 | `public/brand/favicon.ico` | multi | 15,406 B | Favicon ICO (`Base.astro`) |
 | `public/brand/favicon-16x16.png` | 16×16 | 826 B | Favicon (`Base.astro`) |
 | `public/brand/favicon-32x32.png` | 32×32 | 2,314 B | Favicon (`Base.astro`) |

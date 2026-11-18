@@ -34,7 +34,8 @@ Files kept in `public/` keep stable URLs (for CSS `url()`, favicons, JSON-LD `Or
 | `public/videos/decbricks-showreel.mp4` | `14,294,975 B` | H.264 + AAC MP4 (`1280×720`, `30.8s`, `+faststart`) | Plain-URL streaming MP4 in `Hero.astro` (`data-preview-mp4`) & `video-player.ts` (`SHOWREEL_MP4`); byte-range `206` required |
 | `public/brand/logo*.webp` | `10–17 KB` | WebP (`278×256`) | CSS `url(/brand/logo*.webp)` in `decbricks.css`, `<link rel="preload">` in `Base.astro`, `Footer.astro`, `image-preload-runtime.ts`, and `scripts/check-brand.py` |
 | `public/brand/{favicon*,apple-touch-icon,icon-*,logo.png}` | `0.8–299 KB` | ICO / PNG | Stable URLs for favicons, PWA icons, and JSON-LD `Organization.logo` (`schema.ts`) |
-| `public/og-default.png` | `439,643 B` | PNG (`1200×630`) | Stable URL required by social/OpenGraph scrapers |
+| `public/og-default.jpg` | `63,290 B` | JPEG (`1200×630`) | Canonical Open Graph / Twitter card; stable URL required by social scrapers and under WhatsApp's ~300 KB preview limit |
+| `public/og-default.png` | `439,643 B` | PNG (`1200×630`) | Legacy card kept so previews cached against the old URL still resolve |
 | `public/fonts/*.woff2` | `22–34 KB` | WOFF2 | Preloaded font URLs in `global.css` & `Base.astro` |
 
 Non-media metadata served from the build: `robots.txt` + `sitemap.xml` (endpoints) and `public/5916762549f64c18a08b8e4218667fe9.txt` (IndexNow ownership key file, protocol Option 1 — must be a UTF-8 text file at the site root containing only the key) all revalidate at `max-age=3600, must-revalidate`.
@@ -95,7 +96,7 @@ server {
     }
 
     # Un-hashed static media & fonts (1 day + 7-day SWR, conditional ETag)
-    location ~* ^/(brand|fonts|videos)/|^/og-default\.png$ {
+    location ~* ^/(brand|fonts|videos)/|^/og-default\.(png|jpg)$ {
         add_header Cache-Control "public, max-age=86400, stale-while-revalidate=604800";
     }
 

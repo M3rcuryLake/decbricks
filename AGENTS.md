@@ -22,7 +22,7 @@ src/lib/                        brand, image-preload, schema
 src/scripts/                    main.ts (boot + swap lifecycle), core/*, services-page.ts, footer.ts, cal-*.ts,
                                 contact.ts, case-studies.ts, testimonials.ts, legal-page.ts, image-preload-runtime.ts
 src/scripts/webgl/experience.ts three.js lazy WebGL facade (impl.ts loaded only on desktop with .webgl targets)
-public/                         brand/, fonts/, videos/, og-default.png, site.webmanifest, _headers
+public/                         brand/, fonts/, videos/, og-default.jpg (+ legacy .png), site.webmanifest, _headers
 docs/                           PROGRESS, Design-handoff, tokens, mapping, open-items, Implementation-plan,
                                 about-section-data, services-content, ASSET_MAP, CACHING
 ```
@@ -84,7 +84,7 @@ Fonts: Bricolage Grotesque (headings/UI) / Hanken Grotesk (body) / FK Raster Rom
 - Context hygiene: read files in slices; prefer `grep -n` + `sed -n 'a,bp'`; large files: Hero.astro, CaseStudies.astro, Testimonials.astro, global.css, experience.ts — do not open unless the task needs them.
 
 ## Asset conventions
-- **Roots & groups:** Astro/Vite-hashed assets (`/_astro/*`, cached 1 year `immutable`) live in `src/assets/` (`about/`, `service/`, `projects/`, `companyLogos/`, `shared/`); un-hashed `public/` URLs (`/brand/*`, `/fonts/*`, `/videos/*`, `/og-default.png`) use `max-age=86400, stale-while-revalidate=604800` and are never `immutable` (see `docs/ASSET_MAP.md` & `docs/CACHING.md`).
+- **Roots & groups:** Astro/Vite-hashed assets (`/_astro/*`, cached 1 year `immutable`) live in `src/assets/` (`about/`, `service/`, `projects/`, `companyLogos/`, `shared/`); un-hashed `public/` URLs (`/brand/*`, `/fonts/*`, `/videos/*`, `/og-default.jpg`) use `max-age=86400, stale-while-revalidate=604800` and are never `immutable` (see `docs/ASSET_MAP.md` & `docs/CACHING.md`).
 - **Naming:** lowercase `kebab-case`, `.webp` extension (no spaces/special chars; company logos `<company>.webp`). Keep original format only when WebP is larger (e.g., indexed halftone PNGs or tiny solid textures).
 - **Optimisation:** WebP `quality: 80`, `effort: 6`, sRGB profile, non-colour metadata stripped, dimensions preserved via `node scripts/optimise-images.mjs --input <dir|file> [--output <dir>]`. Add explicit `width`/`height` + `loading="lazy"` + `decoding="async"` on below-the-fold images only.
 
