@@ -746,3 +746,15 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 - **Verification:** `npm run build` ✅ · `check` ✅ 0 errors · `check:brand` ✅ · `headings` ✅ · `links` ✅ · `check:placeholders` ✅; built `dist/index.html` emits `https://decbricks.com/og-default.jpg` with `og:image:type=image/jpeg`; JPEG compared side-by-side with the PNG at 1200×630 (no visible artefact in the glow/wordmark).
 
 
+
+## Redirect hygiene + GSC "Redirect error" triage (2026-11-19)
+
+- **Symptom:** GSC (domain property `sc-domain:decbricks.com`) reported **Redirect error** for `https://decbricks.com/`, `/about`, `/contact` — first detected and last crawled **17 Nov 2026**.
+- **Diagnosis (live, 19 Nov):** no redirect fault exists. All three flagged URLs return `200` with **0 redirects**, verified four ways each: plain curl, Googlebot UA, Googlebot UA + `Accept: text/html`, HTTP/1.1. Site-wide matrix (~40 shapes) shows no loop, no empty/relative-invalid `Location`, `robots.txt` = `Allow: /` on every host, and a worst-case chain of **3 hops** (`http://www.decbricks.com/about/` → https → apex → slash-strip). Root cause is the **launch-day apex↔www direction flip** (open-items E6): during the flip both hosts pointed at each other, producing the loop Google recorded; the crawl timestamp predates the fix.
+- **Action taken:** deliberately **no redirect rules were added** to "fix" the reported error — the topology is valid and new rules are how a genuine loop gets created. Owner clicks **Validate fix** in GSC (tracked as open-items E8).
+- **Hygiene shipped** (`vercel.json`, both schema-validated against `https://openapi.vercel.sh/vercel.json`):
+  1. `redirects`: `/index.html` → `/` and `/:slug/index.html` → `/:slug`, both `permanent: true` (308). Those duplicates previously returned `200` with `index, follow`, held apart only by the canonical tag. **Explicit redirects were chosen over `cleanUrls: true`** because Vercel's docs only document the `about.html` form; the behaviour for directory-index files (`/about/index.html`) is not specified.
+  2. `headers` host rule: `X-Robots-Tag: noindex, nofollow` where `has: [{type: "host", value: "decbricks.vercel.app"}]`. The production deployment host answered `200, index, follow` for the whole site; the canonical already pointed at the apex, so this only removes a duplicate crawl surface.
+- **Not changed:** `public/_headers` (Netlify/Cloudflare grammar has no host condition) and security headers (still an open audit item).
+- **Verification gap (explicit):** Vercel evaluates `redirects` and host-scoped `headers` at the edge, so `astro preview` cannot exercise them locally. **Post-deploy check:** `/index.html` and `/about/index.html` must return `308` to `/` and `/about`; `https://decbricks.vercel.app/about` must return the `X-Robots-Tag` header. Re-run the redirect matrix afterwards.
+- **Files:** `vercel.json`, `docs/open-items.md`, `docs/PROGRESS.md`.
